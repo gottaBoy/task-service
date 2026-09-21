@@ -1,0 +1,136 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  SA.SRFramework.DataEx.BaseDataEntity
+ *  SA.SRFramework.DataEx.CallResult
+ *  SA.SRFramework.Utility.StringHelper
+ *  net.ibizsys.paas.entity.IEntity
+ *  net.ibizsys.paas.service.IServiceWork
+ *  net.ibizsys.paas.service.ITransaction
+ *  net.ibizsys.paas.service.ServiceGlobal
+ *  net.ibizsys.paas.service.ServiceWorkHelper
+ *  net.ibizsys.paas.web.WebContext
+ *  net.ibizsys.pscore.srv.PSCoreSysServiceBase
+ *  net.ibizsys.pscore.srv.codelist.SysDevBKTaskStateCodeListModel
+ *  net.ibizsys.pscore.srv.sysdesign.entity.PSPFPreviewAction
+ *  net.ibizsys.pscore.srv.sysdesign.service.PSPFPreviewActionService
+ *  net.ibizsys.pscore.srv.sysdevstudio.entity.PSSysDevBKTask
+ *  net.ibizsys.pscore.srv.sysdevstudio.service.PSSysDevBKTaskService
+ *  net.ibizsys.pscore.srv.util.PSSysModelInstGlobal
+ *  org.apache.commons.logging.Log
+ *  org.apache.commons.logging.LogFactory
+ *  org.hibernate.SessionFactory
+ */
+package SA.SRFDA.PS.Ctrl.DEDataCtrl;
+
+import SA.SRFDA.PS.Core.IPSDevSlnSys;
+import SA.SRFDA.PS.Core.IPSDevSlnSysDynaInst;
+import SA.SRFDA.PS.Core.IPSSystem;
+import SA.SRFDA.PS.Core.PSTaskServerEnvImpl;
+import SA.SRFDA.PS.Ctrl.DEDataCtrl.PSDEDataCtrl;
+import SA.SRFramework.DataEx.BaseDataEntity;
+import SA.SRFramework.DataEx.CallResult;
+import SA.SRFramework.Utility.StringHelper;
+import net.ibizsys.paas.entity.IEntity;
+import net.ibizsys.paas.service.IServiceWork;
+import net.ibizsys.paas.service.ITransaction;
+import net.ibizsys.paas.service.ServiceGlobal;
+import net.ibizsys.paas.service.ServiceWorkHelper;
+import net.ibizsys.paas.web.WebContext;
+import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
+import net.ibizsys.pscore.srv.codelist.SysDevBKTaskStateCodeListModel;
+import net.ibizsys.pscore.srv.sysdesign.entity.PSPFPreviewAction;
+import net.ibizsys.pscore.srv.sysdesign.service.PSPFPreviewActionService;
+import net.ibizsys.pscore.srv.sysdevstudio.entity.PSSysDevBKTask;
+import net.ibizsys.pscore.srv.sysdevstudio.service.PSSysDevBKTaskService;
+import net.ibizsys.pscore.srv.util.PSSysModelInstGlobal;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.SessionFactory;
+
+public class PSPFPreviewActionDataCtrl
+extends PSDEDataCtrl {
+    private static final Log log = LogFactory.getLog(PSPFPreviewActionDataCtrl.class);
+    public static final String CUSTOMCALL_START = "START";
+
+    @Override
+    protected CallResult OnCustomCall(String strCallName, BaseDataEntity dataEntity) {
+        if (StringHelper.Compare((String)strCallName, (String)CUSTOMCALL_START, (boolean)true) == 0) {
+            return this.startAction(dataEntity);
+        }
+        return super.OnCustomCall(strCallName, dataEntity);
+    }
+
+    public CallResult startAction(BaseDataEntity dataEntity) {
+        CallResult callResult = new CallResult();
+        try {
+            if (this.getTransactionManager() != null) {
+                this.getTransactionManager().Commit();
+            }
+            final BaseDataEntity dataEntity2 = dataEntity;
+            ServiceWorkHelper.getInstance().execute(new IServiceWork(){
+
+                public void execute(ITransaction iTransaction) throws Exception {
+                    PSPFPreviewActionDataCtrl.this.onStartAction(dataEntity2);
+                }
+            });
+            return callResult;
+        }
+        catch (Exception ex) {
+            log.error((Object)StringHelper.Format((String)"\u5f00\u59cb\u524d\u7aef\u9884\u89c8\u4f5c\u4e1a\u53d1\u751f\u5f02\u5e38\uff0c%1$s", (Object)ex.getMessage()), (Throwable)ex);
+            callResult.setRetCode(1);
+            callResult.setErrorInfo(ex.getMessage());
+            return callResult;
+        }
+    }
+
+    protected void onStartAction(BaseDataEntity dataEntity) throws Exception {
+        PSPFPreviewActionService psPFPreviewActionService = (PSPFPreviewActionService)ServiceGlobal.getService(PSPFPreviewActionService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+        PSPFPreviewAction psPFPreviewAction = new PSPFPreviewAction();
+        PSDEDataCtrl.convertEntity2(dataEntity, (IEntity)psPFPreviewAction);
+        psPFPreviewActionService.get((IEntity)psPFPreviewAction);
+        if (WebContext.getCurrent() != null) {
+            WebContext.getCurrent().setSessionValue("SRFLOGINNAME", (Object)psPFPreviewAction.getCreateMan());
+        }
+        String strPSDevSlnSysId = psPFPreviewAction.getPSDevSlnSysId();
+        String strPSDynaInstId = psPFPreviewAction.getPSDynaInstId();
+        IPSDevSlnSys iPSDevSlnSys = null;
+        IPSDevSlnSysDynaInst iPSDevSlnSysDynaInst = null;
+        String strPSSysModelInstId = null;
+        if (!StringHelper.IsNullOrEmpty((String)strPSDynaInstId)) {
+            iPSDevSlnSysDynaInst = this.getPSModelStorage().getPSDevSlnSysDynaInst(strPSDynaInstId);
+            iPSDevSlnSys = iPSDevSlnSysDynaInst.getPSDevSlnSys();
+            strPSSysModelInstId = iPSDevSlnSysDynaInst.getPSSysModelInstId();
+        } else {
+            iPSDevSlnSys = this.getPSModelStorage().getPSDevSlnSys(strPSDevSlnSysId);
+            strPSSysModelInstId = iPSDevSlnSys.getPSSysModelInstId();
+        }
+        PSSysDevBKTask psSysDevBKTask = new PSSysDevBKTask();
+        psSysDevBKTask.setPSSysDevBKTaskName(psPFPreviewAction.getPSPFPreviewActionName());
+        psSysDevBKTask.setPSDevSlnSysId(strPSDevSlnSysId);
+        if (PSTaskServerEnvImpl.getCurrent() != null) {
+            psSysDevBKTask.setPSTaskServerId(PSTaskServerEnvImpl.getCurrent().getId());
+            psSysDevBKTask.setPSTaskServerName(PSTaskServerEnvImpl.getCurrent().getName());
+        }
+        psSysDevBKTask.setPSSysModelInstId(strPSSysModelInstId);
+        psSysDevBKTask.setTaskType("PFPREVIEWACTION");
+        psSysDevBKTask.setTaskState(SysDevBKTaskStateCodeListModel.CREATED);
+        psSysDevBKTask.setPSSystemId(iPSDevSlnSys.getPSSystemId());
+        psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
+        psSysDevBKTask.setTaskParam(psPFPreviewAction.getPSPFPreviewActionId());
+        psSysDevBKTask.setModelLevel(IPSSystem.LOADLEVEL_CODE);
+        psSysDevBKTask.setPSDynaInstId(strPSDynaInstId);
+        if (!StringHelper.IsNullOrEmpty((String)strPSDynaInstId)) {
+            psSysDevBKTask.setPSSystemId(iPSDevSlnSys.getPSSystemId());
+            psSysDevBKTask.setPSSystemName(iPSDevSlnSys.getPSSystemName());
+            psSysDevBKTask.setPSDevSlnSysId(iPSDevSlnSys.getId());
+        }
+        PSSysDevBKTaskService psSysDevBKTaskService = (PSSysDevBKTaskService)ServiceGlobal.getService(PSSysDevBKTaskService.class, (SessionFactory)PSSysModelInstGlobal.getSessionFactory((String)strPSSysModelInstId));
+        psSysDevBKTaskService.create((IEntity)psSysDevBKTask);
+        SA.SRFDA.PS.Data.PSSysDevBKTask psSysDevBKTask2 = new SA.SRFDA.PS.Data.PSSysDevBKTask();
+        PSPFPreviewActionDataCtrl.convertEntity((IEntity)psSysDevBKTask, psSysDevBKTask2);
+        this.getPSModelStorage().getPSSysDevBKTaskGlobal().addPSSysDevBKTask(psSysDevBKTask2);
+    }
+}
+

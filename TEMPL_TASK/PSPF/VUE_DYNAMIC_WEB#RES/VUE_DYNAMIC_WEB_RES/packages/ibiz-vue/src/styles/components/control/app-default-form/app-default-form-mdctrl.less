@@ -1,0 +1,29 @@
+.app-form-mdctrl {
+    padding: 12px 0;
+    .app-form-mdctrl__header {
+        padding-left: 40px;
+    }
+    .app-form-mdctrl__content {
+        padding: 0 12px;
+    }
+    .app-form-mdctrl__row {
+        position: relative;
+        padding: 6px 0;
+        border-top: 1px dashed #eee;
+    }
+    .app-form-mdctrl__row:first-child {
+        border-top: 0;
+    }
+    .app-form-mdctrl__remove {
+        position: absolute;
+        right: -12px;
+        top: 0;
+        z-index: 100;
+        display: none;
+    }
+    .app-form-mdctrl__row:hover {
+        > .app-form-mdctrl__remove {
+            display: block;
+        }
+    }
+}

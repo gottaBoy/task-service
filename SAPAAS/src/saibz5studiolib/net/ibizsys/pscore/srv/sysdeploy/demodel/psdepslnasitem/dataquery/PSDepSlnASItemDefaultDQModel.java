@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.sysdeploy.demodel.psdepslnasitem.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="0C1F1BA6-FFEA-42F3-9C67-090F916DC0ED", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`BACKUPMODE`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`FAILTIMEOUT`, t1.`MAXFAILS`, t1.`MEMO`, t1.`PSDEPSLNASGRPID`, t11.`PSDEPSLNASGRPNAME`, t1.`PSDEPSLNASID`, t1.`PSDEPSLNASITEMID`, t1.`PSDEPSLNASITEMNAME`, t21.`PSDEPSLNASNAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`WEIGHT` FROM `T_SRFPSDEPSLNASITEM` t1  LEFT JOIN T_SRFPSDEPSLNASGRP t11 ON t1.PSDEPSLNASGRPID = t11.PSDEPSLNASGRPID  LEFT JOIN T_SRFPSDEPSLNAS t21 ON t1.PSDEPSLNASID = t21.PSDEPSLNASID  ", querycodetemp="SELECT t1.`BACKUPMODE`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`FAILTIMEOUT`, t1.`MAXFAILS`, t1.`MEMO`, t1.`PSDEPSLNASGRPID`, t11.`PSDEPSLNASGRPNAME`, t1.`PSDEPSLNASID`, t1.`PSDEPSLNASITEMID`, t1.`PSDEPSLNASITEMNAME`, t21.`PSDEPSLNASNAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`WEIGHT` FROM `T_SRFPSDEPSLNASITEM_TMP` t1  LEFT JOIN T_SRFPSDEPSLNASGRP_TMP t11 ON t1.PSDEPSLNASGRPID = t11.PSDEPSLNASGRPID  LEFT JOIN T_SRFPSDEPSLNAS t21 ON t1.PSDEPSLNASID = t21.PSDEPSLNASID  ", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="BACKUPMODE", expression="t1.`BACKUPMODE`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=2), @DEDataQueryCodeExp(name="FAILTIMEOUT", expression="t1.`FAILTIMEOUT`", showorder=3), @DEDataQueryCodeExp(name="MAXFAILS", expression="t1.`MAXFAILS`", showorder=4), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=5), @DEDataQueryCodeExp(name="PSDEPSLNASGRPID", expression="t1.`PSDEPSLNASGRPID`", showorder=6), @DEDataQueryCodeExp(name="PSDEPSLNASGRPNAME", expression="t11.`PSDEPSLNASGRPNAME`", showorder=7), @DEDataQueryCodeExp(name="PSDEPSLNASID", expression="t1.`PSDEPSLNASID`", showorder=8), @DEDataQueryCodeExp(name="PSDEPSLNASITEMID", expression="t1.`PSDEPSLNASITEMID`", showorder=9), @DEDataQueryCodeExp(name="PSDEPSLNASITEMNAME", expression="t1.`PSDEPSLNASITEMNAME`", showorder=10), @DEDataQueryCodeExp(name="PSDEPSLNASNAME", expression="t21.`PSDEPSLNASNAME`", showorder=11), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=12), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=13), @DEDataQueryCodeExp(name="WEIGHT", expression="t1.`WEIGHT`", showorder=14)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.BACKUPMODE, t1.CREATEDATE, t1.CREATEMAN, t1.FAILTIMEOUT, t1.MAXFAILS, t1.MEMO, t1.PSDEPSLNASGRPID, t11.PSDEPSLNASGRPNAME, t1.PSDEPSLNASID, t1.PSDEPSLNASITEMID, t1.PSDEPSLNASITEMNAME, t21.PSDEPSLNASNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.WEIGHT FROM T_SRFPSDEPSLNASITEM t1  LEFT JOIN T_SRFPSDEPSLNASGRP t11 ON t1.PSDEPSLNASGRPID = t11.PSDEPSLNASGRPID  LEFT JOIN T_SRFPSDEPSLNAS t21 ON t1.PSDEPSLNASID = t21.PSDEPSLNASID  ", querycodetemp="SELECT t1.BACKUPMODE, t1.CREATEDATE, t1.CREATEMAN, t1.FAILTIMEOUT, t1.MAXFAILS, t1.MEMO, t1.PSDEPSLNASGRPID, t11.PSDEPSLNASGRPNAME, t1.PSDEPSLNASID, t1.PSDEPSLNASITEMID, t1.PSDEPSLNASITEMNAME, t21.PSDEPSLNASNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.WEIGHT FROM T_SRFPSDEPSLNASITEM_TMP t1  LEFT JOIN T_SRFPSDEPSLNASGRP_TMP t11 ON t1.PSDEPSLNASGRPID = t11.PSDEPSLNASGRPID  LEFT JOIN T_SRFPSDEPSLNAS t21 ON t1.PSDEPSLNASID = t21.PSDEPSLNASID  ", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="BACKUPMODE", expression="t1.BACKUPMODE", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="FAILTIMEOUT", expression="t1.FAILTIMEOUT", showorder=3), @DEDataQueryCodeExp(name="MAXFAILS", expression="t1.MAXFAILS", showorder=4), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=5), @DEDataQueryCodeExp(name="PSDEPSLNASGRPID", expression="t1.PSDEPSLNASGRPID", showorder=6), @DEDataQueryCodeExp(name="PSDEPSLNASGRPNAME", expression="t11.PSDEPSLNASGRPNAME", showorder=7), @DEDataQueryCodeExp(name="PSDEPSLNASID", expression="t1.PSDEPSLNASID", showorder=8), @DEDataQueryCodeExp(name="PSDEPSLNASITEMID", expression="t1.PSDEPSLNASITEMID", showorder=9), @DEDataQueryCodeExp(name="PSDEPSLNASITEMNAME", expression="t1.PSDEPSLNASITEMNAME", showorder=10), @DEDataQueryCodeExp(name="PSDEPSLNASNAME", expression="t21.PSDEPSLNASNAME", showorder=11), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=12), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=13), @DEDataQueryCodeExp(name="WEIGHT", expression="t1.WEIGHT", showorder=14)}, conds={})})
+public class PSDepSlnASItemDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSDepSlnASItemDefaultDQModel() {
+        this.initAnnotation(PSDepSlnASItemDefaultDQModel.class);
+    }
+}
+

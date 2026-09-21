@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SRFEXMENUEX>
+	<SRFEXMAINMENUEX CAPTION="基础数据" TIPS="设备基础数据管理"
+		PAGEPATH="/emdatamgr/eqtype_main.jsp">
+		<SRFEXMENUITEMEX CAPTION="设备类型管理"
+			PAGEPATH="/emdatamgr/eqtype_main.jsp" />
+		<SRFEXMENUITEMEX CAPTION="功能位置管理"
+			PAGEPATH="/emdatamgr/eqlocation_main.jsp" />
+		<SRFEXMENUITEMEX CAPTION="故障体系管理">
+			<SRFEXMENUITEMEX CAPTION="故障体系"
+				PAGEPATH="/emdatamgr/eqrfodefect_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="故障树"
+				PAGEPATH="/emdatamgr/eqrfodefecttree_main.jsp" />
+		</SRFEXMENUITEMEX>
+	</SRFEXMAINMENUEX>
+
+	<SRFEXMAINMENUEX CAPTION="信息管理" TIPS="设备信息管理"
+		PAGEPATH="/eminfomgr/equip_main.jsp">
+		<SRFEXMENUITEMEX CAPTION="设备信息管理">
+			<SRFEXMENUITEMEX CAPTION="设备信息"
+				PAGEPATH="/eminfomgr/equip_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="设备展示"
+				PAGEPATH="/eminfomgr/equip_view.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+			<SRFEXMENUITEMEX CAPTION="分类查询"
+				PAGEPATH="/eminfomgr/equip_search.jsp" />
+			<SRFEXMENUITEMEX CAPTION="位置查询"
+				PAGEPATH="/eminfomgr/eqlocation_search.jsp" />
+		</SRFEXMENUITEMEX>
+		<SRFEXMENUITEMEX CAPTION="文档管理">
+			<SRFEXMENUITEMEX CAPTION="电子文档"
+				PAGEPATH="/eminfomgr/eqdrwg_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="实物文档"
+				PAGEPATH="/eminfomgr/reqdrwg_main.jsp" />
+		</SRFEXMENUITEMEX>
+		<SRFEXMENUITEMEX CAPTION="备件包管理"
+			PAGEPATH="/eminfomgr/eqspare_main.jsp" />
+		<SRFEXMENUITEMEX CAPTION="设备路线管理"
+			PAGEPATH="/eminfomgr/eqlan_main.jsp" />
+	</SRFEXMAINMENUEX>
+
+	<SRFEXMAINMENUEX CAPTION="活动历史" TIPS="设备活动历史"
+		PAGEPATH="/emlifemgr/eqlife_default.jsp">
+
+
+		<SRFEXMENUITEMEX CAPTION="活动历史管理">
+			<SRFEXMENUITEMEX CAPTION=""
+				PAGEPATH="/emlifemgr/eqlife_default.jsp" />
+			<SRFEXMENUITEMEX CAPTION="全部记录"
+				PAGEPATH="/emlifemgr/eqactivehist_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="安装记录"
+				PAGEPATH="/emlifemgr/eqsetup_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="调试记录"
+				PAGEPATH="/emlifemgr/eqdebug_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="检定记录"
+				PAGEPATH="/emlifemgr/eqcheck_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="维修记录"
+				PAGEPATH="/emlifemgr/eqmaintance_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="保养记录"
+				PAGEPATH="/emlifemgr/eqkeep_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="调配记录"
+				PAGEPATH="/emlifemgr/eqchange_main.jsp" />
+		</SRFEXMENUITEMEX>
+		<SRFEXMENUITEMEX CAPTION="单机活动历史管理">
+			<SRFEXMENUITEMEX CAPTION="单机活动历史"
+				PAGEPATH="/emlifemgr/eqlife_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="单机活动历史展示"
+				PAGEPATH="/emlifemgr/eqlife_view.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+			<SRFEXMENUITEMEX CAPTION="单机安装记录"
+				PAGEPATH="/emlifemgr/equipeqsetup_main.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+			<SRFEXMENUITEMEX CAPTION="单机调试记录"
+				PAGEPATH="/emlifemgr/equipeqdebug_main.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+			<SRFEXMENUITEMEX CAPTION="单机检定记录"
+				PAGEPATH="/emlifemgr/equipeqcheck_main.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+			<SRFEXMENUITEMEX CAPTION="单机维修记录"
+				PAGEPATH="/emlifemgr/equipeqmaintance_main.jsp"
+				INCLUDEPARAMS="EQUIPID" APPENDPARAMS="EQUIPID" />
+			<SRFEXMENUITEMEX CAPTION="单机保养记录"
+				PAGEPATH="/emlifemgr/equipeqkeep_main.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+			<SRFEXMENUITEMEX CAPTION="单机调配记录"
+				PAGEPATH="/emlifemgr/equipeqchange_main.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+		</SRFEXMENUITEMEX>
+
+
+	</SRFEXMAINMENUEX>
+
+	<SRFEXMAINMENUEX CAPTION="运行管理" TIPS="设备运行首页"
+		PAGEPATH="/emrunmgr/eqrun_default.jsp">
+
+
+
+		<SRFEXMENUITEMEX CAPTION="运行监控管理">
+			<SRFEXMENUITEMEX CAPTION=""
+				PAGEPATH="/emrunmgr/eqrun_default.jsp" />
+			<SRFEXMENUITEMEX CAPTION="设备运行日志"
+				PAGEPATH="/emrunmgr/eqworklog_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="设备运行监控"
+				PAGEPATH="/emrunmgr/eqmonitor_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="设备仪表读数"
+				PAGEPATH="/emrunmgr/eqmpmeter_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="设备关键点记录"
+				PAGEPATH="/emrunmgr/eqkprecord_main.jsp" />
+		</SRFEXMENUITEMEX>
+
+		<SRFEXMENUITEMEX CAPTION="单机运行监控管理">
+			<SRFEXMENUITEMEX CAPTION="单机运行监控"
+				PAGEPATH="/emrunmgr/eqrun_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="单机运行监控展示"
+				PAGEPATH="/emrunmgr/eqrun_view.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+			<SRFEXMENUITEMEX CAPTION="单机仪表管理"
+				PAGEPATH="/emrunmgr/equipeqmp_main.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+			<SRFEXMENUITEMEX CAPTION="单机关键点管理"
+				PAGEPATH="/emrunmgr/equipeqkp_main.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+		</SRFEXMENUITEMEX>
+
+
+
+
+	</SRFEXMAINMENUEX>
+
+
+	<SRFEXMAINMENUEX CAPTION="能耗管理" TIPS="设备能耗首页"
+		PAGEPATH="/emenergymgr/energy_default.jsp">
+		<SRFEXMENUITEMEX CAPTION=""
+			PAGEPATH="/emenergymgr/energy_default.jsp" />
+
+
+		<SRFEXMENUITEMEX CAPTION="能耗管理"
+			PAGEPATH="/emenergymgr/enconsum_main.jsp" />
+
+		<SRFEXMENUITEMEX CAPTION="能源管理"
+			PAGEPATH="/emenergymgr/energy_main.jsp">
+
+			<SRFEXMENUITEMEX CAPTION="能源能耗展示"
+				PAGEPATH="/emenergymgr/energy_view.jsp" INCLUDEPARAMS="EnergyId"
+				APPENDPARAMS="EnergyId" />
+		</SRFEXMENUITEMEX>
+
+
+		<SRFEXMENUITEMEX CAPTION="单机能耗管理"
+			PAGEPATH="/emenergymgr/eqenconsum_main.jsp">
+			<SRFEXMENUITEMEX CAPTION="单机能耗展示"
+				PAGEPATH="/emenergymgr/eqenconsum_view.jsp" INCLUDEPARAMS="EQUIPID"
+				APPENDPARAMS="EQUIPID" />
+
+		</SRFEXMENUITEMEX>
+
+	</SRFEXMAINMENUEX>
+
+	<SRFEXMAINMENUEX CAPTION="计划管理" TIPS="计划首页"
+		PAGEPATH="/emplanmgr/emplan_default.jsp">
+		<SRFEXMENUITEMEX CAPTION=""
+			PAGEPATH="/emplanmgr/emplan_default.jsp" />
+
+		<SRFEXMENUITEMEX CAPTION="维护管理计划管理">
+			<SRFEXMENUITEMEX CAPTION="维护管理计划"
+				PAGEPATH="/emplanmgr/emplan_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="待审核维护管理计划"
+				USERMENUCAPTIONID="MENU_EMPLAN_WAITAPPR"
+				PAGEPATH="/emplanmgr/emplan_waitappr_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="维护管理计划展示"
+				PAGEPATH="/emplanmgr/emplan_view.jsp" INCLUDEPARAMS="PLANID"
+				APPENDPARAMS="PLANID" />
+
+		</SRFEXMENUITEMEX>
+
+		<SRFEXMENUITEMEX CAPTION="预防性周期计划管理">
+
+			<SRFEXMENUITEMEX CAPTION="预防性周期计划"
+				PAGEPATH="/emplanmgr/empmplan_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="预防性周期计划展示"
+				PAGEPATH="/emplanmgr/empmplan_view.jsp" INCLUDEPARAMS="PLANID"
+				APPENDPARAMS="PLANID" />
+		</SRFEXMENUITEMEX>
+ 
+
+
+	</SRFEXMAINMENUEX>
+
+	<SRFEXMAINMENUEX CAPTION="工单管理" TIPS="工单管理首页"
+		PAGEPATH="/emwomgr/emwo_default.jsp">
+		<SRFEXMENUITEMEX CAPTION=""
+			PAGEPATH="/emwomgr/emwo_default.jsp" />
+
+<SRFEXMENUITEMEX MENUMODE="A" CAPTION="问题汇报"
+				PAGEPATH="/emwomgr/emwoapply_main.jsp?MENUMODE=A&amp;TabViewPageId=edit&amp;WOTypeId=2" />
+
+		<SRFEXMENUITEMEX CAPTION="工单申请">
+			<SRFEXMENUITEMEX CAPTION="全部工单申请"
+				PAGEPATH="/emwomgr/emwoapply_main.jsp" />
+
+
+				
+				
+			<SRFEXMENUITEMEX CAPTION="待审核工单申请"
+		        USERMENUCAPTIONID="MENU_EMWOAPPR_WAITAPPR"
+				PAGEPATH="/emwomgr/woapply_waitappr_main.jsp" />
+			
+			<SRFEXMENUITEMEX CAPTION="待处理工单申请"
+			    USERMENUCAPTIONID="MENU_EMWOAPPR_WAITNOTICE"
+				PAGEPATH="/emwomgr/emwoapply_waitnotice_main.jsp" />
+				
+			<SRFEXMENUITEMEX CAPTION="已关闭工单申请"
+				
+				PAGEPATH="/emwomgr/emwoapply_close_main.jsp" />
+				
+				
+			<SRFEXMENUITEMEX CAPTION="未通过历史申请"
+				USERMENUCAPTIONID="MENU_EMWOAPPR_APPRNOTPASS" 
+				PAGEPATH="/emwomgr/emwoapply_apprfault_main.jsp" />
+				
+		</SRFEXMENUITEMEX>
+
+
+		<SRFEXMENUITEMEX CAPTION="工单制定">
+            
+			<SRFEXMENUITEMEX MENUMODE="B" CAPTION="紧急工单制定"
+				PAGEPATH="/emwomgr/emwo_urg_main.jsp?MENUMODE=B&amp;TabViewPageId=edit&amp;WOGroup=4" />
+			<SRFEXMENUITEMEX MENUMODE="C" CAPTION="采购工单制定"
+				PAGEPATH="/emwomgr/emwo_stock_main.jsp?MENUMODE=C&amp;TabViewPageId=edit&amp;WOGroup=5" />
+		</SRFEXMENUITEMEX>
+
+		<SRFEXMENUITEMEX CAPTION="工单管理">
+			<SRFEXMENUITEMEX CAPTION="全部工单"
+				PAGEPATH="/emwomgr/emwo_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="工单展示"
+				PAGEPATH="/emwomgr/emwo_view.jsp" INCLUDEPARAMS="WOID"
+				APPENDPARAMS="ITEMID" />				
+			<SRFEXMENUITEMEX CAPTION="待审核工单"
+				USERMENUCAPTIONID="MENU_EMWO_WAITAPPR"
+				PAGEPATH="/emwomgr/emwo_waitappr_main.jsp" />
+			
+			<SRFEXMENUITEMEX CAPTION="待指派工单"
+				USERMENUCAPTIONID="MENU_EMWO_WAITSENDAPPR"
+				PAGEPATH="/emwomgr/emwo_waitsendappr_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="待接收工单"
+				USERMENUCAPTIONID="MENU_EMWO_WAITRECVSTATE"
+				PAGEPATH="/emwomgr/emwo_waitreceive_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="正在执行工单"
+				USERMENUCAPTIONID="MENU_EMWO_EXECUTESTATE"
+				PAGEPATH="/emwomgr/emwo_execute_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="执行完毕工单"
+				USERMENUCAPTIONID="MENU_EMWO_COMPLETESTATE"
+				PAGEPATH="/emwomgr/emwo_exeover_main.jsp" />
+				
+			<SRFEXMENUITEMEX CAPTION="已关闭工单">
+			<SRFEXMENUITEMEX CAPTION="正常结束工单" 			
+				PAGEPATH="/emwomgr/emwo_close_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="非正常结束工单"				
+				PAGEPATH="/emwomgr/emwo_stop_main.jsp" />	
+			</SRFEXMENUITEMEX>		
+		</SRFEXMENUITEMEX>
+		<SRFEXMENUITEMEX CAPTION="我的工单">
+			<SRFEXMENUITEMEX CAPTION="我的工单"
+				PAGEPATH="/emwomgr/emwo_my_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="待指派工单"
+				USERMENUCAPTIONID="MENU_EMWO_MY_WAITSENDAPPR"
+				PAGEPATH="/emwomgr/emwo_my_waitsendappr_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="待接收工单"
+				USERMENUCAPTIONID="MENU_EMWO_MY_WAITRECVSTATE"
+				PAGEPATH="/emwomgr/emwo_my_waitreceive_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="正在执行工单"
+				USERMENUCAPTIONID="MENU_EMWO_MY_EXECUTESTATE"
+				PAGEPATH="/emwomgr/emwo_my_execute_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="执行完毕工单"
+				USERMENUCAPTIONID="MENU_EMWO_MY_COMPLETESTATE"
+				PAGEPATH="/emwomgr/emwo_my_exeover_main.jsp" />		
+		<SRFEXMENUITEMEX CAPTION="已关闭工单">
+			<SRFEXMENUITEMEX CAPTION="正常结束工单"				
+				PAGEPATH="/emwomgr/emwo_my_close_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="异常终止工单"			
+				PAGEPATH="/emwomgr/emwo_my_stop_main.jsp" />	
+			</SRFEXMENUITEMEX>				
+					
+		</SRFEXMENUITEMEX>
+
+	</SRFEXMAINMENUEX>
+
+	<SRFEXMAINMENUEX CAPTION="物品管理" TIPS="物品管理"
+		PAGEPATH="/emitemmgr/item_default.jsp">
+		<SRFEXMENUITEMEX CAPTION="库存物品管理">
+			<SRFEXMENUITEMEX CAPTION=""
+				PAGEPATH="/emitemmgr/item_default.jsp" />
+			<SRFEXMENUITEMEX CAPTION="物品管理"
+				PAGEPATH="/emitemmgr/item_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="物品展示"
+				PAGEPATH="/emitemmgr/item_view.jsp" INCLUDEPARAMS="ITEMID"
+				APPENDPARAMS="ITEMID" />
+			<SRFEXMENUITEMEX CAPTION="物品类型管理"
+				PAGEPATH="/emitemmgr/itemtype_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="物品入库管理"
+				PAGEPATH="/emitemmgr/itemtrade_i_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="物品出库管理"
+				PAGEPATH="/emitemmgr/itemtrade_o_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="物品租借管理"
+				PAGEPATH="/emitemmgr/itemtrade_b_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="物品归还管理"
+				PAGEPATH="/emitemmgr/itemtrade_r_main.jsp" />
+		</SRFEXMENUITEMEX>
+
+
+		<SRFEXMENUITEMEX CAPTION="仓库管理"
+			PAGEPATH="/emitemmgr/eqstore_main.jsp" />
+
+	</SRFEXMAINMENUEX>
+
+	<SRFEXMAINMENUEX CAPTION="合同管理" TIPS="设备合同管理"
+		PAGEPATH="/empurmgr/labservice_main.jsp">
+		<SRFEXMENUITEMEX CAPTION="供应商管理"
+			PAGEPATH="/empurmgr/labservice_main.jsp" />
+		<SRFEXMENUITEMEX CAPTION="制造商管理"
+			PAGEPATH="/empurmgr/mservice_main.jsp" />
+		<SRFEXMENUITEMEX CAPTION="合同管理"
+			PAGEPATH="/empurmgr/pfcontract_main.jsp" />
+
+	</SRFEXMAINMENUEX>
+
+	<SRFEXMAINMENUEX CAPTION="安全管理" TIPS="设备安全管理"
+		PAGEPATH="/emsafemgr/eqdanger_main.jsp">
+		<SRFEXMENUITEMEX CAPTION="事故隐患"
+			PAGEPATH="/emsafemgr/eqdanger_main.jsp" />
+		<SRFEXMENUITEMEX CAPTION="安全自查"
+			PAGEPATH="/emsafemgr/eqsafeexam_main.jsp" />
+
+	</SRFEXMAINMENUEX>
+
+	<SRFEXMAINMENUEX CAPTION="报表中心" TIPS="设备报表管理"
+		PAGEPATH="/report/ItemTradeReportAllWSearch.jsp">
+
+		<SRFEXMENUITEMEX CAPTION="物品收支存汇总"
+			PAGEPATH="/report/ItemTradeReportAllWSearch.jsp" />
+		<SRFEXMENUITEMEX CAPTION="物品类型收支存汇总"
+			PAGEPATH="/report/ItemTradeReportAllSearch.jsp" />
+		<SRFEXMENUITEMEX CAPTION="设备活动明细"
+			PAGEPATH="/report/ActiveHistReportSearch.jsp" />
+
+		<SRFEXMENUITEMEX CAPTION="能源消耗汇总"
+			PAGEPATH="/report/EMENConsumSearch.jsp" />
+		<SRFEXMENUITEMEX CAPTION="单机能源消耗"
+			PAGEPATH="/report/EMENConsumoneSearch.jsp" />
+		<SRFEXMENUITEMEX CAPTION="设备运行时间"
+			PAGEPATH="/report/EMEQMonitorSearch.jsp" />
+
+
+	</SRFEXMAINMENUEX>
+
+	<SRFEXMAINMENUEX CAPTION="系统管理" TIPS="系统管理"
+		PAGEPATH="/userinfomgr/userinfo_main.jsp">
+		
+		<SRFEXMENUITEMEX CAPTION="配置数据">
+			<SRFEXMENUITEMEX MENUMODE="DEPT" CAPTION="部门类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=DEPT&amp;TABLENAME=t_PFDeptType|DeptType||SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="ENERGY" CAPTION="能源类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=ENERGY&amp;TABLENAME=t_EMEnergyType|EnergyType||SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="EQSETUP" CAPTION="安装类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=EQSETUP&amp;TABLENAME=t_EMEQActiveType|ActiveType|ActiveGroup=1|SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="EQDEBUG" CAPTION="调试类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=EQDEBUG&amp;TABLENAME=t_EMEQActiveType|ActiveType|ActiveGroup=2|SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="EQCHECK" CAPTION="检定类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=EQCHECK&amp;TABLENAME=t_EMEQActiveType|ActiveType|ActiveGroup=3|SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="EQKEEP" CAPTION="保养类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=EQKEEP&amp;TABLENAME=t_EMEQActiveType|ActiveType|ActiveGroup=4|SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="EQMAINTANDE" CAPTION="维修类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=EQMAINTANDE&amp;TABLENAME=t_EMEQActiveType|ActiveType|ActiveGroup=5|SAEAM" />																						
+			<SRFEXMENUITEMEX MENUMODE="EQCHANGE" CAPTION="调配类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=EQCHANGE&amp;TABLENAME=t_EMEQActiveType|ActiveType|ActiveGroup=6|SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="EQDANGER" CAPTION="隐患类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=EQDANGER&amp;TABLENAME=t_EMEQDangerType|EQDangerType||SAEAM" />		
+			<SRFEXMENUITEMEX MENUMODE="EQDRWG" CAPTION="电子文档类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=EQDRWG&amp;TABLENAME=t_EMEQDrwgType|EQDrwgType|EQDrwgGroup=1|SAEAM" />																						
+			<SRFEXMENUITEMEX MENUMODE="REQDRWG" CAPTION="实物文档类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=REQDRWG&amp;TABLENAME=t_EMEQDrwgType|EQDrwgType|EQDrwgGroup=2|SAEAM" />		
+			<SRFEXMENUITEMEX MENUMODE="KP" CAPTION="关键点类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=KP&amp;TABLENAME=t_EMEQKPType|KPType||SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="MP" CAPTION="仪表类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=MP&amp;TABLENAME=t_EMEQMPType|MPType||SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="DEFECT" CAPTION="故障现象类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=DEFECT&amp;TABLENAME=t_EMRFOType|RFOType|RFOGROUP=1|SAEAM" />		
+			<SRFEXMENUITEMEX MENUMODE="MODE" CAPTION="故障模式类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=MODE&amp;TABLENAME=t_EMRFOType|RFOType|RFOGROUP=2|SAEAM" />		
+			<SRFEXMENUITEMEX MENUMODE="CAUSES" CAPTION="故障原因类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=CAUSES&amp;TABLENAME=t_EMRFOType|RFOType|RFOGROUP=3|SAEAM" />		
+			<SRFEXMENUITEMEX MENUMODE="ACTION" CAPTION="故障方案类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=ACTION&amp;TABLENAME=t_EMRFOType|RFOType|RFOGROUP=4|SAEAM" />																		
+			<SRFEXMENUITEMEX MENUMODE="WORKSTATE" CAPTION="运行状态"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=WORKSTATE&amp;TABLENAME=t_Emeqworkstate|WorkState||SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="WORKSTOPFACTOR" CAPTION="停机状态"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=WORKSTOPFACTOR&amp;TABLENAME=t_EMEQWorkStopFactor|WorkStopFactor||SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="INPUT" CAPTION="物品入库"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=INPUT&amp;TABLENAME=t_EMItemTradeType|TradeType|TradeGroup=1|SAEAM" />		
+			<SRFEXMENUITEMEX MENUMODE="OUTPUT" CAPTION="物品出库"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=OUTPUT&amp;TABLENAME=t_EMItemTradeType|TradeType|TradeGroup=2|SAEAM" />		
+			<SRFEXMENUITEMEX MENUMODE="BORROW" CAPTION="物品租借"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=BORROW&amp;TABLENAME=t_EMItemTradeType|TradeType|TradeGroup=3|SAEAM" />		
+			<SRFEXMENUITEMEX MENUMODE="RETURN" CAPTION="物品归还"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=RETURN&amp;TABLENAME=t_EMItemTradeType|TradeType|TradeGroup=4|SAEAM" />		
+			<SRFEXMENUITEMEX MENUMODE="LABSERVICE" CAPTION="服务商类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=LABSERVICE&amp;TABLENAME=t_EMLabService|LabServiceType||SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="MSERVICE" CAPTION="制造商类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=MSERVICE&amp;TABLENAME=t_EMMService|MService||SAEAM" />	
+			<SRFEXMENUITEMEX MENUMODE="PLAN" CAPTION="计划类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=PLAN&amp;TABLENAME=t_EMPlanType|PlanType||SAEAM" />																			
+			<SRFEXMENUITEMEX MENUMODE="PLANDETAIL" CAPTION="计划任务类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=PLANDETAIL&amp;TABLENAME=t_EMPlanDetailType|PlanDetailType||SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="STORE" CAPTION="仓库类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=STORE&amp;TABLENAME=t_emeqstoretype|StoreType||SAEAM" />																																																		
+			<SRFEXMENUITEMEX MENUMODE="EMWO" CAPTION="工单类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=EMWO&amp;TABLENAME=t_EMWoType|WoType||SAEAM" />	
+			<SRFEXMENUITEMEX MENUMODE="EMP" CAPTION="职员类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=EMP&amp;TABLENAME=t_PFEmpType|EmpType||SAEAM" />
+			<SRFEXMENUITEMEX MENUMODE="POST" CAPTION="岗位类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=POST&amp;TABLENAME=t_PFPostType|PostType||SAEAM" />															
+			<SRFEXMENUITEMEX MENUMODE="TEAM" CAPTION="班组类型"
+				PAGEPATH="/typemgr/type_main.jsp?MENUMODE=TEAM&amp;TABLENAME=t_PFTeamType|TeamType||SAEAM" />											
+																						
+		</SRFEXMENUITEMEX>
+		<SRFEXMENUITEMEX CAPTION="用户管理">
+			<SRFEXMENUITEMEX CAPTION="用户信息管理"
+				PAGEPATH="/userinfomgr/userinfo_main.jsp" />
+
+		</SRFEXMENUITEMEX>
+
+
+		<SRFEXMENUITEMEX CAPTION="权限管理">
+			<SRFEXMENUITEMEX CAPTION="权限用户组管理"
+				PAGEPATH="/privusergroupmgr/privusergroup_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="权限角色管理"
+				PAGEPATH="/privrolemgr/privrole_main.jsp" />
+			<SRFEXMENUITEMEX CAPTION="权限资源管理"
+				PAGEPATH="/privresourcemgr/privresource_main.jsp">
+				<SRFEXMENUITEMEX CAPTION="页面信息管理"
+					PAGEPATH="/pageresmgr/pageres_main.jsp" />
+			</SRFEXMENUITEMEX>
+		</SRFEXMENUITEMEX>
+
+
+	</SRFEXMAINMENUEX>
+
+</SRFEXMENUEX>

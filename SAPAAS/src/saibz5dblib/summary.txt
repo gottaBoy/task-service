@@ -1,0 +1,83 @@
+Summary for saibz5dblib.jar
+Decompiled with CFR 0.152
+
+
+net.ibizsys.paas.db.impl.DB2DialectImpl
+----------------------------
+
+callSqlBatch(java.sql.Connection java.lang.String[] net.ibizsys.paas.db.SqlParamList[] int int )
+  Could not resolve type clashes
+  Unable to fully structure code
+
+
+net.ibizsys.paas.db.impl.DMDialectImpl
+----------------------------
+
+callSqlBatch(java.sql.Connection java.lang.String[] net.ibizsys.paas.db.SqlParamList[] int int )
+  Could not resolve type clashes
+  Unable to fully structure code
+
+
+net.ibizsys.paas.db.impl.HANADialectImpl
+----------------------------
+
+callSql(java.sql.Connection java.lang.String net.ibizsys.paas.db.SqlParamList int )
+  Could not resolve type clashes
+  Unable to fully structure code
+callSqlBatch(java.sql.Connection java.lang.String[] net.ibizsys.paas.db.SqlParamList[] int int )
+  Could not resolve type clashes
+  Unable to fully structure code
+
+
+net.ibizsys.paas.db.impl.MSSQLDialectImpl
+----------------------------
+
+callSqlBatch(java.sql.Connection java.lang.String[] net.ibizsys.paas.db.SqlParamList[] int int )
+  Could not resolve type clashes
+  Unable to fully structure code
+
+
+net.ibizsys.paas.db.impl.MySQL5DialectImpl
+----------------------------
+
+callSql(java.sql.Connection java.lang.String net.ibizsys.paas.db.SqlParamList int )
+  Could not resolve type clashes
+  Unable to fully structure code
+callSqlBatch(java.sql.Connection java.lang.String[] net.ibizsys.paas.db.SqlParamList[] int int )
+  Could not resolve type clashes
+  Unable to fully structure code
+
+
+net.ibizsys.paas.db.impl.OracleDialectImpl
+----------------------------
+
+callSql(java.sql.Connection java.lang.String net.ibizsys.paas.db.SqlParamList int )
+  Could not resolve type clashes
+  Unable to fully structure code
+callSqlBatch(java.sql.Connection java.lang.String[] net.ibizsys.paas.db.SqlParamList[] int int )
+  Could not resolve type clashes
+  Unable to fully structure code
+
+
+net.ibizsys.paas.db.impl.PostgreSQLDialectImpl
+----------------------------
+
+callSqlBatch(java.sql.Connection java.lang.String[] net.ibizsys.paas.db.SqlParamList[] int int )
+  Could not resolve type clashes
+  Unable to fully structure code
+
+
+net.ibizsys.paas.db.impl.PPASDialectImpl
+----------------------------
+
+callSqlBatch(java.sql.Connection java.lang.String[] net.ibizsys.paas.db.SqlParamList[] int int )
+  Could not resolve type clashes
+  Unable to fully structure code
+
+
+net.ibizsys.paas.db.impl.SQLiteDialectImpl
+----------------------------
+
+callSqlBatch(java.sql.Connection java.lang.String[] net.ibizsys.paas.db.SqlParamList[] int int )
+  Could not resolve type clashes
+  Unable to fully structure code

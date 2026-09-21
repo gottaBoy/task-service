@@ -1,0 +1,21 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  TransformerException
+ */
+package SA.SRFDA.EAI.Ctrl.Transformer;
+
+import SA.SRFDA.EAI.Ctrl.Transformer.BaseTransformer;
+
+public class DataEntityUpdater
+extends BaseTransformer {
+    public DataEntityUpdater() {
+        throw new Error("Unresolved compilation problems: \n\tThe import org.mule cannot be resolved\n\tThe import org.mule cannot be resolved\n\tThe hierarchy of the type DataEntityUpdater is inconsistent\n\tThe method doTransform(Object, String) of type DataEntityUpdater must override or implement a supertype method\n\tTransformerException cannot be resolved to a type\n\tThe method getName() is undefined for the type DataEntityUpdater\n\tThe method GetDataEntity(BaseTransformer, Object) from the type TransformerHelper refers to the missing type TransformerException\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n\tThe method GetPayload(BaseTransformer, Object, BaseDataEntity) from the type TransformerHelper refers to the missing type TransformerException\n");
+    }
+
+    protected Object doTransform(Object object, String string) throws TransformerException {
+        throw new Error("Unresolved compilation problems: \n\tThe method doTransform(Object, String) of type DataEntityUpdater must override or implement a supertype method\n\tTransformerException cannot be resolved to a type\n\tThe method getName() is undefined for the type DataEntityUpdater\n\tThe method GetDataEntity(BaseTransformer, Object) from the type TransformerHelper refers to the missing type TransformerException\n\tTransformerException cannot be resolved to a type\n\tMessageFactory cannot be resolved\n\tThe method GetPayload(BaseTransformer, Object, BaseDataEntity) from the type TransformerHelper refers to the missing type TransformerException\n");
+    }
+}
+

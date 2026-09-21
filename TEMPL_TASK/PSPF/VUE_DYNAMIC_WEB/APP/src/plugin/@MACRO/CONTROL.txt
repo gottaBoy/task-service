@@ -1,0 +1,26 @@
+<#if item.getPSSysPFPlugin?? && item.getPSSysPFPlugin()?? && (item.getPSSysPFPlugin().isRuntimeObject() == false)>
+<#if item.getRefMode() == "CONTROL">
+<#-- 部件插件 start -->
+import { Component, Watch } from 'vue-property-decorator';
+import { VueLifeCycleProcessing,AppControlBase } from 'ibiz-vue';
+<#if item.render?? && item.render.code2??>${item.render.code2}</#if>
+<#if item.render?? && item.render.code3?? && (item.render.code3 != "")>import '../plugin-style.less';</#if>
+
+/**
+ * ${item.getPSSysPFPlugin().getName()}插件类
+ *
+ * @export
+ * @class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+ * @class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+ * @extends {Vue}
+ */
+@Component({})
+@VueLifeCycleProcessing()
+export class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())} extends <#if item.render?? && item.render.code4?? && (item.render.code4 != "") >${item.render.code4}<#else>AppControlBase</#if> {
+
+<#if item.render?? && item.render.code??>${item.render.code}</#if>
+
+}
+<#-- 部件插件 end -->
+</#if>
+</#if>

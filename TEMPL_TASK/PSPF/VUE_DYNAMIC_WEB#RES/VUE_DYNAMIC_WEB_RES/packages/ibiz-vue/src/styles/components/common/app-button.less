@@ -1,0 +1,50 @@
+.app-button.ivu-button {
+  font-size: 12px;
+
+  > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-content {
+    display: flex;
+
+    &.left {
+      justify-content: flex-start;
+      align-items: center;
+
+      .icon + .caption {
+        padding-left: 6px;
+      }
+    }
+
+    &.right {
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      align-items: center;
+
+      .icon + .caption {
+        padding-right: 6px;
+      }
+    }
+
+    &.top {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    &.bottom {
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+    }
+  }
+}
+//  加载效果
+.app-button.ivu-btn-loading {
+  display: flex;
+  line-height: 2;
+  .ivu-icon-ios-loading {
+    line-height: 2;
+  }
+}

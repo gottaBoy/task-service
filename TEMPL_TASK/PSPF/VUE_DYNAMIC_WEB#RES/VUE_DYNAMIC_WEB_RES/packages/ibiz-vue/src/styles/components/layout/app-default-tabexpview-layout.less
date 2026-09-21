@@ -1,0 +1,33 @@
+.detabexpview {
+    position: relative;
+    .app-control-tabexppanel {
+        margin: 0;
+        overflow: visible;
+    }
+    .app-control-tabexppanel__content {
+        overflow: visible;
+        >.ivu-tabs-bar {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            border: 0;
+            padding-left: 120px;
+        }
+    }
+    .app-control-tabviewpanel {
+        margin: 0;
+        overflow: visible;
+        >.view-container2>.view-header {
+            position: absolute;
+            top: -48px;
+            right: 0;
+            .view-header__left__caption {
+                display: none;
+            }
+        }
+    }
+    // 布局调整
+    >.view-content {
+        padding: 0;
+    }
+}

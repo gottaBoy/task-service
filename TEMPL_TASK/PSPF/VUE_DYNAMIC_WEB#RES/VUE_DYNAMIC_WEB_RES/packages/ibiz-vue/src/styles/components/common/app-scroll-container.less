@@ -1,0 +1,28 @@
+.app-scroll-container {
+    height: 100%;
+    width: 100%;
+
+    .app-scroll-container__header,
+    .app-scroll-container__bottom {
+        width: 100%;
+    }
+
+    .app-scroll-container__middle {
+        display: flex;
+        width: 100%;
+        .app-scroll-container__left,
+        .app-scroll-container__center,
+        .app-scroll-container__right {
+            height: 100%;
+        }
+    }
+
+    .no-style {
+        padding: 0;
+        margin: 0;
+    }
+
+    .overflow-auto {
+        overflow: auto;
+    }
+}

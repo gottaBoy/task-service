@@ -1,0 +1,79 @@
+#disk-file-upload {
+    width: auto;
+    height: auto;
+    border: 0px solid black;
+    >.el-row {
+        border: 0px solid red;
+        width: 400px;
+    }
+}
+
+.disk-file-upload__withDrag {
+    border: 0px solid grey;
+    width: 400px;
+    .disk-file-upload__withDrag__upload{
+        color: #409EFF;
+    }
+}
+
+.disk-file-upload__withoutDrag {
+    border: 0px solid grey;
+    width: 400px;
+    text-align: left;
+    padding-left: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.disk-file-upload__fileList {
+    width: 400px;
+    border: 0px solid grey;
+    margin-top: 0px;
+}
+
+.disk-file-upload__fileList__caption {
+    text-align: left;
+    margin-left: 0px;
+    i{
+        margin-right: 5px;
+    }
+}
+
+.disk-file-upload__fileList__content {
+    text-align: left;
+    margin-left: 0px;
+    margin-top: -10px;
+    .el-link:nth-child(n+2) {
+        margin-left: 10px;
+    }
+}
+
+.disk-file-upload__dialogDiv {
+    // el-dialog头部
+    .el-dialog__header {
+        height: 40px;
+    }
+
+    // el-dialog面板
+    .el-dialog__wrapper {
+        height: 90vh;
+        overflow: visible;
+        // el-dialog
+        .el-dialog {
+            height: 90vh;
+        }
+    }
+
+    // el-dailog内容
+    .el-dialog__body {
+        height: inherit;
+    }
+
+    .disk-file-upload__dialogDiv__frame{
+        height: 100%;
+    }
+    
+    #fileIframe {
+        height: calc(100% - 40px);
+    }
+}

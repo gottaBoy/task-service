@@ -1,0 +1,210 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  SA.SRFramework.DataEx.BaseDataEntity
+ */
+package SA.IM.Ctrl.Data;
+
+import SA.SRFramework.DataEx.BaseDataEntity;
+import java.util.Date;
+
+public class IMMessageLog
+extends BaseDataEntity {
+    public static final String TAG_IMMESSAGELOGID = "IMMESSAGELOGID";
+    public static final String TAG_IMMESSAGELOGNAME = "IMMESSAGELOGNAME";
+    public static final String TAG_CREATEMAN = "CREATEMAN";
+    public static final String TAG_CREATEDATE = "CREATEDATE";
+    public static final String TAG_UPDATEMAN = "UPDATEMAN";
+    public static final String TAG_UPDATEDATE = "UPDATEDATE";
+    public static final String TAG_IMMEETINGID = "IMMEETINGID";
+    public static final String TAG_IMMEETINGNAME = "IMMEETINGNAME";
+    public static final String TAG_IMUSERID = "IMUSERID";
+    public static final String TAG_IMUSERNAME = "IMUSERNAME";
+    public static final String TAG_CONTENT = "CONTENT";
+    public static final String TAG_MESSAGE = "MESSAGE";
+    public static final String TAG_SENDTIME = "SENDTIME";
+    public static final String TAG_FILEID = "FILEID";
+    public static final String TAG_FILENAME = "FILENAME";
+
+    public boolean isIMMESSAGELOGIDNull() {
+        return this.IsParamNull(TAG_IMMESSAGELOGID);
+    }
+
+    public String getIMMESSAGELOGID() {
+        return this.GetParamStringValue(TAG_IMMESSAGELOGID, "");
+    }
+
+    public void setIMMESSAGELOGID(String strValue) {
+        this.SetParamValue(TAG_IMMESSAGELOGID, strValue);
+    }
+
+    public boolean isIMMESSAGELOGNAMENull() {
+        return this.IsParamNull(TAG_IMMESSAGELOGNAME);
+    }
+
+    public String getIMMESSAGELOGNAME() {
+        return this.GetParamStringValue(TAG_IMMESSAGELOGNAME, "");
+    }
+
+    public void setIMMESSAGELOGNAME(String strValue) {
+        this.SetParamValue(TAG_IMMESSAGELOGNAME, strValue);
+    }
+
+    public boolean isCREATEMANNull() {
+        return this.IsParamNull(TAG_CREATEMAN);
+    }
+
+    public String getCREATEMAN() {
+        return this.GetParamStringValue(TAG_CREATEMAN, "");
+    }
+
+    public void setCREATEMAN(String strValue) {
+        this.SetParamValue(TAG_CREATEMAN, strValue);
+    }
+
+    public boolean isCREATEDATENull() {
+        return this.IsParamNull(TAG_CREATEDATE);
+    }
+
+    public Date getCREATEDATE() {
+        return this.GetParamDateValue(TAG_CREATEDATE, null);
+    }
+
+    public void setCREATEDATE(Date dtValue) {
+        this.SetParamValue(TAG_CREATEDATE, dtValue);
+    }
+
+    public boolean isUPDATEMANNull() {
+        return this.IsParamNull(TAG_UPDATEMAN);
+    }
+
+    public String getUPDATEMAN() {
+        return this.GetParamStringValue(TAG_UPDATEMAN, "");
+    }
+
+    public void setUPDATEMAN(String strValue) {
+        this.SetParamValue(TAG_UPDATEMAN, strValue);
+    }
+
+    public boolean isUPDATEDATENull() {
+        return this.IsParamNull(TAG_UPDATEDATE);
+    }
+
+    public Date getUPDATEDATE() {
+        return this.GetParamDateValue(TAG_UPDATEDATE, null);
+    }
+
+    public void setUPDATEDATE(Date dtValue) {
+        this.SetParamValue(TAG_UPDATEDATE, dtValue);
+    }
+
+    public boolean isIMMEETINGIDNull() {
+        return this.IsParamNull(TAG_IMMEETINGID);
+    }
+
+    public String getIMMEETINGID() {
+        return this.GetParamStringValue(TAG_IMMEETINGID, "");
+    }
+
+    public void setIMMEETINGID(String strValue) {
+        this.SetParamValue(TAG_IMMEETINGID, strValue);
+    }
+
+    public boolean isIMMEETINGNAMENull() {
+        return this.IsParamNull(TAG_IMMEETINGNAME);
+    }
+
+    public String getIMMEETINGNAME() {
+        return this.GetParamStringValue(TAG_IMMEETINGNAME, "");
+    }
+
+    public void setIMMEETINGNAME(String strValue) {
+        this.SetParamValue(TAG_IMMEETINGNAME, strValue);
+    }
+
+    public boolean isIMUSERIDNull() {
+        return this.IsParamNull(TAG_IMUSERID);
+    }
+
+    public String getIMUSERID() {
+        return this.GetParamStringValue(TAG_IMUSERID, "");
+    }
+
+    public void setIMUSERID(String strValue) {
+        this.SetParamValue(TAG_IMUSERID, strValue);
+    }
+
+    public boolean isIMUSERNAMENull() {
+        return this.IsParamNull(TAG_IMUSERNAME);
+    }
+
+    public String getIMUSERNAME() {
+        return this.GetParamStringValue(TAG_IMUSERNAME, "");
+    }
+
+    public void setIMUSERNAME(String strValue) {
+        this.SetParamValue(TAG_IMUSERNAME, strValue);
+    }
+
+    public boolean isCONTENTNull() {
+        return this.IsParamNull(TAG_CONTENT);
+    }
+
+    public String getCONTENT() {
+        return this.GetParamStringValue(TAG_CONTENT, "");
+    }
+
+    public void setCONTENT(String strValue) {
+        this.SetParamValue(TAG_CONTENT, strValue);
+    }
+
+    public boolean isMESSAGENull() {
+        return this.IsParamNull(TAG_MESSAGE);
+    }
+
+    public String getMESSAGE() {
+        return this.GetParamStringValue(TAG_MESSAGE, "");
+    }
+
+    public void setMESSAGE(String strValue) {
+        this.SetParamValue(TAG_MESSAGE, strValue);
+    }
+
+    public boolean isSENDTIMENull() {
+        return this.IsParamNull(TAG_SENDTIME);
+    }
+
+    public Date getSENDTIME() {
+        return this.GetParamDateValue(TAG_SENDTIME, null);
+    }
+
+    public void setSENDTIME(Date dtValue) {
+        this.SetParamValue(TAG_SENDTIME, dtValue);
+    }
+
+    public final boolean isFILEIDNull() {
+        return this.IsParamNull(TAG_FILEID);
+    }
+
+    public final String getFILEID() {
+        return this.GetParamStringValue(TAG_FILEID, "");
+    }
+
+    public final void setFILEID(String strValue) {
+        this.SetParamValue(TAG_FILEID, strValue);
+    }
+
+    public final boolean isFILENAMENull() {
+        return this.IsParamNull(TAG_FILENAME);
+    }
+
+    public final String getFILENAME() {
+        return this.GetParamStringValue(TAG_FILENAME, "");
+    }
+
+    public final void setFILENAME(String strValue) {
+        this.SetParamValue(TAG_FILENAME, strValue);
+    }
+}
+

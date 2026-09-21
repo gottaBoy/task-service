@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.paasmgr.demodel.pstscmd.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="3B154989-B5F8-49CD-BAAD-1C4DC8643762", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`PSDEVCENTERID`, t1.`PSDEVCENTERNAME`, t1.`PSDEVSLNID`, t1.`PSDEVSLNNAME`, t1.`PSDEVSLNSYSID`, t1.`PSDEVSLNSYSNAME`, t1.`PSDEVSLNTEMPLID`, t11.`PSDEVSLNTEMPLNAME`, t1.`PSTASKSERVERID`, t21.`PSTASKSERVERNAME`, t1.`PSTSCMDID`, t1.`PSTSCMDNAME`, t1.`RUNCMD`, t1.`TASKNAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN` FROM `T_SRFPSTSCMD` t1  LEFT JOIN `T_SRFPSDEVSLNTEMPL` t11 ON t1.`PSDEVSLNTEMPLID` = t11.`PSDEVSLNTEMPLID`  LEFT JOIN `T_SRFPSTASKSERVER` t21 ON t1.`PSTASKSERVERID` = t21.`PSTASKSERVERID`  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="DATA", expression="t1.`DATA`", showorder=-1), @DEDataQueryCodeExp(name="RESULT", expression="t1.`RESULT`", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=1), @DEDataQueryCodeExp(name="PSDEVCENTERID", expression="t1.`PSDEVCENTERID`", showorder=2), @DEDataQueryCodeExp(name="PSDEVCENTERNAME", expression="t1.`PSDEVCENTERNAME`", showorder=3), @DEDataQueryCodeExp(name="PSDEVSLNID", expression="t1.`PSDEVSLNID`", showorder=4), @DEDataQueryCodeExp(name="PSDEVSLNNAME", expression="t1.`PSDEVSLNNAME`", showorder=5), @DEDataQueryCodeExp(name="PSDEVSLNSYSID", expression="t1.`PSDEVSLNSYSID`", showorder=6), @DEDataQueryCodeExp(name="PSDEVSLNSYSNAME", expression="t1.`PSDEVSLNSYSNAME`", showorder=7), @DEDataQueryCodeExp(name="PSDEVSLNTEMPLID", expression="t1.`PSDEVSLNTEMPLID`", showorder=8), @DEDataQueryCodeExp(name="PSDEVSLNTEMPLNAME", expression="t11.`PSDEVSLNTEMPLNAME`", showorder=9), @DEDataQueryCodeExp(name="PSTASKSERVERID", expression="t1.`PSTASKSERVERID`", showorder=10), @DEDataQueryCodeExp(name="PSTASKSERVERNAME", expression="t21.`PSTASKSERVERNAME`", showorder=11), @DEDataQueryCodeExp(name="PSTSCMDID", expression="t1.`PSTSCMDID`", showorder=12), @DEDataQueryCodeExp(name="PSTSCMDNAME", expression="t1.`PSTSCMDNAME`", showorder=13), @DEDataQueryCodeExp(name="RUNCMD", expression="t1.`RUNCMD`", showorder=14), @DEDataQueryCodeExp(name="TASKNAME", expression="t1.`TASKNAME`", showorder=15), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=16), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=17)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.PSDEVCENTERID, t1.PSDEVCENTERNAME, t1.PSDEVSLNID, t1.PSDEVSLNNAME, t1.PSDEVSLNSYSID, t1.PSDEVSLNSYSNAME, t1.PSDEVSLNTEMPLID, t11.PSDEVSLNTEMPLNAME, t1.PSTASKSERVERID, t21.PSTASKSERVERNAME, t1.PSTSCMDID, t1.PSTSCMDNAME, t1.RUNCMD, t1.TASKNAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFPSTSCMD t1  LEFT JOIN T_SRFPSDEVSLNTEMPL t11 ON t1.PSDEVSLNTEMPLID = t11.PSDEVSLNTEMPLID  LEFT JOIN T_SRFPSTASKSERVER t21 ON t1.PSTASKSERVERID = t21.PSTASKSERVERID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="DATA", expression="t1.DATA", showorder=-1), @DEDataQueryCodeExp(name="RESULT", expression="t1.RESULT", showorder=-1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="PSDEVCENTERID", expression="t1.PSDEVCENTERID", showorder=2), @DEDataQueryCodeExp(name="PSDEVCENTERNAME", expression="t1.PSDEVCENTERNAME", showorder=3), @DEDataQueryCodeExp(name="PSDEVSLNID", expression="t1.PSDEVSLNID", showorder=4), @DEDataQueryCodeExp(name="PSDEVSLNNAME", expression="t1.PSDEVSLNNAME", showorder=5), @DEDataQueryCodeExp(name="PSDEVSLNSYSID", expression="t1.PSDEVSLNSYSID", showorder=6), @DEDataQueryCodeExp(name="PSDEVSLNSYSNAME", expression="t1.PSDEVSLNSYSNAME", showorder=7), @DEDataQueryCodeExp(name="PSDEVSLNTEMPLID", expression="t1.PSDEVSLNTEMPLID", showorder=8), @DEDataQueryCodeExp(name="PSDEVSLNTEMPLNAME", expression="t11.PSDEVSLNTEMPLNAME", showorder=9), @DEDataQueryCodeExp(name="PSTASKSERVERID", expression="t1.PSTASKSERVERID", showorder=10), @DEDataQueryCodeExp(name="PSTASKSERVERNAME", expression="t21.PSTASKSERVERNAME", showorder=11), @DEDataQueryCodeExp(name="PSTSCMDID", expression="t1.PSTSCMDID", showorder=12), @DEDataQueryCodeExp(name="PSTSCMDNAME", expression="t1.PSTSCMDNAME", showorder=13), @DEDataQueryCodeExp(name="RUNCMD", expression="t1.RUNCMD", showorder=14), @DEDataQueryCodeExp(name="TASKNAME", expression="t1.TASKNAME", showorder=15), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=16), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=17)}, conds={})})
+public class PSTSCmdDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSTSCmdDefaultDQModel() {
+        this.initAnnotation(PSTSCmdDefaultDQModel.class);
+    }
+}
+

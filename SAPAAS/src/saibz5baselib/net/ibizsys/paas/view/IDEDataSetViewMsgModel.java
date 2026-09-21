@@ -1,0 +1,14 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package net.ibizsys.paas.view;
+
+import net.ibizsys.paas.view.IDEDataSetViewMsg;
+import net.ibizsys.paas.view.IViewMsgModel;
+
+public interface IDEDataSetViewMsgModel
+extends IDEDataSetViewMsg,
+IViewMsgModel {
+    public void resetCache();
+}
+

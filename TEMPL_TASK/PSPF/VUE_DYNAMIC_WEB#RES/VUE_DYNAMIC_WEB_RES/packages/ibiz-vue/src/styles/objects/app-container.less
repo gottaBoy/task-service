@@ -1,0 +1,126 @@
+// 应用壳
+.app-container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+// 应用容器布局（代理模式）
+.app-container, .isproxy {
+    .flex(column, normal, normal);
+}
+
+// 应用头部
+.app-header {
+    .flex(row, space-between, center);
+    height: 50px;
+    padding: 0 20px;
+    .app-header__left {
+        .flex(row, space-between, center);
+        height: 100%;
+
+        .app-header__left__logo {
+            .flex(row, flex-start, center);
+            width: 180px;
+            height: 50px;
+
+            .logo__menuicon {
+                display: inline-block;
+                height: 50px;
+                line-height: 50px;
+                cursor: pointer;
+            }
+
+            .logo__image {
+                max-width: 20px;
+            }
+
+            .logo__title {
+                display: block;
+                padding-left: 12px;
+                text-align: left;
+                font-weight: 600;
+                font-size: 16px;
+                .textellipsis;
+            }
+        }
+
+        .ivu-icon {
+            font-size: 20px;
+            padding: 4px;
+            cursor: pointer;
+        }
+    }
+
+    .app-header__right {
+        .flex(row, space-between, center);
+        height: 100%;
+    }
+}
+
+// 应用正文
+.app-content {
+    display: flex;
+    width: 100%;
+    height: calc(100% - 50px);
+
+    .app-content__left {
+        max-height: 100%;
+    }
+
+    .app-content__right {
+        height: 100%;
+    }
+}
+
+// style2视图样式
+.app-style2-container {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0;
+    overflow: hidden;
+    .flex(column, normal, normal);
+    .app-style2-header {
+        height: 50px;
+        padding: 0 20px;
+        .flex(row, space-between, center);
+    }
+    .app-style2-header__left__caption {
+        display: block;
+        padding-left: 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 16px;
+        .textellipsis;
+    }
+    .app-style2-header__right {
+        height: 100%;
+        .flex(row, space-between, center);
+    }
+    .app-style2-footer {
+        height: 20px;
+    }
+    .app-style2-content {
+        height: 0;
+        flex: auto;
+        .flex(row, normal, normal);
+    }
+    .app-style2-content__left,.app-style2-content__right {
+        height: 100%;
+    }
+    .app-style2-content__right {
+        width: 100%;
+    }
+    .app-style2-content__top {
+        height: 34px;
+    }
+    .app-style2-content__body {
+        height: 100%;
+        flex: auto;
+    }
+    .app-style2-content__top + .app-style2-content__body {
+        height: calc(100% - 34px);
+    }
+}

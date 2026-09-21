@@ -1,0 +1,132 @@
+<template>
+  <div class="app-update-password">
+    <div class="app-update-password__item">
+      <label for>
+        {{$t('components.appupdatepassword.oldpwd')}}
+        <Input type="password" v-model="oldPwd" @on-blur="oldPwdVaild"/>
+      </label>
+    </div>
+    <div class="app-update-password__item">
+      <label for>
+        {{$t('components.appupdatepassword.newpwd')}}
+        <Input type="password" v-model="newPwd"  @on-blur="newPwdVaild"/>
+      </label>
+    </div>
+    <div class="app-update-password__item">
+      <label for>
+        {{$t('components.appupdatepassword.confirmpwd')}}
+        <Input type="password" v-model="confirmPwd" :disabled="!this.newPwd" @on-blur="confirmVaild" />
+      </label>
+    </div>
+    <div class="app-update-password__item app-update-password__btn">
+        <Button type="primary" long :disabled="!oldPwd || !newPwd || !confirmPwd || disUpdate" @click="updatePwd">{{$t('components.appupdatepassword.sure')}}</Button>
+    </div>
+  </div>
+</template>
+
+<script lang = 'ts'>
+import { DataEntityService } from "ibiz-core";
+import { Component, Vue } from "vue-property-decorator";
+@Component({})
+export default class AppUpdatePassword extends Vue {
+
+ /**
+     * 原密码
+     * 
+     * @public
+     * @memberof AppUpdatePassword
+     */
+    public oldPwd: string = "";
+
+    /**
+     * 新密码
+     * 
+     * @public
+     * @memberof AppUpdatePassword
+     */
+    public newPwd: string = "";
+
+    /**
+     * 确认密码
+     * 
+     * @public
+     * @memberof AppUpdatePassword
+     */
+    public confirmPwd: string = "";
+
+    /**
+     * 是否能禁用确认修改
+     * 
+     * @public
+     * @memberof AppUpdatePassword
+     */
+    public disUpdate:boolean = true;
+
+    /**
+     * 校验输入的原密码是否为空
+     * 
+     * @public
+     * @memberof AppUpdatePassword
+     */
+    public oldPwdVaild(){
+        if(!this.oldPwd){
+            this.$throw((this.$t('components.appupdatepassword.oldpwderr') as string),'oldPwdVaild');
+        }
+    }
+
+    /**
+     * 校验输入的新密码是否为空
+     * 
+     * @public
+     * @memberof AppUpdatePassword
+     */
+    public newPwdVaild(){
+        if(!this.newPwd){
+            this.$throw((this.$t('components.appupdatepassword.newpwderr') as string),'newPwdVaild');
+        }
+    }
+
+    /**
+     * 校验确认密码与新密码是否一致
+     * 
+     * @public
+     * @memberof AppUpdatePassword
+     */
+    public confirmVaild() {
+        if (this.newPwd && this.confirmPwd) {
+            if (this.confirmPwd !== this.newPwd) {
+                this.$throw((this.$t('components.appupdatepassword.confirmewderr') as string),'confirmVaild');
+            }else{
+                this.disUpdate=false;
+            }
+        }
+    }
+
+    /**
+     * 实体服务对象
+     *
+     * @protected
+     * @type {DataEntityService}
+     * @memberof AppUpdatePassword
+     */
+    protected entityService: DataEntityService = new DataEntityService();
+
+    /**
+     * 修改密码
+     *
+     * @public
+     * @memberof AppUpdatePassword
+     */
+    public updatePwd(){
+      const post: Promise<any> = this.entityService.changPassword(null,{oldPwd:this.oldPwd,newPwd:this.newPwd});
+      post.then((response:any) =>{
+            if (response && response.status === 200) {
+                this.$emit("close");
+            }
+        }).catch((error: any) =>{
+            this.$throw((this.$t('app.commonwords.codenotexist') as string),'updatePwd');
+            this.$throw(error,'updatePwd');
+        })
+    }
+}
+</script>

@@ -1,0 +1,35 @@
+// 通用样式（原子性样式）
+// 消除浮动影响
+.clearfix {
+    &::before {
+        display: table;
+        content: '';
+    }
+
+    &::after {
+        display: table;
+        clear: both;
+        content: '';
+    }
+}
+
+// 文本内容超出当前容器出...
+.textellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// 悬浮激活样式
+.hover-active { }
+
+// 进度条样式 
+.loading-bar {
+    height: 1px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+//编辑器输入框激活边框样式
+.editor-border-active { }

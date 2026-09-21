@@ -1,0 +1,19 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package SA.SRFDA.PS.Core.DEField;
+
+import SA.SRFDA.PS.Core.DEField.IPSDEField;
+import SA.SRFDA.PS.Core.DynaModel.IPSSysDynaModel;
+import SA.SRFDA.PS.Core.PSModelExtendMeta;
+import SA.SRFDA.PS.Core.PSModelPFIgnoreMeta;
+
+@PSModelPFIgnoreMeta
+@PSModelExtendMeta(title="\u5b9e\u4f53\u4e00\u5bf9\u591a\u52a8\u6001\u5bf9\u8c61\u5c5e\u6027\u6a21\u578b\u5bf9\u8c61\u63a5\u53e3")
+public interface IPSOne2ManyObjDEField
+extends IPSDEField {
+    public IPSSysDynaModel getRefPSSysDynaModel() throws Exception;
+
+    public boolean isMap();
+}
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW >
+	<SRFEXTABVIEWPAGE id="eqlocationequiptree" caption="设备树[位置]" REMOTEURL="../emdatamgr/eqlocationequip_treepage.jsp"/>	
+</SRFEXTABVIEW>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW>
+	<SRFEXTABVIEWPAGE id="rfocausestreesublist" caption="故障原因" REMOTEURL="../emdatamgr/eqrfocausestree_sublistpage.jsp"/>
+	</SRFEXTABVIEW>

@@ -1,0 +1,18 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package SA.SRFDA.PS.Core.Control.Chart;
+
+import SA.SRFDA.PS.Core.CodeList.IPSCodeList;
+import SA.SRFDA.PS.Core.Control.Chart.IPSChartRadar;
+import SA.SRFDA.PS.Core.Control.Chart.IPSDEChartObject;
+import SA.SRFDA.PS.Core.PSModelInterfaceMeta;
+
+@PSModelInterfaceMeta(title="\u5b9e\u4f53\u56fe\u8868\u96f7\u8fbe\u56fe\u5750\u6807\u7cfb\u7ec4\u4ef6\u6a21\u578b\u5bf9\u8c61\u63a5\u53e3")
+public interface IPSDEChartRadar
+extends IPSChartRadar,
+IPSDEChartObject {
+    @Override
+    public IPSCodeList getIndicatorPSCodeList();
+}
+

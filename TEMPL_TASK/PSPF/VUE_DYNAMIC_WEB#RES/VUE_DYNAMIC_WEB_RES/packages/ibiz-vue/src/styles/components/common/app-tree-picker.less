@@ -1,0 +1,31 @@
+.app-tree-picker {
+  .ivu-dropdown{
+    left: 0px;
+    width: 100%;
+    .ivu-select-dropdown{
+      max-height: 200px;
+      overflow: scroll;
+      .tree-contant{
+        overflow:inherit;
+      }
+    }
+
+  }
+  .app-tree-picker__tree-input{
+    .ivu-input-suffix{
+      width: auto;
+      text-align: right;
+      .icon-arrow{
+        margin-right: 4px;
+      }
+    }
+    .el-icon-circle-close{
+      display: none;
+    }
+    &:hover{
+      .el-icon-circle-close{
+        display: inline-block;
+      }
+    }
+  }
+}

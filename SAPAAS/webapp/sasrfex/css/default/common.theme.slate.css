@@ -1,0 +1,97 @@
+
+
+.sx-toolbarnobg
+{
+	 
+	border-width:0 0 0 0;
+}
+
+.sx-bar
+{
+	border-color:#a9bfd3;
+    border-style:solid;
+    border-width:0 0 1px 0;
+    background-color: #4b596c;
+    
+    display: block;
+    background:#4b596c url(../../../resources/images/slate/toolbar/bg.gif) repeat-x top left;
+    position:relative;
+    zoom:1;
+}
+
+.sx-groupline
+{
+	 background:#4b596c url(../../../resources/images/slate/toolbar/bg.gif) repeat-x top left ;
+}
+
+.x-btn{
+
+    font:normal 11px "lucida grande",tahoma,verdana,arial,sans-serif;
+
+    color:#000;
+
+}
+
+
+
+.x-btn button{
+
+    font:normal 11px "lucida grande",tahoma,verdana,arial,sans-serif;
+
+    color:#000;
+
+}
+
+
+
+.x-toolbar button {
+
+    color: #fff;
+
+}
+
+
+
+x-window-footer .x-toolbar button{
+
+    font:normal 11px "lucida grande",tahoma,verdana,arial,sans-serif;
+
+    color:#000 !important;
+
+}
+
+
+
+.x-btn-over .x-btn-text{
+
+    color:#fff;
+
+}
+
+
+
+.x-btn em {
+
+    font-style:normal;
+
+    font-weight:normal;
+
+}
+
+.x-btn-click .x-btn-text, .x-btn-menu-active .x-btn-text, .x-btn-pressed .x-btn-text{
+
+    color:#000;
+
+}
+ 
+.x-btn-tl, .x-btn-tr, .x-btn-tc, .x-btn-ml, .x-btn-mr, .x-btn-mc, .x-btn-bl, .x-btn-br, .x-btn-bc {
+background-image: url(../resources/images/slate/button/btn2.gif);
+}
+
+.x-btn-click .x-btn-text, .x-btn-menu-active .x-btn-text, .x-btn-pressed .x-btn-text{
+
+    color:#000;
+}
+
+
+ 

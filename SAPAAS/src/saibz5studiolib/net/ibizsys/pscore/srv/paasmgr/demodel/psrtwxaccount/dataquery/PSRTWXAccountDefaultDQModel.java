@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.paasmgr.demodel.psrtwxaccount.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="194DE3A5-C32D-485F-B952-7EDB4D6225C6", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`APIAPPID`, t1.`APIAPPSECRET`, t1.`APITOKEN`, t1.`APIURL`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`CURUSERCNT`, t1.`MAXUSERCNT`, t1.`MEMO`, t1.`PSRTWXACCOUNTID`, t1.`PSRTWXACCOUNTNAME`, t1.`PSSVRDOMAINID`, t11.`PSSVRDOMAINNAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`VALIDFLAG` FROM `T_SRFPSRTWXACCOUNT` t1  LEFT JOIN `T_SRFPSSVRDOMAIN` t11 ON t1.`PSSVRDOMAINID` = t11.`PSSVRDOMAINID`  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="APIAPPID", expression="t1.`APIAPPID`", showorder=0), @DEDataQueryCodeExp(name="APIAPPSECRET", expression="t1.`APIAPPSECRET`", showorder=1), @DEDataQueryCodeExp(name="APITOKEN", expression="t1.`APITOKEN`", showorder=2), @DEDataQueryCodeExp(name="APIURL", expression="t1.`APIURL`", showorder=3), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=4), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=5), @DEDataQueryCodeExp(name="CURUSERCNT", expression="t1.`CURUSERCNT`", showorder=6), @DEDataQueryCodeExp(name="MAXUSERCNT", expression="t1.`MAXUSERCNT`", showorder=7), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=8), @DEDataQueryCodeExp(name="PSRTWXACCOUNTID", expression="t1.`PSRTWXACCOUNTID`", showorder=9), @DEDataQueryCodeExp(name="PSRTWXACCOUNTNAME", expression="t1.`PSRTWXACCOUNTNAME`", showorder=10), @DEDataQueryCodeExp(name="PSSVRDOMAINID", expression="t1.`PSSVRDOMAINID`", showorder=11), @DEDataQueryCodeExp(name="PSSVRDOMAINNAME", expression="t11.`PSSVRDOMAINNAME`", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=14), @DEDataQueryCodeExp(name="VALIDFLAG", expression="t1.`VALIDFLAG`", showorder=15)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.APIAPPID, t1.APIAPPSECRET, t1.APITOKEN, t1.APIURL, t1.CREATEDATE, t1.CREATEMAN, t1.CURUSERCNT, t1.MAXUSERCNT, t1.MEMO, t1.PSRTWXACCOUNTID, t1.PSRTWXACCOUNTNAME, t1.PSSVRDOMAINID, t11.PSSVRDOMAINNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.VALIDFLAG FROM T_SRFPSRTWXACCOUNT t1  LEFT JOIN T_SRFPSSVRDOMAIN t11 ON t1.PSSVRDOMAINID = t11.PSSVRDOMAINID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="APIAPPID", expression="t1.APIAPPID", showorder=0), @DEDataQueryCodeExp(name="APIAPPSECRET", expression="t1.APIAPPSECRET", showorder=1), @DEDataQueryCodeExp(name="APITOKEN", expression="t1.APITOKEN", showorder=2), @DEDataQueryCodeExp(name="APIURL", expression="t1.APIURL", showorder=3), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=4), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=5), @DEDataQueryCodeExp(name="CURUSERCNT", expression="t1.CURUSERCNT", showorder=6), @DEDataQueryCodeExp(name="MAXUSERCNT", expression="t1.MAXUSERCNT", showorder=7), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=8), @DEDataQueryCodeExp(name="PSRTWXACCOUNTID", expression="t1.PSRTWXACCOUNTID", showorder=9), @DEDataQueryCodeExp(name="PSRTWXACCOUNTNAME", expression="t1.PSRTWXACCOUNTNAME", showorder=10), @DEDataQueryCodeExp(name="PSSVRDOMAINID", expression="t1.PSSVRDOMAINID", showorder=11), @DEDataQueryCodeExp(name="PSSVRDOMAINNAME", expression="t11.PSSVRDOMAINNAME", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=14), @DEDataQueryCodeExp(name="VALIDFLAG", expression="t1.VALIDFLAG", showorder=15)}, conds={})})
+public class PSRTWXAccountDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSRTWXAccountDefaultDQModel() {
+        this.initAnnotation(PSRTWXAccountDefaultDQModel.class);
+    }
+}
+

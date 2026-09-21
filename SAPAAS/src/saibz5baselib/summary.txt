@@ -1,0 +1,104 @@
+Summary for saibz5baselib.jar
+Decompiled with CFR 0.152
+
+
+net.ibizsys.paas.ctrlhandler.MDCtrlHandlerBase
+----------------------------
+
+onFillFetchSearchFormConditions(java.util.ArrayList<net.ibizsys.paas.core.IDEDataSetCond> )
+  Unable to fully structure code
+
+
+net.ibizsys.paas.datasync.DataSyncGlobal
+----------------------------
+
+registerDEDataSyncIn(net.ibizsys.paas.core.IDEDataSyncIn )
+  Unable to fully structure code
+
+
+net.ibizsys.paas.datasync.DEDataSyncDispatcher
+----------------------------
+
+onDispatch(net.ibizsys.paas.core.IDEDataChangeDispatchParam )
+  Unable to fully structure code
+
+
+net.ibizsys.paas.demodel.DataEntityModelBase
+----------------------------
+
+prepareModels()
+  Unable to fully structure code
+
+
+net.ibizsys.paas.demodel.DEDataImportModelBase
+----------------------------
+
+importFile(java.io.File java.lang.String org.hibernate.SessionFactory java.util.ArrayList<net.ibizsys.paas.core.IDEDataImportResult> )
+  Unable to fully structure code
+  Could not resolve type clashes
+
+
+net.ibizsys.paas.report.PrintServiceBase
+----------------------------
+
+onFillFetchSearchFormConditions(java.util.ArrayList<net.ibizsys.paas.core.IDEDataSetCond> )
+  Unable to fully structure code
+
+
+net.ibizsys.paas.report.ReportServiceBase
+----------------------------
+
+onFillFetchSearchFormConditions(java.util.ArrayList<net.ibizsys.paas.core.IDEDataSetCond> )
+  Unable to fully structure code
+
+
+net.ibizsys.paas.security.UserRoleMgr
+----------------------------
+
+testDEOPPrivRoleAction(net.ibizsys.paas.web.IWebContext net.ibizsys.paas.demodel.IDataEntityModel net.ibizsys.paas.entity.IEntity java.lang.String )
+  Unable to fully structure code
+
+
+net.ibizsys.paas.sysmodel.DynamicCodeListModelBase
+----------------------------
+
+fillFetchResult(net.ibizsys.paas.web.MDAjaxActionResult net.ibizsys.paas.web.IWebContext )
+  Unable to fully structure code
+
+
+net.ibizsys.paas.web.util.CoreAPIServlet
+----------------------------
+
+onFillFetchConditions(net.ibizsys.paas.demodel.IDataEntityModel java.util.ArrayList<net.ibizsys.paas.core.IDEDataSetCond> )
+  Unable to fully structure code
+
+
+net.ibizsys.paas.web.util.ServiceServlet
+----------------------------
+
+onFillFetchConditions(net.ibizsys.paas.demodel.IDataEntityModel java.util.ArrayList<net.ibizsys.paas.core.IDEDataSetCond> )
+  Unable to fully structure code
+
+
+net.ibizsys.paas.web.util.UploadDEDataSavePage
+----------------------------
+
+doDataImport()
+  Unable to fully structure code
+  Could not resolve type clashes
+
+
+net.ibizsys.paas.web.util.UploadDEDataSavePageEx
+----------------------------
+
+doDataImport()
+  Unable to fully structure code
+  Could not resolve type clashes
+
+
+net.ibizsys.paas.web.util.UploadDEDataSaveServlet
+----------------------------
+
+doDataImport(net.ibizsys.paas.util.StringBuilderEx net.ibizsys.paas.util.StringBuilderEx )
+  Unable to fully structure code
+  Could not resolve type clashes

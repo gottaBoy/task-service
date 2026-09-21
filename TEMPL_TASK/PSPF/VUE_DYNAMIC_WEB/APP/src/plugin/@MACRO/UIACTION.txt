@@ -1,0 +1,52 @@
+<#if item.getPSSysPFPlugin?? && item.getPSSysPFPlugin()??>
+<#if item.getRefMode() == "UIACTION">
+import { IPSAppDEUIAction } from "@ibiz/dynamic-model-api";
+<#if item.render?? && item.render.code3??>${item.render.code3}</#if> 
+<#-- 界面行为插件 start -->
+/**
+ * ${item.getPSSysPFPlugin().getName()}插件类
+ *
+ * @export
+ * @class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+ */
+export default class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())} {
+
+    /**
+     * 模型数据
+     * 
+     * @memberof ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+     */
+    private actionModel !: IPSAppDEUIAction;
+
+    <#if item.render?? && item.render.code2??>${item.render.code2}</#if>
+
+    /**
+     * 初始化 ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+     * 
+     * @memberof ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+     */
+    constructor(opts: any, context?: any) {
+        this.actionModel = opts;
+    }
+
+    /**
+     * 执行界面行为
+     * 
+     * @param args 
+     * @param context 
+     * @param params 
+     * @param $event 
+     * @param xData 
+     * @param actionContext 
+     * @param srfParentDeName 
+     * 
+     * @memberof ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+     */
+    public async execute(args: any[], context: any = {}, params: any = {}, $event?: any, xData?: any, actionContext?: any, srfParentDeName?: string) {
+         <#if item.render?? && item.render.code??>${item.render.code}</#if>
+    }
+
+}
+<#-- 界面行为插件 end -->
+</#if>
+</#if>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXEXCELREPORTS>
+	<SRFEXEXCELREPORT ID="EQUIP" Type="saeam.uihelper.datagrid.EquipGridHelper"/>
+	<SRFEXEXCELREPORT ID="ITEM" Type="saeam.uihelper.datagrid.ItemGridHelper"/>	
+	<SRFEXEXCELREPORT ID="WO" Type="saeam.uihelper.datagrid.WoGridHelper"/>
+	<SRFEXEXCELREPORT ID="WOAPPLY" Type="saeam.uihelper.datagrid.WOApplyGridHelper"/>
+</SRFEXEXCELREPORTS>
+	
+	

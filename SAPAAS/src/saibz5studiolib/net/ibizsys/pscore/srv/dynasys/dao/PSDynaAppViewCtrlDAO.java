@@ -1,0 +1,56 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  javax.annotation.PostConstruct
+ *  net.ibizsys.paas.dao.DAOGlobal
+ *  net.ibizsys.paas.dao.IDAO
+ *  net.ibizsys.paas.demodel.DEModelGlobal
+ *  net.ibizsys.paas.demodel.IDataEntityModel
+ *  org.springframework.stereotype.Repository
+ */
+package net.ibizsys.pscore.srv.dynasys.dao;
+
+import javax.annotation.PostConstruct;
+import net.ibizsys.paas.dao.DAOGlobal;
+import net.ibizsys.paas.dao.IDAO;
+import net.ibizsys.paas.demodel.DEModelGlobal;
+import net.ibizsys.paas.demodel.IDataEntityModel;
+import net.ibizsys.pscore.srv.PSCoreSysDAOBase;
+import net.ibizsys.pscore.srv.dynasys.demodel.PSDynaAppViewCtrlDEModel;
+import net.ibizsys.pscore.srv.dynasys.entity.PSDynaAppViewCtrl;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class PSDynaAppViewCtrlDAO
+extends PSCoreSysDAOBase<PSDynaAppViewCtrl> {
+    private static final long serialVersionUID = -1L;
+    public static final String DATAQUERY_DEFAULT = "DEFAULT";
+    private PSDynaAppViewCtrlDEModel pSDynaAppViewCtrlDEModel;
+
+    @PostConstruct
+    public void postConstruct() throws Exception {
+        DAOGlobal.registerDAO((String)this.getDAOId(), (IDAO)this);
+    }
+
+    protected String getDAOId() {
+        return "net.ibizsys.pscore.srv.dynasys.dao.PSDynaAppViewCtrlDAO";
+    }
+
+    public PSDynaAppViewCtrlDEModel getPSDynaAppViewCtrlDEModel() {
+        if (this.pSDynaAppViewCtrlDEModel == null) {
+            try {
+                this.pSDynaAppViewCtrlDEModel = (PSDynaAppViewCtrlDEModel)DEModelGlobal.getDEModel((String)"net.ibizsys.pscore.srv.dynasys.demodel.PSDynaAppViewCtrlDEModel");
+            }
+            catch (Exception exception) {
+                // empty catch block
+            }
+        }
+        return this.pSDynaAppViewCtrlDEModel;
+    }
+
+    public IDataEntityModel getDEModel() {
+        return this.getPSDynaAppViewCtrlDEModel();
+    }
+}
+

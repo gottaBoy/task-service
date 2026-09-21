@@ -1,0 +1,2316 @@
+//  --------------------------------------------------------------------------------
+//  展示给外部可以更改的变量
+//  主题色
+@primary: #3880ff;
+//  应用背景色
+@app-background-color: #FFF;
+//  应用字体色
+@app-text-color: #515a6e;
+//  头部背景色
+@header-background-color: @primary;
+//  头部字体色
+@header-text-color: #FFF;
+//  导航背景色
+@menu-background-color: #FFF;
+//  导航文本色
+@menu-text-color: #808080;
+//  导航项激活背景色
+@menu-item-background-color--active: @primary;
+//  导航项激活文本色
+@menu-item-text-color--active: #FFF;
+
+//  ----------------------------------------基于主题色计算----------------------------------------
+@color-primary-base: @primary;
+@color-primary-contrast: #fff;
+@color-primary-shade: mix(#000, @primary, 12%);
+@color-primary-tint: mix(#fff, @primary, 10%);
+
+//  ----------------------------------------应用级----------------------------------------
+//  类名基础前缀
+@ibiz-prefix: ibiz;
+
+//  字体
+@font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+//  分隔线
+@app-divider-color: mix(@app-background-color, @app-text-color, 85%);
+//  头部悬浮背景色
+@header-background-color--hover: rgba(255, 255, 255, 0.2);
+
+//  ----------------------------------------导航栏----------------------------------------
+//  导航项背景色
+@menu-item-background-color: @menu-background-color;
+//  导航项文本色
+@menu-item-text-color: @menu-text-color;
+//  导航项悬浮背景色
+@menu-item-background-color--hover: mix(@menu-item-background-color--active, #FFF, 70%);
+//  导航项悬浮文本色
+@menu-item-text-color--hover: mix(@menu-item-text-color--active, #FFF, 70%);
+//  导航项禁用背景色
+@menu-item-background-color--disabled: #FFF;
+//  导航项禁用文本色
+@menu-item-text-color--disabled: rgba(0, 0, 0, 0.25);
+
+//  ----------------------------------------按钮----------------------------------------
+//  按钮（默认、行为级别 = 不常用 | 一般操作）背景色
+@button-background-color: #FFF;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）文本色
+@button-text-color: @app-text-color-step--200;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）边框色
+@button-border-color: @app-text-color-step--700;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）悬浮背景色
+@button-background-color--hover: #FFF;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）悬浮文本色
+@button-text-color--hover: @primary;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）悬浮边框色
+@button-border-color--hover: @primary;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）禁用背景色
+@button-background-color--disabled: @app-background-color-step-50;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）禁用文本色
+@button-text-color--disabled: @app-text-color-step--650;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）禁用边框色
+@button-border-color--disabled: @app-text-color-step--750;
+
+//  按钮（行为级别 = 常用操作）背景色
+@button-middle-background-color: mix(@primary, #FFF, 20%);
+//  按钮（行为级别 = 常用操作）文本色
+@button-middle-text-color: @primary;
+//  按钮（行为级别 = 常用操作）边框色
+@button-middle-border-color: mix(@primary, #FFF, 40%);
+//  按钮（行为级别 = 常用操作）悬浮背景色
+@button-middle-background-color--hover: @primary;
+//  按钮（行为级别 = 常用操作）悬浮文本色
+@button-middle-text-color--hover: #FFF;
+//  按钮（行为级别 = 常用操作）悬浮边框色
+@button-middle-border-color--hover: @primary;
+//  按钮（行为级别 = 常用操作）禁用背景色
+@button-middle-background-color--disabled: mix(@button-middle-background-color, #FFF, 80%);
+//  按钮（行为级别 = 常用操作）禁用文本色
+@button-middle-text-color--disabled: mix(@primary, #FFF, 50%);
+//  按钮（行为级别 = 常用操作）禁用边框色
+@button-middle-border-color--disabled: mix(@button-middle-background-color, #FFF, 80%);
+
+//  按钮（行为级别 = 关键操作）背景色
+@button-high-background-color: @primary;
+//  按钮（行为级别 = 关键操作）文本色
+@button-high-text-color: #FFF;
+//  按钮（行为级别 = 关键操作）边框色
+@button-high-border-color: @primary;
+//  按钮（行为级别 = 关键操作）悬浮背景色
+@button-high-background-color--hover: mix(@primary, #FFF, 80%);
+//  按钮（行为级别 = 关键操作）悬浮文本色
+@button-high-text-color--hover: #FFF;
+//  按钮（行为级别 = 关键操作）悬浮边框色
+@button-high-border-color--hover: mix(@primary, #FFF, 80%);
+//  按钮（行为级别 = 关键操作）禁用背景色
+@button-high-background-color--disabled: mix(@primary, #FFF, 50%);
+//  按钮（行为级别 = 关键操作）禁用文本色
+@button-high-text-color--disabled: #FFF;
+//  按钮（行为级别 = 关键操作）禁用边框色
+@button-high-border-color--disabled: mix(@primary, #FFF, 50%);
+
+//  ----------------------------------------项----------------------------------------
+//  项背景色
+@item-background-color: #FFF;
+//  项文本色
+@item-text-color: @app-text-color;
+//  项边框色
+@item-border-color: mix(@app-background-color, @app-text-color, 85%);
+
+//  项背景色（激活）
+@item-background-color--active: mix(@primary, #FFF, 20%);
+//  项文本色（激活）
+@item-text-color--active: @app-text-color-step--50;
+//  项边框色（激活）
+@item-border-color--active: mix(@primary, #FFF, 40%);
+
+//  项背景色（悬浮）
+@item-background-color--hover: mix(@item-background-color--active, #FFF, 50%);
+//  项文本色（悬浮）
+@item-text-color--hover: mix(@item-text-color--active, #FFF, 80%);
+//  项边框色（悬浮）
+@item-border-color--hover: mix(@item-border-color--active, #FFF, 80%);
+
+//  项背景色（禁用）
+@item-background-color--disabled: @app-background-color-step-50;
+//  项文本色（禁用）
+@item-text-color--disabled: @app-text-color-step--650;
+//  项边框色（禁用）
+@item-border-color--disabled: @app-text-color-step--750;
+
+// -------------------------------------------------------------------------------------------
+// 颜色步骤用于提供元素的文本和背景颜色的变化， 步骤朝着对比色的方向移动。
+// 例如, @app-text-color-step-XXX 将从 @app-text-color 走向 @app-background-color,
+// 反之，@app-background-color-step-XXX 将从 @app-background-color 走向 $text-color.
+@app-background-color-step-50: mix(@app-text-color, @app-background-color, 5%);
+@app-background-color-step-100: mix(@app-text-color, @app-background-color, 10%);
+@app-background-color-step-150: mix(@app-text-color, @app-background-color, 15%);
+@app-background-color-step-200: mix(@app-text-color, @app-background-color, 20%);
+@app-background-color-step-250: mix(@app-text-color, @app-background-color, 25%);
+@app-background-color-step-300: mix(@app-text-color, @app-background-color, 30%);
+@app-background-color-step-350: mix(@app-text-color, @app-background-color, 35%);
+@app-background-color-step-400: mix(@app-text-color, @app-background-color, 40%);
+@app-background-color-step-450: mix(@app-text-color, @app-background-color, 45%);
+@app-background-color-step-500: mix(@app-text-color, @app-background-color, 50%);
+@app-background-color-step-550: mix(@app-text-color, @app-background-color, 55%);
+@app-background-color-step-600: mix(@app-text-color, @app-background-color, 60%);
+@app-background-color-step-650: mix(@app-text-color, @app-background-color, 65%);
+@app-background-color-step-700: mix(@app-text-color, @app-background-color, 70%);
+@app-background-color-step-750: mix(@app-text-color, @app-background-color, 75%);
+@app-background-color-step-800: mix(@app-text-color, @app-background-color, 80%);
+@app-background-color-step-850: mix(@app-text-color, @app-background-color, 85%);
+@app-background-color-step-900: mix(@app-text-color, @app-background-color, 90%);
+@app-background-color-step-950: mix(@app-text-color, @app-background-color, 95%);
+@app-text-color-step--50: mix(@app-background-color, @app-text-color, 5%);
+@app-text-color-step--100: mix(@app-background-color, @app-text-color, 10%);
+@app-text-color-step--150: mix(@app-background-color, @app-text-color, 15%);
+@app-text-color-step--200: mix(@app-background-color, @app-text-color, 20%);
+@app-text-color-step--250: mix(@app-background-color, @app-text-color, 25%);
+@app-text-color-step--300: mix(@app-background-color, @app-text-color, 30%);
+@app-text-color-step--350: mix(@app-background-color, @app-text-color, 35%);
+@app-text-color-step--400: mix(@app-background-color, @app-text-color, 40%);
+@app-text-color-step--450: mix(@app-background-color, @app-text-color, 45%);
+@app-text-color-step--500: mix(@app-background-color, @app-text-color, 50%);
+@app-text-color-step--550: mix(@app-background-color, @app-text-color, 55%);
+@app-text-color-step--600: mix(@app-background-color, @app-text-color, 60%);
+@app-text-color-step--650: mix(@app-background-color, @app-text-color, 65%);
+@app-text-color-step--700: mix(@app-background-color, @app-text-color, 70%);
+@app-text-color-step--750: mix(@app-background-color, @app-text-color, 75%);
+@app-text-color-step--800: mix(@app-background-color, @app-text-color, 80%);
+@app-text-color-step--850: mix(@app-background-color, @app-text-color, 85%);
+@app-text-color-step--900: mix(@app-background-color, @app-text-color, 90%);
+@app-text-color-step--950: mix(@app-background-color, @app-text-color, 95%);
+
+//  ----------------------------------------elements 网站HTML元素----------------------------------------
+
+body {
+    ::-webkit-scrollbar-thumb {
+        background-color: @app-background-color-step-200;
+    }
+
+    div {
+        scrollbar-color: @app-background-color-step-200 @app-background-color;
+        /* 滑块颜色  滚动条背景颜色 */
+    }
+
+    //下拉项样式
+    .ivu-dropdown-item {
+        color: @app-text-color;
+        background-color: @app-background-color;
+
+        &:hover {
+            color: @color-primary-base;
+            background-color: @item-background-color--hover;
+        }
+    }
+    .el-dropdown-menu__item {
+        color: @app-text-color;
+        background-color: @app-background-color;
+
+        &:not(.is-disabled):hover {
+            color: @color-primary-base;
+            background-color: @item-background-color--hover;
+        }
+    }
+
+    // 选择项样式
+    .ivu-select-dropdown-transfer {
+        .ivu-select-item-selected {
+            color: @color-primary-base;
+            font-weight: 600;
+            // background-color: @item-background-color--active;
+        }
+    }
+
+    // ivu 按钮样式
+    .ivu-btn-default {
+        .app-button.ivu-btn-default;
+        &:focus {
+            box-shadow: 0 0 0 2px rgba(@color-primary-base, 0.2);
+        }
+    }
+
+    // 输入框
+    .ivu-input:hover,.ivu-input:focus {
+        border-color: @color-primary-base;
+    }
+
+    // 按钮样式
+    .ivu-btn.ivu-btn-primary {
+        .app-button.ivu-btn-default.srfactionlevel250;
+    }
+
+    .el-tabs {
+        .el-tabs__item {
+            &:hover {
+                color: @color-primary-base;
+            }
+
+            &.is-active {
+                color: @color-primary-base;
+            }
+        }
+
+        .el-tabs__active-bar {
+            background-color: @color-primary-base;
+        }
+
+        .el-tabs__nav-wrap::after {
+            background-color: @app-divider-color;
+        }
+    }
+    .ivu-input:hover{
+        border-color: @color-primary-base;
+    }
+    .ivu-input:focus{
+        .editor-border-active;
+    }
+    .el-select .el-input {
+        .el-input__inner:focus,.el-input__inner:hover{
+            border-color: @color-primary-base;
+        }
+        &.is-focus {
+            .el-input__inner {
+                border-color: @color-primary-base;
+            }
+        }
+    }
+    .el-select-dropdown {
+        .el-select-dropdown__item {
+            &:hover {
+                color: @item-text-color--hover;
+                background-color: @item-background-color--hover;
+            }
+        
+            &.selected {
+                color: @item-text-color--active;
+                background-color: @item-background-color--active;
+            }
+        }
+    }
+    // iview 加载中
+    .ivu-spin {
+        color: @color-primary-base;
+    }
+}
+
+//  ----------------------------------------generic 原子性样式----------------------------------------
+.hover-active {
+    &:hover {
+        color: @item-text-color--hover;
+        background-color: @item-background-color--hover;
+    }
+
+    &.is-active {
+        color: @item-text-color--active;
+        background-color: @item-background-color--active;
+    }
+}
+
+.editor-border-active {
+    border-color: @color-primary-base;
+    box-shadow: 0 0 0 2px mix(white, @color-primary-base, 85%)
+}
+
+//  ----------------------------------------tumps 使用import----------------------------------------
+body {
+    font-family: @font-family !important;
+}
+// 分页导航样式 iview使用了important，此处必须使用important
+.ivu-tabs-nav {
+    .ivu-tabs-tab:hover {
+        color: @color-primary-base !important;
+    }
+
+    .ivu-tabs-tab-active.ivu-tabs-tab-focused {
+        color: @color-primary-base;
+        border-color: @color-primary-base  !important;
+    }
+
+    .ivu-tabs-ink-bar {
+        background-color: @color-primary-base;
+    }
+}
+
+// 日历样式
+.app-control-calendar {
+    .app-control-calendar__header__legend.is-disabled {
+        .lengend__icon {
+            background: @item-background-color--disabled !important;
+        }
+    }
+}
+// 表格样式
+.app-control-grid {
+    .el-table td {
+        border-bottom: 1px solid @item-border-color;
+    }
+    .ascending .sort-caret.ascending {
+        border-bottom-color: @color-primary-base !important;
+    }
+    .descending .sort-caret.descending {
+        border-top-color: @color-primary-base !important;
+    }
+    .el-table__row.grid-selected-row {
+        background: @item-background-color--active;
+        color: @item-text-color--active;
+        &:hover {
+            background: @item-background-color--active !important;
+            color: @item-text-color--active !important;
+            >td {
+                background: @item-background-color--active !important;
+                color: @item-text-color--active !important;
+            }
+        }
+    }
+    .el-table__row:hover,
+    .el-table__row.hover-row {
+        background: @item-background-color--hover;
+        color: @item-text-color--hover;
+        >td {
+            background: @item-background-color--hover !important;
+            color: @item-text-color--hover !important;
+        }
+    }
+}
+// 复选框样式
+.el-checkbox__input.is-checked, 
+.el-checkbox__input.is-indeterminate {
+    .el-checkbox__inner {
+        border-color: @color-primary-base !important;
+        background-color: @color-primary-base !important;
+    }
+    +.el-checkbox__label {
+        color: @color-primary-base !important;
+    }
+}
+// -------------------------------------------------------------------------------------------
+//  应用
+.appindexview {
+    &.app-vc-menu--tabexp_bottom {
+        .app-content {
+            background-color: @app-background-color;
+        }
+    }
+}
+
+.app-header {
+    background-color: @header-background-color;
+    color: @header-text-color;
+
+    i:hover {
+        color: @app-text-color-step--50;
+    }
+}
+
+.app-content {
+    .app-content__left {
+        background: @app-background-color;
+    }
+
+    .app-content__right {
+        background-color: @app-background-color-step-50;
+    }
+}
+
+// style2
+.app-style2-header {
+    background-color: @header-background-color;
+    color: @header-text-color;
+
+    i:hover {
+        color: @app-text-color-step--50;
+    }
+}
+.app-style2-content__top {
+    background-color: @app-background-color-step-50;
+}
+.app-style2-footer{
+    background-color: @color-primary-base;
+    color:@color-primary-contrast;
+}
+
+//  ----------------------------------------视图----------------------------------------
+
+.view-container {
+    background-color: @app-background-color;
+}
+
+.view-header {
+    border-bottom: 1px solid @app-divider-color;
+}
+
+.view-header__left__caption {
+    color: @app-text-color;
+}
+
+// 视图代理模式
+.app-view-layout {
+    .app-view-layout__container{
+        height: 100%;
+        .app-view-layout__container__header {
+            border-bottom: 1px solid @app-divider-color;
+        }
+    }
+    .container-item__flex{
+        width: 100%;
+    }
+    .container-item__border{
+        height: inherit;
+    }
+    .container-item__simpleflex{
+        height: 100%;
+    }
+}
+
+// style2 样式
+.view-style2-container {
+    background-color: @app-background-color;
+}
+
+//  应用门户视图
+.deportalview {
+    background-color: @app-background-color-step-50;
+}
+.deportalview.view-container2,.deportalview9.view-container2  {
+    background-color: @app-background-color;
+    .app-control-dashboard {
+        background-color: @app-background-color;
+    }
+}
+
+//  编辑视图2
+.deeditview2 {
+    .app-vc-dabar {
+        background-color: @app-background-color;
+    }
+    .app-vc-dabar__left__caption {
+        border-right: 1px solid @app-divider-color;
+        border-left: 3px solid @app-background-color;
+        background-color: @item-background-color;
+        color: @item-text-color;
+        &:hover {
+            color: @item-text-color--hover;
+            border-left-color: @item-border-color--hover;
+            background-color: @item-background-color--hover;
+        }
+
+        &.is-active {
+            color: @item-text-color--active;
+            border-left-color: @color-primary-base;
+            background-color: @item-background-color--active;
+        }
+    }
+}
+
+//  编辑视图3
+.deeditview3 {
+    .app-vc-tab__header {
+        border-bottom: 1px solid @app-divider-color;
+    }
+    .app-vc-tab__header__caption {
+        &.is-active {
+            color: @color-primary-base;
+            &::after {
+                background-color: @color-primary-base;
+            }
+        }
+    }
+}
+
+//  编辑视图4
+.deeditview4 {
+    .app-vc-tab__content {
+        >.app-control-drtab {
+            border-bottom: 1px solid @app-divider-color;
+        }
+    }
+}
+
+//  选择视图
+.view-content__body__transfer__left {
+    background-color: @app-background-color-step-50;
+    border: 1px solid @app-background-color-step-50;
+}
+
+.view-content__body__transfer__right {
+    background-color: @app-background-color-step-50;
+}
+
+.view-content__body__transfer__right__select {
+    .picker-item {
+        background-color: @app-background-color;
+        .hover-active;
+    }
+}
+
+//  门户视图
+.appportalview {
+    background-color: @app-background-color-step-50;
+}
+.appportalview.view-container2 {
+    background-color: @app-background-color;
+    .app-control-dashboard {
+        background-color: @app-background-color;
+    }
+}
+
+//  ----------------------------------------部件----------------------------------------
+.control-container {
+    color: @app-text-color;
+    background-color: @app-background-color;
+}
+
+.control__loading {
+    >.loading__text {
+        color: @app-text-color-step--400;
+    }
+}
+
+.control__empty {
+    >.empty__text {
+        color: @app-text-color-step--400;
+    }
+}
+
+.app-loading {
+    background-color: rgba(@color-primary-base, 0.5);
+    .app-loading__icon__content {
+        .content__item {
+            background: @color-primary-base;
+
+            &.is-active {
+                background: @color-primary-base;
+            }
+        }
+    }
+}
+
+.app-control-menu--left {
+    background-color: @menu-background-color;
+    color: @menu-text-color;
+
+    .el-menu {
+        background-color: @menu-background-color;
+    }
+
+    .el-menu-item,
+    .el-submenu__title {
+        background-color: @menu-item-background-color;
+        color: @menu-item-text-color;
+
+        .ivu-badge-count {
+            box-shadow: 0 0 0 0px @color-primary-base;
+        }
+
+        &:hover {
+            background-color: @menu-item-background-color--hover;
+            color: @menu-item-text-color--hover;
+        }
+
+        &.is-active {
+            color: @menu-item-text-color--active;
+            background-color: @menu-item-background-color--active;
+        }
+    }
+
+    .app-control-menu__item--circle {
+        border: 1px solid @app-divider-color;
+    }
+}
+
+.app-control-menu--center .app-control-menu__group>.ivu-card-head {
+    border-bottom-color: @app-divider-color;
+}
+
+// 顶部菜单样式
+.app-control-menu--top {
+    .el-menu--horizontal {
+        .el-menu-item,
+        .el-submenu__title {
+            color: @menu-item-text-color--active;
+
+            .el-icon-arrow-down {
+                color: @menu-item-text-color--active;
+            }
+
+            &:not(.is-disabled):hover,
+            &:not(.is-disabled):focus,
+            &.is-active {
+                color: @menu-item-text-color--active;
+                background-color: transparent;
+                border-bottom: 2px solid @menu-background-color;
+            }
+        }
+
+        .el-submenu {
+            &.is-active .el-submenu__title {
+                color:  @menu-item-text-color--active;
+                border-bottom: 2px solid @menu-background-color;
+            }
+        }
+    }
+}
+
+// 气泡菜单样式
+.app-control-menu__popper {
+    background-color: @app-background-color;
+}
+.app-control-menu__popper.el-menu--horizontal {
+    .el-menu-item,
+    .el-submenu__title {
+        &:hover {
+            background-color: @menu-item-background-color--hover;
+            color: @menu-item-text-color--hover;
+        }
+    }
+}
+
+// 中间菜单样式
+.app-control-menu--center {
+    .app-control-menu__item {
+        color: @app-text-color;
+        border-left: 10px solid @color-primary-base;
+    }
+    .app-control-menu__item:hover {
+        color: @color-primary-base;
+        border-left-color: @color-primary-base;
+    }
+}
+
+// 导航左侧菜单样式
+.app-control-menu--tabexp_left {
+    .el-tree-node__content {
+        .hover-active;
+    }
+}
+
+// 导航右侧菜单样式
+.app-control-menu--tabexp_right {
+    padding-top: 10px;
+    .el-tree-node__content {
+        .hover-active;
+    }
+}
+
+// 导航顶部、底部菜单样式
+.app-control-menu--tabexp_top,
+.app-control-menu--tabexp_bottom {
+    .el-menu--horizontal  .el-menu-item {
+        color: @app-text-color;
+        &.is-active {
+            color: @color-primary-base;
+            border-color: @color-primary-base;
+        }
+
+        &:not(.is-disabled):hover {
+            color: @color-primary-base;
+        }
+    }
+}
+
+//  表单
+.app-control-searchform__footer {
+    .dropdown__icon {
+        background: @color-primary-base;
+        color: @color-primary-contrast;
+    }
+}
+
+//  日历部件
+.app-control-calendar {
+    .el-card.is-always-shadow.is-active {
+        box-shadow: 0px 0px 3px 1px mix(@item-background-color--active, @color-primary-base, 45%);
+    }
+    .fc-button,
+    .fc-button-parimary {
+        .app-button.ivu-btn-default.srfactionlevel250;
+    }
+
+    .fc-button-primary:focus,
+    .fc-button-primary:not(:disabled):active:focus {
+        box-shadow: none;
+    }
+
+    .fc-button-primary:not(:disabled):active,
+    .fc-button-primary:not(:disabled).fc-button-active {
+        background-color: @button-high-background-color--hover;
+        border-color: @button-high-border-color--hover;
+        color: @button-high-text-color--hover;
+        box-shadow: none;
+    }
+
+    .fc-left,
+    .fc-right {
+        .fc-button-group {
+            .fc-button {
+                border-left: 1px solid @button-high-border-color--disabled;
+                border-right: 1px solid @button-high-border-color--disabled;
+            }
+
+            .fc-button:first-child {
+                border-left: none;
+            }
+
+            .fc-button:last-child {
+                border-right: none;
+            }
+        }
+    }
+    .selected-event, .select-first-event {
+        border: 2px solid @item-border-color--active;
+    }
+    .selected-event.fc-end:before,
+    .select-first-event:before,
+    .selected-event.fc-end:before,
+    .select-first-event:before {
+        border: 9px solid @item-border-color--active;
+        color: @item-text-color;
+    }
+    .selected-event.fc-end:after,
+    .select-first-event:after,
+    .selected-event.fc-end:after,
+    .select-first-event:after {
+        border: 2px solid @item-border-color--active;
+    }
+}
+
+// 选择跳转日期模态
+.date-select-model {
+    .ivu-modal-footer .ivu-btn {
+        border-color: @item-border-color;
+    }
+}
+
+//  数据看板
+.app-control-dashboard {
+    background-color: @app-background-color-step-50;
+    .app-control-dashboard__portlet__header {
+        background-color: @app-background-color;
+        border-bottom: 1px solid @app-divider-color;
+    }
+}
+
+// START --- 数据视图
+.app-control-dataview {
+    .app-control-dataview__load--more {
+        color: @item-background-color--active
+    }
+    .app-control-dataview__content__item {
+        border: 1px solid @item-border-color;
+        &:hover {
+            border: 1px solid @item-border-color--hover;
+        }
+        &.is-active {
+            border: 1px solid @item-border-color--active;
+        }
+        .action-button {
+            &:hover {
+                color: @item-background-color--hover;
+            }
+            &:disabled,
+            &:disabled:hover {
+                color: @item-text-color--disabled;
+            }
+        }
+    }
+}
+
+// END --- 数据视图
+
+// START --- 数据关系栏
+.app-control-drbar {
+    .el-menu-item,
+    .el-submenu__title {
+        color: @item-text-color;
+        border-left: 3px solid @app-background-color;
+
+        &:hover {
+            border-left-color: @item-background-color--hover;
+        }
+
+        &.is-active {
+            border-left-color: @item-background-color--active;
+        }
+    }
+    .app-control-drbar__content {
+        border-right: 1px solid @app-divider-color;
+    }
+    .app-control-drbar__popover__item {
+        background-color: @app-background-color;
+        color: @item-text-color;
+        .hover-active;
+        &.is-active {
+            border-left-color: @color-primary-base;
+        }
+    }
+}
+
+// END --- 数据关系栏
+
+// START --- 数据关系分页
+.app-control-drtab {
+    .app-control-drtab__item {
+        &:hover {
+            color: @color-primary-base;
+        }
+
+        &.is-active {
+            color: @color-primary-base;
+
+            &::after {
+                background-color: @color-primary-base;
+            }
+        }
+    }
+}
+
+// END --- 数据关系分页
+
+// START --- 表格
+.app-control-grid {
+    // 表格头样式
+    .el-table__header-wrapper,
+    .el-table__fixed-header-wrapper {
+        th {
+            background-color: @app-background-color-step-50;
+        }
+    }
+    // 操作列样式
+    .grid-column--ua {
+        .column__divider {
+            border-left: 1px @app-text-color-step--700 solid;
+        }
+        .column-content--normal {
+            color: @color-primary-base;
+        }
+    }
+    // 分组列样式（选中所有）
+    .grid-column--group--all-select {
+        >div>label {
+            >span {
+                .el-checkbox__inner {
+                    background-color: @color-primary-base;
+                    border-color: @color-primary-base;
+                }
+                .el-checkbox__inner:after {
+                    border: 1px solid @color-primary-base;
+                }
+            }
+        }
+    }
+    // 分组列样式（选择列）
+    .grid-column--group--select {
+        >div>label {
+            >span {
+                .el-checkbox__inner {
+                    background-color: @color-primary-base;
+                    border-color: @color-primary-base;
+                }
+                .el-checkbox__inner:before {
+                    background-color:  @color-primary-base;
+                }
+            }
+            >span.is-checked {
+                .el-checkbox__inner {
+                    background-color: @color-primary-base;
+                    border-color: @color-primary-base;
+                }
+            }
+        }
+    }
+    // 分页栏样式
+    .control-footer {
+        &.app-control-grid__pagination {
+            .pagination__refresh {
+                &:hover {
+                    color: @color-primary-base;
+                    border-color: @color-primary-base;
+                }
+            }
+            .ivu-page-item-active {
+                background-color: @color-primary-base;
+                border-color: @color-primary-base;
+                >a {
+                    color: @color-primary-contrast;
+                }
+            }
+            .ivu-select-selection:hover {
+                border-color: @color-primary-base;
+            }
+            .ivu-page-options-elevator>input {
+                border-color: @color-primary-base;
+            }
+        }
+    }
+
+    // 操作列样式（过滤）
+    .app-control-grid__filter {
+        background-color: @color-primary-base;
+        &::before {
+            background-color: @app-background-color;
+        }
+        &::after {
+            background-color: @app-background-color;
+        }
+        .ivu-poptip-rel {
+            .ivu-icon {
+                &:hover {
+                    color: mix(#fff, @color-primary-base, 80%);
+                }
+            }
+        }
+        &.filter__tip--show {
+            >.ivu-poptip-rel {
+                i {
+                    color: @app-background-color;
+                    &:hover {
+                        color: @app-background-color;
+                    }
+                }
+            }
+        }
+    }
+}
+.app-column-link {
+    color: @color-primary-base;
+}
+.column__content--normal {
+    color: @color-primary-base;
+}
+// END --- 表格
+
+// START --- 导航栏
+.app-control-expbar {
+    .control-header {
+        border-bottom: 1px solid @app-divider-color;
+    }
+}
+// END --- 导航栏
+
+// START --- 看板
+.app-control-kanban {
+    .group__foldingbar__content {
+        color: @item-text-color;
+        border: 1px solid @item-border-color;
+        background-color: @item-background-color--active;
+        .foldingbar__content__icon {
+            &:hover {
+                color: @item-background-color--hover;
+            }
+        }
+    }
+    .group__foldingarea {
+        border: 1px solid @item-border-color;
+        .foldingarea__header__icon {
+            &:hover {
+                color: @item-background-color--hover;
+            }
+        }
+        .foldingarea__content__item {
+            border: 1px solid @item-border-color;
+            &.is-active {
+                color: @item-background-color--active;
+                border-color: @item-border-color--active;
+            }
+        }
+    }
+    &.app-control-kanban__row {
+        .app-control-kanban__content__group {
+            .group__foldingbar__content {
+                border-right: none;
+            }
+            .group__foldingarea {
+                border-right: none;
+                .group__foldingarea__header {
+                    border-bottom: 1px solid @item-border-color;
+                }
+            }
+            &:last-child {
+                .group__foldingbar__content {
+                    border: 1px solid @item-border-color;
+                }
+                .group__foldingarea {
+                    border: 1px solid @item-border-color;
+                }
+            }
+        }
+    }
+
+    &.app-control-kanban__column {
+        .app-control-kanban__content__group {
+            .group__foldingbar__content {
+                border-bottom: none;
+            }
+            .group__foldingarea {
+                border-bottom: none;
+                .group__foldingarea__header {
+                    border-right: 1px solid @item-border-color;
+                }
+            }
+            &:last-child {
+                .group__foldingbar__content {
+                    border: 1px solid @item-border-color;
+                }
+                .group__foldingarea {
+                    border: 1px solid @item-border-color;
+                }
+            }
+        }
+    }
+}
+
+// END --- 看板
+
+// START --- 列表
+.app-control-list {
+    .app-control-list__load--more{
+        color: @item-background-color--active;
+    }
+    .app-control-list__content__item {
+        border-bottom: 1px solid @item-border-color;
+        &:hover {
+            background: @item-background-color--hover;
+            .app-control-panel {
+                background: @item-background-color--hover;
+            }
+        }
+        &.is-active {
+            background: @item-background-color--active;
+            .app-control-panel {
+                background: @item-background-color--active;
+            }
+        }
+    }
+}
+
+// END --- 列表
+
+// START --- 多编辑视图面板
+.app-control-multieditviewpanel {
+    .app-control-multieditviewpanel__content__tab {
+        .ivu-tabs-tab {
+            &:hover {
+                color: @item-text-color--hover;
+            }
+
+            &.ivu-tabs-tab-active.ivu-tabs-tab-focused {
+                color: @item-text-color--active;
+                border-color: @item-border-color--active;
+            }
+        }
+    }
+    .app-control-multieditviewpanel__content__item {
+        .ivu-icon-md-close {
+            &:hover {
+                color: @item-text-color--hover;
+            }
+        }
+    }
+}
+// END --- 多编辑视图面板
+
+// START --- 树视图
+.app-control-treeview {
+    .app-element-tree-node {
+        .el-tree-node__content {
+            &:hover {
+                color: @item-text-color--hover;
+                background-color: @item-background-color--hover;
+            }
+        }
+        &.is-current {
+            >.el-tree-node__content {
+                color: @item-text-color--active !important;
+                background-color: @item-background-color--active !important;
+            }
+        }
+    }
+}
+// END --- 树视图
+
+// START --- 面板
+.app-control-panel {
+    .app-control-panel__container__header {
+        border-bottom: 1px solid @app-background-color-step-150;
+    }
+}
+
+// END --- 面板
+
+// START --- 门户部件
+.app-control-portlet {
+    >.control-header {
+        border-bottom: 1px solid @app-background-color-step-150;
+    }
+    .app-control-portlet__content>div {
+        background-color: @app-background-color;
+    }
+    .header__action {
+        a {
+            color: @color-primary-base;
+        }
+    }
+}
+
+// END --- 门户部件
+
+// START --- 搜索表单
+.app-control-searchform__dropdown__icon {
+    .app-button.ivu-btn-default.srfactionlevel250;
+    border-left: 1px solid @app-background-color;
+
+    &:hover {
+        border-left: 1px solid @app-background-color;
+    }
+}
+
+// END --- 搜索表单
+
+// START --- 向导面板
+.app-control-wizardpanel {
+    background-color: @app-background-color !important;
+    .app-control-wizardpanel__header {
+        border-bottom: 1px solid @app-background-color-step-100;
+
+        // 步骤条样式
+        .el-step {
+            .is-success {
+                color: @color-primary-base;
+                border-color: @color-primary-base;
+            }
+        }
+    }
+}
+
+//style2视图工具栏--特殊样式调整
+.app-view-toolbar--style2{
+    .app-view-toolbar__item{
+        .ivu-btn-ghost.ivu-btn-default{
+            background-color: @button-background-color;
+            color:@button-text-color;
+            border:1px solid @button-border-color;
+            &:hover{
+                background-color: @button-background-color--hover;
+                color:@button-text-color--hover;
+                border:1px solid @button-border-color--hover;
+            }
+            &:focus {
+                border:1px solid @button-border-color;
+            }
+        }
+    }
+}
+
+// END --- 向导面板
+
+//  ----------------------------------------组件----------------------------------------
+.app-anchor {
+    .app-anchor--active {
+        color: @color-primary-base;
+
+        .points__dot {
+            background-color: @color-primary-base;
+        }
+    }
+}
+
+.app-autocomplete {
+    .el-input__inner:hover {
+        border-color: @color-primary-base;
+    }
+}
+
+.app-autocomplete__popper {
+    .el-autocomplete-suggestion__list li:hover {
+        color: @color-primary-base;
+    }
+}
+
+//  按钮（默认、行为级别 = 不常用 | 一般操作）
+.app-button.ivu-btn-default,
+.app-button.ivu-btn-default.srfactionlevel50,
+.app-button.ivu-btn-default.srfactionlevel100 {
+    background: @button-background-color;
+    color: @button-text-color;
+    border-color: @button-border-color;
+
+    &:hover {
+        background: @button-background-color--hover;
+        color: @button-text-color--hover;
+        border-color: @button-border-color--hover;
+    }
+
+    &:disabled,
+    &:disabled:hover {
+        background: @button-background-color--disabled;
+        color: @button-text-color--disabled;
+        border-color: @button-border-color--disabled;
+    }
+}
+
+//  按钮（行为级别 = 常用操作）
+.app-button.ivu-btn-default.srfactionlevel200 {
+    background: @button-middle-background-color;
+    color: @button-middle-text-color;
+    border-color: @button-middle-border-color;
+
+    &:hover {
+        background: @button-middle-background-color--hover;
+        color: @button-middle-text-color--hover;
+        border-color: @button-middle-border-color--hover;
+    }
+
+    &:disabled,
+    &:disabled:hover {
+        background: @button-middle-background-color--disabled;
+        color: @button-middle-text-color--disabled;
+        border-color: @button-middle-border-color--disabled;
+    }
+}
+
+//  按钮（行为级别 = 关键操作）
+.app-button.ivu-btn-default.srfactionlevel250 {
+    background: @button-high-background-color;
+    color: @button-high-text-color;
+    border-color: @button-high-border-color;
+
+    &:hover {
+        background: @button-high-background-color--hover;
+        color: @button-high-text-color--hover;
+        border-color: @button-high-border-color--hover;
+    }
+
+    &:disabled,
+    &:disabled:hover {
+        background: @button-high-background-color--disabled;
+        color: @button-high-text-color--disabled;
+        border-color: @button-high-border-color--disabled;
+    }
+}
+
+.app-checkbox-list {
+    .ivu-checkbox-checked .ivu-checkbox-inner {
+        border-color: @color-primary-base;
+        background-color: @color-primary-base;
+    }
+    .ivu-checkbox-checked:hover .ivu-checkbox-inner,
+    .ivu-checkbox-checked .ivu-checkbox-inner{
+        border-color: @color-primary-base;
+        background-color: @color-primary-base;
+    }
+}
+
+.app-checkbox {
+    .ivu-checkbox:hover .ivu-checkbox-inner{
+        border-color: @color-primary-base;
+    }
+    .ivu-checkbox-checked:hover .ivu-checkbox-inner,
+    .ivu-checkbox-checked .ivu-checkbox-inner{
+        border-color: @color-primary-base;
+        background-color: @color-primary-base;
+    }
+}
+
+.app-dashboard-design {
+    border: 1px solid @color-primary-base;
+
+    .app-dashboard-design__tree {
+        .tree__content {
+
+            .el-menu {
+
+                .el-menu-item {
+
+                    // TODO
+                    // background-color: @color-light-base;
+
+                    // &:hover {
+                    //     border-color: @color-secondary-base;
+                    // }
+
+                    // &.is-disable {
+                    //     background-color: @color-light-base;
+                    //     color: @color-medium-base;
+                    // }
+                }
+
+            }
+        }
+    }
+
+    .app-dashboard-design__panel {
+        .app-dashboard-design__mask {
+            background: -webkit-linear-gradient(top, @color-primary-base 10px, transparent 10px), -webkit-linear-gradient(left, @color-primary-base 10px, transparent 10px);
+        }
+    }
+}
+
+.app-department-personnel {
+    .ivu-select-selection {
+        .ivu-icon.ivu-icon-ios-close:hover {
+            color: @color-primary-base;
+        }
+
+        &:hover {
+            border-color: @color-primary-base;
+        }
+    }
+
+    .ivu-select-visible {
+        .ivu-select-selection {
+            .editor-border-active;
+            &:hover,
+            &.ivu-select-selection-focused{
+                .editor-border-active;
+            }
+        }
+    }
+}
+
+.app-department-select {
+    .el-checkbox.is-checked .el-checkbox__inner {
+        background-color: @color-primary-base;
+        border-color: @color-primary-base;
+    }
+
+    .el-checkbox__inner:focus,
+    .el-checkbox__inner:hover {
+        border-color: @color-primary-base;
+    }
+
+    .el-checkbox__input.is-focus .el-checkbox__inner {
+        border-color: @color-primary-base;
+    }
+
+    .el-tree-node__content:hover {
+        color: @color-primary-base;
+    }
+    .el-input__inner {
+        &:hover {
+            border-color: @color-primary-base;
+        }
+    }
+    .el-select .el-input.is-focus .el-input__inner {
+        .editor-border-active
+    }
+    
+}
+
+.app-department-select:hover {
+    .el-select .el-input__inner {
+        border-color: @color-primary-base;
+    }
+}
+
+.app-file-upload__preview {
+    .el-button:focus,
+    .el-button:hover {
+        color: @color-primary-base;
+        border-color: @color-primary-base;
+    }
+
+}
+.app-file-upload__upload {
+    .el-upload-list__item.is-success .el-upload-list__item-name:hover {
+        color: @color-primary-base;
+    }
+    .el-button:focus,
+    .el-button:hover {
+        color: @color-primary-base;
+        border-color: @color-primary-base;
+    }
+} 
+.app-file-upload__modal__item {
+    .item__action {
+        color: @color-primary-contrast;
+    } 
+}
+
+.app-form-group {
+    .app-form-group__action__extract {
+        color: @color-primary-base;
+    }
+}
+
+.app-form-group__action__item {
+    color: @color-primary-base;
+    &.is-disable {
+        color: @button-text-color--disabled;
+    }
+}
+
+.app-form-group__action__showmore {
+  color: @color-primary-base;
+}
+
+.app-group-select {
+    .el-icon-circle-close {
+        &:hover {
+            color: @color-primary-base;
+        }
+    }
+}
+
+.app-color-picker{
+    .el-color-picker__color{
+        border: 0.5px solid @color-primary-base;
+    }
+}
+
+.app-group-select:hover {
+    border-color: @color-primary-base;
+}
+
+.app-image-select {
+    .el-dialog {
+        .el-upload--picture-card:hover,
+        .el-upload:focus {
+            border-color: @color-primary-base;
+            color: @color-primary-base;
+        }
+    }
+    .el-upload--picture-card:hover,
+    .el-upload:focus {
+        border-color: @color-primary-base;
+        color: @color-primary-base;
+    }
+    .app-image-select__dialog-model{
+        .el-dialog__headerbtn:hover .el-dialog__close{
+            color: @color-primary-base;
+        }
+    }
+}
+
+.app-picture-upload {
+    .el-upload--picture-card:hover,
+    .el-upload:focus {
+        border-color: @color-primary-base;
+        color: @color-primary-base;
+    }
+}
+.app-picture-upload.is-single {
+    .el-upload-content__item__caption:hover {
+        border-color: @color-primary-base;
+        color: @color-primary-base;
+
+        .el-icon-document {
+            color: @color-primary-base;
+        }
+    }
+    .el-upload--picture-card {
+        &:hover {
+            border-color: @color-primary-base;
+            color: @color-primary-base;
+        }
+    }
+}
+
+.app-list-box {
+    .ivu-checkbox-group {
+        .ivu-checkbox-checked .ivu-checkbox-inner {
+            border-color: @color-primary-base;
+            background-color: @color-primary-base;
+        }
+    }
+}
+
+.app-list-box__radio {
+    .el-radio__input.is-checked {
+        .el-radio__inner {
+            border-color: @color-primary-base;
+            background-color: @color-primary-base;
+        }
+
+        .el-radio__inner::after {
+            background-color: @color-primary-base;
+        }
+    }
+
+    .el-radio.is-checked {
+        .el-radio__label {
+            color: @color-primary-base;
+        }
+    }
+}
+
+.app-mpicker-select-container {
+    .el-select {
+        .el-input__inner:hover {
+            border-color: @color-primary-base;
+        }
+
+        &:hover .el-input__inner {
+            border-color: @color-primary-base;
+        }
+        .el-input.is-focus .el-input__inner{
+            .editor-border-active;
+        }
+    }
+    &:hover {
+        border-color: @color-primary-base;
+    }
+}
+
+.app-nav-pos {
+    background-color: @app-background-color-step-50;
+}
+
+.app-org-select {
+    .el-select:hover .el-input__inner {
+        border-color: @color-primary-base;
+    }
+    .el-select .el-input.is-focus .el-input__inner {
+        .editor-border-active;
+    }
+    .el-checkbox.is-checked .el-checkbox__inner {
+        background-color: @color-primary-base;
+        border-color: @color-primary-base;
+    }
+
+    .el-checkbox__inner:hover {
+        border-color: @color-primary-base;
+    }
+
+    .el-checkbox__input {
+        &.is-focus .el-checkbox__inner {
+            border-color: @color-primary-base;
+        }
+
+        &.is-checked .el-checkbox__inner {
+            .editor-border-active;
+            background-color: @color-primary-base;
+        }
+    }
+
+    .el-checkbox__inner:focus {
+        .editor-border-active;
+        background-color: @color-primary-base;
+    }
+
+    .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+        .editor-border-active;
+        background-color: @color-primary-base;
+    }
+
+    .el-tree-node__content:hover {
+        color: @color-primary-base;
+    }
+}
+
+.app-picker-select-view__input {
+    .ivu-input:focus,
+    .ivu-input:hover {
+        border-color: @color-primary-base;
+    }
+}
+        
+.app-picker {
+    >a {
+        color: @color-primary-base;
+        &:hover {
+            color: @color-primary-base;
+        }
+    }
+}
+.app-picker__ac {
+    .el-input__inner:hover {
+        border-color: @color-primary-base;
+    }
+    .el-input__inner:focus{
+        .editor-border-active;
+    }
+}
+.app-picker__input {
+    .el-input__inner:hover {
+        border-color: @color-primary-base;
+    }
+}
+.app-picker__select {
+    .el-input__inner:hover {
+        border-color: @color-primary-base;
+    }
+    .el-input.is-focus .el-input__inner:focus{
+        .editor-border-active;
+    }
+    &.el-select:hover .el-input__inner{
+        border-color: @color-primary-base;
+    }
+}
+
+// 下拉列表的远程加载样式
+.app-picker__select__popper {
+    .el-select-dropdown__item.hover {
+        color: @color-primary-base;
+    }
+}
+
+.app-picker__ac__popper {
+    .el-autocomplete-suggestion__list li:hover {
+        color: @color-primary-base;
+    }
+}
+
+
+.app-quick-group {
+    background-color: @app-background-color;
+
+    .app-quick-item {
+        .app-quick-item-label:hover {
+            color: @color-primary-base;
+        }
+
+        .app-selected-item {
+            color: @color-primary-base;
+
+            &::after {
+                background-color: @color-primary-base;
+            }
+        }
+    }
+}
+
+.view-header__right__quicksearch {
+    .ivu-btn {
+        &:hover {
+            background-color: @color-primary-tint;
+            color: @app-text-color-step--950;
+            border-color: @app-text-color-step--950;
+        }
+
+        &.is-expand {
+            color: @color-primary-tint;
+        }
+
+    }
+}
+
+.app-radio-group {
+    .ivu-radio-checked:hover .ivu-radio-inner,
+    .ivu-radio-checked .ivu-radio-inner {
+        border-color: @color-primary-base;
+    }
+
+    .ivu-radio-checked .ivu-radio-inner::after {
+        background-color: @color-primary-base;
+    }
+}
+
+
+.op-icon.dropdown-wrapper.dropdown .popup-dropdown {
+    .dropdown-item:hover {
+        color: @item-text-color--hover;
+    }
+}
+    
+.app-slider {
+    .el-slider__runway {
+        .el-slider__bar {
+            background-color: @color-primary-base;
+        }
+
+        .el-slider__button-wrapper .el-slider__button {
+            border-color: @color-primary-base;
+
+        }
+    }
+}
+
+.app-sort-bar {
+    background-color: @app-background-color-step-50;
+    .sort__item {
+        .item__icon {
+            color: @app-text-color-step--750;
+        }
+        &:hover {
+            .item__caption {
+                color: @color-primary-base;
+            }
+        }
+        &.is-active {
+            .item__caption {
+                color: @color-primary-base;
+            }
+            &.sort__item--ascending {
+                .item__icon {
+                    .ivu-icon.ivu-icon-md-arrow-dropup {
+                        color: @color-primary-base;
+                    }
+                }
+            }
+            &.sort__item--descending {
+                .ivu-icon.ivu-icon-md-arrow-dropdown {
+                    color: @color-primary-base;
+                }
+            }
+        }
+    }
+    .sort__item + .sort__item::before {
+        background-color: @item-border-color;
+    }
+}
+
+.app-stepper {
+    .el-input {
+        input:focus {
+            border-color: @color-primary-base;
+        }
+    }
+}
+
+.el-switch.is-checked .el-switch__input+.el-switch__core {
+    border-color: @color-primary-base;
+    background-color: @color-primary-base;
+}
+
+.ivu-date-picker {
+    .ivu-input:hover {
+        border-color: @color-primary-base;
+    }
+}
+
+.ivu-time-picker-cells-ul{
+    .ivu-time-picker-cells-cell.ivu-time-picker-cells-cell-selected:hover{
+        color: @color-primary-base;
+    }
+    
+}
+.ivu-date-picker-cells{
+    .ivu-date-picker-cells-cell:hover em{
+        background-color:mix(#FFF,@color-primary-base,85%)
+    }
+    .ivu-date-picker-cells-cell-selected em{
+        background-color: @color-primary-base;
+        &:hover{
+            background-color: @color-primary-base;
+        }
+    }
+    
+}
+
+.ivu-picker-panel-body-wrapper {
+    .ivu-time-picker-cells-cell-selected {
+        color: @color-primary-base;
+    }
+}
+
+.dropdown-list-mpicker {
+
+    .dropdown-list-mpicker__select {
+        .ivu-select-selection:hover {
+            border-color: @color-primary-base;
+        }
+
+        &.ivu-select-visible .ivu-select-selection {
+            border-color: @color-primary-base;
+        }
+        .ivu-select-selection-focused{
+            .editor-border-active;
+          }
+    }
+
+}
+
+.dropdown-list-mpicker__transfer {
+    .ivu-select-item:hover {
+        color: @color-primary-base;
+    }
+
+    .ivu-checkbox-wrapper-checked {
+        color: @color-primary-base;
+
+        .ivu-checkbox-checked .ivu-checkbox-inner {
+            border-color: @color-primary-base;
+            background-color: @color-primary-base;
+        }
+    }
+}
+
+.dropdown-list {
+    .dropdown-list__select {
+        .ivu-select-selection:hover {
+            border-color: @color-primary-base;
+        }
+
+        &.ivu-select-visible .ivu-select-selection {
+            border-color: @color-primary-base;
+        }
+        .ivu-select-selection-focused{
+            .editor-border-active;
+        }
+    }
+}
+
+.dropdown-list__transfer {
+
+    .ivu-select-item-focus,
+    .ivu-select-item:hover {
+        color: @color-primary-base;
+    }
+}
+
+.app-input-box {
+
+    .ivu-input-number {
+        &:hover {
+            border-color: @color-primary-base;
+        }
+        &.ivu-input-number-focused{
+            .editor-border-active;
+          }
+    }
+
+    .is-disabled {
+        textarea:disabled,
+        textarea[disabled] {
+            background-color: #f1f1f1;
+            color: rgb(44, 44, 44);
+            opacity: 0.7;
+        }
+    }
+}
+
+.app-page-tag {
+    background-color: @app-background-color-step-50;
+}
+.app-page-tag__left {
+    .el-tabs__item {
+        border: 1px solid @app-background-color;
+        color: @app-text-color;
+        background-color: @app-background-color;
+    }
+
+    .el-tabs__item:hover,
+    .el-tabs__item.is-active {
+        color: @primary;
+    }
+
+    .is-active .ivu-tag-dot-inner {
+        background-color: @primary;
+    }
+}
+
+.app-page-tag__right {
+    .el-dropdown {
+        button {
+            background: @button-high-background-color;
+            color: @button-high-text-color;
+            border-color: @button-high-border-color;
+
+            &:hover {
+                background: @button-high-background-color--hover;
+                color: @button-high-text-color--hover;
+                border-color: @button-high-border-color--hover;
+            }
+        }
+    }
+}
+
+.app-custom-theme__buttons {
+    .app-button.preview {
+        .app-button.ivu-btn-default.srfactionlevel250;
+    }
+}
+
+.app-debug-actions__show-buttons{
+    border: @color-primary-contrast;
+    color: @color-primary-contrast;
+}
+.app-debug-actions__actions{
+    .action__button{
+        color: @color-primary-contrast;
+    }
+    .ivu-btn-ghost.ivu-btn-info:hover{
+        color: @color-primary-contrast;
+    }
+}
+
+.app-upload-file-info__item:hover {
+    color: @color-primary-base;
+}
+
+.date-picker-range {
+    .el-range-input {
+        border: 1px solid @color-primary-base;
+    }
+}
+
+.app-calendar-time-line__header__left,
+.app-calendar-time-line__header__right {
+
+    button.ivu-btn,
+    button.ivu-btn.ivu-btn-primary {
+        background: @button-background-color;
+        color: @button-text-color;
+        border-color: @button-border-color;
+        height: 28px;
+        width: 62px;
+
+        &:hover {
+            background: @button-background-color--hover;
+            color: @button-text-color--hover;
+            border-color: @button-border-color--hover;
+        }
+
+        &:disabled,
+        &:disabled:hover {
+            background: @button-background-color--disabled;
+            color: @button-text-color--disabled;
+            border-color: @button-border-color--disabled;
+        }
+
+        line-height: 0;
+
+        span {
+            line-height: 0.7;
+        }
+    }
+
+    button.ivu-btn.button-active-color {
+        background: @button-background-color--hover;
+        color: @button-text-color--hover;
+        border-color: @button-border-color--hover;
+    }
+}
+
+.app-form {
+    >.ivu-row {
+        >.el-tabs {
+            .el-tabs__header {
+                .el-tabs__nav-wrap::after {
+                    background-color: @menu-background-color;
+                }
+            }
+        }
+    }
+}
+
+.app-header-menus {
+    >.ivu-menu.ivu-menu-horizontal {
+        color: @header-text-color;
+
+        >.ivu-menu-item,
+        >.ivu-menu-submenu {
+            color: @header-text-color;
+        }
+
+        >.ivu-menu-item:hover,
+        >.ivu-menu-submenu:hover {
+            color: @header-text-color;
+        }    
+    }
+    .ivu-select-dropdown {
+
+        >.ivu-menu-drop-list {
+
+            >.ivu-menu-item,
+            >.ivu-menu-submenu {
+                color: @header-text-color;
+            }
+        }
+    }
+}
+
+
+.app-map-position {
+    #map__result {
+        .el-vue-search-box-container {
+            border: 1px solid @color-primary-base;
+        }
+    }
+
+    .amap-marker-content {
+        .input-map__marker {
+            -webkit-box-shadow: 1px 1px 1px mix(white, @color-primary-base, 85%);
+            box-shadow: 1px 1px 1px mix(white, @color-primary-base, 85%);
+            background-color: @primary;
+        }
+    }
+}
+
+.popover__show-more {
+    color: @color-primary-base;
+}
+.popover__content {
+    border-bottom: 1px solid @color-primary-base;
+
+    .popover__content__avatar {
+        border: 0px solid @color-primary-base;
+        span{
+            background-color: @color-primary-base!important;
+            color: @color-primary-contrast!important;
+        }
+    }
+    .popover__content__caption {
+        .process-definition-name:hover {
+            color: @color-primary-base;
+        }
+    }
+}
+
+.app-theme__popper {
+    .app-theme-icon {
+        color: @app-text-color;
+    }
+
+    .app-theme-color .active {
+        border: 2px solid @color-primary-base;
+    }
+
+    .ivu-form-item {
+        border-top: 1px solid @color-primary-base;
+    }
+}
+
+.app-header-user {
+    .app-header-user__caption {
+        color: @header-text-color;
+
+        &:hover {
+            background-color: @header-background-color--hover;
+        }
+    }
+}
+
+.app-wf-approval{
+    .app-wf-approval-header{
+        border: 1px solid @color-primary-base;
+    }
+    .app-wf-approval-bottom{
+        border-color: @color-primary-base;
+    }
+    .app-wf-approval-content{
+        border-left: 1px solid @color-primary-base;
+        border-right: 1px solid @color-primary-base;
+        .approval-content-item{
+            border-bottom: 1px solid @color-primary-base;
+        }
+    }
+    .approval-content-item-right{
+        border-left:1px solid @color-primary-base;
+    }
+    .approval-content-item-wait{
+        border-bottom:1px solid @color-primary-base;
+    }
+    .approval-content-item-info-item{
+        border-bottom:1px solid @color-primary-base;
+    }
+}
+
+.app-content-right{
+    .app-content-bottom{
+        > .app-content-bottom-close{
+            color: @color-primary-base;
+        }
+    }  
+}
+
+.app-content-bottom-exp{
+    .ivu-tabs-tab.ivu-tabs-tab-active {
+        .tab-exp-title {
+            border-bottom: 1px solid @app-divider-color;
+        }
+    }
+}
+
+.app-style2-menus.el-menu {
+    background-color: @menu-background-color;
+    color: @menu-text-color;
+    .app-style2-menus__item {
+        color: @menu-text-color;
+        i {
+            color: @menu-text-color;
+        }
+        &:hover,&.is-active {
+            color: @menu-item-text-color--hover;
+            i {
+                color: @menu-item-text-color--hover;
+            }
+        }
+    }
+    .el-menu-item,
+    .el-submenu__title {
+        background-color: @menu-item-background-color;
+        color: @menu-item-text-color;
+
+        .ivu-badge-count {
+            box-shadow: 0 0 0 0px @color-primary-base;
+        }
+
+        &:hover {
+            background-color: @menu-item-background-color--hover;
+            color: @menu-item-text-color--hover;
+        }
+
+        &.is-active {
+            color: @menu-item-text-color--active;
+            background-color: @menu-item-background-color--active;
+        }
+    }
+}
+
+
+.left-and-right{
+    > div:nth-child(1) {
+        border-right: 1px solid @app-divider-color;
+    }
+}
+
+.ibiz-page-tag__body__tags{
+    .ivu-tag {
+        border-right: 1px solid @app-divider-color;
+    }
+    .ivu-tag.tag-is-active {
+          background: @app-background-color;
+          .ivu-tag-text {
+              color: @app-text-color;
+          }
+          .ivu-icon {
+              color: @app-text-color;
+          }
+      }
+}
+
+.ibiz-page-tag{
+    .move-btn{
+        border-left: 1px solid  @app-divider-color;
+        border-right: 1px solid  @app-divider-color;
+    }
+}
+
+.app-page-more{
+    .ivu-dropdown-item:hover{
+        color: @color-primary-base;
+    }
+}
+
+.upload-file{
+    .ivu-upload{
+        .ivu-upload-drag{
+            border:1px dashed @color-primary-base!important;
+        }
+    }
+    .upload-file__text{
+        border:1px dashed @color-primary-base;
+    }
+    .upload-file__text-style{
+        cursor: pointer;
+        color: @color-primary-base;
+    }
+}
+
+.context-menus-item:hover {
+    background-color: @menu-item-background-color--hover;
+    color: @menu-item-text-color--hover;
+}
+
+.sider-drawer {
+    .ivu-drawer {
+      background-color: @color-primary-base!important;
+    }
+}
+.context-menu-drag{
+    .context-menu__list {  
+        .context-menu__list__header {
+            border-bottom: 1px solid @app-divider-color;
+        }
+    }    
+}
+
+.tab-exp-item-content {
+    .toolbar-container {
+        >.ivu-btn.ivu-btn-default:disabled {
+            color: @button-text-color--disabled;
+        }
+    }
+}
+
+.lock-scren-footer-btn.el-button--primary{
+    background-color: @button-high-background-color;
+    color: @button-high-text-color;
+    border: @button-high-border-color;
+    &:hover{
+        background-color: @button-high-background-color--hover;
+        color: @button-high-text-color--hover;
+        border: @button-high-border-color--hover;
+    }
+}
+.lockscren-body .el-dialog__headerbtn:hover i{
+    color: @color-primary-base;
+    >i:hover{
+        color: @color-primary-base;
+    }
+}
+
+.view-style2{
+    .app-style2-footer{
+        background-color: @color-primary-base;
+    }
+}
+// style2顶部菜单
+.app-style2-header-menus {
+    background-color: @menu-item-background-color--active;
+
+    .el-menu--horizontal {
+        background-color: @menu-item-background-color--active;
+
+        .el-menu-item,
+        .el-submenu__title {
+            color: @menu-item-text-color--active;
+
+            .el-icon-arrow-down {
+                color: @menu-item-text-color--active;
+            }
+
+            &:not(.is-disabled):hover,
+            &:not(.is-disabled):focus,
+            &.is-active {
+                color: @menu-item-text-color--active;
+                background-color: @menu-item-background-color--active;
+            }
+        }
+
+        .el-submenu {
+            &.is-active .el-submenu__title {
+                color:  @menu-item-text-color--active;
+                border-bottom: 2px solid @menu-background-color;
+            }
+        }
+    }
+}
+//style2导航条
+.app-page-tag-style2__left__icon,.app-page-tag-style2__right__icon{
+    &:hover{
+        background: #efefef;
+    }
+}
+.app-page-tag-style2__right{
+    .ivu-dropdown-rel {
+        >.ivu-icon:hover {
+            background: #efefef;
+        }
+    }
+}
+.app-page-tag-style2__tag{
+    .ivu-tag.is-active:before{
+        background-color: @color-primary-base;
+    }
+}
+.message-popover-container {
+    .popover__content:hover {
+        background-color: @item-background-color--active;
+    }
+    .popover__show-more:hover {
+        color: @color-primary-base;
+    }
+}
+.app-async-message {
+    .app-async-message__item .avatar {
+        background-color: @button-high-background-color;
+        color: @button-high-text-color;
+    }
+    .ivu-list-footer {
+        color: @color-primary-base;
+    }
+}

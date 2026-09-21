@@ -1,0 +1,110 @@
+// 部件容器布局
+.control-container {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+    .flex(column, space-between, stretch);
+}
+
+.control-header {
+    padding: 4px;
+
+    .control-header__caption {
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .control-header__right {
+        float: right;
+    }
+}
+
+.control-content {
+    flex-grow: 1;
+    min-height: 0;
+    min-width: 0;
+    padding: 4px;
+    overflow: auto;
+}
+
+.control-footer {
+    width: 100%;
+    padding: 4px;
+}
+
+.control__loading {
+    .flex(column, center, center);
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+
+    >.loading__img {
+        max-width: 30%;
+        max-height: calc(100% - 80px);
+        margin: 0;
+    }
+
+    >.loading__text {
+        display: block;
+        line-height: 40px;
+        font-size: 14px;
+    }
+}
+
+.control__empty {
+    .flex(column, center, center);
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+
+    >.empty__img {
+        max-width: 30%;
+        max-height: calc(100% - 80px);
+        margin: 0;
+    }
+
+    >.empty__text {
+        display: block;
+        line-height: 40px;
+        font-size: 14px;
+    }
+}
+
+// 多数据loading
+.app-loading {
+    z-index: 10;
+    .app-loading__icon {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        left: calc(50% - 20px);
+        top: calc(50% - 20px);
+        transition: 0.5s;
+        animation: rotate 3s linear infinite;
+
+        .app-loading__icon__content {
+            display: flex;
+
+            .content__item {
+                border-radius: 50%;
+                width: 13px;
+                height: 13px;
+                display: block;
+                margin: 4px;
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    }
+}

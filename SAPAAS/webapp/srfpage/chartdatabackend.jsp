@@ -1,0 +1,1 @@
+<%@page contentType="text/html; charset=GBK"%><jsp:useBean id="page1" scope="page" class="SA.SRFDA.Report.Web.ChartDataPage" /><%page1.InitBackEnd(pageContext);page1.LoadBackEnd();%>

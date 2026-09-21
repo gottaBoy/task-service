@@ -1,0 +1,107 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.model.app.view.IPSAppDEGridView
+ *  net.ibizsys.model.control.IPSControl
+ *  net.ibizsys.model.control.grid.IPSDEGrid
+ */
+package net.ibizsys.model.app.view;
+
+import java.util.HashMap;
+import net.ibizsys.model.PSModelRTMeta;
+import net.ibizsys.model.app.view.IPSAppDEGridView;
+import net.ibizsys.model.app.view.PSAppDEMultiDataViewImpl;
+import net.ibizsys.model.control.IPSControl;
+import net.ibizsys.model.control.grid.IPSDEGrid;
+import net.ibizsys.model.entity.PSDEViewCtrl;
+
+public class PSAppDEGridViewImpl
+extends PSAppDEMultiDataViewImpl
+implements IPSAppDEGridView {
+    private boolean bEnableDbClickActiveData = true;
+    private IPSDEGrid iPSDEGrid = null;
+    private int nGridRowActiveMode = 2;
+    private boolean bRowEditDefault = false;
+
+    @Override
+    protected void onInit() throws Exception {
+        if (!this.psViewBase.isVIEWPARAM6Null()) {
+            this.bEnableDbClickActiveData = false;
+            this.nGridRowActiveMode = this.psViewBase.getParamIntValue("VIEWPARAM6", 0);
+            if (this.nGridRowActiveMode == 1) {
+                this.nGridRowActiveMode = 2;
+                this.bEnableDbClickActiveData = true;
+            } else if (this.nGridRowActiveMode == 2) {
+                this.nGridRowActiveMode = 1;
+            }
+        } else {
+            this.nGridRowActiveMode = this.getPSAppView().getPSApplication().getPSApplicationUI().getGridRowActiveMode();
+        }
+        if (!this.psViewBase.isVIEWPARAM3Null()) {
+            this.bRowEditDefault = this.psViewBase.getParamIntValue("VIEWPARAM3", 0) == 1;
+        }
+        super.onInit();
+    }
+
+    @Override
+    protected void registerPSDEViewCtrls(HashMap<String, PSDEViewCtrl> psDEViewCtrlMap) throws Exception {
+        IPSControl iPSControl;
+        PSDEViewCtrl psDEViewCtrl = psDEViewCtrlMap.remove("grid");
+        if (psDEViewCtrl != null && (iPSControl = this.registerPSDEViewCtrl(psDEViewCtrl)) instanceof IPSDEGrid) {
+            this.iPSDEGrid = (IPSDEGrid)iPSControl;
+        }
+        super.registerPSDEViewCtrls(psDEViewCtrlMap);
+    }
+
+    public boolean isDbClickEditData() {
+        return this.bEnableDbClickActiveData;
+    }
+
+    @PSModelRTMeta(description="\u652f\u6301\u884c\u7f16\u8f91")
+    public boolean isEnableRowEdit() {
+        if (this.isEnableViewActions()) {
+            if (this.getPSDEGrid() != null) {
+                return this.getPSDEGrid().isEnableRowEdit() && (this.getViewActions() & 0x20L) > 0L;
+            }
+            return (this.getViewActions() & 0x20L) > 0L;
+        }
+        if (this.getPSDEGrid() != null) {
+            return this.getPSDEGrid().isEnableRowEdit();
+        }
+        return false;
+    }
+
+    @Override
+    @PSModelRTMeta(description="\u652f\u6301\u6570\u636e\u5bfc\u5165")
+    public boolean isEnableImport() {
+        if (this.isEnableViewActions()) {
+            return (this.getViewActions() & 0x400L) > 0L;
+        }
+        return true;
+    }
+
+    @Override
+    @PSModelRTMeta(description="\u652f\u6301\u6570\u636e\u5bfc\u51fa")
+    public boolean isEnableExport() {
+        if (this.isEnableViewActions()) {
+            return (this.getViewActions() & 0x40L) > 0L;
+        }
+        return true;
+    }
+
+    public IPSDEGrid getPSDEGrid() {
+        return this.iPSDEGrid;
+    }
+
+    @PSModelRTMeta(description="\u8868\u683c\u884c\u6fc0\u6d3b\u6a21\u5f0f", codelist="GridRowActiveMode")
+    public int getGridRowActiveMode() {
+        return this.nGridRowActiveMode;
+    }
+
+    @PSModelRTMeta(description="\u89c6\u56fe\u9ed8\u8ba4\u8fdb\u5165\u884c\u7f16\u8f91")
+    public boolean isRowEditDefault() {
+        return this.bRowEditDefault;
+    }
+}
+

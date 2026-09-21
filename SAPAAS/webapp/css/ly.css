@@ -1,0 +1,237 @@
+BODY{
+	margin: 0;
+	background-color:#eeeeff;
+}
+DIV
+{
+	cursor: default;
+}
+
+
+A.menu:link{	text-decoration: none;}
+A.menu:active	{  text-decoration:none;}
+A.menu:visited	{  text-decoration:none;}
+
+
+A.gridlink:link{	text-decoration: none;}
+A.gridlink:active	{  text-decoration:none;}
+A.gridlink:visited	{  text-decoration:none;}
+
+A.gridlink2:link{margin-left:29px;text-decoration: none;}
+A.gridlink2:active	{ margin-left:29px;text-decoration:none;}
+A.gridlink2:visited	{ margin-left:29px;text-decoration:none;}
+
+A.gridlink3:link,A:visited ,A:active {TEXT-DECORATION: none}
+A.gridlink3:hover {text-decoration : none; position : relative; top : 1px; left : 1px}
+A.gridlink3:link{border:1px;margin-left:2px;	text-decoration: none;}
+A.gridlink3:active	{  text-decoration:none;}
+A.gridlink3:visited	{  text-decoration:none;}
+
+
+.duty-table{
+	border-collapse:collapse; 
+	border:solid #999;
+	border-width:1px 0 0 1px;
+	font:normal 11px arial, tahoma, helvetica, sans-serif;
+}
+.duty-table td {border:solid #999;border-width:0 1px 1px 0;padding:2px;text-align:center;height:20px;}
+.duty-table th {border:solid #999;border-width:0 1px 1px 0;padding:2px;height:25px;text-align:center;background: #ebeadb}
+
+.duty-table2{
+	border-collapse:collapse; 
+	border:solid #999;
+	border-width:1px 0 0 1px;
+	font:normal 13px arial, tahoma, helvetica, sans-serif;
+}
+.duty-table2 td {border:solid #999;border-width:0 1px 1px 0;padding:2px;text-align:center;height:20px;}
+.duty-table2 th {border:solid #999;border-width:0 1px 1px 0;padding:2px;height:25px;text-align:center;background: #ebeadb}
+
+.dutyinput{
+border:0px solid #CCCCCC;width:100%;text-align:left;
+}
+
+.dutyinput2{
+border:0px solid #CCCCCC;width:100%;text-align:center;font-size: 11pt;font-family: 黑体;
+}
+ 
+.dutytextbox{
+border:0px solid #CCCCCC;width:100%;text-align:left;
+}
+
+
+.sx-dpinput {
+	FONT-FAMILY:  "宋体"; 
+	FONT-SIZE: 9pt; 
+	width:120px;
+	HEIGHT: 21px;
+	BORDER:#aaaaaa 1px solid;
+	padding-top: 4px;
+	padding-left: 1px;
+}
+
+
+.sx-arialtext28-b
+{
+font-size: 28pt;
+font-family: Arial;
+color:black;
+vertical-align: baseline; 
+font-weight: bold;
+}
+
+
+
+.sx-normaltext20-b
+{
+vertical-align: baseline;
+font-size: 20pt;
+font-family: 宋体;
+color:black;
+font-weight: bold;
+}
+
+.sx-arialtext14-b-blue
+{
+vertical-align: baseline;
+font-size: 14pt;
+font-family: Arial;
+color:blue;
+font-weight: bold;
+}
+
+
+.sx-arialtext-b-Fuchsia
+{
+vertical-align: baseline;
+font-size: 9pt;
+font-family: 宋体;
+color:Fuchsia;
+font-weight: bold;
+}
+
+.sx-bgtext10
+{
+font-size: 10pt;
+font-family: 宋体;
+color:black;
+vertical-align: baseline;
+padding-left:3px;
+padding-right:3px;
+background-color:#ebeadb;
+border-width:2px;
+border-style : outset;
+}
+
+.sx-bg2text10
+{
+font-size: 10pt;
+font-family: 宋体;
+color:black;
+vertical-align: baseline;
+padding-left:3px;
+padding-right:3px;
+background-color:#ebeadb;
+border-width:2px;
+border-style : inset;
+}
+
+.sx-normaltext14-b-red
+{
+vertical-align: baseline;
+font-size: 14pt;
+font-family: 宋体;
+color:red;
+font-weight: bold;
+}
+
+.sx-normaltext10-blue
+{
+vertical-align: baseline;
+font-family: 宋体;
+color:blue;
+font-size: 10pt;
+ 
+}
+
+.sx-arialtext-b-red
+{
+vertical-align: baseline;
+font-size: 9pt;
+font-family: Arial;
+color:red;
+font-weight: bold;
+}
+
+
+.sx-arialtext-b-blue
+{
+vertical-align: baseline;
+font-size: 9pt;
+font-family: Arial;
+color:blue;
+font-weight: bold;
+}
+
+.sx-arialtext-blue
+{
+vertical-align: baseline;
+font-size: 9pt;
+font-family: Arial;
+color:blue;
+}
+
+
+DIV .sx-expanel 
+{
+margin: 0px;
+float: left;
+overflow: auto;
+padding-right: 0px;
+padding-left: 0px;
+padding-bottom: 0px;
+padding-top: 0px;
+
+background-color:#C9E1ED;
+}
+
+DIV .sx-expanel-red 
+{
+margin: 0px;
+float: left;
+overflow: auto;
+padding-right: 0px;
+padding-left: 0px;
+padding-bottom: 0px;
+padding-top: 0px;
+background-color:#FFFCDE;
+}
+.title{font-family:宋体; font-size:12px;  color:#6a6a6a;}
+
+.sx-text-blue
+{
+color:blue;
+}
+
+.sx-text-red
+{
+color:red;
+}
+.sx-text-green
+{
+color:green;
+}
+.sx-text-orange
+{
+color:orange;
+}
+.sx-text-purple
+{
+color:purple;
+}
+.top-5{margin-top:5px;
+}
+
+.sx-dialog BODY{
+	padding : 2px;
+	background-color:#eeeeff;
+}

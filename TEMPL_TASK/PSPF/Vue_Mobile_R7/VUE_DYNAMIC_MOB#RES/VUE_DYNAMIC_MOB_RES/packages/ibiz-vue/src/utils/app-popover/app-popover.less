@@ -1,0 +1,56 @@
+.app-popup {
+  min-width: 50vw;
+  min-height: 50vw;
+  overflow: initial;
+  .popup-content {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+  }
+  .popup-header {
+    height: 40px;
+    width: 100vw;
+  }
+  .van-popup__close-icon {
+    font-size: 17px;
+    color: #333;
+  }
+  .popup-title {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+  }
+}
+
+.app-popup.header-visible{
+  .popup-body {
+    height: calc(100% - 40px);
+    border-radius: inherit;
+  }
+}
+.app-popup.outside-bottom-center {
+  .van-popup__close-icon {
+    right: 50%;
+    bottom: 0;
+    transform: translateY(22px) translateX(50%);
+    z-index: 1;
+    top: auto;
+    color: #fff;
+  }
+}
+// 底部打开样式
+.app-popup.van-popup--bottom {
+  width: 100%;
+  height: 50vh;
+}
+.app-popup.van-popup--center {
+  min-width: 50vw;
+  min-height: 50vw;
+  height: 50vw;
+  .popup-body {
+    height: 100%;
+    border-radius: inherit;
+  }
+}

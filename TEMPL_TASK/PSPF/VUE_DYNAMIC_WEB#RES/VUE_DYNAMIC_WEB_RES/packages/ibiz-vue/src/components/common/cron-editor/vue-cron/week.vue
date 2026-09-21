@@ -1,0 +1,296 @@
+<template lang="html">
+    <div :val="value_">
+        <div>
+            <el-radio v-model="type" label="1" size="mini" border>{{
+                $t('components.croneditor.week.everyweek')
+            }}</el-radio>
+        </div>
+        <div>
+            <el-radio v-model="type" label="5" size="mini" border>{{
+                $t('components.croneditor.public.notspecify')
+            }}</el-radio>
+        </div>
+        <div>
+            <el-radio v-model="type" label="2" size="mini" border>{{
+                $t('components.croneditor.public.cycle')
+            }}</el-radio>
+            <span style="margin-left: 10px; margin-right: 5px">{{ $t('components.croneditor.week.from') }}</span>
+            <el-input-number
+                @change="type = '2'"
+                v-model="cycle.start"
+                :min="1"
+                :max="7"
+                size="mini"
+                style="width: 100px"
+            ></el-input-number>
+            <span style="margin-left: 5px; margin-right: 5px">{{ $t('components.croneditor.week.to') }}</span>
+            <el-input-number
+                @change="type = '2'"
+                v-model="cycle.end"
+                :min="2"
+                :max="7"
+                size="mini"
+                style="width: 100px"
+            ></el-input-number>
+        </div>
+        <div>
+            <el-radio v-model="type" label="3" size="mini" border>{{
+                $t('components.croneditor.public.loop')
+            }}</el-radio>
+            <span style="margin-left: 10px; margin-right: 5px">{{ $t('components.croneditor.week.from') }}</span>
+            <el-input-number
+                @change="type = '3'"
+                v-model="loop.start"
+                :min="1"
+                :max="7"
+                size="mini"
+                style="width: 100px"
+            ></el-input-number>
+            <span style="margin-left: 5px; margin-right: 5px">{{ $t('components.croneditor.week.start') }}</span>
+            <el-input-number
+                @change="type = '3'"
+                v-model="loop.end"
+                :min="1"
+                :max="7"
+                size="mini"
+                style="width: 100px"
+            ></el-input-number>
+            {{ $t('components.croneditor.week.onceaday') }}
+        </div>
+        <div>
+            <el-radio v-model="type" label="7" size="mini" border>{{
+                $t('components.croneditor.week.specifyweek')
+            }}</el-radio>
+            <span style="margin-left: 10px; margin-right: 5px">{{ $t('components.croneditor.week.weekofmonth') }}</span>
+            <el-input-number
+                @change="type = '7'"
+                v-model="week.start"
+                :min="1"
+                :max="4"
+                size="mini"
+                style="width: 100px"
+            ></el-input-number>
+            <span style="margin-left: 5px; margin-right: 5px">{{ $t('components.croneditor.week.weekweek') }}</span>
+            <el-input-number
+                @change="type = '7'"
+                v-model="week.end"
+                :min="1"
+                :max="7"
+                size="mini"
+                style="width: 100px"
+            ></el-input-number>
+        </div>
+        <div>
+            <el-radio v-model="type" label="6" size="mini" border>{{
+                $t('components.croneditor.week.lastofmonth')
+            }}</el-radio>
+            <span style="margin-left: 10px; margin-right: 5px">{{ $t('components.croneditor.week.week') }}</span>
+            <el-input-number
+                @change="type = '6'"
+                v-model="last"
+                :min="1"
+                :max="7"
+                size="mini"
+                style="width: 100px"
+            ></el-input-number>
+        </div>
+        <div>
+            <el-radio v-model="type" label="4" size="mini" border>{{
+                $t('components.croneditor.public.specify')
+            }}</el-radio>
+            <el-checkbox-group v-model="appoint" style="margin-left: 50px; line-height: 25px">
+                <template v-for="i in 7">
+                    <el-checkbox @change="type = '4'" :key="i" :label="i.toString()"></el-checkbox>
+                </template>
+            </el-checkbox-group>
+        </div>
+    </div>
+</template>
+
+<script lang="ts">
+import { Vue, Watch, Component, Prop } from 'vue-property-decorator';
+import { LogUtil } from 'ibiz-core';
+
+@Component({})
+export default class Week extends Vue {
+    /**
+     * Cron表达式
+     *
+     * @type {any}
+     * @memberof Day
+     */
+    @Prop() value: any;
+
+    /**
+     * 数据值变化
+     *
+     * @returns
+     * @memberof Day
+     */
+    @Watch('value')
+    public updateVal(newVal: string) {
+        if (newVal) {
+            if (newVal === '?') {
+                this.type = '5';
+                this.appoint = [];
+            } else if (newVal.indexOf('-') !== -1) {
+                // 2周期
+                if (newVal.split('-').length === 2) {
+                    this.type = '2';
+                    this.cycle.start = newVal.split('-')[0];
+                    this.cycle.end = newVal.split('-')[1];
+                }
+            } else if (newVal.indexOf('/') !== -1) {
+                // 3循环
+                if (newVal.split('/').length === 2) {
+                    this.type = '3';
+                    this.loop.start = newVal.split('/')[0];
+                    this.loop.end = newVal.split('/')[1];
+                }
+            } else if (newVal.indexOf('*') !== -1) {
+                // 1每
+                this.type = '1';
+            } else if (newVal.indexOf('L') !== -1) {
+                // 6最后
+                this.type = '6';
+                this.last = Number(newVal.replace('L', ''));
+            } else if (newVal.indexOf('#') !== -1) {
+                // 7指定周
+                if (newVal.split('#').length === 2) {
+                    this.type = '7';
+                    this.week.start = newVal.split('#')[0];
+                    this.week.end = newVal.split('#')[1];
+                }
+            } else if (newVal.indexOf('W') !== -1) {
+                // 8工作日
+                this.type = '8';
+                this.work = Number(newVal.replace('W', ''));
+            } else {
+                // *
+                this.type = '4';
+                this.appoint = newVal.split(',');
+            }
+        }
+    }
+
+    /**
+     * 标签类型标识
+     *
+     * @type {any}
+     * @memberof Day
+     */
+    public type: string = '1';
+
+    /**
+     * 周期
+     *
+     * @type {any}
+     * @memberof Day
+     */
+    public cycle: any = {
+        start: 0,
+        end: 0,
+    };
+
+    /**
+     * 循环
+     *
+     * @type {any}
+     * @memberof Day
+     */
+    public loop: any = {
+        start: 0,
+        end: 0,
+    };
+
+    /**
+     * 周
+     *
+     * @type {any}
+     * @memberof Day
+     */
+    public week: any = {
+        start: 0,
+        end: 0,
+    };
+
+    /**
+     * 工作日
+     *
+     * @type {any}
+     * @memberof Day
+     */
+    public work: number = 0;
+
+    /**
+     * 最后
+     *
+     * @type {any}
+     * @memberof Day
+     */
+    public last: number = 0;
+
+    /**
+     * 指定
+     *
+     * @type {any}
+     * @memberof Day
+     */
+    public appoint: any = [];
+
+    /**
+     * 获取Cron表达式
+     *
+     * @returns
+     * @memberof Day
+     */
+    get value_() {
+        let result = [];
+        switch (this.type) {
+            case '1': // 每秒
+                result.push('*');
+                this.appoint = [];
+                break;
+            case '2': // 年期
+                result.push(`${this.cycle.start}-${this.cycle.end}`);
+                this.appoint = [];
+                break;
+            case '3': // 循环
+                result.push(`${this.loop.start}/${this.loop.end}`);
+                this.appoint = [];
+                break;
+            case '4': // 指定
+                if (this.appoint.length > 0) {
+                    result.push(this.appoint.join(','));
+                } else {
+                    result.push('*');
+                }
+                break;
+            case '6': // 最后
+                result.push(`${this.last === 0 ? '' : this.last}L`);
+                this.appoint = [];
+                break;
+            case '7': // 指定周
+                result.push(`${this.week.start}#${this.week.end}`);
+                this.appoint = [];
+                break;
+            default:
+                // 不指定
+                result.push('?');
+                break;
+        }
+        const value: string = result.join('');
+        this.$emit('input', value);
+        if (!Object.is(value, '?')) {
+            this.$emit('cronChange', value, 'weekVal');
+        }
+        return value;
+    }
+}
+</script>
+
+<style lang="css">
+.el-checkbox + .el-checkbox {
+    margin-left: 10px;
+}
+</style>

@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.config.demodel.pssfviewtype.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="F82F6AFA-075C-4DF9-A6C3-D6AAB28B946B", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`CONTROLLERCLASS`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`MEMO`, t1.`MODELCLASS`, t1.`PSSFID`, t11.`PSSFNAME`, t1.`PSSFSTYLEID`, t21.`PSSFSTYLENAME`, t1.`PSSFVIEWTYPEID`, t1.`PSSFVIEWTYPENAME`, t1.`PSVIEWTYPEID`, t31.`PSVIEWTYPENAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`VIEWCLASS`, t1.`VIEWDESC` FROM `T_SRFPSSFVIEWTYPE` t1  LEFT JOIN T_SRFPSSF t11 ON t1.PSSFID = t11.PSSFID  LEFT JOIN T_SRFPSSFSTYLE t21 ON t1.PSSFSTYLEID = t21.PSSFSTYLEID  LEFT JOIN T_SRFPSVIEWTYPE t31 ON t1.PSVIEWTYPEID = t31.PSVIEWTYPEID  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CONTROLLERCLASS", expression="t1.`CONTROLLERCLASS`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=3), @DEDataQueryCodeExp(name="MODELCLASS", expression="t1.`MODELCLASS`", showorder=4), @DEDataQueryCodeExp(name="PSSFID", expression="t1.`PSSFID`", showorder=5), @DEDataQueryCodeExp(name="PSSFNAME", expression="t11.`PSSFNAME`", showorder=6), @DEDataQueryCodeExp(name="PSSFSTYLEID", expression="t1.`PSSFSTYLEID`", showorder=7), @DEDataQueryCodeExp(name="PSSFSTYLENAME", expression="t21.`PSSFSTYLENAME`", showorder=8), @DEDataQueryCodeExp(name="PSSFVIEWTYPEID", expression="t1.`PSSFVIEWTYPEID`", showorder=9), @DEDataQueryCodeExp(name="PSSFVIEWTYPENAME", expression="t1.`PSSFVIEWTYPENAME`", showorder=10), @DEDataQueryCodeExp(name="PSVIEWTYPEID", expression="t1.`PSVIEWTYPEID`", showorder=11), @DEDataQueryCodeExp(name="PSVIEWTYPENAME", expression="t31.`PSVIEWTYPENAME`", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=14), @DEDataQueryCodeExp(name="VIEWCLASS", expression="t1.`VIEWCLASS`", showorder=15), @DEDataQueryCodeExp(name="VIEWDESC", expression="t1.`VIEWDESC`", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONTROLLERCLASS, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.MODELCLASS, t1.PSSFID, t11.PSSFNAME, t1.PSSFSTYLEID, t21.PSSFSTYLENAME, t1.PSSFVIEWTYPEID, t1.PSSFVIEWTYPENAME, t1.PSVIEWTYPEID, t31.PSVIEWTYPENAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.VIEWCLASS, t1.VIEWDESC FROM T_SRFPSSFVIEWTYPE t1  LEFT JOIN T_SRFPSSF t11 ON t1.PSSFID = t11.PSSFID  LEFT JOIN T_SRFPSSFSTYLE t21 ON t1.PSSFSTYLEID = t21.PSSFSTYLEID  LEFT JOIN T_SRFPSVIEWTYPE t31 ON t1.PSVIEWTYPEID = t31.PSVIEWTYPEID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CONTROLLERCLASS", expression="t1.CONTROLLERCLASS", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="MODELCLASS", expression="t1.MODELCLASS", showorder=4), @DEDataQueryCodeExp(name="PSSFID", expression="t1.PSSFID", showorder=5), @DEDataQueryCodeExp(name="PSSFNAME", expression="t11.PSSFNAME", showorder=6), @DEDataQueryCodeExp(name="PSSFSTYLEID", expression="t1.PSSFSTYLEID", showorder=7), @DEDataQueryCodeExp(name="PSSFSTYLENAME", expression="t21.PSSFSTYLENAME", showorder=8), @DEDataQueryCodeExp(name="PSSFVIEWTYPEID", expression="t1.PSSFVIEWTYPEID", showorder=9), @DEDataQueryCodeExp(name="PSSFVIEWTYPENAME", expression="t1.PSSFVIEWTYPENAME", showorder=10), @DEDataQueryCodeExp(name="PSVIEWTYPEID", expression="t1.PSVIEWTYPEID", showorder=11), @DEDataQueryCodeExp(name="PSVIEWTYPENAME", expression="t31.PSVIEWTYPENAME", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=14), @DEDataQueryCodeExp(name="VIEWCLASS", expression="t1.VIEWCLASS", showorder=15), @DEDataQueryCodeExp(name="VIEWDESC", expression="t1.VIEWDESC", showorder=16)}, conds={})})
+public class PSSFViewTypeDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSSFViewTypeDefaultDQModel() {
+        this.initAnnotation(PSSFViewTypeDefaultDQModel.class);
+    }
+}
+

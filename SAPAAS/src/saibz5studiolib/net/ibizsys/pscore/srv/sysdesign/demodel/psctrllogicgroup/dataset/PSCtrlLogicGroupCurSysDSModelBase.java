@@ -1,0 +1,22 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataSet
+ *  net.ibizsys.paas.core.DEDataSetQuery
+ *  net.ibizsys.paas.demodel.DEDataSetModelBase
+ */
+package net.ibizsys.pscore.srv.sysdesign.demodel.psctrllogicgroup.dataset;
+
+import net.ibizsys.paas.core.DEDataSet;
+import net.ibizsys.paas.core.DEDataSetQuery;
+import net.ibizsys.paas.demodel.DEDataSetModelBase;
+
+@DEDataSet(id="7B7BB4D5-39F3-4B4F-B398-C27E2DD9F376", name="CurSys", queries={@DEDataSetQuery(queryid="7B7BB4D5-39F3-4B4F-B398-C27E2DD9F376", queryname="CurSys")})
+public abstract class PSCtrlLogicGroupCurSysDSModelBase
+extends DEDataSetModelBase {
+    public PSCtrlLogicGroupCurSysDSModelBase() {
+        this.initAnnotation(PSCtrlLogicGroupCurSysDSModelBase.class);
+    }
+}
+

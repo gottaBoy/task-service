@@ -1,0 +1,4 @@
+<#ibiztemplate>
+TARGET=PSSYSTEM
+</#ibiztemplate>
+    此文件只用于让模板能发出[rollback]文件夹，无实际用途

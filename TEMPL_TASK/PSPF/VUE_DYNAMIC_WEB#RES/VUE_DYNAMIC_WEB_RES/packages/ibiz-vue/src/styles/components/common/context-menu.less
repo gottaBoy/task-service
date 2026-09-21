@@ -1,0 +1,51 @@
+.context-menu-container {
+  z-index: 10001;
+
+  .context-menu-content {
+    position: absolute;
+
+    .ivu-divider {
+      width: 100%;
+    }
+
+    &.context-menus-bottom {
+      .ivu-select-dropdown {
+        transform: translateY(-100%);
+      }
+    }
+  }
+
+  .context-menus {
+    .context-menus-item {
+      list-style: none;
+      line-height: 36px;
+      padding: 0 13px;
+      margin: 0;
+      font-size: 14px;
+      cursor: pointer;
+      outline: none;
+      display: flex;
+
+      .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        width: 20px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.context-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.context-menu-component {
+  line-height: 100%;
+}

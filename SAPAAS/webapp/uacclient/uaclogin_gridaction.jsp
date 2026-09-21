@@ -1,0 +1,2 @@
+<%@page contentType="text/html; charset=GBK"%>
+{"ret":2,"totalrow":0,items:[],"code":"SRFUtility.showmodaldialog('../uacclient/uaclogin_popup.jsp', {}, 'resizable:no;scroll:no;status:no;', 900, 680);","url":"","info":"你的身份已经失效，需要重新登录！"}

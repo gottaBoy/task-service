@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW>
+		<SRFEXTABVIEWPAGE id="edit" caption="设备备件包" REMOTEURL="../emdatamgr/eqtypeeqsparemap_editpage.jsp?DIALOGMODE=true" APPENDPARAMS="EQTYPEID|EQSPAREMAPID"/>
+</SRFEXTABVIEW>

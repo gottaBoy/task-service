@@ -1,0 +1,192 @@
+/*!
+ * Ext JS Library 3.2.1
+ * Copyright(c) 2006-2010 Ext JS, Inc.
+ * licensing@extjs.com
+ * http://www.extjs.com/license
+ */
+
+.x-grid3-row {
+	height:30px;
+}
+
+.x-grid3-hd-inner {
+	height:30px;
+}
+
+.x-grid3-hd-row {
+	height:30px;
+}
+
+DIV.x-grid3-hd-inner {
+	vertical-align:middle;
+	text-align:center;
+	/*line-height:26px;*/
+	font-weight:bold;
+	height:30px;	
+}
+
+
+
+DIV.x-grid3-cell-inner
+{
+	border-right:0px solid #ededed;
+	height:30px;	
+	vertical-align:middle;
+	line-height:30px;
+}
+
+
+/**/
+.sx-bar
+{
+	border-color:#d0d0d0;
+    border-style:solid;
+    border-width:0 0 1px 0;
+    display: block;
+    background:#f0f0f0 url(../resources/images/gray/toolbar/bg.gif) repeat-x top left;
+    position:relative;
+    zoom:1;
+}
+
+
+
+/*面板*/
+TABLE .sx-dp-group
+{
+  	border-collapse: collapse;
+  	border-color:  #bfbfbf;
+}
+
+TABLE .sx-dp-group2
+{
+  	border-collapse: collapse;
+  	border-color:  #bfbfbf;
+}
+
+
+
+TD .sx-dp-group-td
+{
+    /*border:   1px solid #ccc;*/
+}
+
+TABLE .sx-dp-cp-tb
+{
+  	width:100%;  
+  	table-layout:fixed;
+  	border-spacing:  2px;   
+  	border-collapse: collapse;
+  	border-width:0px; 
+  	border-style:hidden;
+}
+
+
+
+TD .sx-dp-ct-td
+{
+	padding-left:2px;
+	padding-right:3px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	overflow:hidden;
+	white-space:pre;
+	border-spacing:  2px;   
+}
+
+TD .sx-dp-lb-td
+{
+	padding-right:4px;
+	padding-top: 9px;
+	border-spacing:  2px; 
+	width:130px;
+	text-align:right;
+	vertical-align:top;  
+	border-right:   1px solid #bfbfbf;
+	background-color:#e8e8e8
+
+}
+
+TD .sx-dp-lb-td2
+{
+	text-align:left;
+	padding-left:4px;
+	padding-right:4px;
+	padding-top: 5px;
+	border-spacing:  2px; 
+}
+
+
+
+.sx-cp-lb 
+{
+	vertical-align: baseline;
+	float:left;
+	font-size: 9pt;
+	font-family: 宋体,tahoma,arial, sans-serif;
+	text-align: left;
+	color:black;
+	padding-left:8px;
+	font-weight:bold;
+}
+
+.sx-cp-lb2 
+{	
+	vertical-align: baseline;
+	float:left;
+	font-size: 9pt;
+	font-family: 宋体,tahoma,arial, sans-serif;
+	text-align: right;
+	color:black;
+	
+	background: url(../sasrfex/images/default/icon_star.gif) left bottom no-repeat;
+	/*background: url(../sasrfex/images/default/bg_notempty.gif) repeat-x bottom;*/
+	background-position-y:bottom;
+	padding-left:8px;
+	font-weight:bold;
+}
+
+
+.sx-groupline
+{
+	
+	background:#d0def0 url(../resources/images/default/toolbar/bg.gif) repeat-x top left ;
+}
+
+
+.sx-dp-groupcaption
+{
+	vertical-align: baseline;
+	font-size: 9pt;
+	font-family: 宋体,tahoma,arial,verdana,sans-serif;
+	font-weight: bold;
+	color:black;
+}
+
+
+.sx-ctrl-readonly {
+	background-color:#f6f6f6;
+	color:black;
+}
+
+
+TD .sx-dp-un-td
+{
+	padding-top: 9px;
+	white-space: nowrap;
+	border-spacing:  2px;   
+	vertical-align :top;
+}
+
+
+DIV .res-block {
+    padding-top:5px;
+    background:transparent url(./images/lt/block-top.gif) no-repeat;
+    width:210px;
+    margin-bottom:15px;
+}
+
+
+.x-btn-icon .x-btn-huge .x-btn-text{
+    height: 48px;
+	width: 48px;
+}

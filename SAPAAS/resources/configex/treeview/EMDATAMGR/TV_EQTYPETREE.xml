@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTREEPANEL  id="TV_EQTYPETREE" selectedvalue="_2_1_1"  JSNAME="eqtypeTree" width="200" height="300"  extStyle="border: 1px solid #B5B8C8;">
+	<SRFEXTREENODE id="root" text="设备类型" ASYNCMODE="TRUE" expand="TRUE">
+	</SRFEXTREENODE>
+</SRFEXTREEPANEL>

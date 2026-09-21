@@ -1,0 +1,24 @@
+<#ibiztemplate>
+TARGET=PSSYSAPP
+</#ibiztemplate>
+    server {
+        listen       80;
+        server_name  localhost;
+
+        location /${app.getPKGCodeName()?lower_case}/ {
+            alias  /dist/;
+            index  index.html index.htm;
+        }
+		
+        location /<#if sys.getDeploySysId()??><#if (sys.getDeploySysId()?length gt 16)>${sys.getName()?lower_case}<#else>${sys.getDeploySysId()?lower_case}</#if><#else>${sys.getName()?lower_case}</#if>__${app.getPKGCodeName()?lower_case} {
+			proxy_pass http://gateway.ibizcloud.cn:20086;
+			proxy_set_header  Host              $host;
+			proxy_set_header  X-Forwarded-For   $proxy_add_x_forwarded_for;
+			proxy_set_header  X-Forwarded-Host  $host;
+			proxy_set_header  X-Real-IP         $remote_addr;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }

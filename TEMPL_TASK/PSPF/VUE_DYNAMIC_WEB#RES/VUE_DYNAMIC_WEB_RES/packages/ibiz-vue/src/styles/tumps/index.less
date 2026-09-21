@@ -1,0 +1,52 @@
+// 特异性最高的样式，唯一可以使用 !important
+// 分页导航样式 iview使用了important，此处必须使用important
+// .ivu-tabs-nav {
+//     .ivu-tabs-tab:hover {
+//         color: @color-primary-base;
+//     }
+//     .ivu-tabs-tab-active.ivu-tabs-tab-focused {
+//         color: @color-primary-base;
+//         border-color: @color-primary-base !important;
+//     }
+//     .ivu-tabs-ink-bar {
+//         background-color: @color-primary-base;
+//     }
+// }
+// // 日历样式
+// .app-control-calendar {
+//     .lengend {
+//         &.is-disabled {
+//             .lengend__icon {
+//                 background: @disabled-background-color !important;
+//             }
+//         }
+//     }
+// }
+// 搜索表单气泡框
+.app-quick-searchform__popover {
+    z-index: 1024 !important;
+}
+// 无padding
+.no-padding {
+    padding: 0 !important;
+}
+// 菜单样式
+.app-control-appmenu {
+    .el-menu--collapse {
+        .el-submenu__title {
+            padding-left: 8px !important;
+            padding-right: 0px;
+        }
+    }
+}
+.app-control-menu--top {
+    .el-menu-item,
+    .el-submenu__title {
+        border-bottom: 0 !important;
+    }
+}
+
+//  开始流程选项框
+.start-workflow-select-wraper {
+    z-index: 3000 !important;
+}

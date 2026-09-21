@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project default="createJar" name="PSRuntime" basedir="../">
+	<property name="sourcedir" value="${basedir}/src" />
+	<property name="targetdir" value="${basedir}/bin" />
+	
+	<!--第三方jar包的路径-->
+	<path id="lib-classpath">  
+		<fileset dir="I:/J2EE/commonlib">  
+	            <include name="**/*.jar"/>  
+	  	</fileset>       
+	</path>  
+	
+	<target name="createJar" depends="compile">
+		<jar destfile="${basedir}/saibz5baselib.jar" 
+             basedir="${basedir}/bin"  >
+			 <manifest>  
+			                <attribute name="Main-class" value=""/>  
+			                <attribute name="Class-Path" value=""/>  
+			 </manifest>  	
+			<metainf dir="${basedir}/res/META-INF">  
+				<include name="**" />  
+			</metainf>  
+		</jar>
+	</target>
+        <target name="compile" depends="clean">
+		<javac srcdir="${sourcedir}" 
+               destdir="${targetdir}" 
+               encoding="UTF-8" 
+               target="1.7"
+               source="1.7"
+               nowarn="on"
+               deprecation="true"
+			   includeantruntime="on" >
+			<classpath refid="lib-classpath"/> 
+			<!-- <compilerarg line="-Xlint:unchecked" />-->
+		</javac>
+	</target>
+	
+	
+	<target name="clean" >
+		<delete file="${basedir}/target/" />
+	</target>
+	
+	<target name="tstamp">    
+		<tstamp/>
+	</target>
+</project>

@@ -1,0 +1,742 @@
+import { Prop, Watch, Emit } from 'vue-property-decorator';
+import { throttle, LayoutTool, Util } from 'ibiz-core';
+import { EditFormControlBase } from '../../../widgets';
+import {
+    IPSAppDEUIAction,
+    IPSAppDEView,
+    IPSDEFormButton,
+    IPSDEFormDetail,
+    IPSDEFormDRUIPart,
+    IPSDEFormFormPart,
+    IPSDEFormGroupPanel,
+    IPSDEFormIFrame,
+    IPSDEFormItem,
+    IPSDEFormItemEx,
+    IPSDEFormPage,
+    IPSDEFormRawItem,
+    IPSDEFormTabPage,
+    IPSDEFormMDCtrl,
+    IPSDEFormTabPanel,
+    IPSFlexLayout,
+    IPSFlexLayoutPos,
+    IPSGridLayoutPos,
+    IPSLayout,
+} from '@ibiz/dynamic-model-api';
+
+/**
+ * 编辑表单部件基类
+ *
+ * @export
+ * @class AppFormBase
+ * @extends {EditFormControlBase}
+ */
+export class AppFormBase extends EditFormControlBase {
+    /**
+     * 部件动态参数
+     *
+     * @memberof AppFormBase
+     */
+    @Prop() public declare dynamicProps: any;
+
+    /**
+     * 部件静态参数
+     *
+     * @memberof AppFormBase
+     */
+    @Prop() public declare staticProps: any;
+
+    /**
+     * 监听动态参数变化
+     *
+     * @param {*} newVal
+     * @param {*} oldVal
+     * @memberof AppFormBase
+     */
+    @Watch('dynamicProps', {
+        immediate: true,
+    })
+    public onDynamicPropsChange(newVal: any, oldVal: any) {
+        if (newVal && !Util.isFieldsSame(newVal, oldVal)) {
+            super.onDynamicPropsChange(newVal, oldVal);
+        }
+    }
+
+    /**
+     * 监听静态参数变化
+     *
+     * @param {*} newVal
+     * @param {*} oldVal
+     * @memberof AppFormBase
+     */
+    @Watch('staticProps', {
+        immediate: true,
+    })
+    public onStaticPropsChange(newVal: any, oldVal: any) {
+        if (newVal && !Util.isFieldsSame(newVal, oldVal)) {
+            super.onStaticPropsChange(newVal, oldVal);
+        }
+    }
+
+    /**
+     * 部件事件
+     *
+     * @param {{ controlname: string; action: string; data: any }} { controlname 部件名称, action 事件名称, data 事件参数 }
+     * @memberof AppFormBase
+     */
+    @Emit('ctrl-event')
+    public ctrlEvent({ controlname, action, data }: { controlname: string; action: string; data: any }): void {}
+
+    /**
+     * 销毁视图回调
+     *
+     * @memberof AppFormBase
+     */
+    public destroyed() {
+        this.ctrlDestroyed();
+    }
+
+    /**
+     * 绘制子表单成员,布局控制
+     *
+     * @param {*} modelJson
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderDetails(modelJson: any) {
+        let formDetails: IPSDEFormDetail[] = modelJson.getPSDEFormDetails();
+        let layout: IPSLayout = modelJson.getPSLayout();
+
+        // 没有子表单成员
+        if (!formDetails || formDetails.length == 0) {
+            return null;
+        }
+
+        // 无布局
+        if (!layout) {
+            return formDetails.map((item: any, index: number) => {
+                return this.renderByDetailType(item, index);
+            });
+        }
+
+        // 栅格布局
+        if (layout.layout == 'TABLE_24COL' || layout.layout == 'TABLE_12COL' || layout.layout == 'TABLE') {
+            return (
+                <row>
+                    {formDetails.map((item: IPSDEFormDetail, index: number) => {
+                        if ((item as any).hidden) {
+                            return;
+                        }
+                        let attrs = LayoutTool.getGridOptions(item.getPSLayoutPos() as IPSGridLayoutPos);
+                        let style: any = this.getGridLayoutStyle(item);
+                        return (
+                            <i-col
+                                class='form-item__layout'
+                                {...{ props: attrs }}
+                                style={style}
+                            >
+                                {this.renderByDetailType(item, index)}
+                            </i-col>
+                        );
+                    })}
+                </row>
+            );
+        }
+
+        // FLEX布局
+        if (layout.layout == 'FLEX') {
+            const flexStyle = LayoutTool.getFlexStyle(layout as IPSFlexLayout);
+            return (
+                <div style={flexStyle}>
+                    {formDetails.map((item: IPSDEFormDetail, index: number) => {
+                        if ((item as any).hidden) {
+                            return;
+                        }
+                        let detailStyle = LayoutTool.getFlexStyle2(item?.getPSLayoutPos() as IPSFlexLayoutPos);
+                        detailStyle += this.detailsModel[item.name].visible ? '' : 'display: none;';
+                        return (
+                            <div style={detailStyle} class='form-item__layout'>
+                                {this.renderByDetailType(item, index)}
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        }
+
+        throw new Error(`${layout.layout}${this.$t('app.nosupport.layout')}`);
+    }
+
+    /**
+     * 获取栅格布局样式
+     *
+     * @param {*} item
+     * @memberof AppFormBase
+     */
+    public getGridLayoutStyle(item: IPSDEFormDetail) {
+        const { name, width, height } = item;
+        let style: any = {};
+        if (!this.detailsModel[name]?.visible) {
+            Object.assign(style, { display: 'none' });
+        }
+        if (width && width > 0) {
+            Object.assign(style, { width: `${width}px` });
+        }
+        if (height && height > 0) {
+            Object.assign(style, { height: `${height}px` });
+        }
+        return style;
+    }
+
+    /**
+     * 根据detailType绘制对应detail
+     *
+     * @param {*} modelJson
+     * @param {number} index
+     * @memberof AppFormBase
+     */
+    public renderByDetailType(modelJson: IPSDEFormDetail, index: number) {
+        if (modelJson.getPSSysPFPlugin()) {
+            const pluginInstance: any = this.PluginFactory.getPluginInstance(
+                'CONTROLITEM',
+                modelJson.getPSSysPFPlugin()?.pluginCode || '',
+            );
+            if (pluginInstance) {
+                return pluginInstance.renderCtrlItem(this.$createElement, modelJson, this, null);
+            }
+        } else {
+            switch (modelJson.detailType) {
+                case 'FORMPAGE':
+                    return this.renderFormPage(modelJson as IPSDEFormPage, index);
+                case 'GROUPPANEL':
+                    return this.renderGroupPanel(modelJson as IPSDEFormGroupPanel, index);
+                case 'TABPAGE':
+                    return this.renderTabPage(modelJson as IPSDEFormTabPage, index);
+                case 'TABPANEL':
+                    return this.renderTabPanel(modelJson as IPSDEFormTabPanel, index);
+                case 'FORMITEM':
+                    return this.renderFormItem(modelJson as IPSDEFormItem, index);
+                case 'BUTTON':
+                    return this.renderButton(modelJson as IPSDEFormButton, index);
+                case 'DRUIPART':
+                    return this.renderDruipart(modelJson as IPSDEFormDRUIPart, index);
+                case 'RAWITEM':
+                    return this.renderRawitem(modelJson as IPSDEFormRawItem, index);
+                case 'IFRAME':
+                    return this.renderIframe(modelJson as IPSDEFormIFrame, index);
+                case 'FORMPART':
+                    return this.renderFormPart(modelJson as IPSDEFormFormPart, index);
+                case 'MDCTRL':
+                    return this.renderMDCtrl(modelJson as IPSDEFormMDCtrl,index);
+            }
+        }
+    }
+
+    /**
+     * 绘制表单部件
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderFormPart(modelJson: IPSDEFormFormPart, index: number): any {
+      let { formPartType, name, codeName } = modelJson;
+      if (formPartType && formPartType == 'DYNASYS') {
+          return (
+              <app-form-part
+                  name={name}
+                  data={this.data}
+                  context={this.context}
+                  viewparams={this.viewparams}
+                  formState={this.formState}
+                  systemCodeName={this.Environment.SysName}
+                  appCodeName={this.Environment.AppName}
+                  deCodeName={this.appDeCodeName}
+                  formCodeName={this.controlInstance.codeName}
+                  formDetailCodeName={codeName}
+                  on-change={this.onFormItemValueChange}
+              ></app-form-part>
+          );
+      }
+    }
+
+    /**
+     * 绘制多数据部件
+     *
+     * @param {IPSDEFormMDCtrl} modelJson
+     * @param {number} index
+     * @memberof AppFormBase
+     */
+    public renderMDCtrl(modelJson:IPSDEFormMDCtrl,index:number){
+        let { name } = modelJson;
+        return (<app-default-form-md-ctrl
+            name={name}
+            data={this.data}
+            detailsInstance={modelJson}
+            detailsModel={this.detailsModel}
+            context={this.context}
+            viewparams={this.viewparams}
+            index={index}
+            formState={this.formState}
+            service={this.service}
+            runtimeModel={this.detailsModel[modelJson.name]}
+            controlInstance={this.controlInstance}
+            on-drdatasaved={(event: any) => this.drdatasaved(event)}
+            on-valueChange={(value: any, formItem?: IPSDEFormItem) => this.onFormItemValueChange(value, formItem)}
+            on-actionClick={(event: any) => this.onFormItemActionClick(event)}
+        >
+        </app-default-form-md-ctrl>)
+    }
+
+
+    /**
+     * 绘制iframe
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderIframe(modelJson: IPSDEFormIFrame, index: number): any {
+        let { contentHeight, iFrameUrl, contentWidth } = modelJson;
+        let iframeStyle = { 
+            height: contentHeight ? contentHeight + 'px' : false,
+            width: contentWidth ? contentWidth + 'px' : false,
+        };
+        return (
+            <div style={iframeStyle}>
+                <iframe src={iFrameUrl} class="app-control-form__iframe"></iframe>
+            </div>
+        );
+    }
+
+    /**
+     * 绘制直接内容
+     *
+     * @returns
+     * @memberof AppDefaultFormBase
+     */
+    public renderRawitem(modelJson: IPSDEFormRawItem, index: number): any {
+        const data: any = this.data;
+        let { rawItemHeight, rawItemWidth, contentType, htmlContent, rawContent } = modelJson;
+        let sysCssName = modelJson.getPSSysCss()?.cssName;
+        let sysImage = modelJson.getPSSysImage()?.cssClass;
+        let sysImgurl = modelJson.getPSSysImage()?.imagePath;
+        const style: any = {
+            width: rawItemWidth > 0 ? `${rawItemWidth}px` : false,
+            height: rawItemHeight > 0 ? `${rawItemHeight}px` :false,
+        }
+        let content: any;
+        if (['RAW','VIDEO','DIVIDER','INFO','WARNING','ERROR'].includes(contentType)) {
+            content = rawContent;
+        } else if (Object.is(contentType,'HTML')){
+            content = htmlContent;
+        }else if(Object.is(contentType,'PLACEHOLDER')){
+            content = null;
+        }
+        if (content) {
+            const items = content.match(/\{{(.+?)\}}/g);
+            if (items) {
+                items.forEach((item: string) => {
+                    content = content.replace(/\{{(.+?)\}}/, eval(item.substring(2, item.length - 2)));
+                });
+            }
+            content = content.replaceAll('&lt;','<');
+            content = content.replaceAll('&gt;','>');
+            content = content.replaceAll('&amp;nbsp;',' ');
+            content = content.replaceAll('&nbsp;',' ');
+        }
+        if(['VIDEO','DIVIDER','INFO','WARNING','ERROR'].includes(contentType)){
+            if(content){
+                try{
+                    if(typeof content === 'string'){
+                        let func = new Function('return (' + content + ');');
+                        content  = func();
+                    }
+                }catch{
+                    console.error(`${contentType}类型自定义参数配置错误`);
+                    content = null;
+                }
+            }else{
+                content = null;
+            }
+        }
+        return (
+            <app-rawitem
+                class={sysCssName}
+                style={style}
+                viewparams={this.viewparams}
+                context={this.context}
+                contentType={contentType}
+                rawItemDetail={modelJson.M.rawItemDetail}
+                imageClass={sysImage}
+                imgUrl={sysImgurl}
+                content={content}
+                videoParams={content}
+                dividerParams={content}
+                alertParams={content}
+            >
+            </app-rawitem>
+        );
+    }
+
+    /**
+     * 关系界面保存事件
+     *
+     * @param {*} e
+     * @memberof AppFormBase
+     */
+    public onDrDataSaved(e: any) {
+        this.ctrlEvent({
+            controlname: this.controlInstance.name,
+            action: 'drdatasaved',
+            data: e,
+        });
+    }
+
+    /**
+     * 绘制关系界面
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderDruipart(modelJson: IPSDEFormDRUIPart, index: number): any {
+        const { refreshItems, height, parentDataJO } = modelJson;
+        const layoutPos = modelJson.getPSLayoutPos();
+        const appView = modelJson.getPSAppView() as IPSAppDEView;
+        const appDERSPaths = (appView as IPSAppDEView)?.getPSAppDERSPaths();
+        const appDataEntity = this.controlInstance.getPSAppDataEntity();
+        let tempContext: any = Util.deepCopy(this.context);
+        // druipart样式
+        let druipartHeight: any;
+        if (layoutPos?.layout == 'FlEX') {
+            druipartHeight = '100%';
+        } else if (!height && appView?.height > 0) {
+            druipartHeight = appView.height;
+        } else {
+            druipartHeight = Util.isNumber(height) && height > 0 ? `${height}px` : '100%';
+        }
+        let druipartStyle = { height: druipartHeight, overflow: 'auto' };
+        return (
+            <app-form-druipart
+                ref={modelJson.name}
+                modelJson={modelJson}
+                class={modelJson.getPSSysCss()?.cssName}
+                formState={this.formState}
+                isForbidLoad={ this.data?.srfuf === '0'}
+                userTag={ modelJson.userTag ? modelJson.userTag : ''}
+                userTag2={ modelJson.userTag2 ? modelJson.userTag2 : ''}
+                paramItem={modelJson.paramItem ? modelJson.paramItem : appDataEntity?.codeName?.toLowerCase()}
+                parentdata={parentDataJO || undefined}
+                parameters={Util.formatAppDERSPath(this.context, appDERSPaths)}
+                context={tempContext}
+                viewModelData={appView}
+                viewparams={this.viewparams}
+                parameterName={appDataEntity?.codeName?.toLowerCase()}
+                parentName={appDataEntity?.codeName}
+                appViewtype={appView?.viewType}
+                refreshitems={refreshItems || undefined}
+                ignorefieldvaluechange={this.ignorefieldvaluechange}
+                viewname={appView?.codeName}
+                localContext={Util.formatNavParam(modelJson.getPSNavigateContexts())}
+                localParam={Util.formatNavParam(modelJson.getPSNavigateParams())}
+                tempMode={appView?.tempMode ? appView?.tempMode : 0}
+                data={JSON.stringify(this.data)}
+                on-drdatasaved={(event: any) => this.drdatasaved(event)}
+                style={druipartStyle}
+            ></app-form-druipart>
+        );
+    }
+
+    /**
+     * 绘制按钮
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderButton(modelJson: IPSDEFormButton, index: number): any {
+        let dynaStyle:string = this.detailsModel[modelJson.name].visible ? '' :  'display:none';
+        // 自定义类名
+        const dynaClass: any = {'app-form-button':true};        
+        let badge = null;
+        // TODO计数器徽章
+        // if (uiAction) {
+        //     let { appCounter, counterId } = uiAction;
+        //     let { codeName } = appCounter;
+        //     let count = codeName + 'counterservice.counterData.' + counterId;
+        //     badge = <badge type='primary' count={count}></badge>;
+        // }
+        if(modelJson.dynaClass){
+            const context = this.context;
+            const viewparams = this.viewparams;
+            const data = this.data;
+            Object.assign(dynaClass,...eval(modelJson.dynaClass))
+        }
+        return (
+            <div>
+                {badge}
+                <app-model-button
+                    data={this.data}
+                    modelJson={modelJson}
+                    dynaStyle={dynaStyle}
+                    dynaClass={dynaClass}
+                    dynaType='primary'
+                    loading={this.viewLoadingService.isLoading}
+                    disabled={this.detailsModel[modelJson.name]?.disabled}
+                    on-onClick={($event: any) => throttle(this.onFormItemActionClick,[{formdetail:modelJson, event: $event }],this)}
+                >
+                </app-model-button>                
+            </div>
+        );
+    }
+
+    /**
+     * 绘制表单项
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderFormItem(modelJson: IPSDEFormItem, index: number): any {
+        const { compositeItem, contentWidth, contentHeight } = modelJson;
+        let editor = modelJson.getPSEditor();
+        const refFormItem: any = [];
+        const style = {
+            width: contentWidth ? `${contentWidth}px` : false,
+            height: contentHeight ? `${contentHeight}px` : false,
+        };
+        if (compositeItem) {
+            let formItems = (modelJson as IPSDEFormItemEx).getPSDEFormItems();
+            formItems?.forEach((formItem: any) => {
+                refFormItem.push(formItem?.id);
+            });
+        }
+        const isDebounce: boolean = !Object.is(this.controlInstance.controlType,"FORM");
+        return (
+            <app-default-form-item
+                detailsInstance={modelJson}
+                index={index}
+                data={this.data}
+                modelService={this.modelService}
+                rules={this.rules[modelJson.name]}
+                runtimeModel={this.detailsModel[modelJson.name]}
+                context={Util.deepCopy(this.context)}
+                viewparams={Util.deepCopy(this.viewparams)}
+                contextState={this.formState}
+                service={this.service}
+                ignorefieldvaluechange={this.ignorefieldvaluechange}
+                on-formItemValueChange={(value: any) => {
+                    this.onFormItemValueChange(value);
+                }}
+                controlInstance={this.controlInstance}
+            >
+                {editor && (
+                    <app-default-editor
+                        editorInstance={editor}
+                        ref={editor.name}
+                        rules={this.rules[modelJson.name]}
+                        containerCtrl={this.controlInstance}
+                        parentItem={modelJson}
+                        value={this.data[editor?.name]}
+                        contextData={this.data}
+                        valueFormat={modelJson.valueFormat}
+                        context={Util.deepCopy(this.context)}
+                        viewparams={Util.deepCopy(this.viewparams)}
+                        contextState={this.formState}
+                        service={this.service}
+                        disabled={this.detailsModel[modelJson.name]?.disabled}
+                        isDebounce={isDebounce}
+                        ignorefieldvaluechange={this.ignorefieldvaluechange}
+                        on-change={(value: any) => {
+                            this.onFormItemValueChange(value, modelJson);
+                        }}
+                        on-blur={(value: any) => {
+                            this.formDetailBlur(value, modelJson);
+                        }}
+                        on-click={(value: any) => {
+                            this.formDetailClick(value, modelJson);
+                        }}
+                        on-focus={(value: any) => {
+                            this.formDetailFocus(value, modelJson);
+                        }}
+                    />
+                )}
+            </app-default-form-item>
+        );
+    }
+
+    /**
+     * 绘制分页部件panel
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderTabPanel(modelJson: IPSDEFormTabPanel, index: number): any {
+        return (
+            <app-default-form-tab-panel
+                detailsInstance={modelJson}
+                index={index}
+                modelService={this.modelService}
+                runtimeModel={this.detailsModel[modelJson.name]}
+                controlInstance={this.controlInstance}
+                data={this.data}
+            >
+                {modelJson.getPSDEFormTabPages?.()?.length &&
+                    modelJson.getPSDEFormTabPages()?.map((item: IPSDEFormTabPage, index2: number) => {
+                        return this.renderTabPage(item, index2);
+                    })}
+            </app-default-form-tab-panel>
+        );
+    }
+
+    /**
+     * 绘制分页部件
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderTabPage(modelJson: IPSDEFormTabPage, index: number): any {
+        const visible = this.detailsModel[modelJson.name].visible;
+        if (!visible) {
+            return null;
+        }
+        return (
+            <app-default-form-tab-page
+                modelService={this.modelService}
+                detailsInstance={modelJson}
+                index={index}
+                runtimeModel={this.detailsModel[modelJson.name]}
+                controlInstance={this.controlInstance}
+                data={this.data}
+            >
+                {this.renderDetails(modelJson)}
+            </app-default-form-tab-page>
+        );
+    }
+
+    /**
+     * 绘制分组面板
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderGroupPanel(modelJson: IPSDEFormGroupPanel, index: number): any {
+        return (
+            <app-default-group-panel
+                detailsInstance={modelJson}
+                id={modelJson.codeName}
+                modelService={this.modelService}
+                index={index}
+                runtimeModel={this.detailsModel[modelJson.name]}
+                controlInstance={this.controlInstance}
+                on-groupUIActionClick={(...params: any[]) => throttle(this.handleActionClick,params,this)}
+                on-managecontainerclick={(...params: any[]) => throttle(this.manageContainerClick,params,this)}
+                on-collapseChange={($event: boolean) => { this.formDetailGroupChange(modelJson.codeName, $event) }}
+                context={this.context}
+                viewparams={this.viewparams}
+                data={this.data}
+            >
+                {this.renderDetails(modelJson)}
+            </app-default-group-panel>
+        );
+    }
+
+    /**
+     * 绘制表单分页
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderFormPage(modelJson: IPSDEFormPage, index: number): any {
+        const { noTabHeader } = this.controlInstance;
+        if (noTabHeader) {
+            return this.renderDetails(modelJson);
+        }
+        return (
+            <app-default-form-page
+                modelService={this.modelService}
+                detailsInstance={modelJson}
+                index={index}
+                key={modelJson.name}
+                runtimeModel={this.detailsModel[modelJson.name]}
+                controlInstance={this.controlInstance}
+            >
+                {this.renderDetails(modelJson)}
+            </app-default-form-page>
+        );
+    }
+
+    /**
+     * 绘制表单内容
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public renderFormContent() {
+        const { noTabHeader, codeName, name, controlType } = this.controlInstance;
+        const formPages = this.controlInstance.getPSDEFormPages();
+        if (formPages && formPages.length > 0) {
+            if (noTabHeader) {
+                return formPages.map((item: any, index: number) => {
+                    if (this.detailsModel[item.name].visible) {
+                        return this.renderFormPage(item, index);
+                    } else {
+                        return
+                    }
+                });
+            } else {
+                const tabsName = `${this.controlInstance
+                    .getPSAppDataEntity()
+                    ?.codeName?.toLowerCase()}_${controlType?.toLowerCase()}_${codeName?.toLowerCase()}`;
+                return (
+                    <tabs
+                        animated={false}
+                        name={tabsName}
+                        class="app-control-form__page"
+                        value={this.detailsModel[name]?.activatedPage}
+                        on-on-click={(e: any) => {
+                          throttle(this.detailsModel[name]?.clickPage,[e],this);
+                        }}
+                    >
+                        {formPages.map((item: any, index: number) => {
+                            if (this.detailsModel[item.name].visible) {
+                                return this.renderFormPage(item, index);
+                            } else {
+                                return
+                            }
+                        })}
+                    </tabs>
+                );
+            }
+        }
+    }
+
+    /**
+     * 绘制内容
+     *
+     * @returns
+     * @memberof AppFormBase
+     */
+    public render(): any {
+        if (!this.controlIsLoaded) {
+            return null;
+        }
+        const { controlClassNames } = this.renderOptions;
+        let formId =
+            this.controlInstance.getPSAppDataEntity()?.codeName?.toLowerCase() +
+            this.controlInstance.codeName?.toLowerCase();
+        let controlStyle = {
+            width: this.controlInstance.width ? this.controlInstance.width + 'px' : '',
+            height: this.controlInstance.height ? this.controlInstance.height + 'px' : ''
+        };
+        const viewType = (this.controlInstance.getParentPSModelObject() as IPSAppDEView).viewType;
+        return (
+            <i-form
+                props={{ model: this.data }}
+                class={{ ...controlClassNames }}
+                ref={this.controlInstance.name}
+                id={formId}
+                style={controlStyle}
+                on-on-validate={this.formItemValidate.bind(this)}
+            >
+                {this.showFormNavBar && this.groupAnchorDatas.length > 0 ? <app-anchor class="app-control-form__anchor" viewType={viewType} anchorDatas={this.groupAnchorDatas}></app-anchor> : null}
+                <row class="control-content app-control-form__content">{this.renderFormContent()}</row>
+            </i-form>
+        );
+    }
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW>
+		<SRFEXTABVIEWPAGE id="edit" caption="功能位置维护" REMOTEURL="../emdatamgr/eqlocation_editpage.jsp?DIALOGMODE=true" APPENDPARAMS=""/>
+</SRFEXTABVIEW>

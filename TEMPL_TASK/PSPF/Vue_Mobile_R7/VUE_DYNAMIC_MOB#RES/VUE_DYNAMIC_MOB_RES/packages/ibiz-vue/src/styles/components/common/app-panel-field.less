@@ -1,0 +1,50 @@
+.app-panel-field {
+  height  : 100%;
+  display : flex;
+
+  .app-panel-field__editor {
+    flex-grow: 1;
+    width    : 100%;
+
+    >div {
+      height: 100%;
+      width : 100%;
+    }
+  }
+
+  .app-panel-field__label {
+    height     : 34px !important;
+    line-height: 22px;
+    flex-shrink: 0;
+    padding    : 6px 10px 6px 0px;
+  }
+
+}
+
+.app-panel-field.app-panel-field--top {
+  flex-flow: column;
+}
+
+.app-panel-field.app-panel-field--bottom {
+  flex-flow: column-reverse;
+}
+
+.app-panel-field.app-panel-field--left {
+  .app-panel-field__label {
+    text-align: right;
+  }
+}
+
+.app-panel-field.app-panel-field--right {
+  flex-flow: row-reverse;
+
+  .app-panel-field__label {
+    padding: 6px 0px 6px 10px;
+  }
+}
+
+.app-panel-field.app-panel-field--none {
+  .app-panel-field__label {
+    display: none !important;
+  }
+}

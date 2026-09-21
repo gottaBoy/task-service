@@ -1,0 +1,33 @@
+<#if item.getPSSysPFPlugin?? && item.getPSSysPFPlugin()?? && (item.getPSSysPFPlugin().isRuntimeObject() == false)>
+import { AppViewBase, VueLifeCycleProcessing } from 'ibiz-vue';
+import { Component } from 'vue-property-decorator';
+<#if item.render?? && item.render.code2??>${item.render.code2}</#if>
+<#if item.render?? && item.render.code3?? && (item.render.code3 != "")>import '../subview-style.less';</#if>
+
+/**
+ * ${item.getPSSysPFPlugin().getName()}插件类
+ *
+ * @export
+ * @class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+ * @extends {Vue}
+ */
+@Component({})
+@VueLifeCycleProcessing()
+export class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())} extends <#if item.render?? && item.render.code4?? && (item.render.code4 != "")>${item.render.code4}<#else>AppViewBase</#if> {
+
+    <#if item.render?? && item.render.code??>
+    ${item.render.code}
+    <#else>
+    /**
+     * 绘制视图内容
+     * 
+     * 
+     * @memberof ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+     */
+    public render(){
+        return <div>${item.getPSSysPFPlugin().getName()}插件</div>;
+    }
+    </#if>
+
+}
+</#if>

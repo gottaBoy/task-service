@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW width="745">
+	<SRFEXTABVIEWPAGE id="sublist" caption="备件包明细信息" REMOTEURL="../emdatamgr/eqsparedetail_sublistpage.jsp"/>
+</SRFEXTABVIEW>

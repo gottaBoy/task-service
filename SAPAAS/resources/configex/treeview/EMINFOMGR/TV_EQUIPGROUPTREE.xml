@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTREEPANEL  id="TV_EQUIPTREE" selectedvalue="_2_1_1"  JSNAME="equipTree" width="200" height="300"  extStyle="border: 1px solid #B5B8C8;">
+	<SRFEXTREENODE id="root" text="设备" ASYNCMODE="TRUE" expand="FALSE">
+	<SRFEXTREENODE id="root111111111" text="设备11111111111" ASYNCMODE="TRUE" expand="FALSE">
+	</SRFEXTREENODE>
+	</SRFEXTREENODE>
+</SRFEXTREEPANEL>

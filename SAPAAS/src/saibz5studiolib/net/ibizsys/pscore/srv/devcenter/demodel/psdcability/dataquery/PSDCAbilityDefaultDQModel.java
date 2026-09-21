@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.devcenter.demodel.psdcability.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="ADD68724-3CB0-43A1-B358-EC3172B8936D", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`ABILITYCAT`, t1.`BEGINTIME`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`ENDTIME`, t1.`MEMO`, t1.`PSDBTYPEID`, t1.`PSDBTYPENAME`, t1.`PSDCABILITYID`, t1.`PSDCABILITYNAME`, t1.`PSDEVCENTERID`, t1.`PSDEVCENTERNAME`, t1.`PSPFID`, t1.`PSPFNAME`, t1.`PSPFSTYLEID`, t1.`PSPFSTYLENAME`, t1.`PSSFID`, t1.`PSSFNAME`, t1.`PSSFSTYLEID`, t1.`PSSFSTYLENAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN` FROM `T_SRFPSDCABILITY` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="ABILITYCAT", expression="t1.`ABILITYCAT`", showorder=0), @DEDataQueryCodeExp(name="BEGINTIME", expression="t1.`BEGINTIME`", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=3), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.`ENDTIME`", showorder=4), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=5), @DEDataQueryCodeExp(name="PSDBTYPEID", expression="t1.`PSDBTYPEID`", showorder=6), @DEDataQueryCodeExp(name="PSDBTYPENAME", expression="t1.`PSDBTYPENAME`", showorder=7), @DEDataQueryCodeExp(name="PSDCABILITYID", expression="t1.`PSDCABILITYID`", showorder=8), @DEDataQueryCodeExp(name="PSDCABILITYNAME", expression="t1.`PSDCABILITYNAME`", showorder=9), @DEDataQueryCodeExp(name="PSDEVCENTERID", expression="t1.`PSDEVCENTERID`", showorder=10), @DEDataQueryCodeExp(name="PSDEVCENTERNAME", expression="t1.`PSDEVCENTERNAME`", showorder=11), @DEDataQueryCodeExp(name="PSPFID", expression="t1.`PSPFID`", showorder=12), @DEDataQueryCodeExp(name="PSPFNAME", expression="t1.`PSPFNAME`", showorder=13), @DEDataQueryCodeExp(name="PSPFSTYLEID", expression="t1.`PSPFSTYLEID`", showorder=14), @DEDataQueryCodeExp(name="PSPFSTYLENAME", expression="t1.`PSPFSTYLENAME`", showorder=15), @DEDataQueryCodeExp(name="PSSFID", expression="t1.`PSSFID`", showorder=16), @DEDataQueryCodeExp(name="PSSFNAME", expression="t1.`PSSFNAME`", showorder=17), @DEDataQueryCodeExp(name="PSSFSTYLEID", expression="t1.`PSSFSTYLEID`", showorder=18), @DEDataQueryCodeExp(name="PSSFSTYLENAME", expression="t1.`PSSFSTYLENAME`", showorder=19), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=20), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=21)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.ABILITYCAT, t1.BEGINTIME, t1.CREATEDATE, t1.CREATEMAN, t1.ENDTIME, t1.MEMO, t1.PSDBTYPEID, t1.PSDBTYPENAME, t1.PSDCABILITYID, t1.PSDCABILITYNAME, t1.PSDEVCENTERID, t1.PSDEVCENTERNAME, t1.PSPFID, t1.PSPFNAME, t1.PSPFSTYLEID, t1.PSPFSTYLENAME, t1.PSSFID, t1.PSSFNAME, t1.PSSFSTYLEID, t1.PSSFSTYLENAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFPSDCABILITY t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="ABILITYCAT", expression="t1.ABILITYCAT", showorder=0), @DEDataQueryCodeExp(name="BEGINTIME", expression="t1.BEGINTIME", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=3), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.ENDTIME", showorder=4), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=5), @DEDataQueryCodeExp(name="PSDBTYPEID", expression="t1.PSDBTYPEID", showorder=6), @DEDataQueryCodeExp(name="PSDBTYPENAME", expression="t1.PSDBTYPENAME", showorder=7), @DEDataQueryCodeExp(name="PSDCABILITYID", expression="t1.PSDCABILITYID", showorder=8), @DEDataQueryCodeExp(name="PSDCABILITYNAME", expression="t1.PSDCABILITYNAME", showorder=9), @DEDataQueryCodeExp(name="PSDEVCENTERID", expression="t1.PSDEVCENTERID", showorder=10), @DEDataQueryCodeExp(name="PSDEVCENTERNAME", expression="t1.PSDEVCENTERNAME", showorder=11), @DEDataQueryCodeExp(name="PSPFID", expression="t1.PSPFID", showorder=12), @DEDataQueryCodeExp(name="PSPFNAME", expression="t1.PSPFNAME", showorder=13), @DEDataQueryCodeExp(name="PSPFSTYLEID", expression="t1.PSPFSTYLEID", showorder=14), @DEDataQueryCodeExp(name="PSPFSTYLENAME", expression="t1.PSPFSTYLENAME", showorder=15), @DEDataQueryCodeExp(name="PSSFID", expression="t1.PSSFID", showorder=16), @DEDataQueryCodeExp(name="PSSFNAME", expression="t1.PSSFNAME", showorder=17), @DEDataQueryCodeExp(name="PSSFSTYLEID", expression="t1.PSSFSTYLEID", showorder=18), @DEDataQueryCodeExp(name="PSSFSTYLENAME", expression="t1.PSSFSTYLENAME", showorder=19), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=20), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=21)}, conds={})})
+public class PSDCAbilityDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSDCAbilityDefaultDQModel() {
+        this.initAnnotation(PSDCAbilityDefaultDQModel.class);
+    }
+}
+

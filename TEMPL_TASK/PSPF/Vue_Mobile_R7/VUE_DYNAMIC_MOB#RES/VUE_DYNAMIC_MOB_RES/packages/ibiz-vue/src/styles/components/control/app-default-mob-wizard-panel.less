@@ -1,0 +1,30 @@
+//
+.app-control-wizardpanel {
+  display: flex;
+  flex-direction: column;
+    .app-control-wizardpanel__header {
+        height: 60px;
+    }
+    .app-control-wizardpanel__content {
+      flex-grow: 1;
+      height: 0;
+      min-width: 0;
+    }
+    .app-control-wizardpanel__footer {
+      width: 100%;
+      height: 60px;
+    }
+    .app-control-wizardpanel__footer__buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        .app-mob-button {
+            width: 100%;
+            margin: 0 10px;
+        }
+    }
+    .app-control-wizardpanel__header__steps {
+        height: 100%;
+    }
+}

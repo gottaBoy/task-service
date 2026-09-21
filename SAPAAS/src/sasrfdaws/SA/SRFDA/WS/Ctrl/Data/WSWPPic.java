@@ -1,0 +1,197 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  SA.SRFramework.DataEx.BaseDataEntity
+ */
+package SA.SRFDA.WS.Ctrl.Data;
+
+import SA.SRFramework.DataEx.BaseDataEntity;
+import java.util.Date;
+
+public class WSWPPic
+extends BaseDataEntity {
+    public static final String TAG_WSWPPICID = "WSWPPICID";
+    public static final String TAG_WSWPPICNAME = "WSWPPICNAME";
+    public static final String TAG_CREATEMAN = "CREATEMAN";
+    public static final String TAG_CREATEDATE = "CREATEDATE";
+    public static final String TAG_UPDATEMAN = "UPDATEMAN";
+    public static final String TAG_UPDATEDATE = "UPDATEDATE";
+    public static final String TAG_WSWEBPARTTYPE = "WSWEBPARTTYPE";
+    public static final String TAG_WSWEBSITEID = "WSWEBSITEID";
+    public static final String TAG_WSWEBSITENAME = "WSWEBSITENAME";
+    public static final String TAG_VERSION = "VERSION";
+    public static final String TAG_DESCRIPTION = "DESCRIPTION";
+    public static final String TAG_IMGURL = "IMGURL";
+    public static final String TAG_WSWPALBUMID = "WSWPALBUMID";
+    public static final String TAG_WSWPALBUMNAME = "WSWPALBUMNAME";
+
+    public boolean isWSWPPICIDNull() {
+        return this.IsParamNull(TAG_WSWPPICID);
+    }
+
+    public String getWSWPPICID() {
+        return this.GetParamStringValue(TAG_WSWPPICID, "");
+    }
+
+    public void setWSWPPICID(String strValue) {
+        this.SetParamValue(TAG_WSWPPICID, strValue);
+    }
+
+    public boolean isWSWPPICNAMENull() {
+        return this.IsParamNull(TAG_WSWPPICNAME);
+    }
+
+    public String getWSWPPICNAME() {
+        return this.GetParamStringValue(TAG_WSWPPICNAME, "");
+    }
+
+    public void setWSWPPICNAME(String strValue) {
+        this.SetParamValue(TAG_WSWPPICNAME, strValue);
+    }
+
+    public boolean isCREATEMANNull() {
+        return this.IsParamNull(TAG_CREATEMAN);
+    }
+
+    public String getCREATEMAN() {
+        return this.GetParamStringValue(TAG_CREATEMAN, "");
+    }
+
+    public void setCREATEMAN(String strValue) {
+        this.SetParamValue(TAG_CREATEMAN, strValue);
+    }
+
+    public boolean isCREATEDATENull() {
+        return this.IsParamNull(TAG_CREATEDATE);
+    }
+
+    public Date getCREATEDATE() {
+        return this.GetParamDateValue(TAG_CREATEDATE, null);
+    }
+
+    public void setCREATEDATE(Date strValue) {
+        this.SetParamValue(TAG_CREATEDATE, strValue);
+    }
+
+    public boolean isUPDATEMANNull() {
+        return this.IsParamNull(TAG_UPDATEMAN);
+    }
+
+    public String getUPDATEMAN() {
+        return this.GetParamStringValue(TAG_UPDATEMAN, "");
+    }
+
+    public void setUPDATEMAN(String strValue) {
+        this.SetParamValue(TAG_UPDATEMAN, strValue);
+    }
+
+    public boolean isUPDATEDATENull() {
+        return this.IsParamNull(TAG_UPDATEDATE);
+    }
+
+    public Date getUPDATEDATE() {
+        return this.GetParamDateValue(TAG_UPDATEDATE, null);
+    }
+
+    public void setUPDATEDATE(Date strValue) {
+        this.SetParamValue(TAG_UPDATEDATE, strValue);
+    }
+
+    public boolean isWSWEBPARTTYPENull() {
+        return this.IsParamNull(TAG_WSWEBPARTTYPE);
+    }
+
+    public String getWSWEBPARTTYPE() {
+        return this.GetParamStringValue(TAG_WSWEBPARTTYPE, "");
+    }
+
+    public void setWSWEBPARTTYPE(String strValue) {
+        this.SetParamValue(TAG_WSWEBPARTTYPE, strValue);
+    }
+
+    public boolean isWSWEBSITEIDNull() {
+        return this.IsParamNull(TAG_WSWEBSITEID);
+    }
+
+    public String getWSWEBSITEID() {
+        return this.GetParamStringValue(TAG_WSWEBSITEID, "");
+    }
+
+    public void setWSWEBSITEID(String strValue) {
+        this.SetParamValue(TAG_WSWEBSITEID, strValue);
+    }
+
+    public boolean isWSWEBSITENAMENull() {
+        return this.IsParamNull(TAG_WSWEBSITENAME);
+    }
+
+    public String getWSWEBSITENAME() {
+        return this.GetParamStringValue(TAG_WSWEBSITENAME, "");
+    }
+
+    public void setWSWEBSITENAME(String strValue) {
+        this.SetParamValue(TAG_WSWEBSITENAME, strValue);
+    }
+
+    public boolean isVERSIONNull() {
+        return this.IsParamNull(TAG_VERSION);
+    }
+
+    public int getVERSION() {
+        return this.GetParamIntValue(TAG_VERSION, 0);
+    }
+
+    public void setVERSION(int strValue) {
+        this.SetParamValue(TAG_VERSION, strValue);
+    }
+
+    public boolean isDESCRIPTIONNull() {
+        return this.IsParamNull(TAG_DESCRIPTION);
+    }
+
+    public String getDESCRIPTION() {
+        return this.GetParamStringValue(TAG_DESCRIPTION, "");
+    }
+
+    public void setDESCRIPTION(String strValue) {
+        this.SetParamValue(TAG_DESCRIPTION, strValue);
+    }
+
+    public boolean isIMGURLNull() {
+        return this.IsParamNull(TAG_IMGURL);
+    }
+
+    public String getIMGURL() {
+        return this.GetParamStringValue(TAG_IMGURL, "");
+    }
+
+    public void setIMGURL(String strValue) {
+        this.SetParamValue(TAG_IMGURL, strValue);
+    }
+
+    public boolean isWSWPALBUMIDNull() {
+        return this.IsParamNull(TAG_WSWPALBUMID);
+    }
+
+    public String getWSWPALBUMID() {
+        return this.GetParamStringValue(TAG_WSWPALBUMID, "");
+    }
+
+    public void setWSWPALBUMID(String strValue) {
+        this.SetParamValue(TAG_WSWPALBUMID, strValue);
+    }
+
+    public boolean isWSWPALBUMNAMENull() {
+        return this.IsParamNull(TAG_WSWPALBUMNAME);
+    }
+
+    public String getWSWPALBUMNAME() {
+        return this.GetParamStringValue(TAG_WSWPALBUMNAME, "");
+    }
+
+    public void setWSWPALBUMNAME(String strValue) {
+        this.SetParamValue(TAG_WSWPALBUMNAME, strValue);
+    }
+}
+

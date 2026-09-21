@@ -1,0 +1,13 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package SA.SRFDA.PS.Core.Control.Chart;
+
+import SA.SRFDA.PS.Core.Control.Chart.IPSChartSeries;
+import SA.SRFDA.PS.Core.PSModelExtendMeta;
+
+@PSModelExtendMeta(title="\u56fe\u8868\u65ed\u65e5\u56fe\u5e8f\u5217\u6a21\u578b\u5bf9\u8c61\u63a5\u53e3", description="\u65ed\u65e5\u56fe\uff08Sunburst\uff09\u7531\u591a\u5c42\u7684\u73af\u5f62\u56fe\u7ec4\u6210\uff0c\u5728\u6570\u636e\u7ed3\u6784\u4e0a\uff0c\u5185\u5708\u662f\u5916\u5708\u7684\u7236\u8282\u70b9\u3002\u65e2\u80fd\u50cf\u997c\u56fe\u4e00\u6837\u8868\u73b0\u5c40\u90e8\u548c\u6574\u4f53\u7684\u5360\u6bd4\uff0c\u53c8\u80fd\u50cf\u77e9\u5f62\u6811\u56fe\u4e00\u6837\u8868\u73b0\u5c42\u7ea7\u5173\u7cfb\u3002")
+public interface IPSChartSeriesSunburst
+extends IPSChartSeries {
+}
+

@@ -1,0 +1,71 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package SA.SRFramework.CommonEx;
+
+public class Errors {
+    public static final int OK = 0;
+    public static final int INTERNALERROR = 1;
+    public static final int ACCESSDENY = 2;
+    public static final int INVALIDDATA = 3;
+    public static final int INVALIDDATAKEYS = 4;
+    public static final int INPUTERROR = 5;
+    public static final int DUPLICATEKEY = 6;
+    public static final int DUPLICATEDATA = 7;
+    public static final int DELETEREJECT = 8;
+    public static final int LOGICERROR = 9;
+    public static final int DATANOTMATCH = 10;
+    public static final int NOTIMPL = 20;
+    public static final int USERERROR = 1000;
+
+    public static final boolean IsUserError(int nErrorCode) {
+        return nErrorCode >= 1000;
+    }
+
+    public static final String GetErrorInfo(int nErrorCode) {
+        if (Errors.IsUserError(nErrorCode)) {
+            return "\u4e0d\u660e\u7684\u7528\u6237\u81ea\u5b9a\u4e49\u9519\u8bef";
+        }
+        switch (nErrorCode) {
+            case 1: {
+                return "\u7cfb\u7edf\u5185\u90e8\u53d1\u751f\u9519\u8bef";
+            }
+            case 2: {
+                return "\u8bbf\u95ee\u88ab\u62d2\u7edd\uff0c\u53ef\u80fd\u7531\u4e8e\u6743\u9650\u539f\u56e0\u5bfc\u81f4";
+            }
+            case 3: {
+                return "\u6570\u636e\u4e0d\u5b58\u5728";
+            }
+            case 4: {
+                return "\u6570\u636e\u7684\u7d22\u5f15\u6761\u4ef6\u6709\u8bef\u6216\u4e0d\u8db3";
+            }
+            case 5: {
+                return "\u6570\u636e\u7684\u4fe1\u606f\u6709\u8bef\u6216\u4e0d\u8db3";
+            }
+            case 6: {
+                return "\u91cd\u590d\u7684\u6570\u636e\u952e";
+            }
+            case 7: {
+                return "\u91cd\u590d\u7684\u6570\u636e";
+            }
+            case 8: {
+                return "\u5220\u9664\u62d2\u7edd\uff0c\u53ef\u80fd\u7531\u4e8e\u6743\u9650\u539f\u56e0\u5bfc\u81f4";
+            }
+            case 9: {
+                return "\u903b\u8f91\u5904\u7406\u9519\u8bef";
+            }
+            case 10: {
+                return "\u6570\u636e\u4e0d\u4e00\u81f4\uff0c\u53ef\u80fd\u540e\u53f0\u6570\u636e\u5df2\u7ecf\u88ab\u4fee\u6539";
+            }
+            case 20: {
+                return "\u6ca1\u6709\u5b9e\u73b0\u6307\u5b9a\u529f\u80fd";
+            }
+        }
+        return "\u4e0d\u660e\u9519\u8bef";
+    }
+
+    public static final boolean IsSpecialError(int nErrorCode, int nSpecialError) {
+        return nErrorCode == nSpecialError || nErrorCode == nSpecialError + 1000;
+    }
+}
+

@@ -1,0 +1,1 @@
+<%@page contentType="application/vnd.ms-excel; charset=UTF-8"%><jsp:useBean id="page1" scope="page" class="SA.SRFDA.Web.Default.ExportExcelPage" /><%page1.Init(pageContext);page1.Load();out.clear();out=pageContext.pushBody();%>

@@ -1,0 +1,61 @@
+ .sx-toolbarnobg
+{
+	border-width:0 0 0 0;
+}
+
+.sx-bar
+{
+	border-color:#a9bfd3;
+    border-style:Solid;
+    border-width:0 0 1px 0;
+    background-color: #BE3F3F;
+    
+    display: block;
+    background:#BE3F3F url(../../../resources/images/tobiuRed/toolbar/bg.gif) repeat-x top left;
+    position:relative;
+    zoom:1;
+}
+.sx-bar table tr td
+{
+    background-color: #BE3F3F;
+}
+.sx-ctrlcaption{
+	color:#5E1F1F;
+}
+.sx-ctrlcaption2
+{
+	color:#5E1F1F;
+}
+.sx-ctrlcaption3
+{
+	color:#5E1F1F;
+}
+.sx-normaltext-gray
+{
+font-size: 9pt;
+font-family: ËÎÌו,tahoma,arial,verdana,sans-serif;
+color:gray;
+vertical-align: baseline;
+}
+.sx-cp-lb2 
+{	
+	color:#5e1f1f;
+	background: url(../../images/default/bg_notempty.gif) repeat-x 50% bottom;
+}
+.sx-cp-lb 
+{
+	color:#5e1f1f;
+}
+.sx-dp-groupcaption
+{
+	color:#5e1f1f;
+}
+.sx-toolbarnobg
+{
+	border-width:0 0 0 0;
+}
+
+.sx-bartext
+{
+	color:#fff;
+}

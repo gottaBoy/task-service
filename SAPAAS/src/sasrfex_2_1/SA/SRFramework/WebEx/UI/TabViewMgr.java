@@ -1,0 +1,107 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  SA.SRFramework.Base.ConfigMgr
+ *  SA.SRFramework.Utility.StringHelper
+ *  org.apache.commons.logging.Log
+ *  org.apache.commons.logging.LogFactory
+ *  org.apache.xerces.parsers.DOMParser
+ */
+package SA.SRFramework.WebEx.UI;
+
+import SA.SRFramework.Base.ConfigMgr;
+import SA.SRFramework.Utility.StringHelper;
+import SA.SRFramework.WebEx.UI.TabViewConfig;
+import java.io.File;
+import java.util.Hashtable;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.xerces.parsers.DOMParser;
+import org.w3c.dom.Document;
+
+public class TabViewMgr
+extends ConfigMgr {
+    private static final Log log = LogFactory.getLog(TabViewMgr.class);
+    private final byte[] key;
+
+    public TabViewMgr() {
+        byte[] byArray = new byte[8];
+        byArray[0] = 1;
+        byArray[1] = 9;
+        byArray[2] = 9;
+        byArray[3] = 7;
+        byArray[5] = 7;
+        byArray[7] = 1;
+        this.key = byArray;
+    }
+
+    /*
+     * WARNING - Removed try catching itself - possible behaviour change.
+     */
+    protected Document GetDocument(String strTabViewId) {
+        String strConfigPath = this.GetConfigFilePath("tabview" + this.strFolderSeperator + this.GetRealPath(strTabViewId) + ".xml");
+        File file = new File(strConfigPath);
+        if (file.exists()) {
+            long nLastModify = file.lastModified();
+            Hashtable hashtable = this.fileList;
+            synchronized (hashtable) {
+                Long nCurLastModify;
+                if (this.fileList.containsKey(strConfigPath) && nLastModify == (nCurLastModify = (Long)this.modifydateList.get(strConfigPath))) {
+                    Document doc = (Document)this.fileList.get(strConfigPath);
+                    return doc;
+                }
+            }
+            try {
+                DOMParser parser = new DOMParser();
+                if (this.bEncrypt) {
+                    parser.parse(TabViewMgr.getContent((String)strConfigPath, (byte[])this.key));
+                } else {
+                    parser.parse(strConfigPath);
+                }
+                Document doc = parser.getDocument();
+                Hashtable hashtable2 = this.fileList;
+                synchronized (hashtable2) {
+                    this.fileList.put(strConfigPath, doc);
+                    this.modifydateList.put(strConfigPath, nLastModify);
+                }
+                return doc;
+            }
+            catch (Exception ex) {
+                log.error((Object)"\u52a0\u8f7d\u5206\u9875\u89c6\u56fe\u914d\u7f6e\u6587\u4ef6\u51fa\u73b0\u9519\u8bef", (Throwable)ex);
+                return null;
+            }
+        }
+        log.error((Object)StringHelper.Format((String)"\u5206\u9875\u89c6\u56fe\u914d\u7f6e\u6587\u4ef6[%1$s]\u4e0d\u5b58\u5728", (Object)strConfigPath));
+        return null;
+    }
+
+    /*
+     * WARNING - Removed try catching itself - possible behaviour change.
+     */
+    public TabViewConfig GetTabViewConfig(String strTabViewId) {
+        Document doc = this.GetDocument(strTabViewId);
+        if (doc == null) {
+            return null;
+        }
+        try {
+            Document document = doc;
+            synchronized (document) {
+                TabViewConfig tabViewConfig = new TabViewConfig();
+                if (tabViewConfig.LoadConfig(doc.getDocumentElement())) {
+                    return tabViewConfig;
+                }
+            }
+            return null;
+        }
+        catch (Exception ex) {
+            log.error((Object)"\u52a0\u8f7d\u5206\u9875\u89c6\u56fe\u914d\u7f6e\u6570\u636e\u51fa\u73b0\u9519\u8bef", (Throwable)ex);
+            return null;
+        }
+    }
+
+    protected String GetConfigRootFolder() {
+        return "tabview";
+    }
+}
+

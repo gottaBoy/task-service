@@ -1,0 +1,124 @@
+.app-icon-picker {
+    .el-input {
+        line-height: 32px;
+    }
+    .el-input__inner {
+        height: 32px;
+        width: 100%;
+        padding-left: 8px;
+    }
+    .el-input__suffix {
+        height: 32px;
+        line-height: 32px;
+        .el-input__icon {
+            height: 32px;
+            line-height: 32px;
+        }
+    }
+    // 禁用状态
+    .is-disabled {
+        .el-input__inner {
+            background-color: rgba(243, 243, 243, 0.877);
+            border-color: rgb(204, 204, 204);
+            color: rgb(204, 204, 204) ;
+            cursor: not-allowed;
+        }
+        .el-input-group__append {
+            background-color: transparent;
+            color: rgb(204, 204, 204);
+            .el-icon-arrow-down::before {
+                color: #CCCDD3;
+            }
+                
+        }
+        .el-icon-arrow-down {
+            cursor: not-allowed;
+        }
+    }
+}
+
+.app-icon-picker__box {
+    height: 60vh;
+    min-height: 60vh;
+
+    .el-input__inner {
+        height: 32px;
+        width: 250px;
+        float: right;
+    }
+    .el-menu-demo {
+        .el-menu-item {
+            height: 40px;
+            line-height: 40px;
+        }
+    }
+
+    .selector-content__icon-list {
+        width: 100%;
+        height: 55vh;
+        padding: 15px 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        overflow-y: auto;
+
+
+        .selector-content__icon-item {
+            width: auto;
+            height: auto;
+            cursor: pointer;
+        }
+        .icon-item__box {
+            width: 100px;
+            height: 83px;
+            min-width: 100px;
+            min-height: 67px;
+            padding: 10px 20px 0;
+            text-align: center;
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: center;
+            transition: all .2s;
+        }
+        .icon-item__box:hover {
+            transform: scale(1.5);
+        }
+        .is-active {
+            color: #3880FF;
+        }
+
+        .item-icon {
+            width: 100%;
+            height: 20px;
+            line-height: 20px;            
+            font-size: 20px;
+            display: inline-block;
+            visibility: visible;
+            padding: 0;
+            margin: 0;
+        }
+        .icon-tip {
+            width: 100%;
+            height: calc(100% - 25px);
+            display: block;
+            font-size: 12px;
+            line-height: 12px;
+            margin: 5px 0 0 0;
+        }
+    }
+}
+// 当屏幕小于1450px时
+@media screen and (max-width: 1450px) {
+    .el-menu-demo {
+        .el-menu-item {
+            width: (90% / 10) ;
+            height: 40px;
+            line-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}

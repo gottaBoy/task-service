@@ -1,0 +1,88 @@
+import { IPSAppDEDataView, IPSDEDataView } from '@ibiz/dynamic-model-api';
+import {  DataViewEngine, ModelTool, DataViewInterface } from 'ibiz-core';
+import { MDViewBase } from './mdview-base';
+
+/**
+ * 数据视图基类
+ *
+ * @export
+ * @class DataViewBase
+ * @extends {MDViewBase}
+ * @implements {DataViewInterface}
+ */
+export class DataViewBase extends MDViewBase implements DataViewInterface {
+
+    /**
+     * 数据视图视图实例
+     * 
+     * @memberof GanttViewBase
+     */
+    public declare viewInstance: IPSAppDEDataView;
+    
+    /**
+     * 卡片视图部件实例
+     * 
+     * @memberof DataViewBase
+     */
+    public dataViewInstance!: IPSDEDataView;
+    
+    /**
+     * 引擎初始化
+     *
+     * @param {*} [opts={}] 引擎参数
+     * @memberof DataViewBase
+     */
+    public engineInit(opts: any = {}): void {
+        if (this.Environment && this.Environment.isPreviewMode) {
+            return;
+        }
+        if(this.engine && this.dataViewInstance){
+            let engineOpts = Object.assign({
+                view: this,
+                p2k: '0',
+                isLoadDefault: this.viewInstance.loadDefault,
+                keyPSDEField: this.appDeCodeName.toLowerCase(),
+                majorPSDEField: this.appDeMajorFieldName.toLowerCase(),
+                opendata: (args: any[], fullargs?: any[], params?: any, $event?: any, xData?: any) => {
+                    this.opendata(args, fullargs, params, $event, xData);
+                },
+                newdata: (args: any[], fullargs?: any[], params?: any, $event?: any, xData?: any) => {
+                    this.newdata(args, fullargs, params, $event, xData);
+                },
+                dataview: (this.$refs[this.dataViewInstance.name] as any).ctrl,
+            }, opts)
+            if (this.searchFormInstance?.name && this.$refs[this.searchFormInstance.name]) {
+                engineOpts.searchform = ((this.$refs[this.searchFormInstance.name] as any).ctrl);
+            }
+            if(this.quickSearchFormInstance?.name && this.$refs[this.quickSearchFormInstance.name] ){
+                engineOpts.quicksearchform = ((this.$refs[this.quickSearchFormInstance.name] as any).ctrl);
+            }
+            if(this.searchBarInstance?.name && this.$refs[this.searchBarInstance.name]) {
+                engineOpts.searchbar = ((this.$refs[this.searchBarInstance.name] as any).ctrl);
+            }
+            this.engine.init(engineOpts);
+        }
+    }
+
+    /**
+     * 初始化数据视图实例
+     * 
+     * @memberof DataViewBase
+     */
+    public async viewModelInit() {
+        this.viewInstance = (this.staticProps.modeldata) as IPSAppDEDataView;
+        await super.viewModelInit();
+        this.dataViewInstance = ModelTool.findPSControlByName('dataview',this.viewInstance.getPSControls()) as IPSDEDataView;
+    }
+
+    /**
+     * 渲染视图主体内容区
+     * 
+     * @memberof DataViewBase
+     */
+    public renderMainContent() {
+        let { targetCtrlName, targetCtrlParam, targetCtrlEvent } = this.computeTargetCtrlData(this.dataViewInstance);
+        return this.$createElement(targetCtrlName, { slot: 'default', props: targetCtrlParam, ref: this.dataViewInstance.name, on: targetCtrlEvent });
+    }
+
+}

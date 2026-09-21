@@ -1,0 +1,17 @@
+<#ibiztemplate>
+TARGET=PSSYSTEM
+</#ibiztemplate>
+*volumes
+*target
+.settings
+*node_modules
+*bin
+*.project
+*.classpath
+*.factorypath
+.history
+.idea
+**.iml
+*.jar
+*.log
+.DS_Store

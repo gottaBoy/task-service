@@ -1,0 +1,29 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeCond
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.appdesign.demodel.psappwfver.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="D2BC4EF9-BAAB-49B0-92F5-EA01741EE9D8", name="CurApp")
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`MEMO`, t1.`PSAPPWFID`, t11.`PSAPPWFNAME`, t1.`PSAPPWFVERID`, t1.`PSAPPWFVERNAME`, t1.`PSSYSAPPID`, t21.`PSSYSAPPNAME`, t1.`PSWFVERSIONID`, t31.`PSWFVERSIONNAME`, t31.`PSWFID` AS `PSWORKFLOWID`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`USERCAT`, t1.`USERTAG`, t1.`USERTAG2`, t1.`USERTAG3`, t1.`USERTAG4`, t1.`VALIDFLAG` FROM `T_SRFPSAPPWFVER` t1  LEFT JOIN T_SRFPSAPPWF t11 ON t1.PSAPPWFID = t11.PSAPPWFID  LEFT JOIN T_SRFPSSYSAPP t21 ON t1.PSSYSAPPID = t21.PSSYSAPPID  LEFT JOIN T_SRFPSWFVERSION t31 ON t1.PSWFVERSIONID = t31.PSWFVERSIONID  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=1), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=2), @DEDataQueryCodeExp(name="PSAPPWFID", expression="t1.`PSAPPWFID`", showorder=3), @DEDataQueryCodeExp(name="PSAPPWFNAME", expression="t11.`PSAPPWFNAME`", showorder=4), @DEDataQueryCodeExp(name="PSAPPWFVERID", expression="t1.`PSAPPWFVERID`", showorder=5), @DEDataQueryCodeExp(name="PSAPPWFVERNAME", expression="t1.`PSAPPWFVERNAME`", showorder=6), @DEDataQueryCodeExp(name="PSSYSAPPID", expression="t1.`PSSYSAPPID`", showorder=7), @DEDataQueryCodeExp(name="PSSYSAPPNAME", expression="t21.`PSSYSAPPNAME`", showorder=8), @DEDataQueryCodeExp(name="PSWFVERSIONID", expression="t1.`PSWFVERSIONID`", showorder=9), @DEDataQueryCodeExp(name="PSWFVERSIONNAME", expression="t31.`PSWFVERSIONNAME`", showorder=10), @DEDataQueryCodeExp(name="PSWORKFLOWID", expression="t31.`PSWFID`", showorder=11), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=12), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=13), @DEDataQueryCodeExp(name="USERCAT", expression="t1.`USERCAT`", showorder=14), @DEDataQueryCodeExp(name="USERTAG", expression="t1.`USERTAG`", showorder=15), @DEDataQueryCodeExp(name="USERTAG2", expression="t1.`USERTAG2`", showorder=16), @DEDataQueryCodeExp(name="USERTAG3", expression="t1.`USERTAG3`", showorder=17), @DEDataQueryCodeExp(name="USERTAG4", expression="t1.`USERTAG4`", showorder=18), @DEDataQueryCodeExp(name="VALIDFLAG", expression="t1.`VALIDFLAG`", showorder=19)}, conds={@DEDataQueryCodeCond(condition="( t1.`PSSYSAPPID` =  ${srfdatacontext('pssysappid','{\"defname\":\"PSSYSAPPID\",\"dename\":\"PSAPPWFVER\"}')} )")}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.PSAPPWFID, t11.PSAPPWFNAME, t1.PSAPPWFVERID, t1.PSAPPWFVERNAME, t1.PSSYSAPPID, t21.PSSYSAPPNAME, t1.PSWFVERSIONID, t31.PSWFVERSIONNAME, t31.PSWFID AS PSWORKFLOWID, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERCAT, t1.USERTAG, t1.USERTAG2, t1.USERTAG3, t1.USERTAG4, t1.VALIDFLAG FROM T_SRFPSAPPWFVER t1  LEFT JOIN T_SRFPSAPPWF t11 ON t1.PSAPPWFID = t11.PSAPPWFID  LEFT JOIN T_SRFPSSYSAPP t21 ON t1.PSSYSAPPID = t21.PSSYSAPPID  LEFT JOIN T_SRFPSWFVERSION t31 ON t1.PSWFVERSIONID = t31.PSWFVERSIONID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=2), @DEDataQueryCodeExp(name="PSAPPWFID", expression="t1.PSAPPWFID", showorder=3), @DEDataQueryCodeExp(name="PSAPPWFNAME", expression="t11.PSAPPWFNAME", showorder=4), @DEDataQueryCodeExp(name="PSAPPWFVERID", expression="t1.PSAPPWFVERID", showorder=5), @DEDataQueryCodeExp(name="PSAPPWFVERNAME", expression="t1.PSAPPWFVERNAME", showorder=6), @DEDataQueryCodeExp(name="PSSYSAPPID", expression="t1.PSSYSAPPID", showorder=7), @DEDataQueryCodeExp(name="PSSYSAPPNAME", expression="t21.PSSYSAPPNAME", showorder=8), @DEDataQueryCodeExp(name="PSWFVERSIONID", expression="t1.PSWFVERSIONID", showorder=9), @DEDataQueryCodeExp(name="PSWFVERSIONNAME", expression="t31.PSWFVERSIONNAME", showorder=10), @DEDataQueryCodeExp(name="PSWORKFLOWID", expression="t31.PSWFID", showorder=11), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=12), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=13), @DEDataQueryCodeExp(name="USERCAT", expression="t1.USERCAT", showorder=14), @DEDataQueryCodeExp(name="USERTAG", expression="t1.USERTAG", showorder=15), @DEDataQueryCodeExp(name="USERTAG2", expression="t1.USERTAG2", showorder=16), @DEDataQueryCodeExp(name="USERTAG3", expression="t1.USERTAG3", showorder=17), @DEDataQueryCodeExp(name="USERTAG4", expression="t1.USERTAG4", showorder=18), @DEDataQueryCodeExp(name="VALIDFLAG", expression="t1.VALIDFLAG", showorder=19)}, conds={@DEDataQueryCodeCond(condition="( t1.PSSYSAPPID =  ${srfdatacontext('pssysappid','{\"defname\":\"PSSYSAPPID\",\"dename\":\"PSAPPWFVER\"}')} )")})})
+public class PSAppWFVerCurAppDQModel
+extends DEDataQueryModelBase {
+    public PSAppWFVerCurAppDQModel() {
+        this.initAnnotation(PSAppWFVerCurAppDQModel.class);
+    }
+}
+

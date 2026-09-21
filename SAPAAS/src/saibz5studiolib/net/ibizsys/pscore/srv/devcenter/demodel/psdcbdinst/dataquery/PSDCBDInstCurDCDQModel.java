@@ -1,0 +1,29 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeCond
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.devcenter.demodel.psdcbdinst.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="5FEAF7AF-0016-4976-AFEE-942628A7E364", name="CurDC")
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`BDTYPE`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`LOCKMODE`, t1.`LOCKOBJID`, t1.`LOCKOBJTYPE`, t1.`MEMO`, t1.`PSBDDEVINSTID`, t11.`PSBDDEVINSTNAME`, t1.`PSDCBDINSTID`, t1.`PSDCBDINSTNAME`, t1.`PSDEVCENTERID`, t21.`PSDEVCENTERNAME`, t1.`PSDEVSLNID`, t31.`PSDEVSLNNAME`, t1.`REFCOUNT`, t1.`SYSMEMO`, t1.`UPDATEDATE`, t1.`UPDATEMAN` FROM `T_SRFPSDCBDINST` t1  LEFT JOIN `T_SRFPSBDDEVINST` t11 ON t1.`PSBDDEVINSTID` = t11.`PSBDDEVINSTID`  LEFT JOIN `T_SRFPSDEVCENTER` t21 ON t1.`PSDEVCENTERID` = t21.`PSDEVCENTERID`  LEFT JOIN `T_SRFPSDEVSLN` t31 ON t1.`PSDEVSLNID` = t31.`PSDEVSLNID`  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="REFINFO", expression="t1.`REFINFO`", showorder=-1), @DEDataQueryCodeExp(name="BDTYPE", expression="t1.`BDTYPE`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=2), @DEDataQueryCodeExp(name="LOCKMODE", expression="t1.`LOCKMODE`", showorder=3), @DEDataQueryCodeExp(name="LOCKOBJID", expression="t1.`LOCKOBJID`", showorder=4), @DEDataQueryCodeExp(name="LOCKOBJTYPE", expression="t1.`LOCKOBJTYPE`", showorder=5), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=6), @DEDataQueryCodeExp(name="PSBDDEVINSTID", expression="t1.`PSBDDEVINSTID`", showorder=7), @DEDataQueryCodeExp(name="PSBDDEVINSTNAME", expression="t11.`PSBDDEVINSTNAME`", showorder=8), @DEDataQueryCodeExp(name="PSDCBDINSTID", expression="t1.`PSDCBDINSTID`", showorder=9), @DEDataQueryCodeExp(name="PSDCBDINSTNAME", expression="t1.`PSDCBDINSTNAME`", showorder=10), @DEDataQueryCodeExp(name="PSDEVCENTERID", expression="t1.`PSDEVCENTERID`", showorder=11), @DEDataQueryCodeExp(name="PSDEVCENTERNAME", expression="t21.`PSDEVCENTERNAME`", showorder=12), @DEDataQueryCodeExp(name="PSDEVSLNID", expression="t1.`PSDEVSLNID`", showorder=13), @DEDataQueryCodeExp(name="PSDEVSLNNAME", expression="t31.`PSDEVSLNNAME`", showorder=14), @DEDataQueryCodeExp(name="REFCOUNT", expression="t1.`REFCOUNT`", showorder=15), @DEDataQueryCodeExp(name="SYSMEMO", expression="t1.`SYSMEMO`", showorder=16), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=17), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=18)}, conds={@DEDataQueryCodeCond(condition="( t1.`PSDEVCENTERID` =  ${srfdatacontext('psdevcenterid','{\"defname\":\"PSDEVCENTERID\",\"dename\":\"PSDCBDINST\"}')} )")}), @DEDataQueryCode(querycode="SELECT t1.BDTYPE, t1.CREATEDATE, t1.CREATEMAN, t1.LOCKMODE, t1.LOCKOBJID, t1.LOCKOBJTYPE, t1.MEMO, t1.PSBDDEVINSTID, t11.PSBDDEVINSTNAME, t1.PSDCBDINSTID, t1.PSDCBDINSTNAME, t1.PSDEVCENTERID, t21.PSDEVCENTERNAME, t1.PSDEVSLNID, t31.PSDEVSLNNAME, t1.REFCOUNT, t1.SYSMEMO, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFPSDCBDINST t1  LEFT JOIN T_SRFPSBDDEVINST t11 ON t1.PSBDDEVINSTID = t11.PSBDDEVINSTID  LEFT JOIN T_SRFPSDEVCENTER t21 ON t1.PSDEVCENTERID = t21.PSDEVCENTERID  LEFT JOIN T_SRFPSDEVSLN t31 ON t1.PSDEVSLNID = t31.PSDEVSLNID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="REFINFO", expression="t1.REFINFO", showorder=-1), @DEDataQueryCodeExp(name="BDTYPE", expression="t1.BDTYPE", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="LOCKMODE", expression="t1.LOCKMODE", showorder=3), @DEDataQueryCodeExp(name="LOCKOBJID", expression="t1.LOCKOBJID", showorder=4), @DEDataQueryCodeExp(name="LOCKOBJTYPE", expression="t1.LOCKOBJTYPE", showorder=5), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=6), @DEDataQueryCodeExp(name="PSBDDEVINSTID", expression="t1.PSBDDEVINSTID", showorder=7), @DEDataQueryCodeExp(name="PSBDDEVINSTNAME", expression="t11.PSBDDEVINSTNAME", showorder=8), @DEDataQueryCodeExp(name="PSDCBDINSTID", expression="t1.PSDCBDINSTID", showorder=9), @DEDataQueryCodeExp(name="PSDCBDINSTNAME", expression="t1.PSDCBDINSTNAME", showorder=10), @DEDataQueryCodeExp(name="PSDEVCENTERID", expression="t1.PSDEVCENTERID", showorder=11), @DEDataQueryCodeExp(name="PSDEVCENTERNAME", expression="t21.PSDEVCENTERNAME", showorder=12), @DEDataQueryCodeExp(name="PSDEVSLNID", expression="t1.PSDEVSLNID", showorder=13), @DEDataQueryCodeExp(name="PSDEVSLNNAME", expression="t31.PSDEVSLNNAME", showorder=14), @DEDataQueryCodeExp(name="REFCOUNT", expression="t1.REFCOUNT", showorder=15), @DEDataQueryCodeExp(name="SYSMEMO", expression="t1.SYSMEMO", showorder=16), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=17), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=18)}, conds={@DEDataQueryCodeCond(condition="( t1.PSDEVCENTERID =  ${srfdatacontext('psdevcenterid','{\"defname\":\"PSDEVCENTERID\",\"dename\":\"PSDCBDINST\"}')} )")})})
+public class PSDCBDInstCurDCDQModel
+extends DEDataQueryModelBase {
+    public PSDCBDInstCurDCDQModel() {
+        this.initAnnotation(PSDCBDInstCurDCDQModel.class);
+    }
+}
+

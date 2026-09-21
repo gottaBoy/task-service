@@ -1,0 +1,9 @@
+Summary for /tmp/ibiz-extract/task7/app-extract/SAPAAS/WEB-INF/lib/sasrfdais.jar
+Decompiled with CFR 0.152
+
+
+SA.SRFDA.IS.Web.SearchResultPage
+----------------------------
+
+DoPagingSearchForSL(org.apache.lucene.search.Searcher org.apache.lucene.search.Query int int boolean org.apache.lucene.analysis.Analyzer )
+  Unable to fully structure code

@@ -1,0 +1,20 @@
+<#if item.getPSSysPFPlugin?? && item.getPSSysPFPlugin()??>
+<#if item.getRefMode() == "CONTROLITEM">
+<#-- 部件成员插件 start -->
+<#if item.render?? && item.render.code2??>${item.render.code2}</#if>
+
+/**
+ * ${item.getPSSysPFPlugin().getName()}插件类
+ *
+ * @export
+ * @class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+ * @extends {Vue}
+ */
+export class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())} {
+
+<#if item.render?? && item.render.code??>${item.render.code}</#if>
+
+}
+<#-- 部件成员插件 end -->
+</#if>
+</#if>

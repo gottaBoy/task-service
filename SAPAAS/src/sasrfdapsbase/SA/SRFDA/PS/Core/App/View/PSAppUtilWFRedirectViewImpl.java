@@ -1,0 +1,19 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package SA.SRFDA.PS.Core.App.View;
+
+import SA.SRFDA.PS.Core.App.View.PSAppUtilWFViewImpl;
+import SA.SRFDA.PS.Core.PSModelIgnoreMeta;
+import SA.SRFDA.PS.Core.PSModelRTMeta;
+
+@PSModelIgnoreMeta
+public class PSAppUtilWFRedirectViewImpl
+extends PSAppUtilWFViewImpl {
+    @Override
+    @PSModelRTMeta(description="\u91cd\u5b9a\u5411\u89c6\u56fe")
+    public boolean isRedirectView() {
+        return true;
+    }
+}
+

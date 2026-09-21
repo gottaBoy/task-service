@@ -1,0 +1,2 @@
+<%@page contentType="text/html; charset=UTF-8"%>
+{"pagecode":"alert('你的身份已经失效，需要重新登录！');SRFUtility.showmodaldialog('../uacclient/uaclogin_popup.jsp', {}, 'resizable:no;scroll:no;status:no;', 900, 680);"}

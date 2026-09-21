@@ -1,0 +1,88 @@
+<#ibiztemplate>
+TARGET=PSSYSAPP
+</#ibiztemplate>
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+        "packages/*"
+  ],
+  "scripts": {
+    "link-model": "./node_modules/.bin/ibz link <#if pub?? && pub.getModelFolder?? && pub.getModelFolder()??> ../${pub.getModelFolder()}/PSSYSAPPS/${app.getCodeName()}  ./public/assets/model</#if>",
+    "serve": "node --max_old_space_size=8102 ./node_modules/@vue/cli-service/bin/vue-cli-service serve --mode test",
+    "dev-serve": "node --max_old_space_size=8102 ./node_modules/@vue/cli-service/bin/vue-cli-service serve --mode development",
+    "watch": "node --max_old_space_size=8102 ./node_modules/@vue/cli-service/bin/vue-cli-service build --watch --no-clean --mode development",
+    "build": "yarn run link-model && node --max_old_space_size=8102 ./node_modules/@vue/cli-service/bin/vue-cli-service build",
+    "build-hybrid-app": "yarn run link-model && node --max_old_space_size=8102 ./node_modules/@vue/cli-service/bin/vue-cli-service build --mode hybridapp",
+    "dev-build": "yarn run link-model && node --max_old_space_size=8102 ./node_modules/@vue/cli-service/bin/vue-cli-service build --mode development",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@capacitor/android": "2.1.0",
+    "@capacitor/cli": "^2.1.0",
+    "@capacitor/core": "^2.1.0",
+    "@capacitor/ios": "2.1.0",
+    "@ionic/core": "^5.1.1",
+    "axios": "^0.21.1",
+    "dexie": "^3.0.3",
+    "core-js": "^3.11.1",
+    "async-validator": "^3.3.0",
+    "dingtalk-jsapi": "^2.9.14",
+    "echarts": "5.0.2",
+    "font-awesome": "4.7.0",
+    "ibiz-mobile-components": "^0.0.4",
+    "ionicons": "^5.0.1",
+    "moment": "^2.29.1",
+    "vue-text-format": "^1.2.6",     
+    "path-to-regexp": "^6.2.0",
+    "vue-quill-editor": "^3.0.6",
+    "qs": "^6.10.1",
+    "recorder-core": "^1.0.20040700",
+    "register-service-worker": "^1.6.2",
+    "rxjs": "^6.6.7",
+    "vant": "^2.5.6",
+    "vue": "^2.6.12",
+    "qx-util": "^0.0.7",
+    "ibiz-core": "1.0.0",
+    "ibiz-vue": "1.0.0",
+    "vue-class-component": "^7.2.6",
+    "weixin-js-sdk": "^1.6.0",
+    "vue-i18n": "^8.24.3",
+    "vue-property-decorator": "^9.1.2",
+    "vuedraggable": "^2.24.3",
+    "vue-amap": "^0.5.10",
+    "vue-router": "^3.5.1",
+    "vue-touch": "^2.0.0-beta.4",
+    "vue-qr": "^2.2.1",
+    "@ibiz/dynamic-model-api": "2.0.4",
+  <#if app.getAllPSAppPkgs?? && app.getAllPSAppPkgs()??>
+  <#list app.getAllPSAppPkgs() as appPackage>
+  <#if appPackage.getVerParam()?? && appPackage.getVerParam() !="">${appPackage.getVerParam()},</#if>
+  </#list>
+  </#if>
+    "xgplayer":"2.31.4",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@ibiz/cli": "0.1.1",
+    "@babel/plugin-proposal-optional-chaining": "^7.12.7",
+    "@types/echarts": "^4.9.7",
+    "@types/mockjs": "^1.0.3",
+    "@types/qs": "^6.9.6",
+    "@vue/cli-plugin-babel": "^4.5.12",
+    "@vue/cli-plugin-pwa": "^4.2.0",
+    "@vue/cli-plugin-router": "^4.5.12",
+    "@vue/cli-plugin-typescript": "^4.2.0",
+    "@vue/cli-plugin-vuex": "^4.5.12",
+    "@vue/cli-service": "^4.5.12",
+    "axios-mock-adapter": "^1.19.0",
+    "less": "^3.13.1",
+    "less-loader": "^7.3.0",
+    "mockjs": "^1.1.0",
+    "style-resources-loader": "^1.3.3",
+    "typescript": "^4.2.4",
+    "vue-cli-plugin-style-resources-loader": "^0.1.4",
+    "vue-template-compiler": "^2.6.11"
+  }
+}

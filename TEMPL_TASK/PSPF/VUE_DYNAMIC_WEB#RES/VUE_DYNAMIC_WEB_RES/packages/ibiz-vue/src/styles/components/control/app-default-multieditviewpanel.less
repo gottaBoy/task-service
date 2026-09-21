@@ -1,0 +1,55 @@
+.app-control-multieditviewpanel {
+    .app-control-multieditviewpanel__content__tab {
+        .ivu-tabs-tab {
+            .tab__label {
+                min-width: 40px;
+                position: relative;
+                .tab__label__caption {
+                    max-width: 100px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .ivu-icon-md-close {
+                    top: 3px;
+                    right: -23px;
+                    display: none;
+                    position: absolute;
+                }
+            }
+            &:hover {
+                .ivu-icon-md-close {
+                    display: block;
+                }
+            }
+        }
+    }
+    .app-control-multieditviewpanel__content__item {
+        position: relative;
+        .ivu-icon-md-close {
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .view-container2>.view-header {
+            padding-right: 30px;
+        }
+    }
+    .view-container2 {
+        >.view-content {
+            height: 100%;
+        }
+    }
+    .app-control-multieditviewpanel__footer {
+        .flex(row, flex-start, center);
+        .footer__button {
+            width: 150px;
+            margin: 0 auto;
+            .ivu-icon-md-add {
+                transform: translate(-7px, -1px);
+            }
+        }
+    }
+}

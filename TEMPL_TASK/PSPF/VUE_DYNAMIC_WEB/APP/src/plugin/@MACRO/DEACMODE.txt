@@ -1,0 +1,19 @@
+<#if item.getPSSysPFPlugin?? && item.getPSSysPFPlugin()??>
+<#if item.getRefMode() == "DEACMODE">
+<#-- 自填项插件 start -->
+<#if item.render?? && item.render.code2??>${item.render.code2}</#if>
+
+/**
+ * ${item.getPSSysPFPlugin().getName()}插件类
+ *
+ * @export
+ * @class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+ */
+export class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())} {
+
+<#if item.render?? && item.render.code??>${item.render.code}</#if>
+
+}
+<#-- 自填项插件 end -->
+</#if>
+</#if>

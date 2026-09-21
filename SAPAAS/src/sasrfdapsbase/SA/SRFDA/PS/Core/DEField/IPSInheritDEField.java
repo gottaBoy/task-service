@@ -1,0 +1,17 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package SA.SRFDA.PS.Core.DEField;
+
+import SA.SRFDA.PS.Core.DEField.IPSDEField;
+import SA.SRFDA.PS.Core.DEField.IPSLinkDEField;
+import SA.SRFDA.PS.Core.PSModelExtendMeta;
+import SA.SRFDA.PS.Core.PSModelPFIgnoreMeta;
+
+@PSModelPFIgnoreMeta
+@PSModelExtendMeta(title="\u5b9e\u4f53\u7ee7\u627f\u5c5e\u6027\u6a21\u578b\u5bf9\u8c61\u63a5\u53e3")
+public interface IPSInheritDEField
+extends IPSLinkDEField {
+    public IPSDEField getRealInheritPSDEField() throws Exception;
+}
+

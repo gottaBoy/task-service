@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.dedesign.demodel.psdevrgroup.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="D3DC5108-5B61-4CFB-8E08-C8B012588B18", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`CODENAME`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`GROUPTAG`, t1.`GROUPTAG2`, t1.`MEMO`, t1.`ORDERVALUE`, t1.`PSDEID`, t1.`PSDENAME`, t1.`PSDEVRGROUPID`, t1.`PSDEVRGROUPNAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`USERCAT`, t1.`USERPARAMS`, t1.`USERTAG`, t1.`USERTAG2`, t1.`USERTAG3`, t1.`USERTAG4` FROM `T_SRFPSDEVRGROUP` t1  ", querycodetemp="SELECT t1.`CODENAME`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`GROUPTAG`, t1.`GROUPTAG2`, t1.`MEMO`, t1.`ORDERVALUE`, t1.`PSDEID`, t1.`PSDENAME`, t1.`PSDEVRGROUPID`, t1.`PSDEVRGROUPNAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`USERCAT`, t1.`USERPARAMS`, t1.`USERTAG`, t1.`USERTAG2`, t1.`USERTAG3`, t1.`USERTAG4`,t1.`SRFORIKEY` AS `SRFORIKEY`,t1.`SRFDRAFTFLAG` AS `SRFDRAFTFLAG` FROM `T_SRFPSDEVRGROUP_TMP` t1  ", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CODENAME", expression="t1.`CODENAME`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=2), @DEDataQueryCodeExp(name="GROUPTAG", expression="t1.`GROUPTAG`", showorder=3), @DEDataQueryCodeExp(name="GROUPTAG2", expression="t1.`GROUPTAG2`", showorder=4), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=5), @DEDataQueryCodeExp(name="ORDERVALUE", expression="t1.`ORDERVALUE`", showorder=6), @DEDataQueryCodeExp(name="PSDEID", expression="t1.`PSDEID`", showorder=7), @DEDataQueryCodeExp(name="PSDENAME", expression="t1.`PSDENAME`", showorder=8), @DEDataQueryCodeExp(name="PSDEVRGROUPID", expression="t1.`PSDEVRGROUPID`", showorder=9), @DEDataQueryCodeExp(name="PSDEVRGROUPNAME", expression="t1.`PSDEVRGROUPNAME`", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=12), @DEDataQueryCodeExp(name="USERCAT", expression="t1.`USERCAT`", showorder=13), @DEDataQueryCodeExp(name="USERPARAMS", expression="t1.`USERPARAMS`", showorder=14), @DEDataQueryCodeExp(name="USERTAG", expression="t1.`USERTAG`", showorder=15), @DEDataQueryCodeExp(name="USERTAG2", expression="t1.`USERTAG2`", showorder=16), @DEDataQueryCodeExp(name="USERTAG3", expression="t1.`USERTAG3`", showorder=17), @DEDataQueryCodeExp(name="USERTAG4", expression="t1.`USERTAG4`", showorder=18)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CODENAME, t1.CREATEDATE, t1.CREATEMAN, t1.GROUPTAG, t1.GROUPTAG2, t1.MEMO, t1.ORDERVALUE, t1.PSDEID, t1.PSDENAME, t1.PSDEVRGROUPID, t1.PSDEVRGROUPNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERCAT, t1.USERPARAMS, t1.USERTAG, t1.USERTAG2, t1.USERTAG3, t1.USERTAG4 FROM T_SRFPSDEVRGROUP t1  ", querycodetemp="SELECT t1.CODENAME, t1.CREATEDATE, t1.CREATEMAN, t1.GROUPTAG, t1.GROUPTAG2, t1.MEMO, t1.ORDERVALUE, t1.PSDEID, t1.PSDENAME, t1.PSDEVRGROUPID, t1.PSDEVRGROUPNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERCAT, t1.USERPARAMS, t1.USERTAG, t1.USERTAG2, t1.USERTAG3, t1.USERTAG4,t1.SRFORIKEY AS SRFORIKEY,t1.SRFDRAFTFLAG AS SRFDRAFTFLAG FROM T_SRFPSDEVRGROUP_TMP t1  ", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CODENAME", expression="t1.CODENAME", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="GROUPTAG", expression="t1.GROUPTAG", showorder=3), @DEDataQueryCodeExp(name="GROUPTAG2", expression="t1.GROUPTAG2", showorder=4), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=5), @DEDataQueryCodeExp(name="ORDERVALUE", expression="t1.ORDERVALUE", showorder=6), @DEDataQueryCodeExp(name="PSDEID", expression="t1.PSDEID", showorder=7), @DEDataQueryCodeExp(name="PSDENAME", expression="t1.PSDENAME", showorder=8), @DEDataQueryCodeExp(name="PSDEVRGROUPID", expression="t1.PSDEVRGROUPID", showorder=9), @DEDataQueryCodeExp(name="PSDEVRGROUPNAME", expression="t1.PSDEVRGROUPNAME", showorder=10), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=11), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=12), @DEDataQueryCodeExp(name="USERCAT", expression="t1.USERCAT", showorder=13), @DEDataQueryCodeExp(name="USERPARAMS", expression="t1.USERPARAMS", showorder=14), @DEDataQueryCodeExp(name="USERTAG", expression="t1.USERTAG", showorder=15), @DEDataQueryCodeExp(name="USERTAG2", expression="t1.USERTAG2", showorder=16), @DEDataQueryCodeExp(name="USERTAG3", expression="t1.USERTAG3", showorder=17), @DEDataQueryCodeExp(name="USERTAG4", expression="t1.USERTAG4", showorder=18)}, conds={})})
+public class PSDEVRGroupDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSDEVRGroupDefaultDQModel() {
+        this.initAnnotation(PSDEVRGroupDefaultDQModel.class);
+    }
+}
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW>
+		<SRFEXTABVIEWPAGE id="edit" caption="故障原因维护" REMOTEURL="../emdatamgr/eqrfocauses_s_summarypage.jsp?DIALOGMODE=true" APPENDPARAMS="RFOMODEID|RFOCAUSESID"/>
+</SRFEXTABVIEW>

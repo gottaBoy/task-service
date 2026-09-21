@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.sysdeploy.demodel.psdepslnsyskey.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="D5B018C3-971F-495F-8A56-8E5C7908E6D3", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`ADMINMODE`, t1.`BEGINTIME`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`ENDTIME`, t1.`KEYCOUNT`, t1.`KEYSTATE`, t1.`LOGINUSERFLAG`, t1.`LOGINUSERID`, t1.`LOGINUSERNAME`, t1.`PSDEPSLNSYSDYNAINSTID`, t1.`PSDEPSLNSYSDYNAINSTNAME`, t1.`PSDEPSLNSYSID`, t1.`PSDEPSLNSYSKEYID`, t1.`PSDEPSLNSYSKEYNAME`, t1.`PSDEPSLNSYSNAME`, t1.`PSDEVCENTERID`, t1.`PSDEVCENTERNAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN` FROM `T_SRFPSDEPSLNSYSKEY` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="ADMINMODE", expression="t1.`ADMINMODE`", showorder=0), @DEDataQueryCodeExp(name="BEGINTIME", expression="t1.`BEGINTIME`", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=3), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.`ENDTIME`", showorder=4), @DEDataQueryCodeExp(name="KEYCOUNT", expression="t1.`KEYCOUNT`", showorder=5), @DEDataQueryCodeExp(name="KEYSTATE", expression="t1.`KEYSTATE`", showorder=6), @DEDataQueryCodeExp(name="LOGINUSERFLAG", expression="t1.`LOGINUSERFLAG`", showorder=7), @DEDataQueryCodeExp(name="LOGINUSERID", expression="t1.`LOGINUSERID`", showorder=8), @DEDataQueryCodeExp(name="LOGINUSERNAME", expression="t1.`LOGINUSERNAME`", showorder=9), @DEDataQueryCodeExp(name="PSDEPSLNSYSDYNAINSTID", expression="t1.`PSDEPSLNSYSDYNAINSTID`", showorder=10), @DEDataQueryCodeExp(name="PSDEPSLNSYSDYNAINSTNAME", expression="t1.`PSDEPSLNSYSDYNAINSTNAME`", showorder=11), @DEDataQueryCodeExp(name="PSDEPSLNSYSID", expression="t1.`PSDEPSLNSYSID`", showorder=12), @DEDataQueryCodeExp(name="PSDEPSLNSYSKEYID", expression="t1.`PSDEPSLNSYSKEYID`", showorder=13), @DEDataQueryCodeExp(name="PSDEPSLNSYSKEYNAME", expression="t1.`PSDEPSLNSYSKEYNAME`", showorder=14), @DEDataQueryCodeExp(name="PSDEPSLNSYSNAME", expression="t1.`PSDEPSLNSYSNAME`", showorder=15), @DEDataQueryCodeExp(name="PSDEVCENTERID", expression="t1.`PSDEVCENTERID`", showorder=16), @DEDataQueryCodeExp(name="PSDEVCENTERNAME", expression="t1.`PSDEVCENTERNAME`", showorder=17), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=18), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=19)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.ADMINMODE, t1.BEGINTIME, t1.CREATEDATE, t1.CREATEMAN, t1.ENDTIME, t1.KEYCOUNT, t1.KEYSTATE, t1.LOGINUSERFLAG, t1.LOGINUSERID, t1.LOGINUSERNAME, t1.PSDEPSLNSYSDYNAINSTID, t1.PSDEPSLNSYSDYNAINSTNAME, t1.PSDEPSLNSYSID, t1.PSDEPSLNSYSKEYID, t1.PSDEPSLNSYSKEYNAME, t1.PSDEPSLNSYSNAME, t1.PSDEVCENTERID, t1.PSDEVCENTERNAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFPSDEPSLNSYSKEY t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="ADMINMODE", expression="t1.ADMINMODE", showorder=0), @DEDataQueryCodeExp(name="BEGINTIME", expression="t1.BEGINTIME", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=3), @DEDataQueryCodeExp(name="ENDTIME", expression="t1.ENDTIME", showorder=4), @DEDataQueryCodeExp(name="KEYCOUNT", expression="t1.KEYCOUNT", showorder=5), @DEDataQueryCodeExp(name="KEYSTATE", expression="t1.KEYSTATE", showorder=6), @DEDataQueryCodeExp(name="LOGINUSERFLAG", expression="t1.LOGINUSERFLAG", showorder=7), @DEDataQueryCodeExp(name="LOGINUSERID", expression="t1.LOGINUSERID", showorder=8), @DEDataQueryCodeExp(name="LOGINUSERNAME", expression="t1.LOGINUSERNAME", showorder=9), @DEDataQueryCodeExp(name="PSDEPSLNSYSDYNAINSTID", expression="t1.PSDEPSLNSYSDYNAINSTID", showorder=10), @DEDataQueryCodeExp(name="PSDEPSLNSYSDYNAINSTNAME", expression="t1.PSDEPSLNSYSDYNAINSTNAME", showorder=11), @DEDataQueryCodeExp(name="PSDEPSLNSYSID", expression="t1.PSDEPSLNSYSID", showorder=12), @DEDataQueryCodeExp(name="PSDEPSLNSYSKEYID", expression="t1.PSDEPSLNSYSKEYID", showorder=13), @DEDataQueryCodeExp(name="PSDEPSLNSYSKEYNAME", expression="t1.PSDEPSLNSYSKEYNAME", showorder=14), @DEDataQueryCodeExp(name="PSDEPSLNSYSNAME", expression="t1.PSDEPSLNSYSNAME", showorder=15), @DEDataQueryCodeExp(name="PSDEVCENTERID", expression="t1.PSDEVCENTERID", showorder=16), @DEDataQueryCodeExp(name="PSDEVCENTERNAME", expression="t1.PSDEVCENTERNAME", showorder=17), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=18), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=19)}, conds={})})
+public class PSDepSlnSysKeyDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSDepSlnSysKeyDefaultDQModel() {
+        this.initAnnotation(PSDepSlnSysKeyDefaultDQModel.class);
+    }
+}
+

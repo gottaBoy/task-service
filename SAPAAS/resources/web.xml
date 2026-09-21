@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<display-name>SAEAM</display-name>
+	<context-param>
+		<param-name>crystal_image_use_relative</param-name>
+		<param-value>webapp</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>SA.SRFramework.WebEx.SRFExSessionListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>SAEAMHttpModule</filter-name>
+		<filter-class>net.ibizsys.psts.web.HttpModule_MySQL</filter-class>
+		
+		<init-param>
+			<param-name>SYSTEMID</param-name>
+			<param-value>SAEAM</param-value>
+		</init-param>
+		<init-param>
+			<param-name>PRODUCTSN</param-name>
+			<param-value>LYXG</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>CONFIGEXPATH</param-name>
+			<param-value>configex_runtime|configex_srfadv|configex_lyxg|configex</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>CHARTRENDER</param-name>
+			<param-value>/sachartrender</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>ROLEMODE</param-name>
+			<param-value>FALSE</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>ENCRYPT</param-name>
+			<param-value>False</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>DEBUG</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>Optimize</param-name>
+			<param-value>FALSE</param-value>
+		</init-param>
+		<!--
+			<init-param> <param-name>OptimizeEx</param-name>
+			<param-value>FALSE</param-value> </init-param>
+		-->
+		<init-param>
+			<param-name>FormOptimize</param-name>
+			<param-value>TRUE</param-value>
+		</init-param>
+		<init-param>
+			<param-name>CURPATH</param-name>
+			<param-value>http://task.ibizcloud.cn:30088/SAPAAS/</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ERROR_PAGE</param-name>
+			<param-value>../login/login.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>UAREQUESTURL</param-name>
+			<param-value>login/login.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>UASERVERURL</param-name>
+			<param-value>
+				http://192.168.100.5:8050/SAUA/login/login.jsp
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>UASERVERLOGOUT</param-name>
+			<param-value>
+				http://192.168.100.5:8050/SAUA/login/logout.jsp
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>RSAPUBKEY</param-name>
+			<param-value>29437</param-value>
+		</init-param>
+
+
+		<init-param>
+			<param-name>CONNECTIONMODE</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ORADBDSN</param-name>
+			<!--
+				<param-value>jdbc:oracle:thin:@192.168.100.5:1521:saora92</param-value>
+			-->
+			<param-value>java:comp/env/jdbc/sasrf</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ORADBDSN2</param-name>
+			<!--
+				<param-value>jdbc:oracle:thin:@192.168.100.5:1521:saora92</param-value>
+			-->
+			<param-value>java:comp/env/jdbc/sasrf</param-value>
+		</init-param>
+		<init-param>
+			<param-name>DBCALL</param-name>
+			<param-value>
+				net.ibizsys.psts.web.WebDBCallerHelper_MySQL
+			</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>DBDSN</param-name>
+			<param-value>java:comp/env/jdbc/ibiz5ts_mysql</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>DBCALL2</param-name>
+			<param-value>
+				saeam.commonex.SASRFDBCallerHelper
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>DB2DBDSN</param-name>
+			<param-value>java:comp/env/jdbc/ibiz5ts_mysql</param-value>
+		</init-param>
+		<init-param>
+			<param-name>MYSQLDBDSN</param-name>
+			<param-value>java:comp/env/jdbc/ibiz5ts_mysql</param-value>
+		</init-param>
+		<init-param>
+			<param-name>DB2UTX</param-name>
+			<param-value>java:comp/env/utx/ibiz5ts_mysql</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>DB2DBUSERNAME</param-name>
+			<param-value>db2admin</param-value>
+		</init-param>
+		<init-param>
+			<param-name>DB2DBUSERPWD</param-name>
+			<param-value>sys</param-value>
+		</init-param>
+		<init-param>
+			<param-name>DBPROCNAME</param-name>
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ORADBUSERNAME</param-name>
+			<param-value>saeamusr</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ORADBUSERPWD</param-name>
+			<param-value>sys</param-value>
+		</init-param>
+
+		<!-- SACEAFTC数据库 -->
+		<init-param>
+			<param-name>SACEAFTC_CONNECTIONMODE</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>SACEAFTC_SQLDBDSN</param-name>
+			<!--
+				<param-value>
+				jdbc:sqlserver://192.168.100.5\SASQL2005;databaseName=saceaftc
+				</param-value>
+			-->
+			<param-value>java:comp/env/jdbc/saceaftc_sql</param-value>
+		</init-param>
+		
+
+		<init-param>
+			<param-name>FILESERVERPATH</param-name>
+			<param-value>\\127.0.0.1\d$\download</param-value>
+		</init-param>
+		
+		
+		<init-param>
+			<param-name>EXCELEXPORTEREX</param-name>
+			<param-value>../commonex/excelexporter.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>SEARCHTHEME</param-name>
+			<param-value>
+				../commonex/searchthemebackend.jsp
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>AUTOCOMPLETE</param-name>
+			<param-value>
+				../srfpage/autocompletebackend.jsp
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ACCESSITEMHIST</param-name>
+			<param-value>
+				../commonex/accessitemhistbackend.jsp
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>DATAGRIDTHEME</param-name>
+			<param-value>../commonex/datagridtheme.jsp</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>USERDATAGRIDTHEME</param-name>
+			<param-value>
+				SA.SRFDA.Ctrl.DataGrid.MyDataGridTheme
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>USERMENUCAPTIONURL</param-name>
+			<param-value>../commonex/usermenucaption.jsp</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>ACCESSDENY_MAJORURL</param-name>
+			<param-value>../commonex/accessdeny_major.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ACCESSDENY_MINORURL</param-name>
+			<param-value>../commonex/accessdeny_minor.jsp</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>WEBCONTEXT</param-name>
+			<param-value>net.ibizsys.psts.web.WebContext</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>USERCODELIST</param-name>
+			<param-value>TRUE</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>AUTHFILTER</param-name>
+			<param-value>TRUE</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>AUTHPATH</param-name>
+			<param-value>/uacclient/uaclogin.jsp</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>AUTHSERVER</param-name>
+			<param-value>task.ibizcloud.cn|WWW.SOFTANYWHERE.COM</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>AUTHPATH_task_ibizcloud_cn</param-name>
+			<param-value>/uacclient/uaclogin3.jsp</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>AUTHPATH_WWW_SOFTANYWHERE_COM</param-name>
+			<param-value>/uacclient/uaclogin5.jsp</param-value>
+		</init-param>
+		
+		<init-param>
+			<param-name>PSAPIONLY</param-name>
+			<param-value>TRUE</param-value>
+		</init-param>		
+
+	</filter>
+
+
+
+	<filter-mapping>
+		<filter-name>SAEAMHttpModule</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>SA UAC Filter</filter-name>
+		<filter-class>SA.SRFDA.UAC.Client.Web.AuthenticationFilter</filter-class>
+		<init-param>
+			<param-name>UACLOGINURL</param-name>
+			<param-value>http://cas.ibizcloud.cn:8080/SAUAC/login</param-value>
+		</init-param>
+		<init-param>
+			<param-name>UACSERVER</param-name>
+			<param-value>http://cas.ibizcloud.cn:8080/SAUAC/</param-value>
+		</init-param>
+		<init-param>
+			<param-name>SERVERNAME</param-name>
+			<param-value>http://task.ibizcloud.cn:30088</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SA UAC Filter</filter-name>
+		<url-pattern>/uacclient/uaclogin2.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>SA UAC Filter2</filter-name>
+		<filter-class>SA.SRFDA.UAC.Client.Web.TicketValidationFilter</filter-class>
+		<init-param>
+			<param-name>UACSERVER</param-name>
+			<param-value>http://cas.ibizcloud.cn:8080/SAUAC/</param-value>
+		</init-param>
+		<init-param>
+			<param-name>SERVERNAME</param-name>
+			<param-value>http://task.ibizcloud.cn:30088</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SA UAC Filter2</filter-name>
+		<url-pattern>/uacclient/uaclogin2.jsp</url-pattern>
+	</filter-mapping>
+
+
+	<filter>
+		<filter-name>SA UAC Filter3</filter-name>
+		<filter-class>SA.SRFDA.UAC.Client.Web.AuthenticationFilter</filter-class>
+		<init-param>
+			<param-name>UACLOGINURL</param-name>
+			<param-value>http://cas.ibizcloud.cn:8080/SAUAC/login</param-value>
+		</init-param>
+		<init-param>
+			<param-name>UACSERVER</param-name>
+			<param-value>http://cas.ibizcloud.cn:8080/SAUAC/</param-value>
+		</init-param>
+		<init-param>
+			<param-name>SERVERNAME</param-name>
+			<param-value>http://task.ibizcloud.cn:30088</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SA UAC Filter3</filter-name>
+		<url-pattern>/uacclient/uaclogin4.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>SA UAC Filter4</filter-name>
+		<filter-class>SA.SRFDA.UAC.Client.Web.TicketValidationFilter</filter-class>
+		<init-param>
+			<param-name>UACSERVER</param-name>
+			<param-value>http://cas.ibizcloud.cn:8080/SAUAC/</param-value>
+		</init-param>
+		<init-param>
+			<param-name>SERVERNAME</param-name>
+			<param-value>http://task.ibizcloud.cn:30088</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SA UAC Filter4</filter-name>
+		<url-pattern>/uacclient/uaclogin4.jsp</url-pattern>
+	</filter-mapping>
+	
+
+ 	<servlet>
+		<servlet-name>SAImageBuilder</servlet-name>
+		<servlet-class>
+			SA.SRFramework.Report.Web.ImageBuilder
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SAImageBuilder</servlet-name>
+		<url-pattern>/sachartrender/*</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>PDFReportBuilder</servlet-name>
+		<servlet-class>
+			SA.SRFDA.Report.Web.ReportBuilder
+		</servlet-class>
+		<init-param>
+			<param-name>REPORTTYPE</param-name>
+			<param-value>PDF</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PDFReportBuilder</servlet-name>
+		<url-pattern>/srfreport/pdfreport.pdf</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>ExcelReportBuilder</servlet-name>
+		<servlet-class>
+			SA.SRFDA.Report.Web.ReportBuilder
+		</servlet-class>
+		<init-param>
+			<param-name>REPORTTYPE</param-name>
+			<param-value>EXCEL</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ExcelReportBuilder</servlet-name>
+		<url-pattern>/srfreport/excelreport.xls</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>HtmlReportBuilder</servlet-name>
+		<servlet-class>
+			SA.SRFDA.Report.Web.ReportBuilder
+		</servlet-class>
+		<init-param>
+			<param-name>REPORTTYPE</param-name>
+			<param-value>HTML</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HtmlReportBuilder</servlet-name>
+		<url-pattern>/srfreport/htmlreport.html</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>PDFPrintFormBuilder</servlet-name>
+		<servlet-class>
+			SA.SRFDA.Report.Web.PrintFormBuilder
+		</servlet-class>
+		<init-param>
+			<param-name>REPORTTYPE</param-name>
+			<param-value>PDF</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PDFPrintFormBuilder</servlet-name>
+		<url-pattern>/srfreport/printform.pdf</url-pattern>
+	</servlet-mapping>
+
+	<!-- BI -->
+	<servlet>
+		<servlet-name>SAOLAPXmlaServlet</servlet-name>
+		<servlet-class>SA.SRFDA.BI.Web.SRFDAXmlaServlet</servlet-class>
+		<init-param>
+			<param-name>CharacterEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SAOLAPXmlaServlet</servlet-name>
+		<url-pattern>/xmla</url-pattern>
+	</servlet-mapping>
+
+	<!-- 结束BI -->
+
+	<!-- 开始IM -->
+	<servlet>
+		<servlet-name>IMCatalogServlet</servlet-name>
+		<servlet-class>SA.IM.Web.IMCatalogServlet</servlet-class>
+		<init-param>
+			<param-name>CharacterEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>IMCatalogServlet</servlet-name>
+		<url-pattern>/im/catalog</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>IMStateServlet</servlet-name>
+		<servlet-class>SA.IM.Web.IMStateServlet</servlet-class>
+		<init-param>
+			<param-name>CharacterEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>IMStateServlet</servlet-name>
+		<url-pattern>/im/state</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>IMStateCometServlet</servlet-name>
+		<servlet-class>SA.IM.Web.IMStateCometServlet</servlet-class>
+		<init-param>
+			<param-name>CharacterEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>IMStateCometServlet</servlet-name>
+		<url-pattern>/im/statecomet</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<servlet-name>IMMeetingServlet</servlet-name>
+		<servlet-class>SA.IM.Web.IMMeetingServlet</servlet-class>
+		<init-param>
+			<param-name>CharacterEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>IMMeetingServlet</servlet-name>
+		<url-pattern>/im/meeting</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>IMMeetingCometServlet</servlet-name>
+		<servlet-class>SA.IM.Web.IMMeetingCometServlet</servlet-class>
+		<init-param>
+			<param-name>CharacterEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>IMMeetingCometServlet</servlet-name>
+		<url-pattern>/im/meetingcomet</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>TSMgrApi</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Web.TSMgrApi
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TSMgrApi</servlet-name>
+		<url-pattern>/saps/tsmgrapi</url-pattern>
+	</servlet-mapping>
+
+	<!-- 结束IM -->
+
+<!-- JIT ExtJS5 -->
+	<servlet>
+		<servlet-name>jit_extjs5_bootstrap_json</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Core.JIT.Web.PSJITPFAppCodeHttpServlet
+		</servlet-class>
+		<init-param>
+			<param-name>APPCODE</param-name>
+			<param-value>APP_BOOTSTRAPJSON</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jit_extjs5_bootstrap_json</servlet-name>
+		<url-pattern>/sapsjit_extjs5/bootstrap.json</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jit_extjs5_app_js</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Core.JIT.Web.PSJITPFAppCodeHttpServlet
+		</servlet-class>
+		<init-param>
+			<param-name>APPCODE</param-name>
+			<param-value>APP_APPJS</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jit_extjs5_app_js</servlet-name>
+		<url-pattern>/sapsjit_extjs5/app.js</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>jit_extjs5_app_json</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Core.JIT.Web.PSJITPFAppCodeHttpServlet
+		</servlet-class>
+		<init-param>
+			<param-name>APPCODE</param-name>
+			<param-value>APP_APPJSON</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jit_extjs5_app_json</servlet-name>
+		<url-pattern>/sapsjit_extjs5/app.json</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jit_extjs5_app_app_js</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Core.JIT.Web.PSJITPFAppCodeHttpServlet
+		</servlet-class>
+		<init-param>
+			<param-name>APPCODE</param-name>
+			<param-value>APP</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jit_extjs5_app_app_js</servlet-name>
+		<url-pattern>/sapsjit_extjs5/app/ApplicationBase.js</url-pattern>
+	</servlet-mapping>
+		
+	<servlet>
+		<servlet-name>jit_extjs5_app_appuser_js</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Core.JIT.Web.PSJITPFAppCodeHttpServlet
+		</servlet-class>
+		<init-param>
+			<param-name>APPCODE</param-name>
+			<param-value>APP_USER</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jit_extjs5_app_appuser_js</servlet-name>
+		<url-pattern>/sapsjit_extjs5/app/Application.js</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jit_extjs5_app_viewcode</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Core.JIT.Web.PSExtJS5JITViewCodeHttpServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jit_extjs5_app_viewcode</servlet-name>
+		<url-pattern>/sapsjit_extjs5/app/view/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- JIT JQUERY -->
+	<servlet>
+		<servlet-name>jit_jq_user_css</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Core.JIT.Web.PSJITPFAppCodeHttpServlet
+		</servlet-class>
+		<init-param>
+			<param-name>APPCODE</param-name>
+			<param-value>APP_USERCSS</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jit_jq_user_css</servlet-name>
+		<url-pattern>/sapsjit_jquery/resource/css/user.css</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>jit_jq_user_css</servlet-name>
+		<url-pattern>/sapsjit_jquery_r2/resource/css/user.css</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>jit_jq_user_css</servlet-name>
+		<url-pattern>/sapsjit_jquery_share/resource/css/user.css</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>jit_jq_app_viewcode</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Core.JIT.Web.PSJQJITViewCodeHttpServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jit_jq_app_viewcode</servlet-name>
+		<url-pattern>/sapsjit_jquery/js/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>jit_jq_app_viewcode</servlet-name>
+		<url-pattern>/sapsjit_jquery_r2/js/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>jit_jq_app_viewcode</servlet-name>
+		<url-pattern>/sapsjit_jquery_share/js/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- JIT后台服务 -->
+	<servlet>
+		<servlet-name>jit_srv</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Core.JIT.Web.PSJITSFVCServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jit_srv</servlet-name>
+		<url-pattern>/sapsjitsrv/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- 系统模型日志 -->
+	<servlet>
+		<servlet-name>system_log</servlet-name>
+		<servlet-class>
+			SA.SRFDA.PS.Web.SystemModelLogServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>system_log</servlet-name>
+		<url-pattern>/saps/system.log</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

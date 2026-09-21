@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW width="745">
+	<SRFEXTABVIEWPAGE id="sublist" caption="功能位置信息" REMOTEURL="../emdatamgr/eqlocation_summarypage.jsp"/>
+</SRFEXTABVIEW>

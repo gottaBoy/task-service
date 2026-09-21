@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW >
+	<SRFEXTABVIEWPAGE id="list" caption="功能位置列表" REMOTEURL="../emdatamgr/eqlocation_listpage.jsp"/>
+	<SRFEXTABVIEWPAGE id="edit" caption="功能位置编辑" REMOTEURL="../emdatamgr/eqlocation_editpage.jsp"/>
+	<SRFEXTABVIEWPAGE id="relatedinfo_eqlocation" caption="相关设备明细" REMOTEURL="../emdatamgr/eqlocationequip_rlistpage.jsp"/>
+	<SRFEXTABVIEWPAGE id="eqlocationequiptree" caption="设备树[位置]" REMOTEURL="../eminfomgr/eqlocationequip_treepage.jsp"/>		
+</SRFEXTABVIEW>

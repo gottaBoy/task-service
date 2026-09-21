@@ -1,0 +1,30 @@
+.app-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .ivu-modal {
+        height: calc(100vh - 100px);
+        top: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .ivu-modal-content {
+            height: 100%;
+            max-height: 100%;
+            padding: 2px;
+            //  撑满内容区
+            flex-grow: 1;
+            .ivu-modal-body {
+                padding: 0;
+                height: calc(100% - 52px);
+                overflow: scroll;
+            }
+        }
+    }
+}
+//  当模态内容存在高度，但内容区不能完全占满时强制撑开内容区
+.app-modal.modal-height {
+    .ivu-modal .ivu-modal-content {
+        flex-grow: 1;
+    }
+}

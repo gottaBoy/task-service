@@ -1,0 +1,11 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package net.ibizsys.pscore.srv.paasmgr.demodel.pssysmodelinst.dataset;
+
+import net.ibizsys.pscore.srv.paasmgr.demodel.pssysmodelinst.dataset.PSSysModelInstDefaultDSModelBase;
+
+public class PSSysModelInstDefaultDSModel
+extends PSSysModelInstDefaultDSModelBase {
+}
+

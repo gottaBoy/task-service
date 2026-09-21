@@ -1,0 +1,222 @@
+BODY {
+	SCROLLBAR-FACE-COLOR: #ffffff; SCROLLBAR-HIGHLIGHT-COLOR: #b3b9c9; SCROLLBAR-SHADOW-COLOR: #f9fff9; SCROLLBAR-3DLIGHT-COLOR: #f9fff9; SCROLLBAR-ARROW-COLOR: #7080b4; SCROLLBAR-TRACK-COLOR: #eff0f4; SCROLLBAR-DARKSHADOW-COLOR: #7080b4; SCROLLBAR-BASE-COLOR: #6c48fc
+}
+.menu-tree-shadow {
+	FILTER: DropShadow(Color=#56628B, OffX=1, OffY=1)
+}
+.menu-tree-title {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.menutree-text {
+	FONT-SIZE: 11px; COLOR: #3f519d; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.down-text {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"
+}
+.down-text-shadow {
+	FILTER: DropShadow(Color=#55608C, OffX=1, OffY=1)
+}
+.clock-shadow {
+	FILTER: DropShadow(Color=#E2E6F6, OffX=1, OffY=1)
+}
+.clock-text {
+	FONT-SIZE: 11px; COLOR: #3f519d; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #333333; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff3300; TEXT-DECORATION: underline blink
+}
+A:active {
+	COLOR: #ff3300; TEXT-DECORATION: blink
+}
+A:visited {
+	COLOR: #333333; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff3300; TEXT-DECORATION: underline blink
+}
+.a2:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.a2:hover {
+	COLOR: #eeeeee; TEXT-DECORATION: underline blink
+}
+.a2:active {
+	COLOR: #ffffff; TEXT-DECORATION: blink
+}
+.a2:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.a2:hover {
+	COLOR: #eeeeee; TEXT-DECORATION: underline blink
+}
+.navPoint {
+	FONT-SIZE: 10px; CURSOR: hand; COLOR: #7080b4; FONT-FAMILY: Webdings
+}
+.10pxBlackPoint {
+	FONT-SIZE: 10px; COLOR: #333333; FONT-FAMILY: Webdings
+}
+.10pxRedPoint {
+	FONT-SIZE: 10px; COLOR: #ff3300; FONT-FAMILY: Webdings
+}
+.10pxBluePoint {
+	FONT-SIZE: 10px; COLOR: #7080b4; FONT-FAMILY: Webdings
+}
+.10pxWhitePoint {
+	FONT-SIZE: 10px; COLOR: #ffffff; FONT-FAMILY: Webdings
+}
+.10pxGrayPoint {
+	FONT-SIZE: 10px; COLOR: #aaaaaa; FONT-FAMILY: Webdings
+}
+.16pxBlackPoint {
+	FONT-SIZE: 16px; COLOR: #333333; FONT-FAMILY: Webdings
+}
+.16pxRedPoint {
+	FONT-SIZE: 16px; COLOR: #ff3300; FONT-FAMILY: Webdings
+}
+.16pxBluePoint {
+	FONT-SIZE: 16px; COLOR: #7080b4; FONT-FAMILY: Webdings
+}
+.16pxWhitePoint {
+	FONT-SIZE: 16px; COLOR: #ffffff; FONT-FAMILY: Webdings
+}
+.16pxGrayPoint {
+	FONT-SIZE: 16px; COLOR: #aaaaaa; FONT-FAMILY: Webdings
+}
+.menutree-text:active {
+	COLOR: #ffffff; BACKGROUND-COLOR: #3f519d
+}
+.BlutDefaultTable {
+	FONT-SIZE: 9pt; COLOR: #3f519d; FONT-FAMILY: "кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.BlackDefaultTable {
+	FONT-SIZE: 9pt; COLOR: #333333; FONT-FAMILY: "кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.11ptBlueTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; COLOR: #3f519d; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.11ptRedTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; COLOR: #cc0000; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.11ptWhiteTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.11ptGrayTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; COLOR: #aaaaaa; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.input-1 {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #aaaaaa 1px solid; COLOR: #000000; BORDER-BOTTOM: #aaaaaa 1px solid; FONT-FAMILY: Verdana, Arial, "кнлЕ", "свт╡"; HEIGHT: 16px; BACKGROUND-COLOR: #ffffff
+}
+.input-2 {
+	BORDER-RIGHT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #aaaaaa 1px solid; COLOR: #000000; BORDER-BOTTOM: #aaaaaa 1px solid; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; BACKGROUND-COLOR: #ffffff
+}
+.input-button {
+	BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; FONT-SIZE: 11px; BACKGROUND-IMAGE: url(../images/bt_1.gif); BORDER-LEFT: 0px solid; WIDTH: 75px; CURSOR: hand; COLOR: #4a595a; BORDER-BOTTOM: 0px solid; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; HEIGHT: 26px
+}
+.input-button2 {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+.9ptBlackText {
+	FONT-SIZE: 9pt; MARGIN: 5px; COLOR: #333333; TEXT-INDENT: 18pt; LINE-HEIGHT: 18px; FONT-FAMILY: "кнлЕ", "свт╡"; TEXT-ALIGN: justify
+}
+.9ptBlueText {
+	FONT-SIZE: 9pt; MARGIN: 5px; COLOR: #3f519d; TEXT-INDENT: 18pt; LINE-HEIGHT: 18px; FONT-FAMILY: "кнлЕ", "свт╡"; TEXT-ALIGN: justify
+}
+.9ptWhiteText {
+	FONT-SIZE: 9pt; MARGIN: 5px; COLOR: #ffffff; TEXT-INDENT: 18pt; LINE-HEIGHT: 18px; FONT-FAMILY: "кнлЕ", "свт╡"; TEXT-ALIGN: justify
+}
+.9ptGrayText {
+	FONT-SIZE: 9pt; MARGIN: 5px; COLOR: #aaaaaa; TEXT-INDENT: 18pt; LINE-HEIGHT: 18px; FONT-FAMILY: "кнлЕ", "свт╡"; TEXT-ALIGN: justify
+}
+.10ptBlackText {
+	FONT-SIZE: 10pt; MARGIN: 5px; COLOR: #333333; TEXT-INDENT: 18pt; LINE-HEIGHT: 18px; FONT-FAMILY: "кнлЕ", "свт╡"; TEXT-ALIGN: justify
+}
+.10ptBlueText {
+	FONT-SIZE: 10pt; MARGIN: 5px; COLOR: #3f519d; TEXT-INDENT: 18pt; LINE-HEIGHT: 18px; FONT-FAMILY: "кнлЕ", "свт╡"; TEXT-ALIGN: justify
+}
+.10ptWhiteText {
+	FONT-SIZE: 10pt; MARGIN: 5px; COLOR: #ffffff; TEXT-INDENT: 18pt; LINE-HEIGHT: 18px; FONT-FAMILY: "кнлЕ", "свт╡"; TEXT-ALIGN: justify
+}
+.10ptGrayText {
+	FONT-SIZE: 10pt; MARGIN: 5px; COLOR: #aaaaaa; TEXT-INDENT: 18pt; LINE-HEIGHT: 18px; FONT-FAMILY: "кнлЕ", "свт╡"; TEXT-ALIGN: justify
+}
+.9ptBlue {
+	FONT-SIZE: 9pt; COLOR: #3f519d; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.9ptRed {
+	FONT-SIZE: 9pt; COLOR: #cc0000; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.9ptWhite {
+	FONT-SIZE: 9pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.9ptGray {
+	FONT-SIZE: 9pt; COLOR: #aaaaaa; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.9ptBlack {
+	FONT-SIZE: 9pt; COLOR: #000000; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; TEXT-DECORATION: none
+}
+.titile5-b {
+	FONT-SIZE: 9pt; COLOR: #333333; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡",; TEXT-DECORATION: none
+}
+.titile5-w {
+	FONT-SIZE: 9pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡",; TEXT-DECORATION: none
+}
+.titile5-r {
+	FONT-SIZE: 9pt; COLOR: #ff0000; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡",; TEXT-DECORATION: none
+}
+.titile5-purplerain {
+	FONT-SIZE: 9pt; COLOR: #ff66ff; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡",; TEXT-DECORATION: none
+}
+.titile5-gray {
+	FONT-SIZE: 9pt; COLOR: #999999; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡",; TEXT-DECORATION: none
+}
+.titile5-grayLine {
+	FONT-SIZE: 9pt; COLOR: #999999; FONT-FAMILY: Verdana, Arial, "кнлЕ", "свт╡",; TEXT-DECORATION: line-through
+}
+.titile4-b {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #333333; FONT-FAMILY: "кнлЕ", "свт╡",Verdana, Arial,; TEXT-DECORATION: none
+}
+.titile4-w {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡",; TEXT-DECORATION: none
+}
+.d9e {
+	FONT-SIZE: 7pt; COLOR: #444444; FONT-FAMILY: Verdana, Arial; TEXT-DECORATION: none
+}
+UL {
+	FONT-SIZE: 9pt; COLOR: #333333; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡",; TEXT-DECORATION: none
+}
+.newtable {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 4px; COLOR: #000000; PADDING-TOP: 4px; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; BACKGROUND-COLOR: #dce4f1; TEXT-DECORATION: none
+}
+.newtrtitle {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: #999999 1px solid; COLOR: #ffffff; BORDER-BOTTOM: #999999 1px solid; BACKGROUND-COLOR: #4960b8
+}
+.newtrtitle2 {
+	FONT-WEIGHT: normal; COLOR: #000000; BACKGROUND-COLOR: #bfc7e6; TEXT-ALIGN: center
+}
+.newtr {
+	BACKGROUND-COLOR: #ffffff
+}
+.newtdtitle {
+	FONT-WEIGHT: bold; COLOR: #565656; BACKGROUND-COLOR: #eeeeee; TEXT-ALIGN: right
+}
+.admintable {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 9pt; PADDING-BOTTOM: 4px; COLOR: #000000; PADDING-TOP: 4px; FONT-FAMILY: Verdana, Arial,"кнлЕ", "свт╡"; BACKGROUND-COLOR: #322d6c; TEXT-DECORATION: none
+}
+.admintabletd4 {
+	BORDER-RIGHT: #ffffff 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #ffffff 1px solid; PADDING-LEFT: 4px; FONT-WEIGHT: bold; FONT-SIZE: 14px; PADDING-BOTTOM: 4px; BORDER-LEFT: #ffffff 1px solid; COLOR: #ffffff; PADDING-TOP: 4px; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #322d6c
+}
+.admintabletd3 {
+	BORDER-RIGHT: #ffffff 1pt solid; PADDING-RIGHT: 4px; BORDER-TOP: #ffffff 1pt solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; BORDER-LEFT: #ffffff 1pt solid; PADDING-TOP: 4px; BORDER-BOTTOM: #ffffff 1pt solid; BACKGROUND-COLOR: #9ea4d8; TEXT-ALIGN: center
+}
+.admintabletd2-1 {
+	BORDER-RIGHT: #ffffff 1pt solid; PADDING-RIGHT: 4px; BORDER-TOP: #ffffff 1pt solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; BORDER-LEFT: #ffffff 1pt solid; PADDING-TOP: 4px; BORDER-BOTTOM: #ffffff 1pt solid; BACKGROUND-COLOR: #ffffff
+}
+.admintabletd2 {
+	BORDER-RIGHT: #ffffff 1pt solid; PADDING-RIGHT: 4px; BORDER-TOP: #ffffff 1pt solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; BORDER-LEFT: #ffffff 1pt solid; PADDING-TOP: 4px; BORDER-BOTTOM: #ffffff 1pt solid; BACKGROUND-COLOR: #f7f7ef
+}
+.admintabletd {
+	BORDER-RIGHT: #ffffff 1pt solid; PADDING-RIGHT: 4px; BORDER-TOP: #ffffff 1pt solid; PADDING-LEFT: 4px; PADDING-BOTTOM: 4px; BORDER-LEFT: #ffffff 1pt solid; PADDING-TOP: 4px; BORDER-BOTTOM: #ffffff 1pt solid; BACKGROUND-COLOR: #ffffff
+}

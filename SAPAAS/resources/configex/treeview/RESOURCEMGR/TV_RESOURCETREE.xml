@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTREEPANEL  id="TV_RESOURCETREE" selectedvalue="_2_1_1"  JSNAME="resourceTree" width="250" height="300"  extStyle="border: 1px solid #B5B8C8;">
+	<SRFEXTREENODE id="root" text=" &lt;a   href=&quot;javascript:subresadd('NA');&quot;&gt;资源&lt;/a&gt;" ASYNCMODE="TRUE" expand="TRUE">
+	</SRFEXTREENODE>
+</SRFEXTREEPANEL>
+
+<!--<a href=\"javascript:subresadd('" + strId + "');\" ><img src='../images/icon_enable.gif ' border='0' alt='点击新建' height='9'/></a>-->
+
+

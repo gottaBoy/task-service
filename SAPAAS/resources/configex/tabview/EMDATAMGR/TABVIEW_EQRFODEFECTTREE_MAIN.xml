@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW >
+	<SRFEXTABVIEWPAGE id="rfotree" caption="故障体系树" REMOTEURL="../emdatamgr/eqrfo_treepage.jsp"/>
+	<SRFEXTABVIEWPAGE id="emwoapply_rlist" caption="相关工单申请" REMOTEURL="../emdatamgr/emwoapply_rlistpage.jsp"/>	
+	<SRFEXTABVIEWPAGE id="emwo_rlist" caption="相关工单" REMOTEURL="../emdatamgr/emwo_rlistpage.jsp"/>	
+</SRFEXTABVIEW>

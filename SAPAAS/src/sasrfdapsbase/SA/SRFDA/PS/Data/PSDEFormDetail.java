@@ -1,0 +1,2726 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  SA.SRFramework.DataEx.BaseDataEntity
+ */
+package SA.SRFDA.PS.Data;
+
+import SA.SRFDA.PS.Data.PSDEFDLogic;
+import SA.SRFramework.DataEx.BaseDataEntity;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+
+public class PSDEFormDetail
+extends BaseDataEntity {
+    public static final String FORMTYPE_FORM = "FORM";
+    public static final String DETAILTYPE_FORMPAGE = "FORMPAGE";
+    public static final String DETAILTYPE_TABPANEL = "TABPANEL";
+    public static final String DETAILTYPE_TABPAGE = "TABPAGE";
+    public static final String DETAILTYPE_DATAGRID = "DATAGRID";
+    public static final String DETAILTYPE_FORMITEM = "FORMITEM";
+    public static final String DETAILTYPE_FORMITEMEX = "FORMITEMEX";
+    public static final String DETAILTYPE_USERCONTROL = "USERCONTROL";
+    public static final String DETAILTYPE_FORMPART = "FORMPART";
+    public static final String DETAILTYPE_GROUPPANEL = "GROUPPANEL";
+    public static final String DETAILTYPE_DRUIPART = "DRUIPART";
+    public static final String LAYOUTMODE_AUTOTABLE = "AUTOTABLE";
+    public static final String LAYOUTMODE_TABLE = "TABLE";
+    public static final String LAYOUTMODE_TABLE_12COL = "TABLE_12COL";
+    public static final String LAYOUTMODE_TABLE_24COL = "TABLE_24COL";
+    public static final String LAYOUTMODE_BORDER = "BORDER";
+    public static final String LABELPOS_LEFT = "LEFT";
+    public static final String LABELPOS_TOP = "TOP";
+    public static final String LABELPOS_RIGHT = "RIGHT";
+    public static final String LABELPOS_BOTTOM = "BOTTOM";
+    public static final String LABELPOS_NONE = "NONE";
+    public static final String EDITORTYPE_TEXTBOX = "TEXTBOX";
+    public static final String EDITORTYPE_USERCONTROL = "USERCONTROL";
+    public static final String EDITORTYPE_HIDDEN = "HIDDEN";
+    public static final String EDITORTYPE_IPADDRESSTEXTBOX = "IPADDRESSTEXTBOX";
+    public static final String EDITORTYPE_SPAN = "SPAN";
+    public static final String EDITORTYPE_TEXTAREA = "TEXTAREA";
+    public static final String EDITORTYPE_PICKER = "PICKER";
+    public static final String EDITORTYPE_DROPDOWNLIST = "DROPDOWNLIST";
+    public static final String EDITORTYPE_HTMLEDITOR = "HTMLEDITOR";
+    public static final String EDITORTYPE_RAW = "RAW";
+    public static final String EDITORTYPE_DATEPICKER = "DATEPICKER";
+    public static final String EDITORTYPE_LISTBOX = "LISTBOX";
+    public static final String EDITORTYPE_CHECKBOXLIST = "CHECKBOXLIST";
+    public static final String EDITORTYPE_CHECKBOX = "CHECKBOX";
+    public static final String EDITORTYPE_RADIOBUTTONLIST = "RADIOBUTTONLIST";
+    public static final String EDITORTYPE_FILEUPLOADER = "FILEUPLOADER";
+    public static final String EDITORTYPE_PICKEREX_LINKONLY = "PICKEREX_LINKONLY";
+    public static final String FORMTYPE_EDITFORM = "EDITFORM";
+    public static final String FORMTYPE_SEARCHFORM = "SEARCHFORM";
+    public static final String BTNACTIONTYPE_UIACTION = "UIACTION";
+    public static final String BTNACTIONTYPE_FIUPDATE = "FIUPDATE";
+    public static final int ENABLECOND_NONE = 0;
+    public static final int ENABLECOND_CREATE = 1;
+    public static final int ENABLECOND_UPDATE = 2;
+    public static final int ENABLECOND_ALL = 3;
+    public static final int IGNOREINPUT_NONE = 0;
+    public static final int IGNOREINPUT_CREATE = 1;
+    public static final int IGNOREINPUT_UPDATE = 2;
+    public static final int IGNOREINPUT_ALL = 3;
+    public static final String UPDATEDVT_SESSION = "SESSION";
+    public static final String UPDATEDVT_APPLICATION = "APPLICATION";
+    public static final String UPDATEDVT_UNIQUEID = "UNIQUEID";
+    public static final String UPDATEDVT_CONTEXT = "CONTEXT";
+    public static final String UPDATEDVT_PARAM = "PARAM";
+    public static final String UPDATEDVT_OPERATOR = "OPERATOR";
+    public static final String UPDATEDVT_OPERATORNAME = "OPERATORNAME";
+    public static final String UPDATEDVT_CURTIME = "CURTIME";
+    public static final String CREATEDVT_SESSION = "SESSION";
+    public static final String CREATEDVT_APPLICATION = "APPLICATION";
+    public static final String CREATEDVT_UNIQUEID = "UNIQUEID";
+    public static final String CREATEDVT_CONTEXT = "CONTEXT";
+    public static final String CREATEDVT_PARAM = "PARAM";
+    public static final String CREATEDVT_OPERATOR = "OPERATOR";
+    public static final String CREATEDVT_OPERATORNAME = "OPERATORNAME";
+    public static final String CREATEDVT_CURTIME = "CURTIME";
+    public static final int CODELISTCONFIGMODE_NONE = 0;
+    public static final int CODELISTCONFIGMODE_SELECTEDONLY = 1;
+    public static final int CODELISTCONFIGMODE_INCLUDECHILD = 2;
+    public static final int TITLEBARCLOSEMODE_NONE = 0;
+    public static final int TITLEBARCLOSEMODE_OPENDEFAULT = 1;
+    public static final int TITLEBARCLOSEMODE_CLOSEDEFAULT = 2;
+    public static final int BUILDINACTION_NEW = 1;
+    public static final int BUILDINACTION_MORE = 2;
+    public static final int SHOWMOREMODE_0 = 0;
+    public static final int SHOWMOREMODE_CONTENT = 1;
+    public static final int SHOWMOREMODE_MANAGE = 2;
+    public static final String TAG_PSDEFORMDETAILID = "PSDEFORMDETAILID";
+    public static final String TAG_PSDEFORMDETAILNAME = "PSDEFORMDETAILNAME";
+    public static final String TAG_CREATEMAN = "CREATEMAN";
+    public static final String TAG_CREATEDATE = "CREATEDATE";
+    public static final String TAG_UPDATEMAN = "UPDATEMAN";
+    public static final String TAG_UPDATEDATE = "UPDATEDATE";
+    public static final String TAG_PSDEFORMID = "PSDEFORMID";
+    public static final String TAG_PSDEFORMNAME = "PSDEFORMNAME";
+    public static final String TAG_PSDEFID = "PSDEFID";
+    public static final String TAG_PSDEFNAME = "PSDEFNAME";
+    public static final String TAG_PSDEFFORMITEMID = "PSDEFFORMITEMID";
+    public static final String TAG_PSDEFFORMITEMNAME = "PSDEFFORMITEMNAME";
+    public static final String TAG_DETAILTYPE = "DETAILTYPE";
+    public static final String TAG_CAPTION = "CAPTION";
+    public static final String TAG_MEMO = "MEMO";
+    public static final String TAG_PPSDEFORMDETAILID = "PPSDEFORMDETAILID";
+    public static final String TAG_PPSDEFORMDETAILNAME = "PPSDEFORMDETAILNAME";
+    public static final String TAG_ORDERVALUE = "ORDERVALUE";
+    public static final String TAG_LEVELTAG = "LEVELTAG";
+    public static final String TAG_LEVELVALUE = "LEVELVALUE";
+    public static final String TAG_CTRLWIDTH = "CTRLWIDTH";
+    public static final String TAG_CTRLHEIGHT = "CTRLHEIGHT";
+    public static final String TAG_SHOWCAPTION = "SHOWCAPTION";
+    public static final String TAG_COLID = "COLID";
+    public static final String TAG_COLSPAN = "COLSPAN";
+    public static final String TAG_ROWSPAN = "ROWSPAN";
+    public static final String TAG_COLMODEL = "COLMODEL";
+    public static final String TAG_LAYOUTMODE = "LAYOUTMODE";
+    public static final String TAG_MARGIN = "MARGIN";
+    public static final String TAG_PADDING = "PADDING";
+    public static final String TAG_LABELPOS = "LABELPOS";
+    public static final String TAG_LABELWIDTH = "LABELWIDTH";
+    public static final String TAG_EDITORTYPE = "EDITORTYPE";
+    public static final String TAG_ALLOWEMPTY = "ALLOWEMPTY";
+    public static final String TAG_LEVELNAME = "LEVELNAME";
+    public static final String TAG_GRIDROWID = "GRIDROWID";
+    public static final String TAG_VALUEFORMAT = "VALUEFORMAT";
+    public static final String TAG_FORMTYPE = "FORMTYPE";
+    public static final String TAG_PSDEFSFITEMID = "PSDEFSFITEMID";
+    public static final String TAG_PSDEFSFITEMNAME = "PSDEFSFITEMNAME";
+    public static final String TAG_PSDEID = "PSDEID";
+    public static final String TAG_PSDEDRITEMID = "PSDEDRITEMID";
+    public static final String TAG_PSDEDRITEMNAME = "PSDEDRITEMNAME";
+    public static final String TAG_HEIGHT = "HEIGHT";
+    public static final String TAG_PSSYSEDITORSTYLEID = "PSSYSEDITORSTYLEID";
+    public static final String TAG_PSSYSEDITORSTYLENAME = "PSSYSEDITORSTYLENAME";
+    public static final String TAG_ENABLECOND = "ENABLECOND";
+    public static final String TAG_UPDATEDV = "UPDATEDV";
+    public static final String TAG_CREATEDV = "CREATEDV";
+    public static final String TAG_UPDATEDVT = "UPDATEDVT";
+    public static final String TAG_CREATEDVT = "CREATEDVT";
+    public static final String TAG_PSDEFIUPDATEID = "PSDEFIUPDATEID";
+    public static final String TAG_PSDEFIUPDATENAME = "PSDEFIUPDATENAME";
+    public static final String TAG_PSDEFORMRFID = "PSDEFORMRFID";
+    public static final String TAG_PSDEFORMRFNAME = "PSDEFORMRFNAME";
+    public static final String TAG_REFPSDEFORMID = "REFPSDEFORMID";
+    public static final String TAG_REFPSDEFORMDETAILID = "REFPSDEFORMDETAILID";
+    public static final String TAG_REFPSDEFORMDETAILNAME = "REFPSDEFORMDETAILNAME";
+    public static final String TAG_IGNOREINPUT = "IGNOREINPUT";
+    public static final String TAG_LABELCOLSPAN = "LABELCOLSPAN";
+    public static final String TAG_CTRLCOLSPAN = "CTRLCOLSPAN";
+    public static final String TAG_LABELCOLSPAN2 = "LABELCOLSPAN2";
+    public static final String TAG_EDITORPARAMS = "EDITORPARAMS";
+    public static final String TAG_VALUEITEMNAME = "VALUEITEMNAME";
+    public static final String TAG_PSCODELISTID = "PSCODELISTID";
+    public static final String TAG_PSCODELISTNAME = "PSCODELISTNAME";
+    public static final String TAG_COL_XS = "COL_XS";
+    public static final String TAG_COL_SM = "COL_SM";
+    public static final String TAG_COL_MD = "COL_MD";
+    public static final String TAG_COL_LG = "COL_LG";
+    public static final String TAG_COL_LG_OS = "COL_LG_OS";
+    public static final String TAG_COL_XS_OS = "COL_XS_OS";
+    public static final String TAG_COL_SM_OS = "COL_SM_OS";
+    public static final String TAG_COL_MD_OS = "COL_MD_OS";
+    public static final String TAG_CHILD_COL_XS = "CHILD_COL_XS";
+    public static final String TAG_CHILD_COL_SM = "CHILD_COL_SM";
+    public static final String TAG_CHILD_COL_MD = "CHILD_COL_MD";
+    public static final String TAG_CHILD_COL_LG = "CHILD_COL_LG";
+    public static final String TAG_NEEDCODELISTCONFIG = "NEEDCODELISTCONFIG";
+    public static final String TAG_BTNACTIONTYPE = "BTNACTIONTYPE";
+    public static final String TAG_PSDEUIACTIONID = "PSDEUIACTIONID";
+    public static final String TAG_PSDEUIACTIONNAME = "PSDEUIACTIONNAME";
+    public static final String TAG_PSSYSIMAGEID = "PSSYSIMAGEID";
+    public static final String TAG_PSSYSIMAGENAME = "PSSYSIMAGENAME";
+    public static final String TAG_PSSYSCSSID = "PSSYSCSSID";
+    public static final String TAG_PSSYSCSSNAME = "PSSYSCSSNAME";
+    public static final String TAG_RAWCONTENT = "RAWCONTENT";
+    public static final String TAG_PICKUPPSDEVIEWID = "PICKUPPSDEVIEWID";
+    public static final String TAG_PICKUPPSDEVIEWNAME = "PICKUPPSDEVIEWNAME";
+    public static final String TAG_PSSYSDICTCATID = "PSSYSDICTCATID";
+    public static final String TAG_PSSYSDICTCATNAME = "PSSYSDICTCATNAME";
+    public static final String TAG_RESETITEMNAME = "RESETITEMNAME";
+    public static final String TAG_EMPTYCAPTION = "EMPTYCAPTION";
+    public static final String TAG_LINKPSDEVIEWID = "LINKPSDEVIEWID";
+    public static final String TAG_LINKPSDEVIEWNAME = "LINKPSDEVIEWNAME";
+    public static final String TAG_PLACEHOLDER = "PLACEHOLDER";
+    public static final String TAG_PSSYSCOUNTERID = "PSSYSCOUNTERID";
+    public static final String TAG_PSSYSCOUNTERNAME = "PSSYSCOUNTERNAME";
+    public static final String TAG_ITEMPSACHANDLERID = "ITEMPSACHANDLERID";
+    public static final String TAG_ITEMPSACHANDLERNAME = "ITEMPSACHANDLERNAME";
+    public static final String TAG_ENABLEITEMPRIV = "ENABLEITEMPRIV";
+    public static final String TAG_CODELISTCONFIGMODE = "CODELISTCONFIGMODE";
+    public static final String TAG_TITLEBARCLOSEMODE = "TITLEBARCLOSEMODE";
+    public static final String TAG_UCPSSYSPFPLUGINID = "UCPSSYSPFPLUGINID";
+    public static final String TAG_UCPSSYSPFPLUGINNAME = "UCPSSYSPFPLUGINNAME";
+    public static final String TAG_LABELPSSYSCSSID = "LABELPSSYSCSSID";
+    public static final String TAG_LABELPSSYSCSSNAME = "LABELPSSYSCSSNAME";
+    public static final String TAG_CAPPSLANRESID = "CAPPSLANRESID";
+    public static final String TAG_CAPPSLANRESNAME = "CAPPSLANRESNAME";
+    public static final String TAG_COL_WIDTH = "COL_WIDTH";
+    public static final String TAG_WBDEFMODE = "WBDEFMODE";
+    public static final String TAG_CONVERTCITEXT = "CONVERTCITEXT";
+    public static final String TAG_ENABLEANCHOR = "ENABLEANCHOR";
+    public static final String TAG_BUILDINACTION = "BUILDINACTION";
+    public static final String TAG_USERTAG = "USERTAG";
+    public static final String TAG_USERTAG2 = "USERTAG2";
+    public static final String TAG_DETAILSTYLE = "DETAILSTYLE";
+    public static final String TAG_BL_POS = "BL_POS";
+    public static final String TAG_BL_WIDTH = "BL_WIDTH";
+    public static final String TAG_BL_HEIGHT = "BL_HEIGHT";
+    public static final String TAG_PSDEUAGROUPID = "PSDEUAGROUPID";
+    public static final String TAG_PSDEUAGROUPNAME = "PSDEUAGROUPNAME";
+    public static final String TAG_WIDTH = "WIDTH";
+    public static final String TAG_NOPRIVDM = "NOPRIVDM";
+    public static final String TAG_MDCTRLTYPE = "MDCTRLTYPE";
+    public static final String TAG_MDPSDEFORMID = "MDPSDEFORMID";
+    public static final String TAG_MDPSDEFORMNAME = "MDPSDEFORMNAME";
+    public static final String TAG_MDPSDELISTID = "MDPSDELISTID";
+    public static final String TAG_MDPSDELISTNAME = "MDPSDELISTNAME";
+    public static final String TAG_REFPSDERID = "REFPSDERID";
+    public static final String TAG_REFPSDERNAME = "REFPSDERNAME";
+    public static final String TAG_EDITORTYPENAME = "EDITORTYPENAME";
+    public static final String TAG_SHOWMOREMODE = "SHOWMOREMODE";
+    public static final String TAG_CONTENTTYPE = "CONTENTTYPE";
+    public static final String TAG_HTMLCONTENT = "HTMLCONTENT";
+    public static final String TAG_PSSYSRESOURCEID = "PSSYSRESOURCEID";
+    public static final String TAG_PSSYSRESOURCENAME = "PSSYSRESOURCENAME";
+    public static final String TAG_PHPSLANRESID = "PHPSLANRESID";
+    public static final String TAG_PHPSLANRESNAME = "PHPSLANRESNAME";
+    public static final String TAG_REFPSDEID = "REFPSDEID";
+    public static final String TAG_REFPSDENAME = "REFPSDENAME";
+    public static final String TAG_REFPSDEDATASETID = "REFPSDEDATASETID";
+    public static final String TAG_REFPSDEDATASETNAME = "REFPSDEDATASETNAME";
+    public static final String TAG_REFPSDEACMODEID = "REFPSDEACMODEID";
+    public static final String TAG_REFPSDEACMODENAME = "REFPSDEACMODENAME";
+    public static final String TAG_SPACINGTOP = "SPACINGTOP";
+    public static final String TAG_SPACINGBOTTOM = "SPACINGBOTTOM";
+    public static final String TAG_SPACINGLEFT = "SPACINGLEFT";
+    public static final String TAG_SPACINGRIGHT = "SPACINGRIGHT";
+    public static final String TAG_VALIGN = "VALIGN";
+    public static final String TAG_HALIGN = "HALIGN";
+    public static final String TAG_RAWCSSSTYLE = "RAWCSSSTYLE";
+    public static final String TAG_LABELRAWCSSSTYLE = "LABELRAWCSSSTYLE";
+    public static final String TAG_DYNACLASS = "DYNACLASS";
+    public static final String TAG_LABELDYNACLASS = "LABELDYNACLASS";
+    public static final String TAG_VALIGNSELF = "VALIGNSELF";
+    public static final String TAG_HALIGNSELF = "HALIGNSELF";
+    public static final String TAG_DETAILSTYLETEXT = "DETAILSTYLETEXT";
+    public static final String TAG_RENDERMODETEXT = "RENDERMODETEXT";
+    public static final String TAG_RENDERMODE = "RENDERMODE";
+    public static final String TAG_TOGGLEMODE = "TOGGLEMODE";
+    public static final String TAG_BORDERSTYLE = "BORDERSTYLE";
+    public static final String TAG_ICONALIGN = "ICONALIGN";
+    public static final String TAG_CUSTOMCODE = "CUSTOMCODE";
+    public static final String TAG_DETAILTAG2 = "DETAILTAG2";
+    public static final String TAG_DETAILTAG = "DETAILTAG";
+    public static final String TAG_DEFAULTFLAG = "DEFAULTFLAG";
+    public static final String TAG_DATA = "DATA";
+    public static final String TAG_HEIGHTMODE = "HEIGHTMODE";
+    public static final String TAG_WIDTHMODE = "WIDTHMODE";
+    public static final String TAG_PREDEFINEDTYPE = "PREDEFINEDTYPE";
+    public static final String TAG_PREDEFINEDTYPETEXT = "PREDEFINEDTYPETEXT";
+    public static final String TAG_SWAPMODE = "SWAPMODE";
+    public static final String TAG_CTRLPSSYSCSSID = "CTRLPSSYSCSSID";
+    public static final String TAG_CTRLPSSYSCSSNAME = "CTRLPSSYSCSSNAME";
+    public static final String TAG_CTRLDYNACLASS = "CTRLDYNACLASS";
+    public static final String TAG_CTRLRAWCSSSTYLE = "CTRLRAWCSSSTYLE";
+    public static final String TAG_PSDELOGICID = "PSDELOGICID";
+    public static final String TAG_PSDELOGICNAME = "PSDELOGICNAME";
+    public static final String TAG_HTMLPAGEURL = "HTMLPAGEURL";
+    public static final String TAG_TOOLTIPINFO = "TOOLTIPINFO";
+    public static final String TAG_MDPSDEGRIDID = "MDPSDEGRIDID";
+    public static final String TAG_MDPSDEGRIDNAME = "MDPSDEGRIDNAME";
+    public static final String TAG_MDPSDEDATAVIEWID = "MDPSDEDATAVIEWID";
+    public static final String TAG_MDPSDEDATAVIEWNAME = "MDPSDEDATAVIEWNAME";
+    public static final String TAG_ITEMSTATES = "ITEMSTATES";
+    public static final String TAG_FIELDNAME = "FIELDNAME";
+    public static final String TAG_COLALIGN = "COLALIGN";
+    public static final String TAG_MASKMODE = "MASKMODE";
+    public static final String TAG_MASKINFO = "MASKINFO";
+    public static final String TAG_TIPPSLANRESID = "TIPPSLANRESID";
+    public static final String TAG_TIPPSLANRESNAME = "TIPPSLANRESNAME";
+    public static final String TAG_MASKPSLANRESID = "MASKPSLANRESID";
+    public static final String TAG_MASKPSLANRESNAME = "MASKPSLANRESNAME";
+    public static final String TAG_TEMPLATEMODE = "TEMPLATEMODE";
+    public static final String TAG_PSDEDRID = "PSDEDRID";
+    public static final String TAG_PSDEDRNAME = "PSDEDRNAME";
+    public static final String TAG_INSERTPOS = "INSERTPOS";
+    public static final String TAG_COUNTERMODE = "COUNTERMODE";
+    public static final String TAG_COUNTERID = "COUNTERID";
+    public static final String TAG_MODELSTATE = "MODELSTATE";
+    public static final String TAG_ENABLEINPUTTIP = "ENABLEINPUTTIP";
+    private ArrayList<PSDEFormDetail> childPSDEFormDetailList = null;
+    private HashMap<String, ArrayList<PSDEFDLogic>> childPSDEFDLogicListMap = null;
+
+    public final boolean isPSDEFORMDETAILIDNull() {
+        return this.IsParamNull(TAG_PSDEFORMDETAILID);
+    }
+
+    public final String getPSDEFORMDETAILID() {
+        return this.GetParamStringValue(TAG_PSDEFORMDETAILID, "");
+    }
+
+    public final void setPSDEFORMDETAILID(String strValue) {
+        this.SetParamValue(TAG_PSDEFORMDETAILID, strValue);
+    }
+
+    public final boolean isPSDEFORMDETAILNAMENull() {
+        return this.IsParamNull(TAG_PSDEFORMDETAILNAME);
+    }
+
+    public final String getPSDEFORMDETAILNAME() {
+        return this.GetParamStringValue(TAG_PSDEFORMDETAILNAME, "");
+    }
+
+    public final void setPSDEFORMDETAILNAME(String strValue) {
+        this.SetParamValue(TAG_PSDEFORMDETAILNAME, strValue);
+    }
+
+    public final boolean isCREATEMANNull() {
+        return this.IsParamNull(TAG_CREATEMAN);
+    }
+
+    public final String getCREATEMAN() {
+        return this.GetParamStringValue(TAG_CREATEMAN, "");
+    }
+
+    public final void setCREATEMAN(String strValue) {
+        this.SetParamValue(TAG_CREATEMAN, strValue);
+    }
+
+    public final boolean isCREATEDATENull() {
+        return this.IsParamNull(TAG_CREATEDATE);
+    }
+
+    public final Date getCREATEDATE() {
+        return this.GetParamDateValue(TAG_CREATEDATE, null);
+    }
+
+    public final void setCREATEDATE(Date dtValue) {
+        this.SetParamValue(TAG_CREATEDATE, dtValue);
+    }
+
+    public final boolean isUPDATEMANNull() {
+        return this.IsParamNull(TAG_UPDATEMAN);
+    }
+
+    public final String getUPDATEMAN() {
+        return this.GetParamStringValue(TAG_UPDATEMAN, "");
+    }
+
+    public final void setUPDATEMAN(String strValue) {
+        this.SetParamValue(TAG_UPDATEMAN, strValue);
+    }
+
+    public final boolean isUPDATEDATENull() {
+        return this.IsParamNull(TAG_UPDATEDATE);
+    }
+
+    public final Date getUPDATEDATE() {
+        return this.GetParamDateValue(TAG_UPDATEDATE, null);
+    }
+
+    public final void setUPDATEDATE(Date dtValue) {
+        this.SetParamValue(TAG_UPDATEDATE, dtValue);
+    }
+
+    public final boolean isPSDEFORMIDNull() {
+        return this.IsParamNull(TAG_PSDEFORMID);
+    }
+
+    public final String getPSDEFORMID() {
+        return this.GetParamStringValue(TAG_PSDEFORMID, "");
+    }
+
+    public final void setPSDEFORMID(String strValue) {
+        this.SetParamValue(TAG_PSDEFORMID, strValue);
+    }
+
+    public final boolean isPSDEFORMNAMENull() {
+        return this.IsParamNull(TAG_PSDEFORMNAME);
+    }
+
+    public final String getPSDEFORMNAME() {
+        return this.GetParamStringValue(TAG_PSDEFORMNAME, "");
+    }
+
+    public final void setPSDEFORMNAME(String strValue) {
+        this.SetParamValue(TAG_PSDEFORMNAME, strValue);
+    }
+
+    public final boolean isPSDEFIDNull() {
+        return this.IsParamNull(TAG_PSDEFID);
+    }
+
+    public final String getPSDEFID() {
+        return this.GetParamStringValue(TAG_PSDEFID, "");
+    }
+
+    public final void setPSDEFID(String strValue) {
+        this.SetParamValue(TAG_PSDEFID, strValue);
+    }
+
+    public final boolean isPSDEFNAMENull() {
+        return this.IsParamNull(TAG_PSDEFNAME);
+    }
+
+    public final String getPSDEFNAME() {
+        return this.GetParamStringValue(TAG_PSDEFNAME, "");
+    }
+
+    public final void setPSDEFNAME(String strValue) {
+        this.SetParamValue(TAG_PSDEFNAME, strValue);
+    }
+
+    public final boolean isPSDEFFORMITEMIDNull() {
+        return this.IsParamNull(TAG_PSDEFFORMITEMID);
+    }
+
+    public final String getPSDEFFORMITEMID() {
+        return this.GetParamStringValue(TAG_PSDEFFORMITEMID, "");
+    }
+
+    public final void setPSDEFFORMITEMID(String strValue) {
+        this.SetParamValue(TAG_PSDEFFORMITEMID, strValue);
+    }
+
+    public final boolean isPSDEFFORMITEMNAMENull() {
+        return this.IsParamNull(TAG_PSDEFFORMITEMNAME);
+    }
+
+    public final String getPSDEFFORMITEMNAME() {
+        return this.GetParamStringValue(TAG_PSDEFFORMITEMNAME, "");
+    }
+
+    public final void setPSDEFFORMITEMNAME(String strValue) {
+        this.SetParamValue(TAG_PSDEFFORMITEMNAME, strValue);
+    }
+
+    public final boolean isDETAILTYPENull() {
+        return this.IsParamNull(TAG_DETAILTYPE);
+    }
+
+    public final String getDETAILTYPE() {
+        return this.GetParamStringValue(TAG_DETAILTYPE, "");
+    }
+
+    public final void setDETAILTYPE(String strValue) {
+        this.SetParamValue(TAG_DETAILTYPE, strValue);
+    }
+
+    public final boolean isCAPTIONNull() {
+        return this.IsParamNull(TAG_CAPTION);
+    }
+
+    public final String getCAPTION() {
+        return this.GetParamStringValue(TAG_CAPTION, "");
+    }
+
+    public final void setCAPTION(String strValue) {
+        this.SetParamValue(TAG_CAPTION, strValue);
+    }
+
+    public final boolean isMEMONull() {
+        return this.IsParamNull(TAG_MEMO);
+    }
+
+    public final String getMEMO() {
+        return this.GetParamStringValue(TAG_MEMO, "");
+    }
+
+    public final void setMEMO(String strValue) {
+        this.SetParamValue(TAG_MEMO, strValue);
+    }
+
+    public final boolean isPPSDEFORMDETAILIDNull() {
+        return this.IsParamNull(TAG_PPSDEFORMDETAILID);
+    }
+
+    public final String getPPSDEFORMDETAILID() {
+        return this.GetParamStringValue(TAG_PPSDEFORMDETAILID, "");
+    }
+
+    public final void setPPSDEFORMDETAILID(String strValue) {
+        this.SetParamValue(TAG_PPSDEFORMDETAILID, strValue);
+    }
+
+    public final boolean isPPSDEFORMDETAILNAMENull() {
+        return this.IsParamNull(TAG_PPSDEFORMDETAILNAME);
+    }
+
+    public final String getPPSDEFORMDETAILNAME() {
+        return this.GetParamStringValue(TAG_PPSDEFORMDETAILNAME, "");
+    }
+
+    public final void setPPSDEFORMDETAILNAME(String strValue) {
+        this.SetParamValue(TAG_PPSDEFORMDETAILNAME, strValue);
+    }
+
+    public final boolean isORDERVALUENull() {
+        return this.IsParamNull(TAG_ORDERVALUE);
+    }
+
+    public final int getORDERVALUE() {
+        return this.GetParamIntValue(TAG_ORDERVALUE, 0);
+    }
+
+    public final void setORDERVALUE(int nValue) {
+        this.SetParamValue(TAG_ORDERVALUE, nValue);
+    }
+
+    public final boolean isLEVELTAGNull() {
+        return this.IsParamNull(TAG_LEVELTAG);
+    }
+
+    public final String getLEVELTAG() {
+        return this.GetParamStringValue(TAG_LEVELTAG, "");
+    }
+
+    public final void setLEVELTAG(String strValue) {
+        this.SetParamValue(TAG_LEVELTAG, strValue);
+    }
+
+    public final boolean isLEVELVALUENull() {
+        return this.IsParamNull(TAG_LEVELVALUE);
+    }
+
+    public final int getLEVELVALUE() {
+        return this.GetParamIntValue(TAG_LEVELVALUE, 0);
+    }
+
+    public final void setLEVELVALUE(int nValue) {
+        this.SetParamValue(TAG_LEVELVALUE, nValue);
+    }
+
+    public final boolean isCTRLWIDTHNull() {
+        return this.IsParamNull(TAG_CTRLWIDTH);
+    }
+
+    public final int getCTRLWIDTH() {
+        return this.GetParamIntValue(TAG_CTRLWIDTH, 0);
+    }
+
+    public final void setCTRLWIDTH(int nValue) {
+        this.SetParamValue(TAG_CTRLWIDTH, nValue);
+    }
+
+    public final boolean isCTRLHEIGHTNull() {
+        return this.IsParamNull(TAG_CTRLHEIGHT);
+    }
+
+    public final int getCTRLHEIGHT() {
+        return this.GetParamIntValue(TAG_CTRLHEIGHT, 0);
+    }
+
+    public final void setCTRLHEIGHT(int nValue) {
+        this.SetParamValue(TAG_CTRLHEIGHT, nValue);
+    }
+
+    public final boolean isSHOWCAPTIONNull() {
+        return this.IsParamNull(TAG_SHOWCAPTION);
+    }
+
+    public final boolean getSHOWCAPTION() {
+        return this.GetParamIntValue(TAG_SHOWCAPTION, 0) == 1;
+    }
+
+    public final void setSHOWCAPTION(boolean bValue) {
+        this.SetParamValue(TAG_SHOWCAPTION, bValue ? 1 : 0);
+    }
+
+    public final boolean isCOLIDNull() {
+        return this.IsParamNull(TAG_COLID);
+    }
+
+    public final int getCOLID() {
+        return this.GetParamIntValue(TAG_COLID, 0);
+    }
+
+    public final void setCOLID(int nValue) {
+        this.SetParamValue(TAG_COLID, nValue);
+    }
+
+    public final boolean isCOLSPANNull() {
+        return this.IsParamNull(TAG_COLSPAN);
+    }
+
+    public final int getCOLSPAN() {
+        return this.GetParamIntValue(TAG_COLSPAN, 0);
+    }
+
+    public final void setCOLSPAN(int nValue) {
+        this.SetParamValue(TAG_COLSPAN, nValue);
+    }
+
+    public final boolean isROWSPANNull() {
+        return this.IsParamNull(TAG_ROWSPAN);
+    }
+
+    public final int getROWSPAN() {
+        return this.GetParamIntValue(TAG_ROWSPAN, 0);
+    }
+
+    public final void setROWSPAN(int nValue) {
+        this.SetParamValue(TAG_ROWSPAN, nValue);
+    }
+
+    public final boolean isCOLMODELNull() {
+        return this.IsParamNull(TAG_COLMODEL);
+    }
+
+    public final String getCOLMODEL() {
+        return this.GetParamStringValue(TAG_COLMODEL, "");
+    }
+
+    public final void setCOLMODEL(String strValue) {
+        this.SetParamValue(TAG_COLMODEL, strValue);
+    }
+
+    public final boolean isLAYOUTMODENull() {
+        return this.IsParamNull(TAG_LAYOUTMODE);
+    }
+
+    public final String getLAYOUTMODE() {
+        return this.GetParamStringValue(TAG_LAYOUTMODE, "");
+    }
+
+    public final void setLAYOUTMODE(String strValue) {
+        this.SetParamValue(TAG_LAYOUTMODE, strValue);
+    }
+
+    public final boolean isMARGINNull() {
+        return this.IsParamNull(TAG_MARGIN);
+    }
+
+    public final String getMARGIN() {
+        return this.GetParamStringValue(TAG_MARGIN, "");
+    }
+
+    public final void setMARGIN(String strValue) {
+        this.SetParamValue(TAG_MARGIN, strValue);
+    }
+
+    public final boolean isPADDINGNull() {
+        return this.IsParamNull(TAG_PADDING);
+    }
+
+    public final String getPADDING() {
+        return this.GetParamStringValue(TAG_PADDING, "");
+    }
+
+    public final void setPADDING(String strValue) {
+        this.SetParamValue(TAG_PADDING, strValue);
+    }
+
+    public final boolean isLABELPOSNull() {
+        return this.IsParamNull(TAG_LABELPOS);
+    }
+
+    public final String getLABELPOS() {
+        return this.GetParamStringValue(TAG_LABELPOS, "");
+    }
+
+    public final void setLABELPOS(String strValue) {
+        this.SetParamValue(TAG_LABELPOS, strValue);
+    }
+
+    public final boolean isLABELWIDTHNull() {
+        return this.IsParamNull(TAG_LABELWIDTH);
+    }
+
+    public final int getLABELWIDTH() {
+        return this.GetParamIntValue(TAG_LABELWIDTH, 0);
+    }
+
+    public final void setLABELWIDTH(int nValue) {
+        this.SetParamValue(TAG_LABELWIDTH, nValue);
+    }
+
+    public final boolean isEDITORTYPENull() {
+        return this.IsParamNull(TAG_EDITORTYPE);
+    }
+
+    public final String getEDITORTYPE() {
+        return this.GetParamStringValue(TAG_EDITORTYPE, "");
+    }
+
+    public final void setEDITORTYPE(String strValue) {
+        this.SetParamValue(TAG_EDITORTYPE, strValue);
+    }
+
+    public final boolean isALLOWEMPTYNull() {
+        return this.IsParamNull(TAG_ALLOWEMPTY);
+    }
+
+    public final boolean getALLOWEMPTY() {
+        return this.GetParamIntValue(TAG_ALLOWEMPTY, 0) == 1;
+    }
+
+    public final void setALLOWEMPTY(boolean bValue) {
+        this.SetParamValue(TAG_ALLOWEMPTY, bValue ? 1 : 0);
+    }
+
+    public final boolean isLEVELNAMENull() {
+        return this.IsParamNull(TAG_LEVELNAME);
+    }
+
+    public final String getLEVELNAME() {
+        return this.GetParamStringValue(TAG_LEVELNAME, "");
+    }
+
+    public final void setLEVELNAME(String strValue) {
+        this.SetParamValue(TAG_LEVELNAME, strValue);
+    }
+
+    public final boolean isGRIDROWIDNull() {
+        return this.IsParamNull(TAG_GRIDROWID);
+    }
+
+    public final int getGRIDROWID() {
+        return this.GetParamIntValue(TAG_GRIDROWID, 0);
+    }
+
+    public final void setGRIDROWID(int nValue) {
+        this.SetParamValue(TAG_GRIDROWID, nValue);
+    }
+
+    public final boolean isVALUEFORMATNull() {
+        return this.IsParamNull(TAG_VALUEFORMAT);
+    }
+
+    public final String getVALUEFORMAT() {
+        return this.GetParamStringValue(TAG_VALUEFORMAT, "");
+    }
+
+    public final void setVALUEFORMAT(String strValue) {
+        this.SetParamValue(TAG_VALUEFORMAT, strValue);
+    }
+
+    public final boolean isFORMTYPENull() {
+        return this.IsParamNull(TAG_FORMTYPE);
+    }
+
+    public final String getFORMTYPE() {
+        return this.GetParamStringValue(TAG_FORMTYPE, "");
+    }
+
+    public final void setFORMTYPE(String strValue) {
+        this.SetParamValue(TAG_FORMTYPE, strValue);
+    }
+
+    public final boolean isPSDEFSFITEMIDNull() {
+        return this.IsParamNull(TAG_PSDEFSFITEMID);
+    }
+
+    public final String getPSDEFSFITEMID() {
+        return this.GetParamStringValue(TAG_PSDEFSFITEMID, "");
+    }
+
+    public final void setPSDEFSFITEMID(String strValue) {
+        this.SetParamValue(TAG_PSDEFSFITEMID, strValue);
+    }
+
+    public final boolean isPSDEFSFITEMNAMENull() {
+        return this.IsParamNull(TAG_PSDEFSFITEMNAME);
+    }
+
+    public final String getPSDEFSFITEMNAME() {
+        return this.GetParamStringValue(TAG_PSDEFSFITEMNAME, "");
+    }
+
+    public final void setPSDEFSFITEMNAME(String strValue) {
+        this.SetParamValue(TAG_PSDEFSFITEMNAME, strValue);
+    }
+
+    public final boolean isPSDEIDNull() {
+        return this.IsParamNull(TAG_PSDEID);
+    }
+
+    public final String getPSDEID() {
+        return this.GetParamStringValue(TAG_PSDEID, "");
+    }
+
+    public final void setPSDEID(String strValue) {
+        this.SetParamValue(TAG_PSDEID, strValue);
+    }
+
+    public final boolean isPSDEDRITEMIDNull() {
+        return this.IsParamNull(TAG_PSDEDRITEMID);
+    }
+
+    public final String getPSDEDRITEMID() {
+        return this.GetParamStringValue(TAG_PSDEDRITEMID, "");
+    }
+
+    public final void setPSDEDRITEMID(String strValue) {
+        this.SetParamValue(TAG_PSDEDRITEMID, strValue);
+    }
+
+    public final boolean isPSDEDRITEMNAMENull() {
+        return this.IsParamNull(TAG_PSDEDRITEMNAME);
+    }
+
+    public final String getPSDEDRITEMNAME() {
+        return this.GetParamStringValue(TAG_PSDEDRITEMNAME, "");
+    }
+
+    public final void setPSDEDRITEMNAME(String strValue) {
+        this.SetParamValue(TAG_PSDEDRITEMNAME, strValue);
+    }
+
+    public final boolean isHEIGHTNull() {
+        return this.IsParamNull(TAG_HEIGHT);
+    }
+
+    public final int getHEIGHT() {
+        return this.GetParamIntValue(TAG_HEIGHT, 0);
+    }
+
+    public final void setHEIGHT(int nValue) {
+        this.SetParamValue(TAG_HEIGHT, nValue);
+    }
+
+    public final boolean isPSSYSEDITORSTYLEIDNull() {
+        return this.IsParamNull(TAG_PSSYSEDITORSTYLEID);
+    }
+
+    public final String getPSSYSEDITORSTYLEID() {
+        return this.GetParamStringValue(TAG_PSSYSEDITORSTYLEID, "");
+    }
+
+    public final void setPSSYSEDITORSTYLEID(String strValue) {
+        this.SetParamValue(TAG_PSSYSEDITORSTYLEID, strValue);
+    }
+
+    public final boolean isPSSYSEDITORSTYLENAMENull() {
+        return this.IsParamNull(TAG_PSSYSEDITORSTYLENAME);
+    }
+
+    public final String getPSSYSEDITORSTYLENAME() {
+        return this.GetParamStringValue(TAG_PSSYSEDITORSTYLENAME, "");
+    }
+
+    public final void setPSSYSEDITORSTYLENAME(String strValue) {
+        this.SetParamValue(TAG_PSSYSEDITORSTYLENAME, strValue);
+    }
+
+    public final boolean isENABLECONDNull() {
+        return this.IsParamNull(TAG_ENABLECOND);
+    }
+
+    public final int getENABLECOND() {
+        return this.GetParamIntValue(TAG_ENABLECOND, 0);
+    }
+
+    public final void setENABLECOND(int nValue) {
+        this.SetParamValue(TAG_ENABLECOND, nValue);
+    }
+
+    public final boolean isUPDATEDVNull() {
+        return this.IsParamNull(TAG_UPDATEDV);
+    }
+
+    public final String getUPDATEDV() {
+        return this.GetParamStringValue(TAG_UPDATEDV, "");
+    }
+
+    public final void setUPDATEDV(String strValue) {
+        this.SetParamValue(TAG_UPDATEDV, strValue);
+    }
+
+    public final boolean isCREATEDVNull() {
+        return this.IsParamNull(TAG_CREATEDV);
+    }
+
+    public final String getCREATEDV() {
+        return this.GetParamStringValue(TAG_CREATEDV, "");
+    }
+
+    public final void setCREATEDV(String strValue) {
+        this.SetParamValue(TAG_CREATEDV, strValue);
+    }
+
+    public final boolean isUPDATEDVTNull() {
+        return this.IsParamNull(TAG_UPDATEDVT);
+    }
+
+    public final String getUPDATEDVT() {
+        return this.GetParamStringValue(TAG_UPDATEDVT, "");
+    }
+
+    public final void setUPDATEDVT(String strValue) {
+        this.SetParamValue(TAG_UPDATEDVT, strValue);
+    }
+
+    public final boolean isCREATEDVTNull() {
+        return this.IsParamNull(TAG_CREATEDVT);
+    }
+
+    public final String getCREATEDVT() {
+        return this.GetParamStringValue(TAG_CREATEDVT, "");
+    }
+
+    public final void setCREATEDVT(String strValue) {
+        this.SetParamValue(TAG_CREATEDVT, strValue);
+    }
+
+    public final boolean isPSDEFIUPDATEIDNull() {
+        return this.IsParamNull(TAG_PSDEFIUPDATEID);
+    }
+
+    public final String getPSDEFIUPDATEID() {
+        return this.GetParamStringValue(TAG_PSDEFIUPDATEID, "");
+    }
+
+    public final void setPSDEFIUPDATEID(String strValue) {
+        this.SetParamValue(TAG_PSDEFIUPDATEID, strValue);
+    }
+
+    public final boolean isPSDEFIUPDATENAMENull() {
+        return this.IsParamNull(TAG_PSDEFIUPDATENAME);
+    }
+
+    public final String getPSDEFIUPDATENAME() {
+        return this.GetParamStringValue(TAG_PSDEFIUPDATENAME, "");
+    }
+
+    public final void setPSDEFIUPDATENAME(String strValue) {
+        this.SetParamValue(TAG_PSDEFIUPDATENAME, strValue);
+    }
+
+    public final boolean isPSDEFORMRFIDNull() {
+        return this.IsParamNull(TAG_PSDEFORMRFID);
+    }
+
+    public final String getPSDEFORMRFID() {
+        return this.GetParamStringValue(TAG_PSDEFORMRFID, "");
+    }
+
+    public final void setPSDEFORMRFID(String strValue) {
+        this.SetParamValue(TAG_PSDEFORMRFID, strValue);
+    }
+
+    public final boolean isPSDEFORMRFNAMENull() {
+        return this.IsParamNull(TAG_PSDEFORMRFNAME);
+    }
+
+    public final String getPSDEFORMRFNAME() {
+        return this.GetParamStringValue(TAG_PSDEFORMRFNAME, "");
+    }
+
+    public final void setPSDEFORMRFNAME(String strValue) {
+        this.SetParamValue(TAG_PSDEFORMRFNAME, strValue);
+    }
+
+    public final boolean isREFPSDEFORMIDNull() {
+        return this.IsParamNull(TAG_REFPSDEFORMID);
+    }
+
+    public final String getREFPSDEFORMID() {
+        return this.GetParamStringValue(TAG_REFPSDEFORMID, "");
+    }
+
+    public final void setREFPSDEFORMID(String strValue) {
+        this.SetParamValue(TAG_REFPSDEFORMID, strValue);
+    }
+
+    public final boolean isREFPSDEFORMDETAILIDNull() {
+        return this.IsParamNull(TAG_REFPSDEFORMDETAILID);
+    }
+
+    public final String getREFPSDEFORMDETAILID() {
+        return this.GetParamStringValue(TAG_REFPSDEFORMDETAILID, "");
+    }
+
+    public final void setREFPSDEFORMDETAILID(String strValue) {
+        this.SetParamValue(TAG_REFPSDEFORMDETAILID, strValue);
+    }
+
+    public final boolean isREFPSDEFORMDETAILNAMENull() {
+        return this.IsParamNull(TAG_REFPSDEFORMDETAILNAME);
+    }
+
+    public final String getREFPSDEFORMDETAILNAME() {
+        return this.GetParamStringValue(TAG_REFPSDEFORMDETAILNAME, "");
+    }
+
+    public final void setREFPSDEFORMDETAILNAME(String strValue) {
+        this.SetParamValue(TAG_REFPSDEFORMDETAILNAME, strValue);
+    }
+
+    public final boolean isIGNOREINPUTNull() {
+        return this.IsParamNull(TAG_IGNOREINPUT);
+    }
+
+    public final int getIGNOREINPUT() {
+        return this.GetParamIntValue(TAG_IGNOREINPUT, 0);
+    }
+
+    public final void setIGNOREINPUT(int nValue) {
+        this.SetParamValue(TAG_IGNOREINPUT, nValue);
+    }
+
+    public final boolean isLABELCOLSPANNull() {
+        return this.IsParamNull(TAG_LABELCOLSPAN);
+    }
+
+    public final int getLABELCOLSPAN() {
+        return this.GetParamIntValue(TAG_LABELCOLSPAN, 0);
+    }
+
+    public final void setLABELCOLSPAN(int nValue) {
+        this.SetParamValue(TAG_LABELCOLSPAN, nValue);
+    }
+
+    public final boolean isCTRLCOLSPANNull() {
+        return this.IsParamNull(TAG_CTRLCOLSPAN);
+    }
+
+    public final int getCTRLCOLSPAN() {
+        return this.GetParamIntValue(TAG_CTRLCOLSPAN, 0);
+    }
+
+    public final void setCTRLCOLSPAN(int nValue) {
+        this.SetParamValue(TAG_CTRLCOLSPAN, nValue);
+    }
+
+    public final boolean isLABELCOLSPAN2Null() {
+        return this.IsParamNull(TAG_LABELCOLSPAN2);
+    }
+
+    public final int getLABELCOLSPAN2() {
+        return this.GetParamIntValue(TAG_LABELCOLSPAN2, 0);
+    }
+
+    public final void setLABELCOLSPAN2(int nValue) {
+        this.SetParamValue(TAG_LABELCOLSPAN2, nValue);
+    }
+
+    public final boolean isEDITORPARAMSNull() {
+        return this.IsParamNull(TAG_EDITORPARAMS);
+    }
+
+    public final String getEDITORPARAMS() {
+        return this.GetParamStringValue(TAG_EDITORPARAMS, "");
+    }
+
+    public final void setEDITORPARAMS(String strValue) {
+        this.SetParamValue(TAG_EDITORPARAMS, strValue);
+    }
+
+    public final boolean isVALUEITEMNAMENull() {
+        return this.IsParamNull(TAG_VALUEITEMNAME);
+    }
+
+    public final String getVALUEITEMNAME() {
+        return this.GetParamStringValue(TAG_VALUEITEMNAME, "");
+    }
+
+    public final void setVALUEITEMNAME(String strValue) {
+        this.SetParamValue(TAG_VALUEITEMNAME, strValue);
+    }
+
+    public final boolean isPSCODELISTIDNull() {
+        return this.IsParamNull(TAG_PSCODELISTID);
+    }
+
+    public final String getPSCODELISTID() {
+        return this.GetParamStringValue(TAG_PSCODELISTID, "");
+    }
+
+    public final void setPSCODELISTID(String strValue) {
+        this.SetParamValue(TAG_PSCODELISTID, strValue);
+    }
+
+    public final boolean isPSCODELISTNAMENull() {
+        return this.IsParamNull(TAG_PSCODELISTNAME);
+    }
+
+    public final String getPSCODELISTNAME() {
+        return this.GetParamStringValue(TAG_PSCODELISTNAME, "");
+    }
+
+    public final void setPSCODELISTNAME(String strValue) {
+        this.SetParamValue(TAG_PSCODELISTNAME, strValue);
+    }
+
+    public final boolean isCOL_XSNull() {
+        return this.IsParamNull(TAG_COL_XS);
+    }
+
+    public final int getCOL_XS() {
+        return this.GetParamIntValue(TAG_COL_XS, 0);
+    }
+
+    public final void setCOL_XS(int nValue) {
+        this.SetParamValue(TAG_COL_XS, nValue);
+    }
+
+    public final boolean isCOL_SMNull() {
+        return this.IsParamNull(TAG_COL_SM);
+    }
+
+    public final int getCOL_SM() {
+        return this.GetParamIntValue(TAG_COL_SM, 0);
+    }
+
+    public final void setCOL_SM(int nValue) {
+        this.SetParamValue(TAG_COL_SM, nValue);
+    }
+
+    public final boolean isCOL_MDNull() {
+        return this.IsParamNull(TAG_COL_MD);
+    }
+
+    public final int getCOL_MD() {
+        return this.GetParamIntValue(TAG_COL_MD, 0);
+    }
+
+    public final void setCOL_MD(int nValue) {
+        this.SetParamValue(TAG_COL_MD, nValue);
+    }
+
+    public final boolean isCOL_LGNull() {
+        return this.IsParamNull(TAG_COL_LG);
+    }
+
+    public final int getCOL_LG() {
+        return this.GetParamIntValue(TAG_COL_LG, 0);
+    }
+
+    public final void setCOL_LG(int nValue) {
+        this.SetParamValue(TAG_COL_LG, nValue);
+    }
+
+    public final boolean isCOL_LG_OSNull() {
+        return this.IsParamNull(TAG_COL_LG_OS);
+    }
+
+    public final int getCOL_LG_OS() {
+        return this.GetParamIntValue(TAG_COL_LG_OS, 0);
+    }
+
+    public final void setCOL_LG_OS(int nValue) {
+        this.SetParamValue(TAG_COL_LG_OS, nValue);
+    }
+
+    public final boolean isCOL_XS_OSNull() {
+        return this.IsParamNull(TAG_COL_XS_OS);
+    }
+
+    public final int getCOL_XS_OS() {
+        return this.GetParamIntValue(TAG_COL_XS_OS, 0);
+    }
+
+    public final void setCOL_XS_OS(int nValue) {
+        this.SetParamValue(TAG_COL_XS_OS, nValue);
+    }
+
+    public final boolean isCOL_SM_OSNull() {
+        return this.IsParamNull(TAG_COL_SM_OS);
+    }
+
+    public final int getCOL_SM_OS() {
+        return this.GetParamIntValue(TAG_COL_SM_OS, 0);
+    }
+
+    public final void setCOL_SM_OS(int nValue) {
+        this.SetParamValue(TAG_COL_SM_OS, nValue);
+    }
+
+    public final boolean isCOL_MD_OSNull() {
+        return this.IsParamNull(TAG_COL_MD_OS);
+    }
+
+    public final int getCOL_MD_OS() {
+        return this.GetParamIntValue(TAG_COL_MD_OS, 0);
+    }
+
+    public final void setCOL_MD_OS(int nValue) {
+        this.SetParamValue(TAG_COL_MD_OS, nValue);
+    }
+
+    public final boolean isCHILD_COL_XSNull() {
+        return this.IsParamNull(TAG_CHILD_COL_XS);
+    }
+
+    public final int getCHILD_COL_XS() {
+        return this.GetParamIntValue(TAG_CHILD_COL_XS, 0);
+    }
+
+    public final void setCHILD_COL_XS(int nValue) {
+        this.SetParamValue(TAG_CHILD_COL_XS, nValue);
+    }
+
+    public final boolean isCHILD_COL_SMNull() {
+        return this.IsParamNull(TAG_CHILD_COL_SM);
+    }
+
+    public final int getCHILD_COL_SM() {
+        return this.GetParamIntValue(TAG_CHILD_COL_SM, 0);
+    }
+
+    public final void setCHILD_COL_SM(int nValue) {
+        this.SetParamValue(TAG_CHILD_COL_SM, nValue);
+    }
+
+    public final boolean isCHILD_COL_MDNull() {
+        return this.IsParamNull(TAG_CHILD_COL_MD);
+    }
+
+    public final int getCHILD_COL_MD() {
+        return this.GetParamIntValue(TAG_CHILD_COL_MD, 0);
+    }
+
+    public final void setCHILD_COL_MD(int nValue) {
+        this.SetParamValue(TAG_CHILD_COL_MD, nValue);
+    }
+
+    public final boolean isCHILD_COL_LGNull() {
+        return this.IsParamNull(TAG_CHILD_COL_LG);
+    }
+
+    public final int getCHILD_COL_LG() {
+        return this.GetParamIntValue(TAG_CHILD_COL_LG, 0);
+    }
+
+    public final void setCHILD_COL_LG(int nValue) {
+        this.SetParamValue(TAG_CHILD_COL_LG, nValue);
+    }
+
+    public final boolean isNEEDCODELISTCONFIGNull() {
+        return this.IsParamNull(TAG_NEEDCODELISTCONFIG);
+    }
+
+    public final boolean getNEEDCODELISTCONFIG() {
+        return this.GetParamIntValue(TAG_NEEDCODELISTCONFIG, 0) == 1;
+    }
+
+    public final void setNEEDCODELISTCONFIG(boolean bValue) {
+        this.SetParamValue(TAG_NEEDCODELISTCONFIG, bValue ? 1 : 0);
+    }
+
+    public final boolean isBTNACTIONTYPENull() {
+        return this.IsParamNull(TAG_BTNACTIONTYPE);
+    }
+
+    public final String getBTNACTIONTYPE() {
+        return this.GetParamStringValue(TAG_BTNACTIONTYPE, "");
+    }
+
+    public final void setBTNACTIONTYPE(String strValue) {
+        this.SetParamValue(TAG_BTNACTIONTYPE, strValue);
+    }
+
+    public final boolean isPSDEUIACTIONIDNull() {
+        return this.IsParamNull(TAG_PSDEUIACTIONID);
+    }
+
+    public final String getPSDEUIACTIONID() {
+        return this.GetParamStringValue(TAG_PSDEUIACTIONID, "");
+    }
+
+    public final void setPSDEUIACTIONID(String strValue) {
+        this.SetParamValue(TAG_PSDEUIACTIONID, strValue);
+    }
+
+    public final boolean isPSDEUIACTIONNAMENull() {
+        return this.IsParamNull(TAG_PSDEUIACTIONNAME);
+    }
+
+    public final String getPSDEUIACTIONNAME() {
+        return this.GetParamStringValue(TAG_PSDEUIACTIONNAME, "");
+    }
+
+    public final void setPSDEUIACTIONNAME(String strValue) {
+        this.SetParamValue(TAG_PSDEUIACTIONNAME, strValue);
+    }
+
+    public final boolean isPSSYSIMAGEIDNull() {
+        return this.IsParamNull(TAG_PSSYSIMAGEID);
+    }
+
+    public final String getPSSYSIMAGEID() {
+        return this.GetParamStringValue(TAG_PSSYSIMAGEID, "");
+    }
+
+    public final void setPSSYSIMAGEID(String strValue) {
+        this.SetParamValue(TAG_PSSYSIMAGEID, strValue);
+    }
+
+    public final boolean isPSSYSIMAGENAMENull() {
+        return this.IsParamNull(TAG_PSSYSIMAGENAME);
+    }
+
+    public final String getPSSYSIMAGENAME() {
+        return this.GetParamStringValue(TAG_PSSYSIMAGENAME, "");
+    }
+
+    public final void setPSSYSIMAGENAME(String strValue) {
+        this.SetParamValue(TAG_PSSYSIMAGENAME, strValue);
+    }
+
+    public final boolean isPSSYSCSSIDNull() {
+        return this.IsParamNull(TAG_PSSYSCSSID);
+    }
+
+    public final String getPSSYSCSSID() {
+        return this.GetParamStringValue(TAG_PSSYSCSSID, "");
+    }
+
+    public final void setPSSYSCSSID(String strValue) {
+        this.SetParamValue(TAG_PSSYSCSSID, strValue);
+    }
+
+    public final boolean isPSSYSCSSNAMENull() {
+        return this.IsParamNull(TAG_PSSYSCSSNAME);
+    }
+
+    public final String getPSSYSCSSNAME() {
+        return this.GetParamStringValue(TAG_PSSYSCSSNAME, "");
+    }
+
+    public final void setPSSYSCSSNAME(String strValue) {
+        this.SetParamValue(TAG_PSSYSCSSNAME, strValue);
+    }
+
+    public final boolean isRAWCONTENTNull() {
+        return this.IsParamNull(TAG_RAWCONTENT);
+    }
+
+    public final String getRAWCONTENT() {
+        return this.GetParamStringValue(TAG_RAWCONTENT, "");
+    }
+
+    public final void setRAWCONTENT(String strValue) {
+        this.SetParamValue(TAG_RAWCONTENT, strValue);
+    }
+
+    public final boolean isPICKUPPSDEVIEWIDNull() {
+        return this.IsParamNull(TAG_PICKUPPSDEVIEWID);
+    }
+
+    public final String getPICKUPPSDEVIEWID() {
+        return this.GetParamStringValue(TAG_PICKUPPSDEVIEWID, "");
+    }
+
+    public final void setPICKUPPSDEVIEWID(String strValue) {
+        this.SetParamValue(TAG_PICKUPPSDEVIEWID, strValue);
+    }
+
+    public final boolean isPICKUPPSDEVIEWNAMENull() {
+        return this.IsParamNull(TAG_PICKUPPSDEVIEWNAME);
+    }
+
+    public final String getPICKUPPSDEVIEWNAME() {
+        return this.GetParamStringValue(TAG_PICKUPPSDEVIEWNAME, "");
+    }
+
+    public final void setPICKUPPSDEVIEWNAME(String strValue) {
+        this.SetParamValue(TAG_PICKUPPSDEVIEWNAME, strValue);
+    }
+
+    public final boolean isPSSYSDICTCATIDNull() {
+        return this.IsParamNull(TAG_PSSYSDICTCATID);
+    }
+
+    public final String getPSSYSDICTCATID() {
+        return this.GetParamStringValue(TAG_PSSYSDICTCATID, "");
+    }
+
+    public final void setPSSYSDICTCATID(String strValue) {
+        this.SetParamValue(TAG_PSSYSDICTCATID, strValue);
+    }
+
+    public final boolean isPSSYSDICTCATNAMENull() {
+        return this.IsParamNull(TAG_PSSYSDICTCATNAME);
+    }
+
+    public final String getPSSYSDICTCATNAME() {
+        return this.GetParamStringValue(TAG_PSSYSDICTCATNAME, "");
+    }
+
+    public final void setPSSYSDICTCATNAME(String strValue) {
+        this.SetParamValue(TAG_PSSYSDICTCATNAME, strValue);
+    }
+
+    public final boolean isRESETITEMNAMENull() {
+        return this.IsParamNull(TAG_RESETITEMNAME);
+    }
+
+    public final String getRESETITEMNAME() {
+        return this.GetParamStringValue(TAG_RESETITEMNAME, "");
+    }
+
+    public final void setRESETITEMNAME(String strValue) {
+        this.SetParamValue(TAG_RESETITEMNAME, strValue);
+    }
+
+    public final boolean isEMPTYCAPTIONNull() {
+        return this.IsParamNull(TAG_EMPTYCAPTION);
+    }
+
+    public final boolean getEMPTYCAPTION() {
+        return this.GetParamIntValue(TAG_EMPTYCAPTION, 0) == 1;
+    }
+
+    public final void setEMPTYCAPTION(boolean bValue) {
+        this.SetParamValue(TAG_EMPTYCAPTION, bValue ? 1 : 0);
+    }
+
+    public final boolean isLINKPSDEVIEWIDNull() {
+        return this.IsParamNull(TAG_LINKPSDEVIEWID);
+    }
+
+    public final String getLINKPSDEVIEWID() {
+        return this.GetParamStringValue(TAG_LINKPSDEVIEWID, "");
+    }
+
+    public final void setLINKPSDEVIEWID(String strValue) {
+        this.SetParamValue(TAG_LINKPSDEVIEWID, strValue);
+    }
+
+    public final boolean isLINKPSDEVIEWNAMENull() {
+        return this.IsParamNull(TAG_LINKPSDEVIEWNAME);
+    }
+
+    public final String getLINKPSDEVIEWNAME() {
+        return this.GetParamStringValue(TAG_LINKPSDEVIEWNAME, "");
+    }
+
+    public final void setLINKPSDEVIEWNAME(String strValue) {
+        this.SetParamValue(TAG_LINKPSDEVIEWNAME, strValue);
+    }
+
+    public final boolean isPLACEHOLDERNull() {
+        return this.IsParamNull(TAG_PLACEHOLDER);
+    }
+
+    public final String getPLACEHOLDER() {
+        return this.GetParamStringValue(TAG_PLACEHOLDER, "");
+    }
+
+    public final void setPLACEHOLDER(String strValue) {
+        this.SetParamValue(TAG_PLACEHOLDER, strValue);
+    }
+
+    public final boolean isPSSYSCOUNTERIDNull() {
+        return this.IsParamNull(TAG_PSSYSCOUNTERID);
+    }
+
+    public final String getPSSYSCOUNTERID() {
+        return this.GetParamStringValue(TAG_PSSYSCOUNTERID, "");
+    }
+
+    public final void setPSSYSCOUNTERID(String strValue) {
+        this.SetParamValue(TAG_PSSYSCOUNTERID, strValue);
+    }
+
+    public final boolean isPSSYSCOUNTERNAMENull() {
+        return this.IsParamNull(TAG_PSSYSCOUNTERNAME);
+    }
+
+    public final String getPSSYSCOUNTERNAME() {
+        return this.GetParamStringValue(TAG_PSSYSCOUNTERNAME, "");
+    }
+
+    public final void setPSSYSCOUNTERNAME(String strValue) {
+        this.SetParamValue(TAG_PSSYSCOUNTERNAME, strValue);
+    }
+
+    public final boolean isITEMPSACHANDLERIDNull() {
+        return this.IsParamNull(TAG_ITEMPSACHANDLERID);
+    }
+
+    public final String getITEMPSACHANDLERID() {
+        return this.GetParamStringValue(TAG_ITEMPSACHANDLERID, "");
+    }
+
+    public final void setITEMPSACHANDLERID(String strValue) {
+        this.SetParamValue(TAG_ITEMPSACHANDLERID, strValue);
+    }
+
+    public final boolean isITEMPSACHANDLERNAMENull() {
+        return this.IsParamNull(TAG_ITEMPSACHANDLERNAME);
+    }
+
+    public final String getITEMPSACHANDLERNAME() {
+        return this.GetParamStringValue(TAG_ITEMPSACHANDLERNAME, "");
+    }
+
+    public final void setITEMPSACHANDLERNAME(String strValue) {
+        this.SetParamValue(TAG_ITEMPSACHANDLERNAME, strValue);
+    }
+
+    public final boolean isENABLEITEMPRIVNull() {
+        return this.IsParamNull(TAG_ENABLEITEMPRIV);
+    }
+
+    public final boolean getENABLEITEMPRIV() {
+        return this.GetParamIntValue(TAG_ENABLEITEMPRIV, 0) == 1;
+    }
+
+    public final void setENABLEITEMPRIV(boolean bValue) {
+        this.SetParamValue(TAG_ENABLEITEMPRIV, bValue ? 1 : 0);
+    }
+
+    public final boolean isCODELISTCONFIGMODENull() {
+        return this.IsParamNull(TAG_CODELISTCONFIGMODE);
+    }
+
+    public final int getCODELISTCONFIGMODE() {
+        return this.GetParamIntValue(TAG_CODELISTCONFIGMODE, 0);
+    }
+
+    public final void setCODELISTCONFIGMODE(int nValue) {
+        this.SetParamValue(TAG_CODELISTCONFIGMODE, nValue);
+    }
+
+    public final boolean isTITLEBARCLOSEMODENull() {
+        return this.IsParamNull(TAG_TITLEBARCLOSEMODE);
+    }
+
+    public final int getTITLEBARCLOSEMODE() {
+        return this.GetParamIntValue(TAG_TITLEBARCLOSEMODE, 0);
+    }
+
+    public final void setTITLEBARCLOSEMODE(int nValue) {
+        this.SetParamValue(TAG_TITLEBARCLOSEMODE, nValue);
+    }
+
+    public final boolean isUCPSSYSPFPLUGINIDNull() {
+        return this.IsParamNull(TAG_UCPSSYSPFPLUGINID);
+    }
+
+    public final String getUCPSSYSPFPLUGINID() {
+        return this.GetParamStringValue(TAG_UCPSSYSPFPLUGINID, "");
+    }
+
+    public final void setUCPSSYSPFPLUGINID(String strValue) {
+        this.SetParamValue(TAG_UCPSSYSPFPLUGINID, strValue);
+    }
+
+    public final boolean isUCPSSYSPFPLUGINNAMENull() {
+        return this.IsParamNull(TAG_UCPSSYSPFPLUGINNAME);
+    }
+
+    public final String getUCPSSYSPFPLUGINNAME() {
+        return this.GetParamStringValue(TAG_UCPSSYSPFPLUGINNAME, "");
+    }
+
+    public final void setUCPSSYSPFPLUGINNAME(String strValue) {
+        this.SetParamValue(TAG_UCPSSYSPFPLUGINNAME, strValue);
+    }
+
+    public final boolean isLABELPSSYSCSSIDNull() {
+        return this.IsParamNull(TAG_LABELPSSYSCSSID);
+    }
+
+    public final String getLABELPSSYSCSSID() {
+        return this.GetParamStringValue(TAG_LABELPSSYSCSSID, "");
+    }
+
+    public final void setLABELPSSYSCSSID(String strValue) {
+        this.SetParamValue(TAG_LABELPSSYSCSSID, strValue);
+    }
+
+    public final boolean isLABELPSSYSCSSNAMENull() {
+        return this.IsParamNull(TAG_LABELPSSYSCSSNAME);
+    }
+
+    public final String getLABELPSSYSCSSNAME() {
+        return this.GetParamStringValue(TAG_LABELPSSYSCSSNAME, "");
+    }
+
+    public final void setLABELPSSYSCSSNAME(String strValue) {
+        this.SetParamValue(TAG_LABELPSSYSCSSNAME, strValue);
+    }
+
+    public final boolean isCAPPSLANRESIDNull() {
+        return this.IsParamNull(TAG_CAPPSLANRESID);
+    }
+
+    public final String getCAPPSLANRESID() {
+        return this.GetParamStringValue(TAG_CAPPSLANRESID, "");
+    }
+
+    public final void setCAPPSLANRESID(String strValue) {
+        this.SetParamValue(TAG_CAPPSLANRESID, strValue);
+    }
+
+    public final boolean isCAPPSLANRESNAMENull() {
+        return this.IsParamNull(TAG_CAPPSLANRESNAME);
+    }
+
+    public final String getCAPPSLANRESNAME() {
+        return this.GetParamStringValue(TAG_CAPPSLANRESNAME, "");
+    }
+
+    public final void setCAPPSLANRESNAME(String strValue) {
+        this.SetParamValue(TAG_CAPPSLANRESNAME, strValue);
+    }
+
+    public final boolean isCOL_WIDTHNull() {
+        return this.IsParamNull(TAG_COL_WIDTH);
+    }
+
+    public final int getCOL_WIDTH() {
+        return this.GetParamIntValue(TAG_COL_WIDTH, 0);
+    }
+
+    public final void setCOL_WIDTH(int nValue) {
+        this.SetParamValue(TAG_COL_WIDTH, nValue);
+    }
+
+    public final boolean isWBDEFMODENull() {
+        return this.IsParamNull(TAG_WBDEFMODE);
+    }
+
+    public final int getWBDEFMODE() {
+        return this.GetParamIntValue(TAG_WBDEFMODE, 0);
+    }
+
+    public final void setWBDEFMODE(int nValue) {
+        this.SetParamValue(TAG_WBDEFMODE, nValue);
+    }
+
+    public final boolean isCONVERTCITEXTNull() {
+        return this.IsParamNull(TAG_CONVERTCITEXT);
+    }
+
+    public final boolean getCONVERTCITEXT() {
+        return this.GetParamIntValue(TAG_CONVERTCITEXT, 0) == 1;
+    }
+
+    public final void setCONVERTCITEXT(boolean bValue) {
+        this.SetParamValue(TAG_CONVERTCITEXT, bValue ? 1 : 0);
+    }
+
+    public final boolean isENABLEANCHORNull() {
+        return this.IsParamNull(TAG_ENABLEANCHOR);
+    }
+
+    public final boolean getENABLEANCHOR() {
+        return this.GetParamIntValue(TAG_ENABLEANCHOR, 0) == 1;
+    }
+
+    public final void setENABLEANCHOR(boolean bValue) {
+        this.SetParamValue(TAG_ENABLEANCHOR, bValue ? 1 : 0);
+    }
+
+    public final boolean isBUILDINACTIONNull() {
+        return this.IsParamNull(TAG_BUILDINACTION);
+    }
+
+    public final int getBUILDINACTION() {
+        return this.GetParamIntValue(TAG_BUILDINACTION, 0);
+    }
+
+    public final void setBUILDINACTION(int nValue) {
+        this.SetParamValue(TAG_BUILDINACTION, nValue);
+    }
+
+    public final boolean isUSERTAGNull() {
+        return this.IsParamNull(TAG_USERTAG);
+    }
+
+    public final String getUSERTAG() {
+        return this.GetParamStringValue(TAG_USERTAG, "");
+    }
+
+    public final void setUSERTAG(String strValue) {
+        this.SetParamValue(TAG_USERTAG, strValue);
+    }
+
+    public final boolean isUSERTAG2Null() {
+        return this.IsParamNull(TAG_USERTAG2);
+    }
+
+    public final String getUSERTAG2() {
+        return this.GetParamStringValue(TAG_USERTAG2, "");
+    }
+
+    public final void setUSERTAG2(String strValue) {
+        this.SetParamValue(TAG_USERTAG2, strValue);
+    }
+
+    public final boolean isDETAILSTYLENull() {
+        return this.IsParamNull(TAG_DETAILSTYLE);
+    }
+
+    public final String getDETAILSTYLE() {
+        return this.GetParamStringValue(TAG_DETAILSTYLE, "");
+    }
+
+    public final void setDETAILSTYLE(String strValue) {
+        this.SetParamValue(TAG_DETAILSTYLE, strValue);
+    }
+
+    public final boolean isPSDEUAGROUPIDNull() {
+        return this.IsParamNull(TAG_PSDEUAGROUPID);
+    }
+
+    public final String getPSDEUAGROUPID() {
+        return this.GetParamStringValue(TAG_PSDEUAGROUPID, "");
+    }
+
+    public final void setPSDEUAGROUPID(String strValue) {
+        this.SetParamValue(TAG_PSDEUAGROUPID, strValue);
+    }
+
+    public final boolean isPSDEUAGROUPNAMENull() {
+        return this.IsParamNull(TAG_PSDEUAGROUPNAME);
+    }
+
+    public final String getPSDEUAGROUPNAME() {
+        return this.GetParamStringValue(TAG_PSDEUAGROUPNAME, "");
+    }
+
+    public final void setPSDEUAGROUPNAME(String strValue) {
+        this.SetParamValue(TAG_PSDEUAGROUPNAME, strValue);
+    }
+
+    public final boolean isBL_POSNull() {
+        return this.IsParamNull(TAG_BL_POS);
+    }
+
+    public final String getBL_POS() {
+        return this.GetParamStringValue(TAG_BL_POS, "");
+    }
+
+    public final void setBL_POS(String strValue) {
+        this.SetParamValue(TAG_BL_POS, strValue);
+    }
+
+    public final boolean isWIDTHNull() {
+        return this.IsParamNull(TAG_WIDTH);
+    }
+
+    public final int getWIDTH() {
+        return this.GetParamIntValue(TAG_WIDTH, 0);
+    }
+
+    public final void setWIDTH(int nValue) {
+        this.SetParamValue(TAG_WIDTH, nValue);
+    }
+
+    public final boolean isNOPRIVDMNull() {
+        return this.IsParamNull(TAG_NOPRIVDM);
+    }
+
+    public final int getNOPRIVDM() {
+        return this.GetParamIntValue(TAG_NOPRIVDM, 0);
+    }
+
+    public final void setNOPRIVDM(int nValue) {
+        this.SetParamValue(TAG_NOPRIVDM, nValue);
+    }
+
+    public final boolean isMDCTRLTYPENull() {
+        return this.IsParamNull(TAG_MDCTRLTYPE);
+    }
+
+    public final String getMDCTRLTYPE() {
+        return this.GetParamStringValue(TAG_MDCTRLTYPE, "");
+    }
+
+    public final void setMDCTRLTYPE(String strValue) {
+        this.SetParamValue(TAG_MDCTRLTYPE, strValue);
+    }
+
+    public final boolean isMDPSDEFORMIDNull() {
+        return this.IsParamNull(TAG_MDPSDEFORMID);
+    }
+
+    public final String getMDPSDEFORMID() {
+        return this.GetParamStringValue(TAG_MDPSDEFORMID, "");
+    }
+
+    public final void setMDPSDEFORMID(String strValue) {
+        this.SetParamValue(TAG_MDPSDEFORMID, strValue);
+    }
+
+    public final boolean isMDPSDEFORMNAMENull() {
+        return this.IsParamNull(TAG_MDPSDEFORMNAME);
+    }
+
+    public final String getMDPSDEFORMNAME() {
+        return this.GetParamStringValue(TAG_MDPSDEFORMNAME, "");
+    }
+
+    public final void setMDPSDEFORMNAME(String strValue) {
+        this.SetParamValue(TAG_MDPSDEFORMNAME, strValue);
+    }
+
+    public final boolean isMDPSDELISTIDNull() {
+        return this.IsParamNull(TAG_MDPSDELISTID);
+    }
+
+    public final String getMDPSDELISTID() {
+        return this.GetParamStringValue(TAG_MDPSDELISTID, "");
+    }
+
+    public final void setMDPSDELISTID(String strValue) {
+        this.SetParamValue(TAG_MDPSDELISTID, strValue);
+    }
+
+    public final boolean isMDPSDELISTNAMENull() {
+        return this.IsParamNull(TAG_MDPSDELISTNAME);
+    }
+
+    public final String getMDPSDELISTNAME() {
+        return this.GetParamStringValue(TAG_MDPSDELISTNAME, "");
+    }
+
+    public final void setMDPSDELISTNAME(String strValue) {
+        this.SetParamValue(TAG_MDPSDELISTNAME, strValue);
+    }
+
+    public final boolean isREFPSDERIDNull() {
+        return this.IsParamNull(TAG_REFPSDERID);
+    }
+
+    public final String getREFPSDERID() {
+        return this.GetParamStringValue(TAG_REFPSDERID, "");
+    }
+
+    public final void setREFPSDERID(String strValue) {
+        this.SetParamValue(TAG_REFPSDERID, strValue);
+    }
+
+    public final boolean isREFPSDERNAMENull() {
+        return this.IsParamNull(TAG_REFPSDERNAME);
+    }
+
+    public final String getREFPSDERNAME() {
+        return this.GetParamStringValue(TAG_REFPSDERNAME, "");
+    }
+
+    public final void setREFPSDERNAME(String strValue) {
+        this.SetParamValue(TAG_REFPSDERNAME, strValue);
+    }
+
+    public final boolean isSHOWMOREMODENull() {
+        return this.IsParamNull(TAG_SHOWMOREMODE);
+    }
+
+    public final int getSHOWMOREMODE() {
+        return this.GetParamIntValue(TAG_SHOWMOREMODE, 0);
+    }
+
+    public final void setSHOWMOREMODE(int nValue) {
+        this.SetParamValue(TAG_SHOWMOREMODE, nValue);
+    }
+
+    public final boolean isCONTENTTYPENull() {
+        return this.IsParamNull(TAG_CONTENTTYPE);
+    }
+
+    public final String getCONTENTTYPE() {
+        return this.GetParamStringValue(TAG_CONTENTTYPE, "");
+    }
+
+    public final void setCONTENTTYPE(String strValue) {
+        this.SetParamValue(TAG_CONTENTTYPE, strValue);
+    }
+
+    public final boolean isHTMLCONTENTNull() {
+        return this.IsParamNull(TAG_HTMLCONTENT);
+    }
+
+    public final String getHTMLCONTENT() {
+        return this.GetParamStringValue(TAG_HTMLCONTENT, "");
+    }
+
+    public final void setHTMLCONTENT(String strValue) {
+        this.SetParamValue(TAG_HTMLCONTENT, strValue);
+    }
+
+    public final boolean isPSSYSRESOURCEIDNull() {
+        return this.IsParamNull(TAG_PSSYSRESOURCEID);
+    }
+
+    public final String getPSSYSRESOURCEID() {
+        return this.GetParamStringValue(TAG_PSSYSRESOURCEID, "");
+    }
+
+    public final void setPSSYSRESOURCEID(String strValue) {
+        this.SetParamValue(TAG_PSSYSRESOURCEID, strValue);
+    }
+
+    public final boolean isPSSYSRESOURCENAMENull() {
+        return this.IsParamNull(TAG_PSSYSRESOURCENAME);
+    }
+
+    public final String getPSSYSRESOURCENAME() {
+        return this.GetParamStringValue(TAG_PSSYSRESOURCENAME, "");
+    }
+
+    public final void setPSSYSRESOURCENAME(String strValue) {
+        this.SetParamValue(TAG_PSSYSRESOURCENAME, strValue);
+    }
+
+    public final boolean isPHPSLANRESIDNull() {
+        return this.IsParamNull(TAG_PHPSLANRESID);
+    }
+
+    public final String getPHPSLANRESID() {
+        return this.GetParamStringValue(TAG_PHPSLANRESID, "");
+    }
+
+    public final void setPHPSLANRESID(String strValue) {
+        this.SetParamValue(TAG_PHPSLANRESID, strValue);
+    }
+
+    public final boolean isPHPSLANRESNAMENull() {
+        return this.IsParamNull(TAG_PHPSLANRESNAME);
+    }
+
+    public final String getPHPSLANRESNAME() {
+        return this.GetParamStringValue(TAG_PHPSLANRESNAME, "");
+    }
+
+    public final void setPHPSLANRESNAME(String strValue) {
+        this.SetParamValue(TAG_PHPSLANRESNAME, strValue);
+    }
+
+    public final boolean isREFPSDEIDNull() {
+        return this.IsParamNull(TAG_REFPSDEID);
+    }
+
+    public final String getREFPSDEID() {
+        return this.GetParamStringValue(TAG_REFPSDEID, "");
+    }
+
+    public final void setREFPSDEID(String strValue) {
+        this.SetParamValue(TAG_REFPSDEID, strValue);
+    }
+
+    public final boolean isREFPSDENAMENull() {
+        return this.IsParamNull(TAG_REFPSDENAME);
+    }
+
+    public final String getREFPSDENAME() {
+        return this.GetParamStringValue(TAG_REFPSDENAME, "");
+    }
+
+    public final void setREFPSDENAME(String strValue) {
+        this.SetParamValue(TAG_REFPSDENAME, strValue);
+    }
+
+    public final boolean isREFPSDEDATASETIDNull() {
+        return this.IsParamNull(TAG_REFPSDEDATASETID);
+    }
+
+    public final String getREFPSDEDATASETID() {
+        return this.GetParamStringValue(TAG_REFPSDEDATASETID, "");
+    }
+
+    public final void setREFPSDEDATASETID(String strValue) {
+        this.SetParamValue(TAG_REFPSDEDATASETID, strValue);
+    }
+
+    public final boolean isREFPSDEDATASETNAMENull() {
+        return this.IsParamNull(TAG_REFPSDEDATASETNAME);
+    }
+
+    public final String getREFPSDEDATASETNAME() {
+        return this.GetParamStringValue(TAG_REFPSDEDATASETNAME, "");
+    }
+
+    public final void setREFPSDEDATASETNAME(String strValue) {
+        this.SetParamValue(TAG_REFPSDEDATASETNAME, strValue);
+    }
+
+    public final boolean isREFPSDEACMODEIDNull() {
+        return this.IsParamNull(TAG_REFPSDEACMODEID);
+    }
+
+    public final String getREFPSDEACMODEID() {
+        return this.GetParamStringValue(TAG_REFPSDEACMODEID, "");
+    }
+
+    public final void setREFPSDEACMODEID(String strValue) {
+        this.SetParamValue(TAG_REFPSDEACMODEID, strValue);
+    }
+
+    public final boolean isREFPSDEACMODENAMENull() {
+        return this.IsParamNull(TAG_REFPSDEACMODENAME);
+    }
+
+    public final String getREFPSDEACMODENAME() {
+        return this.GetParamStringValue(TAG_REFPSDEACMODENAME, "");
+    }
+
+    public final void setREFPSDEACMODENAME(String strValue) {
+        this.SetParamValue(TAG_REFPSDEACMODENAME, strValue);
+    }
+
+    public final boolean isSPACINGTOPNull() {
+        return this.IsParamNull(TAG_SPACINGTOP);
+    }
+
+    public final String getSPACINGTOP() {
+        return this.GetParamStringValue(TAG_SPACINGTOP, "");
+    }
+
+    public final void setSPACINGTOP(String strValue) {
+        this.SetParamValue(TAG_SPACINGTOP, strValue);
+    }
+
+    public final boolean isSPACINGBOTTOMNull() {
+        return this.IsParamNull(TAG_SPACINGBOTTOM);
+    }
+
+    public final String getSPACINGBOTTOM() {
+        return this.GetParamStringValue(TAG_SPACINGBOTTOM, "");
+    }
+
+    public final void setSPACINGBOTTOM(String strValue) {
+        this.SetParamValue(TAG_SPACINGBOTTOM, strValue);
+    }
+
+    public final boolean isSPACINGLEFTNull() {
+        return this.IsParamNull(TAG_SPACINGLEFT);
+    }
+
+    public final String getSPACINGLEFT() {
+        return this.GetParamStringValue(TAG_SPACINGLEFT, "");
+    }
+
+    public final void setSPACINGLEFT(String strValue) {
+        this.SetParamValue(TAG_SPACINGLEFT, strValue);
+    }
+
+    public final boolean isSPACINGRIGHTNull() {
+        return this.IsParamNull(TAG_SPACINGRIGHT);
+    }
+
+    public final String getSPACINGRIGHT() {
+        return this.GetParamStringValue(TAG_SPACINGRIGHT, "");
+    }
+
+    public final void setSPACINGRIGHT(String strValue) {
+        this.SetParamValue(TAG_SPACINGRIGHT, strValue);
+    }
+
+    public final boolean isVALIGNNull() {
+        return this.IsParamNull(TAG_VALIGN);
+    }
+
+    public final String getVALIGN() {
+        return this.GetParamStringValue(TAG_VALIGN, "");
+    }
+
+    public final void setVALIGN(String strValue) {
+        this.SetParamValue(TAG_VALIGN, strValue);
+    }
+
+    public final boolean isHALIGNNull() {
+        return this.IsParamNull(TAG_HALIGN);
+    }
+
+    public final String getHALIGN() {
+        return this.GetParamStringValue(TAG_HALIGN, "");
+    }
+
+    public final void setHALIGN(String strValue) {
+        this.SetParamValue(TAG_HALIGN, strValue);
+    }
+
+    public final boolean isRAWCSSSTYLENull() {
+        return this.IsParamNull(TAG_RAWCSSSTYLE);
+    }
+
+    public final String getRAWCSSSTYLE() {
+        return this.GetParamStringValue(TAG_RAWCSSSTYLE, "");
+    }
+
+    public final void setRAWCSSSTYLE(String strValue) {
+        this.SetParamValue(TAG_RAWCSSSTYLE, strValue);
+    }
+
+    public final boolean isLABELRAWCSSSTYLENull() {
+        return this.IsParamNull(TAG_LABELRAWCSSSTYLE);
+    }
+
+    public final String getLABELRAWCSSSTYLE() {
+        return this.GetParamStringValue(TAG_LABELRAWCSSSTYLE, "");
+    }
+
+    public final void setLABELRAWCSSSTYLE(String strValue) {
+        this.SetParamValue(TAG_LABELRAWCSSSTYLE, strValue);
+    }
+
+    public final boolean isDYNACLASSNull() {
+        return this.IsParamNull(TAG_DYNACLASS);
+    }
+
+    public final String getDYNACLASS() {
+        return this.GetParamStringValue(TAG_DYNACLASS, "");
+    }
+
+    public final void setDYNACLASS(String strValue) {
+        this.SetParamValue(TAG_DYNACLASS, strValue);
+    }
+
+    public final boolean isLABELDYNACLASSNull() {
+        return this.IsParamNull(TAG_LABELDYNACLASS);
+    }
+
+    public final String getLABELDYNACLASS() {
+        return this.GetParamStringValue(TAG_LABELDYNACLASS, "");
+    }
+
+    public final void setLABELDYNACLASS(String strValue) {
+        this.SetParamValue(TAG_LABELDYNACLASS, strValue);
+    }
+
+    public final boolean isVALIGNSELFNull() {
+        return this.IsParamNull(TAG_VALIGNSELF);
+    }
+
+    public final String getVALIGNSELF() {
+        return this.GetParamStringValue(TAG_VALIGNSELF, "");
+    }
+
+    public final void setVALIGNSELF(String strValue) {
+        this.SetParamValue(TAG_VALIGNSELF, strValue);
+    }
+
+    public final boolean isHALIGNSELFNull() {
+        return this.IsParamNull(TAG_HALIGNSELF);
+    }
+
+    public final String getHALIGNSELF() {
+        return this.GetParamStringValue(TAG_HALIGNSELF, "");
+    }
+
+    public final void setHALIGNSELF(String strValue) {
+        this.SetParamValue(TAG_HALIGNSELF, strValue);
+    }
+
+    public final boolean isDETAILSTYLETEXTNull() {
+        return this.IsParamNull(TAG_DETAILSTYLETEXT);
+    }
+
+    public final String getDETAILSTYLETEXT() {
+        return this.GetParamStringValue(TAG_DETAILSTYLETEXT, "");
+    }
+
+    public final void setDETAILSTYLETEXT(String strValue) {
+        this.SetParamValue(TAG_DETAILSTYLETEXT, strValue);
+    }
+
+    public final boolean isRENDERMODETEXTNull() {
+        return this.IsParamNull(TAG_RENDERMODETEXT);
+    }
+
+    public final String getRENDERMODETEXT() {
+        return this.GetParamStringValue(TAG_RENDERMODETEXT, "");
+    }
+
+    public final void setRENDERMODETEXT(String strValue) {
+        this.SetParamValue(TAG_RENDERMODETEXT, strValue);
+    }
+
+    public final boolean isRENDERMODENull() {
+        return this.IsParamNull(TAG_RENDERMODE);
+    }
+
+    public final String getRENDERMODE() {
+        return this.GetParamStringValue(TAG_RENDERMODE, "");
+    }
+
+    public final void setRENDERMODE(String strValue) {
+        this.SetParamValue(TAG_RENDERMODE, strValue);
+    }
+
+    public final boolean isTOGGLEMODENull() {
+        return this.IsParamNull(TAG_TOGGLEMODE);
+    }
+
+    public final String getTOGGLEMODE() {
+        return this.GetParamStringValue(TAG_TOGGLEMODE, "");
+    }
+
+    public final void setTOGGLEMODE(String strValue) {
+        this.SetParamValue(TAG_TOGGLEMODE, strValue);
+    }
+
+    public final boolean isBORDERSTYLENull() {
+        return this.IsParamNull(TAG_BORDERSTYLE);
+    }
+
+    public final String getBORDERSTYLE() {
+        return this.GetParamStringValue(TAG_BORDERSTYLE, "");
+    }
+
+    public final void setBORDERSTYLE(String strValue) {
+        this.SetParamValue(TAG_BORDERSTYLE, strValue);
+    }
+
+    public final boolean isICONALIGNNull() {
+        return this.IsParamNull(TAG_ICONALIGN);
+    }
+
+    public final String getICONALIGN() {
+        return this.GetParamStringValue(TAG_ICONALIGN, "");
+    }
+
+    public final void setICONALIGN(String strValue) {
+        this.SetParamValue(TAG_ICONALIGN, strValue);
+    }
+
+    public final boolean isCUSTOMCODENull() {
+        return this.IsParamNull(TAG_CUSTOMCODE);
+    }
+
+    public final String getCUSTOMCODE() {
+        return this.GetParamStringValue(TAG_CUSTOMCODE, "");
+    }
+
+    public final void setCUSTOMCODE(String strValue) {
+        this.SetParamValue(TAG_CUSTOMCODE, strValue);
+    }
+
+    public final boolean isDETAILTAG2Null() {
+        return this.IsParamNull(TAG_DETAILTAG2);
+    }
+
+    public final String getDETAILTAG2() {
+        return this.GetParamStringValue(TAG_DETAILTAG2, "");
+    }
+
+    public final void setDETAILTAG2(String strValue) {
+        this.SetParamValue(TAG_DETAILTAG2, strValue);
+    }
+
+    public final boolean isDETAILTAGNull() {
+        return this.IsParamNull(TAG_DETAILTAG);
+    }
+
+    public final String getDETAILTAG() {
+        return this.GetParamStringValue(TAG_DETAILTAG, "");
+    }
+
+    public final void setDETAILTAG(String strValue) {
+        this.SetParamValue(TAG_DETAILTAG, strValue);
+    }
+
+    public final boolean isDEFAULTFLAGNull() {
+        return this.IsParamNull(TAG_DEFAULTFLAG);
+    }
+
+    public final boolean getDEFAULTFLAG() {
+        return this.GetParamIntValue(TAG_DEFAULTFLAG, 0) == 1;
+    }
+
+    public final void setDEFAULTFLAG(boolean bValue) {
+        this.SetParamValue(TAG_DEFAULTFLAG, bValue ? 1 : 0);
+    }
+
+    public final boolean isDATANull() {
+        return this.IsParamNull(TAG_DATA);
+    }
+
+    public final String getDATA() {
+        return this.GetParamStringValue(TAG_DATA, "");
+    }
+
+    public final void setDATA(String strValue) {
+        this.SetParamValue(TAG_DATA, strValue);
+    }
+
+    public final boolean isHEIGHTMODENull() {
+        return this.IsParamNull(TAG_HEIGHTMODE);
+    }
+
+    public final String getHEIGHTMODE() {
+        return this.GetParamStringValue(TAG_HEIGHTMODE, "");
+    }
+
+    public final void setHEIGHTMODE(String strValue) {
+        this.SetParamValue(TAG_HEIGHTMODE, strValue);
+    }
+
+    public final boolean isWIDTHMODENull() {
+        return this.IsParamNull(TAG_WIDTHMODE);
+    }
+
+    public final String getWIDTHMODE() {
+        return this.GetParamStringValue(TAG_WIDTHMODE, "");
+    }
+
+    public final void setWIDTHMODE(String strValue) {
+        this.SetParamValue(TAG_WIDTHMODE, strValue);
+    }
+
+    public final boolean isPREDEFINEDTYPENull() {
+        return this.IsParamNull(TAG_PREDEFINEDTYPE);
+    }
+
+    public final String getPREDEFINEDTYPE() {
+        return this.GetParamStringValue(TAG_PREDEFINEDTYPE, "");
+    }
+
+    public final void setPREDEFINEDTYPE(String strValue) {
+        this.SetParamValue(TAG_PREDEFINEDTYPE, strValue);
+    }
+
+    public final boolean isPREDEFINEDTYPETEXTNull() {
+        return this.IsParamNull(TAG_PREDEFINEDTYPETEXT);
+    }
+
+    public final String getPREDEFINEDTYPETEXT() {
+        return this.GetParamStringValue(TAG_PREDEFINEDTYPETEXT, "");
+    }
+
+    public final void setPREDEFINEDTYPETEXT(String strValue) {
+        this.SetParamValue(TAG_PREDEFINEDTYPETEXT, strValue);
+    }
+
+    public final boolean isSWAPMODENull() {
+        return this.IsParamNull(TAG_SWAPMODE);
+    }
+
+    public final String getSWAPMODE() {
+        return this.GetParamStringValue(TAG_SWAPMODE, "");
+    }
+
+    public final void setSWAPMODE(String strValue) {
+        this.SetParamValue(TAG_SWAPMODE, strValue);
+    }
+
+    public final boolean isPSDELOGICIDNull() {
+        return this.IsParamNull(TAG_PSDELOGICID);
+    }
+
+    public final String getPSDELOGICID() {
+        return this.GetParamStringValue(TAG_PSDELOGICID, "");
+    }
+
+    public final void setPSDELOGICID(String strValue) {
+        this.SetParamValue(TAG_PSDELOGICID, strValue);
+    }
+
+    public final boolean isPSDELOGICNAMENull() {
+        return this.IsParamNull(TAG_PSDELOGICNAME);
+    }
+
+    public final String getPSDELOGICNAME() {
+        return this.GetParamStringValue(TAG_PSDELOGICNAME, "");
+    }
+
+    public final void setPSDELOGICNAME(String strValue) {
+        this.SetParamValue(TAG_PSDELOGICNAME, strValue);
+    }
+
+    public final boolean isHTMLPAGEURLNull() {
+        return this.IsParamNull(TAG_HTMLPAGEURL);
+    }
+
+    public final String getHTMLPAGEURL() {
+        return this.GetParamStringValue(TAG_HTMLPAGEURL, "");
+    }
+
+    public final void setHTMLPAGEURL(String strValue) {
+        this.SetParamValue(TAG_HTMLPAGEURL, strValue);
+    }
+
+    public final boolean isCTRLPSSYSCSSIDNull() {
+        return this.IsParamNull(TAG_CTRLPSSYSCSSID);
+    }
+
+    public final String getCTRLPSSYSCSSID() {
+        return this.GetParamStringValue(TAG_CTRLPSSYSCSSID, "");
+    }
+
+    public final void setCTRLPSSYSCSSID(String strValue) {
+        this.SetParamValue(TAG_CTRLPSSYSCSSID, strValue);
+    }
+
+    public final boolean isCTRLPSSYSCSSNAMENull() {
+        return this.IsParamNull(TAG_CTRLPSSYSCSSNAME);
+    }
+
+    public final String getCTRLPSSYSCSSNAME() {
+        return this.GetParamStringValue(TAG_CTRLPSSYSCSSNAME, "");
+    }
+
+    public final void setCTRLPSSYSCSSNAME(String strValue) {
+        this.SetParamValue(TAG_CTRLPSSYSCSSNAME, strValue);
+    }
+
+    public final boolean isCTRLDYNACLASSNull() {
+        return this.IsParamNull(TAG_CTRLDYNACLASS);
+    }
+
+    public final String getCTRLDYNACLASS() {
+        return this.GetParamStringValue(TAG_CTRLDYNACLASS, "");
+    }
+
+    public final void setCTRLDYNACLASS(String strValue) {
+        this.SetParamValue(TAG_CTRLDYNACLASS, strValue);
+    }
+
+    public final boolean isCTRLRAWCSSSTYLENull() {
+        return this.IsParamNull(TAG_CTRLRAWCSSSTYLE);
+    }
+
+    public final String getCTRLRAWCSSSTYLE() {
+        return this.GetParamStringValue(TAG_CTRLRAWCSSSTYLE, "");
+    }
+
+    public final void setCTRLRAWCSSSTYLE(String strValue) {
+        this.SetParamValue(TAG_CTRLRAWCSSSTYLE, strValue);
+    }
+
+    public final boolean isTOOLTIPINFONull() {
+        return this.IsParamNull(TAG_TOOLTIPINFO);
+    }
+
+    public final String getTOOLTIPINFO() {
+        return this.GetParamStringValue(TAG_TOOLTIPINFO, "");
+    }
+
+    public final void setTOOLTIPINFO(String strValue) {
+        this.SetParamValue(TAG_TOOLTIPINFO, strValue);
+    }
+
+    public final boolean isMDPSDEGRIDIDNull() {
+        return this.IsParamNull(TAG_MDPSDEGRIDID);
+    }
+
+    public final String getMDPSDEGRIDID() {
+        return this.GetParamStringValue(TAG_MDPSDEGRIDID, "");
+    }
+
+    public final void setMDPSDEGRIDID(String strValue) {
+        this.SetParamValue(TAG_MDPSDEGRIDID, strValue);
+    }
+
+    public final boolean isMDPSDEGRIDNAMENull() {
+        return this.IsParamNull(TAG_MDPSDEGRIDNAME);
+    }
+
+    public final String getMDPSDEGRIDNAME() {
+        return this.GetParamStringValue(TAG_MDPSDEGRIDNAME, "");
+    }
+
+    public final void setMDPSDEGRIDNAME(String strValue) {
+        this.SetParamValue(TAG_MDPSDEGRIDNAME, strValue);
+    }
+
+    public final boolean isMDPSDEDATAVIEWIDNull() {
+        return this.IsParamNull(TAG_MDPSDEDATAVIEWID);
+    }
+
+    public final String getMDPSDEDATAVIEWID() {
+        return this.GetParamStringValue(TAG_MDPSDEDATAVIEWID, "");
+    }
+
+    public final void setMDPSDEDATAVIEWID(String strValue) {
+        this.SetParamValue(TAG_MDPSDEDATAVIEWID, strValue);
+    }
+
+    public final boolean isMDPSDEDATAVIEWNAMENull() {
+        return this.IsParamNull(TAG_MDPSDEDATAVIEWNAME);
+    }
+
+    public final String getMDPSDEDATAVIEWNAME() {
+        return this.GetParamStringValue(TAG_MDPSDEDATAVIEWNAME, "");
+    }
+
+    public final void setMDPSDEDATAVIEWNAME(String strValue) {
+        this.SetParamValue(TAG_MDPSDEDATAVIEWNAME, strValue);
+    }
+
+    public final boolean isITEMSTATESNull() {
+        return this.IsParamNull(TAG_ITEMSTATES);
+    }
+
+    public final int getITEMSTATES() {
+        return this.GetParamIntValue(TAG_ITEMSTATES, 0);
+    }
+
+    public final void setITEMSTATES(int nValue) {
+        this.SetParamValue(TAG_ITEMSTATES, nValue);
+    }
+
+    public final boolean isFIELDNAMENull() {
+        return this.IsParamNull(TAG_FIELDNAME);
+    }
+
+    public final String getFIELDNAME() {
+        return this.GetParamStringValue(TAG_FIELDNAME, "");
+    }
+
+    public final void setFIELDNAME(String strValue) {
+        this.SetParamValue(TAG_FIELDNAME, strValue);
+    }
+
+    public final boolean isCOLALIGNNull() {
+        return this.IsParamNull(TAG_COLALIGN);
+    }
+
+    public final String getCOLALIGN() {
+        return this.GetParamStringValue(TAG_COLALIGN, "");
+    }
+
+    public final void setCOLALIGN(String strValue) {
+        this.SetParamValue(TAG_COLALIGN, strValue);
+    }
+
+    public final boolean isMASKMODENull() {
+        return this.IsParamNull(TAG_MASKMODE);
+    }
+
+    public final int getMASKMODE() {
+        return this.GetParamIntValue(TAG_MASKMODE, 0);
+    }
+
+    public final void setMASKMODE(int nValue) {
+        this.SetParamValue(TAG_MASKMODE, nValue);
+    }
+
+    public final boolean isMASKINFONull() {
+        return this.IsParamNull(TAG_MASKINFO);
+    }
+
+    public final String getMASKINFO() {
+        return this.GetParamStringValue(TAG_MASKINFO, "");
+    }
+
+    public final void setMASKINFO(String strValue) {
+        this.SetParamValue(TAG_MASKINFO, strValue);
+    }
+
+    public final boolean isTIPPSLANRESIDNull() {
+        return this.IsParamNull(TAG_TIPPSLANRESID);
+    }
+
+    public final String getTIPPSLANRESID() {
+        return this.GetParamStringValue(TAG_TIPPSLANRESID, "");
+    }
+
+    public final void setTIPPSLANRESID(String strValue) {
+        this.SetParamValue(TAG_TIPPSLANRESID, strValue);
+    }
+
+    public final boolean isTIPPSLANRESNAMENull() {
+        return this.IsParamNull(TAG_TIPPSLANRESNAME);
+    }
+
+    public final String getTIPPSLANRESNAME() {
+        return this.GetParamStringValue(TAG_TIPPSLANRESNAME, "");
+    }
+
+    public final void setTIPPSLANRESNAME(String strValue) {
+        this.SetParamValue(TAG_TIPPSLANRESNAME, strValue);
+    }
+
+    public final boolean isMASKPSLANRESIDNull() {
+        return this.IsParamNull(TAG_MASKPSLANRESID);
+    }
+
+    public final String getMASKPSLANRESID() {
+        return this.GetParamStringValue(TAG_MASKPSLANRESID, "");
+    }
+
+    public final void setMASKPSLANRESID(String strValue) {
+        this.SetParamValue(TAG_MASKPSLANRESID, strValue);
+    }
+
+    public final boolean isMASKPSLANRESNAMENull() {
+        return this.IsParamNull(TAG_MASKPSLANRESNAME);
+    }
+
+    public final String getMASKPSLANRESNAME() {
+        return this.GetParamStringValue(TAG_MASKPSLANRESNAME, "");
+    }
+
+    public final void setMASKPSLANRESNAME(String strValue) {
+        this.SetParamValue(TAG_MASKPSLANRESNAME, strValue);
+    }
+
+    public final boolean isTEMPLATEMODENull() {
+        return this.IsParamNull(TAG_TEMPLATEMODE);
+    }
+
+    public final int getTEMPLATEMODE() {
+        return this.GetParamIntValue(TAG_TEMPLATEMODE, 0);
+    }
+
+    public final void setTEMPLATEMODE(int nValue) {
+        this.SetParamValue(TAG_TEMPLATEMODE, nValue);
+    }
+
+    public final boolean isPSDEDRIDNull() {
+        return this.IsParamNull(TAG_PSDEDRID);
+    }
+
+    public final String getPSDEDRID() {
+        return this.GetParamStringValue(TAG_PSDEDRID, "");
+    }
+
+    public final void setPSDEDRID(String strValue) {
+        this.SetParamValue(TAG_PSDEDRID, strValue);
+    }
+
+    public final boolean isPSDEDRNAMENull() {
+        return this.IsParamNull(TAG_PSDEDRNAME);
+    }
+
+    public final String getPSDEDRNAME() {
+        return this.GetParamStringValue(TAG_PSDEDRNAME, "");
+    }
+
+    public final void setPSDEDRNAME(String strValue) {
+        this.SetParamValue(TAG_PSDEDRNAME, strValue);
+    }
+
+    public final boolean isINSERTPOSNull() {
+        return this.IsParamNull(TAG_INSERTPOS);
+    }
+
+    public final int getINSERTPOS() {
+        return this.GetParamIntValue(TAG_INSERTPOS, 0);
+    }
+
+    public final void setINSERTPOS(int nValue) {
+        this.SetParamValue(TAG_INSERTPOS, nValue);
+    }
+
+    public final boolean isCOUNTERMODENull() {
+        return this.IsParamNull(TAG_COUNTERMODE);
+    }
+
+    public final int getCOUNTERMODE() {
+        return this.GetParamIntValue(TAG_COUNTERMODE, 0);
+    }
+
+    public final void setCOUNTERMODE(int nValue) {
+        this.SetParamValue(TAG_COUNTERMODE, nValue);
+    }
+
+    public final boolean isCOUNTERIDNull() {
+        return this.IsParamNull(TAG_COUNTERID);
+    }
+
+    public final String getCOUNTERID() {
+        return this.GetParamStringValue(TAG_COUNTERID, "");
+    }
+
+    public final void setCOUNTERID(String strValue) {
+        this.SetParamValue(TAG_COUNTERID, strValue);
+    }
+
+    public final boolean isMODELSTATENull() {
+        return this.IsParamNull(TAG_MODELSTATE);
+    }
+
+    public final int getMODELSTATE() {
+        return this.GetParamIntValue(TAG_MODELSTATE, 0);
+    }
+
+    public final void setMODELSTATE(int nValue) {
+        this.SetParamValue(TAG_MODELSTATE, nValue);
+    }
+
+    public final boolean isENABLEINPUTTIPNull() {
+        return this.IsParamNull(TAG_ENABLEINPUTTIP);
+    }
+
+    public final boolean getENABLEINPUTTIP() {
+        return this.GetParamIntValue(TAG_ENABLEINPUTTIP, 0) == 1;
+    }
+
+    public final void setENABLEINPUTTIP(boolean bValue) {
+        this.SetParamValue(TAG_ENABLEINPUTTIP, bValue ? 1 : 0);
+    }
+
+    public ArrayList<PSDEFormDetail> getChildPSDEFormDetails(boolean bCreated) {
+        if (this.childPSDEFormDetailList != null) {
+            return this.childPSDEFormDetailList;
+        }
+        if (bCreated) {
+            this.childPSDEFormDetailList = new ArrayList();
+        }
+        return this.childPSDEFormDetailList;
+    }
+
+    public ArrayList<PSDEFDLogic> getChildPSDEFDLogics(String strLogicCat, boolean bCreated) {
+        ArrayList<PSDEFDLogic> childPSDEFDLogicList;
+        if (this.childPSDEFDLogicListMap == null) {
+            if (!bCreated) {
+                return null;
+            }
+            this.childPSDEFDLogicListMap = new HashMap();
+        }
+        if ((childPSDEFDLogicList = this.childPSDEFDLogicListMap.get(strLogicCat)) != null) {
+            return childPSDEFDLogicList;
+        }
+        if (bCreated) {
+            childPSDEFDLogicList = new ArrayList();
+            this.childPSDEFDLogicListMap.put(strLogicCat, childPSDEFDLogicList);
+        }
+        return childPSDEFDLogicList;
+    }
+
+    public void resetChildDatas() {
+        if (this.childPSDEFormDetailList != null) {
+            this.childPSDEFormDetailList.clear();
+            this.childPSDEFormDetailList = null;
+        }
+        if (this.childPSDEFDLogicListMap != null) {
+            this.childPSDEFDLogicListMap.clear();
+            this.childPSDEFDLogicListMap = null;
+        }
+    }
+}
+

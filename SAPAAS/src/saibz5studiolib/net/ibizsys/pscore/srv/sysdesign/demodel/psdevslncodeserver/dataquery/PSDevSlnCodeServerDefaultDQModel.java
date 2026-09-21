@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.sysdesign.demodel.psdevslncodeserver.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="A8ED5E4B-8687-4832-8A95-F58966E09EF6", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`CSPARAM`, t1.`CSPARAM2`, t1.`CSPARAM3`, t1.`CSPARAM4`, t1.`EXPRIEDTIME`, t1.`HOSTPASSWD`, t1.`HOSTUSERNAME`, t1.`MEMO`, t1.`PSDEVCENTERSERVERID`, t1.`PSDEVCENTERSERVERNAME`, t1.`PSDEVSLNCODESERVERID`, t1.`PSDEVSLNCODESERVERNAME`, t1.`PSDEVSLNID`, t11.`PSDEVSLNNAME`, t1.`RESREADYTIME`, t1.`RESSTATE`, t1.`UPDATEDATE`, t1.`UPDATEMAN` FROM `T_SRFPSDEVSLNCODESERVER` t1  LEFT JOIN T_SRFPSDEVSLN t11 ON t1.PSDEVSLNID = t11.PSDEVSLNID  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=1), @DEDataQueryCodeExp(name="CSPARAM", expression="t1.`CSPARAM`", showorder=2), @DEDataQueryCodeExp(name="CSPARAM2", expression="t1.`CSPARAM2`", showorder=3), @DEDataQueryCodeExp(name="CSPARAM3", expression="t1.`CSPARAM3`", showorder=4), @DEDataQueryCodeExp(name="CSPARAM4", expression="t1.`CSPARAM4`", showorder=5), @DEDataQueryCodeExp(name="EXPRIEDTIME", expression="t1.`EXPRIEDTIME`", showorder=6), @DEDataQueryCodeExp(name="HOSTPASSWD", expression="t1.`HOSTPASSWD`", showorder=7), @DEDataQueryCodeExp(name="HOSTUSERNAME", expression="t1.`HOSTUSERNAME`", showorder=8), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=9), @DEDataQueryCodeExp(name="PSDEVCENTERSERVERID", expression="t1.`PSDEVCENTERSERVERID`", showorder=10), @DEDataQueryCodeExp(name="PSDEVCENTERSERVERNAME", expression="t1.`PSDEVCENTERSERVERNAME`", showorder=11), @DEDataQueryCodeExp(name="PSDEVSLNCODESERVERID", expression="t1.`PSDEVSLNCODESERVERID`", showorder=12), @DEDataQueryCodeExp(name="PSDEVSLNCODESERVERNAME", expression="t1.`PSDEVSLNCODESERVERNAME`", showorder=13), @DEDataQueryCodeExp(name="PSDEVSLNID", expression="t1.`PSDEVSLNID`", showorder=14), @DEDataQueryCodeExp(name="PSDEVSLNNAME", expression="t11.`PSDEVSLNNAME`", showorder=15), @DEDataQueryCodeExp(name="RESREADYTIME", expression="t1.`RESREADYTIME`", showorder=16), @DEDataQueryCodeExp(name="RESSTATE", expression="t1.`RESSTATE`", showorder=17), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=18), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=19)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CREATEDATE, t1.CREATEMAN, t1.CSPARAM, t1.CSPARAM2, t1.CSPARAM3, t1.CSPARAM4, t1.EXPRIEDTIME, t1.HOSTPASSWD, t1.HOSTUSERNAME, t1.MEMO, t1.PSDEVCENTERSERVERID, t1.PSDEVCENTERSERVERNAME, t1.PSDEVSLNCODESERVERID, t1.PSDEVSLNCODESERVERNAME, t1.PSDEVSLNID, t11.PSDEVSLNNAME, t1.RESREADYTIME, t1.RESSTATE, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFPSDEVSLNCODESERVER t1  LEFT JOIN T_SRFPSDEVSLN t11 ON t1.PSDEVSLNID = t11.PSDEVSLNID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=0), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=1), @DEDataQueryCodeExp(name="CSPARAM", expression="t1.CSPARAM", showorder=2), @DEDataQueryCodeExp(name="CSPARAM2", expression="t1.CSPARAM2", showorder=3), @DEDataQueryCodeExp(name="CSPARAM3", expression="t1.CSPARAM3", showorder=4), @DEDataQueryCodeExp(name="CSPARAM4", expression="t1.CSPARAM4", showorder=5), @DEDataQueryCodeExp(name="EXPRIEDTIME", expression="t1.EXPRIEDTIME", showorder=6), @DEDataQueryCodeExp(name="HOSTPASSWD", expression="t1.HOSTPASSWD", showorder=7), @DEDataQueryCodeExp(name="HOSTUSERNAME", expression="t1.HOSTUSERNAME", showorder=8), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=9), @DEDataQueryCodeExp(name="PSDEVCENTERSERVERID", expression="t1.PSDEVCENTERSERVERID", showorder=10), @DEDataQueryCodeExp(name="PSDEVCENTERSERVERNAME", expression="t1.PSDEVCENTERSERVERNAME", showorder=11), @DEDataQueryCodeExp(name="PSDEVSLNCODESERVERID", expression="t1.PSDEVSLNCODESERVERID", showorder=12), @DEDataQueryCodeExp(name="PSDEVSLNCODESERVERNAME", expression="t1.PSDEVSLNCODESERVERNAME", showorder=13), @DEDataQueryCodeExp(name="PSDEVSLNID", expression="t1.PSDEVSLNID", showorder=14), @DEDataQueryCodeExp(name="PSDEVSLNNAME", expression="t11.PSDEVSLNNAME", showorder=15), @DEDataQueryCodeExp(name="RESREADYTIME", expression="t1.RESREADYTIME", showorder=16), @DEDataQueryCodeExp(name="RESSTATE", expression="t1.RESSTATE", showorder=17), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=18), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=19)}, conds={})})
+public class PSDevSlnCodeServerDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSDevSlnCodeServerDefaultDQModel() {
+        this.initAnnotation(PSDevSlnCodeServerDefaultDQModel.class);
+    }
+}
+

@@ -1,0 +1,21 @@
+.app-control-treeview {
+    z-index: 9;
+    .tree__node {
+        width: calc(100% - 15px);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        position: relative;
+        &.ibiz-badge {
+            overflow: visible;
+        }
+    }
+    .tree__node__icon {
+        padding-right: 10px;
+        .icon__img {
+            width:14px;
+            height:14px;
+            vertical-align: bottom;
+        }
+    }
+}

@@ -1,0 +1,393 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.fasterxml.jackson.annotation.JsonFormat
+ *  com.fasterxml.jackson.annotation.JsonIgnore
+ *  com.fasterxml.jackson.annotation.JsonProperty
+ */
+package net.ibizsys.modelapi.dto;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.sql.Timestamp;
+import net.ibizsys.modelapi.util.PSModelDTOBase;
+
+public class PSDEMSOPPrivDTO
+extends PSModelDTOBase {
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", locale="zh", timezone="GMT+8")
+    public static final String FIELD_CREATEDATE = "createdate";
+    public static final String FIELD_CREATEMAN = "createman";
+    public static final String FIELD_MEMO = "memo";
+    public static final String FIELD_PSDEID = "psdeid";
+    public static final String FIELD_PSDEMAINSTATEID = "psdemainstateid";
+    public static final String FIELD_PSDEMAINSTATENAME = "psdemainstatename";
+    public static final String FIELD_PSDEMSOPPRIVID = "psdemsopprivid";
+    public static final String FIELD_PSDEMSOPPRIVNAME = "psdemsopprivname";
+    public static final String FIELD_PSDEOPPRIVID = "psdeopprivid";
+    public static final String FIELD_PSDEOPPRIVNAME = "psdeopprivname";
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", locale="zh", timezone="GMT+8")
+    public static final String FIELD_UPDATEDATE = "updatedate";
+    public static final String FIELD_UPDATEMAN = "updateman";
+    public static final String FIELD_USERCAT = "usercat";
+    public static final String FIELD_USERTAG = "usertag";
+    public static final String FIELD_USERTAG2 = "usertag2";
+    public static final String FIELD_USERTAG3 = "usertag3";
+    public static final String FIELD_USERTAG4 = "usertag4";
+    public static final String FIELD_VALIDFLAG = "validflag";
+
+    @JsonIgnore
+    public Timestamp getCreateDate() {
+        Object objValue = this.get(FIELD_CREATEDATE);
+        if (objValue == null) {
+            return null;
+        }
+        return (Timestamp)objValue;
+    }
+
+    @JsonProperty(value="createdate")
+    public void setCreateDate(Timestamp createDate) {
+        this.set(FIELD_CREATEDATE, createDate);
+    }
+
+    @JsonIgnore
+    public boolean isCreateDateDirty() {
+        return this.contains(FIELD_CREATEDATE);
+    }
+
+    @JsonIgnore
+    public String getCreateMan() {
+        Object objValue = this.get(FIELD_CREATEMAN);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="createman")
+    public void setCreateMan(String createMan) {
+        this.set(FIELD_CREATEMAN, createMan);
+    }
+
+    @JsonIgnore
+    public boolean isCreateManDirty() {
+        return this.contains(FIELD_CREATEMAN);
+    }
+
+    @JsonIgnore
+    public String getMemo() {
+        Object objValue = this.get(FIELD_MEMO);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="memo")
+    public void setMemo(String memo) {
+        this.set(FIELD_MEMO, memo);
+    }
+
+    @JsonIgnore
+    public boolean isMemoDirty() {
+        return this.contains(FIELD_MEMO);
+    }
+
+    @JsonIgnore
+    public String getPSDEId() {
+        Object objValue = this.get(FIELD_PSDEID);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="psdeid")
+    public void setPSDEId(String pSDEId) {
+        this.set(FIELD_PSDEID, pSDEId);
+    }
+
+    @JsonIgnore
+    public boolean isPSDEIdDirty() {
+        return this.contains(FIELD_PSDEID);
+    }
+
+    @JsonIgnore
+    public String getPSDEMainStateId() {
+        Object objValue = this.get(FIELD_PSDEMAINSTATEID);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="psdemainstateid")
+    public void setPSDEMainStateId(String pSDEMainStateId) {
+        this.set(FIELD_PSDEMAINSTATEID, pSDEMainStateId);
+    }
+
+    @JsonIgnore
+    public boolean isPSDEMainStateIdDirty() {
+        return this.contains(FIELD_PSDEMAINSTATEID);
+    }
+
+    @JsonIgnore
+    public String getPSDEMainStateName() {
+        Object objValue = this.get(FIELD_PSDEMAINSTATENAME);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="psdemainstatename")
+    public void setPSDEMainStateName(String pSDEMainStateName) {
+        this.set(FIELD_PSDEMAINSTATENAME, pSDEMainStateName);
+    }
+
+    @JsonIgnore
+    public boolean isPSDEMainStateNameDirty() {
+        return this.contains(FIELD_PSDEMAINSTATENAME);
+    }
+
+    @JsonIgnore
+    public String getPSDEMSOPPrivId() {
+        Object objValue = this.get(FIELD_PSDEMSOPPRIVID);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="psdemsopprivid")
+    public void setPSDEMSOPPrivId(String pSDEMSOPPrivId) {
+        this.set(FIELD_PSDEMSOPPRIVID, pSDEMSOPPrivId);
+    }
+
+    @JsonIgnore
+    public boolean isPSDEMSOPPrivIdDirty() {
+        return this.contains(FIELD_PSDEMSOPPRIVID);
+    }
+
+    @JsonIgnore
+    public String getPSDEMSOPPrivName() {
+        Object objValue = this.get(FIELD_PSDEMSOPPRIVNAME);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="psdemsopprivname")
+    public void setPSDEMSOPPrivName(String pSDEMSOPPrivName) {
+        this.set(FIELD_PSDEMSOPPRIVNAME, pSDEMSOPPrivName);
+    }
+
+    @JsonIgnore
+    public boolean isPSDEMSOPPrivNameDirty() {
+        return this.contains(FIELD_PSDEMSOPPRIVNAME);
+    }
+
+    @JsonIgnore
+    public String getPSDEOPPrivId() {
+        Object objValue = this.get(FIELD_PSDEOPPRIVID);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="psdeopprivid")
+    public void setPSDEOPPrivId(String pSDEOPPrivId) {
+        this.set(FIELD_PSDEOPPRIVID, pSDEOPPrivId);
+    }
+
+    @JsonIgnore
+    public boolean isPSDEOPPrivIdDirty() {
+        return this.contains(FIELD_PSDEOPPRIVID);
+    }
+
+    @JsonIgnore
+    public String getPSDEOPPrivName() {
+        Object objValue = this.get(FIELD_PSDEOPPRIVNAME);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="psdeopprivname")
+    public void setPSDEOPPrivName(String pSDEOPPrivName) {
+        this.set(FIELD_PSDEOPPRIVNAME, pSDEOPPrivName);
+    }
+
+    @JsonIgnore
+    public boolean isPSDEOPPrivNameDirty() {
+        return this.contains(FIELD_PSDEOPPRIVNAME);
+    }
+
+    @JsonIgnore
+    public Timestamp getUpdateDate() {
+        Object objValue = this.get(FIELD_UPDATEDATE);
+        if (objValue == null) {
+            return null;
+        }
+        return (Timestamp)objValue;
+    }
+
+    @JsonProperty(value="updatedate")
+    public void setUpdateDate(Timestamp updateDate) {
+        this.set(FIELD_UPDATEDATE, updateDate);
+    }
+
+    @JsonIgnore
+    public boolean isUpdateDateDirty() {
+        return this.contains(FIELD_UPDATEDATE);
+    }
+
+    @JsonIgnore
+    public String getUpdateMan() {
+        Object objValue = this.get(FIELD_UPDATEMAN);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="updateman")
+    public void setUpdateMan(String updateMan) {
+        this.set(FIELD_UPDATEMAN, updateMan);
+    }
+
+    @JsonIgnore
+    public boolean isUpdateManDirty() {
+        return this.contains(FIELD_UPDATEMAN);
+    }
+
+    @JsonIgnore
+    public String getUserCat() {
+        Object objValue = this.get(FIELD_USERCAT);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="usercat")
+    public void setUserCat(String userCat) {
+        this.set(FIELD_USERCAT, userCat);
+    }
+
+    @JsonIgnore
+    public boolean isUserCatDirty() {
+        return this.contains(FIELD_USERCAT);
+    }
+
+    @JsonIgnore
+    public String getUserTag() {
+        Object objValue = this.get(FIELD_USERTAG);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="usertag")
+    public void setUserTag(String userTag) {
+        this.set(FIELD_USERTAG, userTag);
+    }
+
+    @JsonIgnore
+    public boolean isUserTagDirty() {
+        return this.contains(FIELD_USERTAG);
+    }
+
+    @JsonIgnore
+    public String getUserTag2() {
+        Object objValue = this.get(FIELD_USERTAG2);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="usertag2")
+    public void setUserTag2(String userTag2) {
+        this.set(FIELD_USERTAG2, userTag2);
+    }
+
+    @JsonIgnore
+    public boolean isUserTag2Dirty() {
+        return this.contains(FIELD_USERTAG2);
+    }
+
+    @JsonIgnore
+    public String getUserTag3() {
+        Object objValue = this.get(FIELD_USERTAG3);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="usertag3")
+    public void setUserTag3(String userTag3) {
+        this.set(FIELD_USERTAG3, userTag3);
+    }
+
+    @JsonIgnore
+    public boolean isUserTag3Dirty() {
+        return this.contains(FIELD_USERTAG3);
+    }
+
+    @JsonIgnore
+    public String getUserTag4() {
+        Object objValue = this.get(FIELD_USERTAG4);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="usertag4")
+    public void setUserTag4(String userTag4) {
+        this.set(FIELD_USERTAG4, userTag4);
+    }
+
+    @JsonIgnore
+    public boolean isUserTag4Dirty() {
+        return this.contains(FIELD_USERTAG4);
+    }
+
+    @JsonIgnore
+    public Integer getValidFlag() {
+        Object objValue = this.get(FIELD_VALIDFLAG);
+        if (objValue == null) {
+            return null;
+        }
+        return (Integer)objValue;
+    }
+
+    @JsonProperty(value="validflag")
+    public void setValidFlag(Integer validFlag) {
+        this.set(FIELD_VALIDFLAG, validFlag);
+    }
+
+    @JsonIgnore
+    public boolean isValidFlagDirty() {
+        return this.contains(FIELD_VALIDFLAG);
+    }
+
+    @Override
+    @JsonIgnore
+    public String getSrfkey() {
+        return this.getPSDEMSOPPrivId();
+    }
+
+    @Override
+    public void setSrfkey(String strValue) {
+        this.setPSDEMSOPPrivId(strValue);
+    }
+}
+

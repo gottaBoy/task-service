@@ -1,0 +1,87 @@
+TABLE .sx-dg-tb
+{
+    border:  0px solid  ;
+  	table-layout:fixed;
+  	border-spacing:  0px;   
+  	border-collapse: collapse;
+  	width:100%;  
+}
+.sx-dg-row {
+	cursor: default;
+   /* border: 1px solid;*/
+	border-spacing:  0px; 
+	border-collapse: collapse;
+}
+
+.sx-dg-cell {
+	cursor: default;
+    border-spacing:  0px; 
+    border-collapse: collapse;		
+}
+
+.sx-dg-column {
+	cursor: default;
+    border-spacing:  0px; 
+	border-collapse: collapse;		
+	background-color:#cdcdcd;
+}
+
+.sx-dg-column2 {
+	cursor: default;
+    border-spacing:  0px; 
+	border-collapse: collapse;		
+	background-color:#ffffff;
+}
+
+
+
+.sx-dgcb-a
+{
+	border:1px solid;
+	border-collapse: collapse;
+}
+
+.sx-dgcb-l
+{
+	border-left:1px solid;
+	border-collapse: collapse;
+}
+
+.sx-dgcb-t
+{
+	border-top:1px solid;
+	border-collapse: collapse;
+}
+
+.sx-dgcb-r
+{
+	border-right:1px solid;
+	border-collapse: collapse;
+}
+
+.sx-dgcb-b
+{
+	border-bottom:1px solid;
+	border-collapse: collapse;
+}
+
+.sx-dg-cell-text
+{
+	padding:3px;
+	font-size: 9pt;
+	font-family: ËÎÌו,tahoma,arial,verdana,sans-serif;
+	color:black;
+}
+
+.sx-dg-column-text
+{
+	padding:3px;
+	font-size: 10pt;
+	font-family: ËÎÌו,tahoma,arial,verdana,sans-serif;
+	color:black;
+	font-weight: bold;
+}
+
+DIV .sx-panel-body {
+    overflow: auto;
+}

@@ -1,0 +1,40 @@
+.deeditview3 {
+    .app-vc-tab {
+        height: 100%;
+    }
+    .app-vc-tab__header {
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+    .app-control-drtab {
+        padding: 0;
+        height: 100%;
+    }
+    .app-control-drtab__content {
+        padding: 0;
+    }
+    .app-vc-tab__header__caption {
+        position: relative;
+        padding: 0 14px;
+        line-height: 40px;
+        cursor: pointer;
+        white-space: nowrap;
+        &.is-active {
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                bottom: 1px;
+                left: 0;
+            }
+        }
+    }
+    .app-vc-tab__content {
+        height: calc(100% - 40px);
+    }
+    .app-vc-tab__content__form{
+        height: 100%;
+    }
+}

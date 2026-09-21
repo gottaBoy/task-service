@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SRFEXVALUETRANSFORMS>
+	<SRFEXVALUETRANSFORM ID="DEPTNAME" Type="saeam.uihelper.valuetransform.DeptVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="EMPNAME" Type="saeam.uihelper.valuetransform.PersonVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="TEAMNAME" Type="saeam.uihelper.valuetransform.TeamVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="WORKKINDNAME" Type="saeam.uihelper.valuetransform.WorkKindVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="EQUIPNAME" Type="saeam.uihelper.valuetransform.EquipVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="SUBEQUIPNAME" Type="saeam.uihelper.valuetransform.SubEquipVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="EQTYPENAME" Type="saeam.uihelper.valuetransform.EQTypeVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="EQLOCATIONNAME" Type="saeam.uihelper.valuetransform.EQLocationVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="ITEMNAME" Type="saeam.uihelper.valuetransform.ItemVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="LABSERVICENAME" Type="saeam.uihelper.valuetransform.LabServiceVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="MSERVICENAME" Type="saeam.uihelper.valuetransform.MServiceVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="WOID" Type="saeam.uihelper.valuetransform.WOVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="MPNAME" Type="saeam.uihelper.valuetransform.EQMPVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="KPNAME" Type="saeam.uihelper.valuetransform.EQKPVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="ITEMTYPENAME" Type="saeam.uihelper.valuetransform.ItemTypeVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="STORENAME" Type="saeam.uihelper.valuetransform.EQStoreVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="STOREPARTNAME" Type="saeam.uihelper.valuetransform.EQStorePartVTHelper"/>
+	<SRFEXVALUETRANSFORM ID="ORGNAME" Type="saeam.uihelper.valuetransform.OrgVTHelper"/>	
+	<SRFEXVALUETRANSFORM ID="EQSpareName" Type="saeam.uihelper.valuetransform.EQSpareVTHelper"/>	
+	<SRFEXVALUETRANSFORM ID="EnergyName" Type="saeam.uihelper.valuetransform.EnergyVTHelper"/>		
+	
+</SRFEXVALUETRANSFORMS>

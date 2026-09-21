@@ -1,0 +1,16 @@
+Summary for /tmp/ibiz-extract/task7/app-extract/SAPAAS/WEB-INF/lib/sasrfdapsjquery.jar
+Decompiled with CFR 0.152
+
+
+SA.SRFDA.PS.Core.Pub.Vue2.PSVue2ViewCodePublisherImpl
+----------------------------
+
+fillNGStates(SA.SRFDA.PS.Core.App.View.IPSAppView SA.SRFDA.PS.Core.PF.PSVue2StateImpl java.lang.String net.sf.json.JSONObject java.util.ArrayList<SA.SRFDA.PS.Core.PF.IPSNGState> boolean java.util.HashMap<java.lang.String, SA.SRFDA.PS.Core.PF.IPSNGState> int )
+  Unable to fully structure code
+
+
+SA.SRFDA.PS.Core.Pub.Vue3.PSVue3ViewCodePublisherImpl
+----------------------------
+
+fillNGStates(SA.SRFDA.PS.Core.App.View.IPSAppView SA.SRFDA.PS.Core.PF.PSVue2StateImpl java.lang.String net.sf.json.JSONObject java.util.ArrayList<SA.SRFDA.PS.Core.PF.IPSNGState> boolean java.util.HashMap<java.lang.String, SA.SRFDA.PS.Core.PF.IPSNGState> int )
+  Unable to fully structure code

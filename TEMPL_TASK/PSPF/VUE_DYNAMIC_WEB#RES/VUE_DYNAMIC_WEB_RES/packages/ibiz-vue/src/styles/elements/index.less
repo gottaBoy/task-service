@@ -1,0 +1,55 @@
+// 定义网站 HTML 元素的样式
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+    // 滚动条样式
+    ::-webkit-scrollbar {
+        background: transparent;
+        width: 4px;
+        height: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 0;
+        box-shadow: none;
+        border: 0;
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 0;
+        box-shadow: none;
+        border: 0;
+    }
+    div {
+        scrollbar-width: thin; /* 滚动条宽度有三种：thin、auto、none */
+    }
+    // 分页样式 
+    .el-tabs {
+        .el-tabs__header {
+            margin-bottom: 16px;
+        }
+        .el-tabs__item {
+            padding: 8px 16px 8px 2px;
+            line-height: 24px;
+        }
+        .el-tabs__nav-wrap::after {
+            height: 1px;
+        }
+    }
+    // 导航分割栏样式
+    .ivu-split-horizontal{
+        .ivu-split-pane.right-pane{
+            padding-left: 6px;
+        }
+    }
+    .ivu-split-vertical{
+        .ivu-split-pane.bottom-pane{
+            padding-top: 6px;
+        }
+    }
+    // tab分页
+    .ivu-tabs-bar {
+        margin-bottom: 8px;
+    }
+}

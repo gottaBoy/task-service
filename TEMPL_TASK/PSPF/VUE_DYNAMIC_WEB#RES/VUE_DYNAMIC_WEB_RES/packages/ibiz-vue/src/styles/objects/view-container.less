@@ -1,0 +1,105 @@
+// 视图容器布局
+.view-container {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    margin: 0;
+    .flex(column, normal, normal);
+}
+
+// 视图头部
+.view-header {
+    .flex(row, space-between, center);
+    min-height: 48px;
+    padding: 4px;
+    margin: 0;
+}
+
+// 视图头部左侧
+.view-header__left {
+    .flex(row, flex-start, center);
+    padding: 0 4px;
+    > div{
+        padding-right: 8px;
+    }
+}
+
+//  视图头部左侧标题栏
+.view-header__left__caption {
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+//  视图标题详情
+.view__caption__info {
+    .flex(row, normal, center);
+}
+
+//  视图标题分隔
+.view__caption__separate {
+    padding: 0 4px;
+}
+
+// 视图右侧头部区（包含快速搜索/工具栏）
+.view-header__right {
+    .flex(row, flex-end, center);
+    padding: 0 4px;
+    > div{
+        padding-left: 8px;
+    }
+}
+
+// 视图头部右侧快速搜索
+.view-header__right__quicksearch {
+    .flex(row, normal, center);
+}
+
+//  视图头部右侧工具栏
+.view-header__right__toolbar {
+    .app-view-toolbar {
+        .flex(row, normal, center);
+        flex-wrap: wrap;
+    }
+}
+
+// 视图内容
+.view-content {
+    flex-grow: 1;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    padding: 4px;
+    .flex(column, normal, normal);
+}
+
+.view-content__left,
+.view-content__right{
+    height: 100%;
+}
+.view-content__body{
+    flex-grow: 1;
+    min-height: 0;
+    min-width: 0;
+}
+
+.view-footer {
+    padding: 4px;
+}
+
+//  视图底部 按钮组
+.view-footer__buttons {
+    text-align: right;
+}
+
+// style2样式
+.view-style2-container {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    margin: 0;
+    .flex(column, normal, normal);
+
+    .app-quick-search + .control-container {
+        height: calc(100% - 32px);
+    }
+}

@@ -1,0 +1,54 @@
+.app-mob-check-list {
+  width: 100%;
+
+  .check-list__icon {
+    width          : 16px;
+    height         : 16px;
+    position       : absolute;
+    right          : 12px;
+    top            : 50%;
+    transform      : translateY(-50%);
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    z-index        : 1;
+
+    ion-icon {
+      position : absolute;
+      font-size: 16px;
+      right    : 0;
+      top      : 0;
+    }
+  }
+
+  .check-list__select {
+    width        : 100%;
+    max-width    : 100%;
+    padding-left : 0;
+    padding-right: 10px;
+    text-align   : right;
+  }
+
+  .check-list__select::part(text) {
+    padding-right: 15px;
+  }
+
+  .check-list__select::part(icon) {
+    display: none !important;
+    opacity: 0 !important;
+  }
+
+  .check-list__select__icon {
+    right         : 17px;
+    top           : 50%;
+    margin-top    : -3px;
+    position      : absolute;
+    width         : 0;
+    height        : 0;
+    color         : currentcolor;
+    pointer-events: none;
+    border-top    : 5px solid;
+    border-right  : 5px solid transparent;
+    border-left   : 5px solid transparent;
+  }
+}

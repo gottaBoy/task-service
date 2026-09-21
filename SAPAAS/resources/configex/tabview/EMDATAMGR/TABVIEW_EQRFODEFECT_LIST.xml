@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW width="745">
+	<SRFEXTABVIEWPAGE id="summary" caption="故障现象信息" REMOTEURL="../emdatamgr/eqrfodefect_summarypage.jsp"/>
+</SRFEXTABVIEW>

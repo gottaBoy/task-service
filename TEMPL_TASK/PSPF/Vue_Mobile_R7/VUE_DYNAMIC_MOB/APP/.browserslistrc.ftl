@@ -1,0 +1,8 @@
+<#ibiztemplate>
+TARGET=PSSYSAPP
+</#ibiztemplate>
+> 1%
+last 2 versions
+not ie <= 11
+Android >= 4.0
+iOS >= 8

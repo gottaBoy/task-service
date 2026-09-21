@@ -1,0 +1,38 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  IPSControl
+ *  IPSGenerateCodeResult
+ *  IPSPublisherContext
+ *  IPSSysPanelField
+ */
+package net.ibizsys.model.pub.preview;
+
+import java.util.HashMap;
+import net.ibizsys.model.pub.preview.PSPreviewSysPanelItemVCPublisherImpl;
+
+public class PSPreviewSysPanelFieldVCPublisherImpl
+extends PSPreviewSysPanelItemVCPublisherImpl {
+    protected IPSSysPanelField iPSSysPanelField;
+
+    public PSPreviewSysPanelFieldVCPublisherImpl() {
+        throw new Error("Unresolved compilation problems: \n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe import SA cannot be resolved\n\tThe hierarchy of the type PSPreviewSysPanelFieldVCPublisherImpl is inconsistent\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tobject cannot be resolved to a variable\n\tIPSEditorType cannot be resolved to a type\n\tThe method getPSModelStorage() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPFPlugin cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tThe method getPSPFPubCode() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tThe method getPSPFPubCode() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tiPSPF cannot be resolved or is not a field\n\tiPSPFStyle cannot be resolved or is not a field\n\tiPSAppView cannot be resolved or is not a field\n\tiPSControl cannot be resolved or is not a field\n\tIPSSysPanelField cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSPFEditorTempl cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method getPSPFStyle() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tPSPFEditorTempl cannot be resolved to a variable\n\tThe method getPSPFPubCode() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tiPSApplication cannot be resolved or is not a field\n\tPSPFEditorTempl cannot be resolved to a variable\n\tThe method getPSPFPubCode() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSPFEditorCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n");
+    }
+
+    @Override
+    public IPSGenerateCodeResult generateCode(IPSPublisherContext iPSPublisherContext, IPSControl iPSControl, Object object) throws Exception {
+        throw new Error("Unresolved compilation problems: \n\tIPSGenerateCodeResult cannot be resolved to a type\n\tIPSPublisherContext cannot be resolved to a type\n\tIPSControl cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n");
+    }
+
+    @Override
+    protected void onFillGenerateCodeParams(HashMap<String, Object> hashMap) throws Exception {
+        throw new Error("Unresolved compilation problems: \n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tobject cannot be resolved to a variable\n\tIPSEditorType cannot be resolved to a type\n\tThe method getPSModelStorage() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPFPlugin cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tThe method getPSPFPubCode() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tThe method getPSPFPubCode() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tiPSPF cannot be resolved or is not a field\n\tiPSPFStyle cannot be resolved or is not a field\n\tiPSAppView cannot be resolved or is not a field\n\tiPSControl cannot be resolved or is not a field\n\tIPSSysPanelField cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tPSGenerateCodeResultImpl cannot be resolved to a type\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSPFEditorTempl cannot be resolved to a type\n\tiPSControl cannot be resolved or is not a field\n\tThe method getPSPFStyle() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tPSPFEditorTempl cannot be resolved to a variable\n\tThe method getPSPFPubCode() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tiPSApplication cannot be resolved or is not a field\n\tPSPFEditorTempl cannot be resolved to a variable\n\tThe method getPSPFPubCode() is undefined for the type PSPreviewSysPanelFieldVCPublisherImpl\n\tIPSSysPanelField cannot be resolved to a type\n\tIPSPFEditorCodePublisher cannot be resolved to a type\n\tIPSGenerateCodeResult cannot be resolved to a type\n\tiPSPublisherContext cannot be resolved to a variable\n\tiPSControl cannot be resolved or is not a field\n\tIPSSysPanelField cannot be resolved to a type\n");
+    }
+
+    @Override
+    protected void onClose() {
+        throw new Error("Unresolved compilation problem: \n\tIPSSysPanelField cannot be resolved to a type\n");
+    }
+}
+

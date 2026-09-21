@@ -1,0 +1,56 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  javax.annotation.PostConstruct
+ *  net.ibizsys.paas.dao.DAOGlobal
+ *  net.ibizsys.paas.dao.IDAO
+ *  net.ibizsys.paas.demodel.DEModelGlobal
+ *  net.ibizsys.paas.demodel.IDataEntityModel
+ *  org.springframework.stereotype.Repository
+ */
+package net.ibizsys.pscore.srv.config.dao;
+
+import javax.annotation.PostConstruct;
+import net.ibizsys.paas.dao.DAOGlobal;
+import net.ibizsys.paas.dao.IDAO;
+import net.ibizsys.paas.demodel.DEModelGlobal;
+import net.ibizsys.paas.demodel.IDataEntityModel;
+import net.ibizsys.pscore.srv.PSCoreSysDAOBase;
+import net.ibizsys.pscore.srv.config.demodel.PSSFStyleLogDEModel;
+import net.ibizsys.pscore.srv.config.entity.PSSFStyleLog;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class PSSFStyleLogDAO
+extends PSCoreSysDAOBase<PSSFStyleLog> {
+    private static final long serialVersionUID = -1L;
+    public static final String DATAQUERY_DEFAULT = "DEFAULT";
+    private PSSFStyleLogDEModel pSSFStyleLogDEModel;
+
+    @PostConstruct
+    public void postConstruct() throws Exception {
+        DAOGlobal.registerDAO((String)this.getDAOId(), (IDAO)this);
+    }
+
+    protected String getDAOId() {
+        return "net.ibizsys.pscore.srv.config.dao.PSSFStyleLogDAO";
+    }
+
+    public PSSFStyleLogDEModel getPSSFStyleLogDEModel() {
+        if (this.pSSFStyleLogDEModel == null) {
+            try {
+                this.pSSFStyleLogDEModel = (PSSFStyleLogDEModel)DEModelGlobal.getDEModel((String)"net.ibizsys.pscore.srv.config.demodel.PSSFStyleLogDEModel");
+            }
+            catch (Exception exception) {
+                // empty catch block
+            }
+        }
+        return this.pSSFStyleLogDEModel;
+    }
+
+    public IDataEntityModel getDEModel() {
+        return this.getPSSFStyleLogDEModel();
+    }
+}
+

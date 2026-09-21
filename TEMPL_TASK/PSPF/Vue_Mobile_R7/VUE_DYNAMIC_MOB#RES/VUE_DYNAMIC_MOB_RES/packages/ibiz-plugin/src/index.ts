@@ -1,0 +1,1 @@
+export { AppPlugin } from './components/app-plugin';

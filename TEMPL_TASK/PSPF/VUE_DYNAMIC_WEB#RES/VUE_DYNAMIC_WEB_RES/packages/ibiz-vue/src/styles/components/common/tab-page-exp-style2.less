@@ -1,0 +1,124 @@
+.app-page-tag-style2 {
+    position: relative;
+    height: 34px;
+    padding: 0 60px 0 30px;
+}
+
+.app-page-tag-style2__left__icon,.app-page-tag-style2__right__icon {
+    font-size: 18px;
+    width: 30px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    cursor: pointer;
+    border-right: none;
+    position: absolute; 
+    top: 0;
+}
+
+.app-page-tag-style2__left__icon {
+    left: 0;
+}
+
+.app-page-tag-style2__right__icon {
+    right: 30px;
+}
+
+.app-page-tag-style2__tag {
+    position: relative;
+    overflow: visible;
+    white-space: nowrap;
+    transition: left 0.3s ease;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .ivu-tag:hover,
+    .ivu-tag.is-active {
+        .ivu-icon-ios-close {
+            visibility: initial;
+        }
+    }
+
+    .ivu-tag{
+        position: relative;
+       &::before{
+            position: absolute;
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: gray;
+            content: '';
+            margin-top: 10px;
+        }
+        .ivu-tag-text{
+            margin-left: 10px;
+        }
+    }
+    
+    span {
+        .ivu-tag:last-child {
+            border-right: none;
+        }
+    }
+
+    .ivu-tag {
+        margin: 0;
+        height: 34px;
+        line-height: 34px;
+        border-radius: 0;
+        cursor: pointer;
+    }
+
+    .tag__content {
+        display: inline-block;
+    }
+
+    .ivu-icon-ios-close {
+        visibility: hidden;
+    }
+
+    .tag__icon::before {
+        vertical-align: initial;
+    }
+
+    .tags-transition-move {
+        transition: transform 0.3s;
+    }
+
+    .tags-transition-enter,
+    .tags-transition-leave-to {
+        opacity: 0;
+    }
+
+    .tag__image {
+        height: 16px;
+        margin-bottom: -3px;
+    }
+}
+
+.tag-caption-content {
+    max-width: 250px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    display: table-cell;
+}
+
+.app-page-tag-style2__right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    .ivu-dropdown-rel {
+        >.ivu-icon {
+            font-size: 18px;
+            width: 30px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            cursor: pointer;
+            border-right: none;
+        }
+    }
+}

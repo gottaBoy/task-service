@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTREEPANEL  id="TV_WORKKINDTREE" selectedvalue="_2_1_1"  JSNAME="workkindtree" width="200" height="300"  extStyle="border: 1px solid #B5B8C8;">
+	<SRFEXTREENODE id="root" text="工种选择" ASYNCMODE="TRUE" expand="TRUE">
+	</SRFEXTREENODE>
+</SRFEXTREEPANEL>

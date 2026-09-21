@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXAUTOCOMPLETES>
+	<SRFEXAUTOCOMPLETE ID="DEPTNAME" Type="saeam.uihelper.autocomplete.DeptACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="EMPNAME" Type="saeam.uihelper.autocomplete.PersonACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="TEAMNAME" Type="saeam.uihelper.autocomplete.TeamACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="WORKKINDNAME" Type="saeam.uihelper.autocomplete.WorkKindACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="EQUIPNAME" Type="saeam.uihelper.autocomplete.EquipACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="SUBEQUIPNAME" Type="saeam.uihelper.autocomplete.SubEquipACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="EQTYPENAME" Type="saeam.uihelper.autocomplete.EQTypeACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="EQLOCATIONNAME" Type="saeam.uihelper.autocomplete.EQLocationACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="ITEMNAME" Type="saeam.uihelper.autocomplete.ItemACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="LABSERVICENAME" Type="saeam.uihelper.autocomplete.LabServiceACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="MSERVICENAME" Type="saeam.uihelper.autocomplete.MServiceACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="WOID" Type="saeam.uihelper.autocomplete.WOACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="MPNAME" Type="saeam.uihelper.autocomplete.EQMPACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="KPNAME" Type="saeam.uihelper.autocomplete.EQKPACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="ITEMTYPENAME" Type="saeam.uihelper.autocomplete.ItemTypeACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="STORENAME" Type="saeam.uihelper.autocomplete.EQStoreACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="STOREPARTNAME" Type="saeam.uihelper.autocomplete.EQStorePartACHelper"/>
+	<SRFEXAUTOCOMPLETE ID="ORGNAME" Type="saeam.uihelper.autocomplete.OrgACHelper"/>	
+	<SRFEXAUTOCOMPLETE ID="EQSpareName" Type="saeam.uihelper.autocomplete.EQSpareACHelper"/>	
+	<SRFEXAUTOCOMPLETE ID="EnergyName" Type="saeam.uihelper.autocomplete.EnergyACHelper"/>		
+	<SRFEXAUTOCOMPLETE ID="USEPRICE" Type="saeam.uihelper.autocomplete.UsePriceACHelper"/>		
+	<SRFEXAUTOCOMPLETE ID="LENDPRICE" Type="saeam.uihelper.autocomplete.LendPriceACHelper"/>	
+		
+		<SRFEXAUTOCOMPLETE ID="CUSTOMERNAME" Type="saeam.uihelper.autocomplete.LendPriceACHelper"/>	
+		<SRFEXAUTOCOMPLETE ID="DBDATABASE" CODELIST="SRFDBCALL.CODELIST_DBDATABASE" />	
+		<SRFEXAUTOCOMPLETE ID="DBACTIONTYPE" CODELIST="SRFDBCALL.CODELIST_DBCUSTOMACTIONTYPE" />
+		<SRFEXAUTOCOMPLETE ID="SRFDAAC" Type="SA.SRFDA.Ctrl.AC.BaseDAACActionHelper" />	
+		
+</SRFEXAUTOCOMPLETES>
+	
+	

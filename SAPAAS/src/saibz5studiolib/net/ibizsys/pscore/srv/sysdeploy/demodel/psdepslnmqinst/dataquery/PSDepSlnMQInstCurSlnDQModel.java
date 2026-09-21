@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.sysdeploy.demodel.psdepslnmqinst.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="295B61F8-506F-492E-838C-133BC2384A8E", name="CurSln")
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`CONNSTR`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`ENABLELOCALMODE`, t1.`ENABLEREMOTEMODE`, t1.`MEMO`, t1.`MQTYPE`, t1.`PASSWD`, t1.`PSDEPSLNHOSTID`, t11.`PSDEPSLNHOSTNAME`, t1.`PSDEPSLNID`, t1.`PSDEPSLNMQINSTID`, t1.`PSDEPSLNMQINSTNAME`, t21.`PSDEPSLNNAME`, t1.`PSDEVCENTERMQID`, t31.`PSDEVCENTERMQNAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`USERNAME` FROM `T_SRFPSDEPSLNMQINST` t1  LEFT JOIN T_SRFPSDEPSLNHOST t11 ON t1.PSDEPSLNHOSTID = t11.PSDEPSLNHOSTID  LEFT JOIN T_SRFPSDEPSLN t21 ON t1.PSDEPSLNID = t21.PSDEPSLNID  LEFT JOIN T_SRFPSDEVCENTERMQ t31 ON t1.PSDEVCENTERMQID = t31.PSDEVCENTERMQID  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CONNSTR", expression="t1.`CONNSTR`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=2), @DEDataQueryCodeExp(name="ENABLELOCALMODE", expression="t1.`ENABLELOCALMODE`", showorder=3), @DEDataQueryCodeExp(name="ENABLEREMOTEMODE", expression="t1.`ENABLEREMOTEMODE`", showorder=4), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=5), @DEDataQueryCodeExp(name="MQTYPE", expression="t1.`MQTYPE`", showorder=6), @DEDataQueryCodeExp(name="PASSWD", expression="t1.`PASSWD`", showorder=7), @DEDataQueryCodeExp(name="PSDEPSLNHOSTID", expression="t1.`PSDEPSLNHOSTID`", showorder=8), @DEDataQueryCodeExp(name="PSDEPSLNHOSTNAME", expression="t11.`PSDEPSLNHOSTNAME`", showorder=9), @DEDataQueryCodeExp(name="PSDEPSLNID", expression="t1.`PSDEPSLNID`", showorder=10), @DEDataQueryCodeExp(name="PSDEPSLNMQINSTID", expression="t1.`PSDEPSLNMQINSTID`", showorder=11), @DEDataQueryCodeExp(name="PSDEPSLNMQINSTNAME", expression="t1.`PSDEPSLNMQINSTNAME`", showorder=12), @DEDataQueryCodeExp(name="PSDEPSLNNAME", expression="t21.`PSDEPSLNNAME`", showorder=13), @DEDataQueryCodeExp(name="PSDEVCENTERMQID", expression="t1.`PSDEVCENTERMQID`", showorder=14), @DEDataQueryCodeExp(name="PSDEVCENTERMQNAME", expression="t31.`PSDEVCENTERMQNAME`", showorder=15), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=16), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=17), @DEDataQueryCodeExp(name="USERNAME", expression="t1.`USERNAME`", showorder=18)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CONNSTR, t1.CREATEDATE, t1.CREATEMAN, t1.ENABLELOCALMODE, t1.ENABLEREMOTEMODE, t1.MEMO, t1.MQTYPE, t1.PASSWD, t1.PSDEPSLNHOSTID, t11.PSDEPSLNHOSTNAME, t1.PSDEPSLNID, t1.PSDEPSLNMQINSTID, t1.PSDEPSLNMQINSTNAME, t21.PSDEPSLNNAME, t1.PSDEVCENTERMQID, t31.PSDEVCENTERMQNAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERNAME FROM T_SRFPSDEPSLNMQINST t1  LEFT JOIN T_SRFPSDEPSLNHOST t11 ON t1.PSDEPSLNHOSTID = t11.PSDEPSLNHOSTID  LEFT JOIN T_SRFPSDEPSLN t21 ON t1.PSDEPSLNID = t21.PSDEPSLNID  LEFT JOIN T_SRFPSDEVCENTERMQ t31 ON t1.PSDEVCENTERMQID = t31.PSDEVCENTERMQID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CONNSTR", expression="t1.CONNSTR", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="ENABLELOCALMODE", expression="t1.ENABLELOCALMODE", showorder=3), @DEDataQueryCodeExp(name="ENABLEREMOTEMODE", expression="t1.ENABLEREMOTEMODE", showorder=4), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=5), @DEDataQueryCodeExp(name="MQTYPE", expression="t1.MQTYPE", showorder=6), @DEDataQueryCodeExp(name="PASSWD", expression="t1.PASSWD", showorder=7), @DEDataQueryCodeExp(name="PSDEPSLNHOSTID", expression="t1.PSDEPSLNHOSTID", showorder=8), @DEDataQueryCodeExp(name="PSDEPSLNHOSTNAME", expression="t11.PSDEPSLNHOSTNAME", showorder=9), @DEDataQueryCodeExp(name="PSDEPSLNID", expression="t1.PSDEPSLNID", showorder=10), @DEDataQueryCodeExp(name="PSDEPSLNMQINSTID", expression="t1.PSDEPSLNMQINSTID", showorder=11), @DEDataQueryCodeExp(name="PSDEPSLNMQINSTNAME", expression="t1.PSDEPSLNMQINSTNAME", showorder=12), @DEDataQueryCodeExp(name="PSDEPSLNNAME", expression="t21.PSDEPSLNNAME", showorder=13), @DEDataQueryCodeExp(name="PSDEVCENTERMQID", expression="t1.PSDEVCENTERMQID", showorder=14), @DEDataQueryCodeExp(name="PSDEVCENTERMQNAME", expression="t31.PSDEVCENTERMQNAME", showorder=15), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=16), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=17), @DEDataQueryCodeExp(name="USERNAME", expression="t1.USERNAME", showorder=18)}, conds={})})
+public class PSDepSlnMQInstCurSlnDQModel
+extends DEDataQueryModelBase {
+    public PSDepSlnMQInstCurSlnDQModel() {
+        this.initAnnotation(PSDepSlnMQInstCurSlnDQModel.class);
+    }
+}
+

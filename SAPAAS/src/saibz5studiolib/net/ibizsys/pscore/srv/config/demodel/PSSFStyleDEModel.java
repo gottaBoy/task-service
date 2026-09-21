@@ -1,0 +1,12 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package net.ibizsys.pscore.srv.config.demodel;
+
+import net.ibizsys.pscore.srv.config.demodel.PSSFStyleDEModelBase;
+
+public class PSSFStyleDEModel
+extends PSSFStyleDEModelBase {
+    private static final long serialVersionUID = -1L;
+}
+

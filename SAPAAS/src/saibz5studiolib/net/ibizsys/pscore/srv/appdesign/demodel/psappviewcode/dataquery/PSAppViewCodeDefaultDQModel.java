@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.appdesign.demodel.psappviewcode.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="9CBDB5B8-A18A-42E3-9753-D2C4B98CDD93", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`CODEPATH`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`MEMO`, t1.`PRJTYPE`, t1.`PSAPPVIEWCODEID`, t1.`PSAPPVIEWCODENAME`, t1.`PSAPPVIEWID`, t11.`PSAPPVIEWNAME`, t1.`PSPFPUBCODEID`, t21.`PSPFPUBCODENAME`, t1.`PSSYSAPPID`, t1.`PSSYSAPPNAME`, t1.`UISTYLE`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`USERPARAMS`, t1.`VALIDFLAG` FROM `T_SRFPSAPPVIEWCODE` t1  LEFT JOIN T_SRFPSAPPVIEW t11 ON t1.PSAPPVIEWID = t11.PSAPPVIEWID  LEFT JOIN T_SRFPSPFPUBCODE t21 ON t1.PSPFPUBCODEID = t21.PSPFPUBCODEID  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="MERGECODE", expression="t1.`MERGECODE`", showorder=-1), @DEDataQueryCodeExp(name="PUBCODE", expression="t1.`PUBCODE`", showorder=-1), @DEDataQueryCodeExp(name="USERCODE", expression="t1.`USERCODE`", showorder=-1), @DEDataQueryCodeExp(name="CODEPATH", expression="t1.`CODEPATH`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=3), @DEDataQueryCodeExp(name="PRJTYPE", expression="t1.`PRJTYPE`", showorder=4), @DEDataQueryCodeExp(name="PSAPPVIEWCODEID", expression="t1.`PSAPPVIEWCODEID`", showorder=5), @DEDataQueryCodeExp(name="PSAPPVIEWCODENAME", expression="t1.`PSAPPVIEWCODENAME`", showorder=6), @DEDataQueryCodeExp(name="PSAPPVIEWID", expression="t1.`PSAPPVIEWID`", showorder=7), @DEDataQueryCodeExp(name="PSAPPVIEWNAME", expression="t11.`PSAPPVIEWNAME`", showorder=8), @DEDataQueryCodeExp(name="PSPFPUBCODEID", expression="t1.`PSPFPUBCODEID`", showorder=9), @DEDataQueryCodeExp(name="PSPFPUBCODENAME", expression="t21.`PSPFPUBCODENAME`", showorder=10), @DEDataQueryCodeExp(name="PSSYSAPPID", expression="t1.`PSSYSAPPID`", showorder=11), @DEDataQueryCodeExp(name="PSSYSAPPNAME", expression="t1.`PSSYSAPPNAME`", showorder=12), @DEDataQueryCodeExp(name="UISTYLE", expression="t1.`UISTYLE`", showorder=13), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=14), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=15), @DEDataQueryCodeExp(name="USERPARAMS", expression="t1.`USERPARAMS`", showorder=16), @DEDataQueryCodeExp(name="VALIDFLAG", expression="t1.`VALIDFLAG`", showorder=17)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CODEPATH, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.PRJTYPE, t1.PSAPPVIEWCODEID, t1.PSAPPVIEWCODENAME, t1.PSAPPVIEWID, t11.PSAPPVIEWNAME, t1.PSPFPUBCODEID, t21.PSPFPUBCODENAME, t1.PSSYSAPPID, t1.PSSYSAPPNAME, t1.UISTYLE, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERPARAMS, t1.VALIDFLAG FROM T_SRFPSAPPVIEWCODE t1  LEFT JOIN T_SRFPSAPPVIEW t11 ON t1.PSAPPVIEWID = t11.PSAPPVIEWID  LEFT JOIN T_SRFPSPFPUBCODE t21 ON t1.PSPFPUBCODEID = t21.PSPFPUBCODEID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="MERGECODE", expression="t1.MERGECODE", showorder=-1), @DEDataQueryCodeExp(name="PUBCODE", expression="t1.PUBCODE", showorder=-1), @DEDataQueryCodeExp(name="USERCODE", expression="t1.USERCODE", showorder=-1), @DEDataQueryCodeExp(name="CODEPATH", expression="t1.CODEPATH", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="PRJTYPE", expression="t1.PRJTYPE", showorder=4), @DEDataQueryCodeExp(name="PSAPPVIEWCODEID", expression="t1.PSAPPVIEWCODEID", showorder=5), @DEDataQueryCodeExp(name="PSAPPVIEWCODENAME", expression="t1.PSAPPVIEWCODENAME", showorder=6), @DEDataQueryCodeExp(name="PSAPPVIEWID", expression="t1.PSAPPVIEWID", showorder=7), @DEDataQueryCodeExp(name="PSAPPVIEWNAME", expression="t11.PSAPPVIEWNAME", showorder=8), @DEDataQueryCodeExp(name="PSPFPUBCODEID", expression="t1.PSPFPUBCODEID", showorder=9), @DEDataQueryCodeExp(name="PSPFPUBCODENAME", expression="t21.PSPFPUBCODENAME", showorder=10), @DEDataQueryCodeExp(name="PSSYSAPPID", expression="t1.PSSYSAPPID", showorder=11), @DEDataQueryCodeExp(name="PSSYSAPPNAME", expression="t1.PSSYSAPPNAME", showorder=12), @DEDataQueryCodeExp(name="UISTYLE", expression="t1.UISTYLE", showorder=13), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=14), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=15), @DEDataQueryCodeExp(name="USERPARAMS", expression="t1.USERPARAMS", showorder=16), @DEDataQueryCodeExp(name="VALIDFLAG", expression="t1.VALIDFLAG", showorder=17)}, conds={})})
+public class PSAppViewCodeDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSAppViewCodeDefaultDQModel() {
+        this.initAnnotation(PSAppViewCodeDefaultDQModel.class);
+    }
+}
+

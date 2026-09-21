@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXSHORTBAR  id="TV_DEPT"  JSNAME="tabView" width="765"  >
+	<SRFEXSHORTBARITEM id="list" caption="数据搜索" REMOTEURL="page_list.jsp" APPENDPARAMS="test"/>
+	<SRFEXSHORTBARITEM id="edit" caption="用户" REMOTEURL="page_edit.jsp"/>
+	<SRFEXSHORTBARITEM id="relatedinfo" caption="用户权限" REMOTEURL="page_relatedinfo.jsp"/>
+	<SRFEXSHORTBARITEM id="tree" caption="树视图" REMOTEURL="page_tree.jsp" APPENDPARAMS="test"/>
+</SRFEXSHORTBAR>

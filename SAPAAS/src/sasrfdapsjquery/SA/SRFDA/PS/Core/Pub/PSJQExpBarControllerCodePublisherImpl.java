@@ -1,0 +1,34 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  SA.SRFDA.PS.Core.Control.ExpBar.IPSExpBar
+ *  SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl
+ */
+package SA.SRFDA.PS.Core.Pub;
+
+import SA.SRFDA.PS.Core.Control.ExpBar.IPSExpBar;
+import SA.SRFDA.PS.Core.Pub.PSGenerateCodeResultImpl;
+import SA.SRFDA.PS.Core.Pub.PSJQCtrlCodePublisherImpl;
+import java.util.HashMap;
+
+public class PSJQExpBarControllerCodePublisherImpl
+extends PSJQCtrlCodePublisherImpl {
+    protected IPSExpBar iPSExpBar = null;
+
+    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
+        this.iPSExpBar = (IPSExpBar)this.iPSControl;
+        return super.onGenerateCode();
+    }
+
+    @Override
+    protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
+        super.onFillGenerateCodeParams(params);
+    }
+
+    protected void onClose() {
+        this.iPSExpBar = null;
+        super.onClose();
+    }
+}
+

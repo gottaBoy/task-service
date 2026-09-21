@@ -1,0 +1,8 @@
+<#ibiztemplate>
+TARGET=PSSYSAPP
+</#ibiztemplate>
+NODE_ENV=production
+VUE_APP_CURRENTMODE=hybridapp
+VUE_APP_OUTPUTDIR=www
+VUE_APP_PROXY=http://192.168.1.2:8080
+

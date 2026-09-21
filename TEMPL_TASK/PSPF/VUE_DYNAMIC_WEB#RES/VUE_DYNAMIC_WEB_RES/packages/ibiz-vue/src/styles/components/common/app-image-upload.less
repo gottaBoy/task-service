@@ -1,0 +1,146 @@
+.app-picture-upload {
+    >div {
+        display: inline;
+    }
+
+    .is-disabled {
+        .el-upload {
+            cursor: not-allowed;
+        }
+    }
+
+    .el-image {
+        .item__image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            font-size: 30px;
+        }
+    }
+
+    .picture-upload__card {
+        margin: 0;
+        display: inline;
+        vertical-align: top;
+    }
+
+    .el-upload-content__item {
+        overflow: hidden;
+        background-color: #fff;
+        border: 1px solid #c0ccda;
+        border-radius: 6px;
+        box-sizing: border-box;
+        width: 148px;
+        height: 148px;
+        margin: 0 8px 8px 0;
+        display: inline-block;
+        position: relative;
+
+        .el-upload-content__item__thumbnail {
+            min-width: 100px;
+            min-height: 100px;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            &:hover {
+                opacity: 1
+            }
+        }
+
+        .el-upload-content__item__caption{
+           display: none;
+        }
+
+        .el-icon-close {
+            display: none;
+        }
+    }
+    
+    .el-upload-content__item__status-label {
+        display: block;
+        position: absolute;
+        right: -15px;
+        top: -6px;
+        width: 40px;
+        height: 24px;
+        background: #13ce66;
+        text-align: center;
+        transform: rotate(45deg);
+        box-shadow: 0 0 1pc 1px rgb(0 0 0 / 20%);
+
+        .el-icon-check {
+            font-size: 12px;
+            margin-top: 11px;
+            transform: rotate(-45deg);
+            color: #fff;
+        }
+    }
+
+    .el-upload-content__item__action {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+        opacity: 0;
+        font-size: 20px;
+        background-color: rgba(0, 0, 0, .5);
+        transition: opacity .3s;
+        .flex();
+        &:hover {
+            opacity: 1
+        }
+        
+        span+span {
+            margin-left: 15px;
+        }
+    }
+
+    .is-single {
+        .picture-upload__card .el-upload-content__item {
+            width: calc(100% + 2px);
+            height: calc(100% + 2px);
+
+            .el-upload-content__item__thumbnail {
+                min-width: 100px;
+                min-height: 100px;
+
+            }
+            .el-upload-content__item__action {
+                span {
+                    margin-right: 16px;
+                }
+            }
+        }
+
+        .el-upload--picture-card {
+            width: calc(100% + 2px);
+            height: calc(100% + 2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.app-picture-upload-model {
+    .el-image {
+        width: 100%;
+        height: 100%;
+
+        .upload-model__image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 300px;
+            font-size: 30px;
+            vertical-align: top;
+        }
+    }
+}

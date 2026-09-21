@@ -1,0 +1,10 @@
+<#ibiztemplate>
+TARGET=PSSYSAPP
+</#ibiztemplate>
+{
+  "recommendations": [
+    "Vue.volar",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint"
+  ]
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="pragram" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <link type="text/css" href="./assets/css/loading.css" rel="stylesheet">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="stylesheet/less" href="./assets/theme/default.less"/>
+    <link rel='stylesheet/less' href="./assets/jsoneditor/bootstrap2.less">
+    <!-- <link rel='stylesheet' href='./assets/luckysheet/plugins/css/pluginsCss.css' />
+    <link rel='stylesheet' href='./assets/luckysheet/plugins/plugins.css' />
+    <link rel='stylesheet' href='./assets/luckysheet/css/luckysheet.css' />
+    <link rel='stylesheet' href='./assets/luckysheet/assets/iconfont/iconfont.css' />
+    <script src="./assets/luckysheet/plugins/js/plugin.js"></script>
+    <script src="./assets/luckysheet/luckysheet.umd.js"></script> -->
+    <link rel="stylesheet" href="./assets/amis/sdk.css">
+    <link rel="stylesheet" href="./assets/amis/helper.css">
+    <link rel="stylesheet" href="./assets/amis/iconfont.css">
+    <script src="./assets/amis/sdk.js"></script>
+    <script src="./assets/js/mqttws31.js" type="text/javascript"></script>
+    <script src="./assets/js/handlebars.js"></script>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but app doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <div id="app-loading-x" class="app-loading-x">
+      <div class="app-loading-x-container">
+        <label> ●</label>
+        <label> ●</label>
+        <label> ●</label>
+        <label> ●</label>
+        <label> ●</label>
+        <label> ●</label>
+      </div>
+    </div>
+    <script src="./environments/environment.js"></script>
+    <script src="./assets/js/avue.min.js"></script>
+  </body>
+</html>

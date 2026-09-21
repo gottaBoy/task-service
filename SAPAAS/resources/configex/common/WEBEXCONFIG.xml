@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<WEBEXCONFIGS>
+	
+	<!-- 设计工具目录 -->
+	<WEBEXCONFIG  ID="SRFDS"
+		 DESIGNPATH="I:\Workshop\SRF\JavaExt\SAEAM\SAEAMWeb\"
+	
+	
+		/>
+		
+	<!-- 系统消息提示 
+		ACCESSDENYBACKEND：后台加载时，如果身份检测不通过，提示用户信息
+	-->	
+	<WEBEXCONFIG
+		ID="SYSMSG"
+		ACCESSDENYBACKEND="可能由于长时间没有操作系统，系统已将您的身份自动注销，请重新登录系统再进行操作！"
+	/>
+	
+	
+	<!-- 
+		HOSTID: 主机编号
+	 -->	
+	<WEBEXCONFIG  ID="SRFEXWEB"
+		 FORMITEMRULEENGINE="SA.SRFDA.Web.Form.SRFDAFormItemRuleEngine"
+		 DGEDITITEMRULEENGINE="SA.SRFDA.Web.DataGrid.SRFDADGEditItemRuleEngine"
+		 TEMPFOLDER="/app/application/taskfile/tempfile/"
+		 UPLOADPAGEPATH="../srfpage/uploadfileview.jsp"
+		 DOWNLOADPAGEPATH="../srfpage/exportfile.jsp"
+		 UPLOADPICPAGEPATH="../srfpage/uploadfileview.jsp"
+		 DOWNLOADPICPAGEPATH="../srfpage/exportfile.jsp"
+		 EXTJSVERSION="310"
+		
+		 HOSTID="LIONLAU-W500"
+		 ALERTONREADYCATCH="TRUE"
+		  />
+	
+	 <!-- MYSQL -->
+	<WEBEXCONFIG ID="SRFDA"
+		 DAMODELDB="MYSQL"
+		 DEHELPER="SA.SRFDA.Ctrl.MySQLDEHelper"
+		 DGACTIONHELPER="SA.SRFDA.Ctrl.DataGrid.MySQLDADataGridActionHelper" 
+		 DGEXACTIONHELPER="SA.SRFDA.Ctrl.DGEx.BaseDADGExActionHelper"
+		 DAQUERYHELPER="SA.SRFDA.Ctrl.MySQLDAQueryHelper"
+		 FORMACTIONHELPER="SA.SRFDA.Ctrl.Form.BaseDAFormActionHelper" 
+		 WFFORMACTIONHELPER="SA.SRFDA.WF.Ctrl.Form.WFFormActionHelper"
+		 WFINFOFORMACTIONHELPER="SA.SRFDA.WF.Ctrl.Form.WFInfoFormActionHelper"
+		 WFIAACTIONFORMACTIONHELPER="SA.SRFDA.WF.Ctrl.Form.WFIAActionFormActionHelper"
+		 WFDGACTIONHELPER="SA.SRFDA.WF.Ctrl.DataGrid.WFDADataGridActionHelper" 
+		 DEDATACTRL="SA.SRFDA.Ctrl.BaseDEDataCtrl"
+		 DEDATACTRLHELPER="SA.SRFDA.Ctrl.DEDataCtrl.MySQLDEDataCtrlHelper"
+		 DBMODELHELPER="SA.SRFDA.Ctrl.MySQLDBModelHelper"
+		 DAQUERYMODELHELPER="SA.SRFDA.Ctrl.MySQLDAQueryModelHelper"
+		 DEFDTCOLUMN="SA.SRFDA.Ctrl.DEFHelper.MySQLDEFDTColumn"
+		 FILEFOLDER="D:\SRFEX_FILE\"
+		 SYNCFOLDER="C:\SRFEX_SYNC\"
+		 WFWSURL="http://localhost:8000/SAEAM/services/WFService?wsdl"
+		 EAIWSURL="http://localhost:8000/SAEAM/services/EAIService?wsdl"
+		 PRINTFORMENGINE="SA.SRFDA.Report.DefaultPrintFormEngine"
+		
+		 ACLISTWIDTH="400"
+		 DGEDITABLEDEFAULT="TRUE"
+		 POPUPMODE="WINDOW"
+		 EDITVIEWENABLEREMOVE="TRUE"
+		 DEFAULTSEARCHFORM="TRUE"
+		 SPCUSTOMSEARCH="TRUE"
+		 EDITVIEWENABLENEW="TRUE"
+		 DACONFIGHELPER="SA.SRFDA.Ctrl.DAConfigHelper"
+		 MAXDOWNLOADROW="2000"
+		 MULTIDBSTORAGE="TRUE"
+		 DEDCENGINE="SA.SRFDA.DEDC.Ctrl.DefaultDEDCEngine"
+		 TRANSACTION="TRUE"
+		 STARTSERVICEMGR="FALSE"
+		 WFRESUBMITDP="SRFWF.DPEX_RESUBMIT"
+		 TREEACTIONHELPER = "SA.SRFDA.Ctrl.Tree.BaseDATreeActionHelper"
+		 PRELOADDEHELPER="FALSE"
+		 PRELOADDEHELPER_MIN="TRUE"
+		 SRCCODEFOLDER="F:\\src_folder\\"
+		 STARTPOLOGGER = "FALSE"
+		 PREPAREWFENGINE = "TRUE"
+		 LANGUAGE="EN|ZH_CN|ZH_TW"
+		 DEFAULTLANGUAGE="ZH_CN"
+		 DEMFRENEWTIMER="10000"
+		 DEVELOPMODE="TRUE"
+		 PAGEFUNC="TRUE"
+		 
+		 ADVUSERGROUP="TRUE"
+
+		 FORMDISABLESTATE = "UPDATE"
+
+		 SFLOADDEFAULTFROMURL="TRUE"
+		 
+		 EDITVIEWENABLEUNLOCK="TRUE"
+		 
+		 ENABLEOU="FALSE"
+	 >
+	 
+	 	<!-- 工作流功能链接 -->
+	 	<WEBEXCONFIG ID="WFFUNCLINK">
+				 <WEBEXCONFIG ID="UID_200972422371387600213970" 
+				 LINK="{text: '申请单',src: '../srfwf/wftreegridview.jsp?SRFPAGEID=UID_20098415122889000116865&amp;',srcparam:'SRFAF=MYWFWORK:%1$s&amp;'}">
+				 </WEBEXCONFIG>
+	 	</WEBEXCONFIG>
+	 	
+	 	<WEBEXCONFIG ID="WF"
+	 		WFACTORINFOPAGE=""
+	 		SHOWALLWFSTEPDATA="TRUE"
+	 		INFORMMSGBOX="EXTMSG"
+	 		WFSTEPACTORGRIDPAGE="PAGE_WF0006_G003"
+	 		WFSTEPACTORPLACEMENT="TOOLBAR"
+	 		WFSTEPDATAPLACEMENT="TOOLBAR"
+	 	>
+	 	</WEBEXCONFIG>
+	 	
+	 	<WEBEXCONFIG ID="DEFAULTVIEW"
+	 		 EDITVIEW="../srfpage/editview.jsp"
+	 		 ERRORVIEW="../srfpage/errorview.jsp"
+	 	/>
+	 	<!-- 
+	 		CUSTOMSUMMARYAREA:表格界面全局禁用关系区域
+	 		SPSAVELOAD:表格界面搜索面板条件保存/加载功能
+	 		DGTHEME: 表格界面的主题支持，默认为支持	 		
+	 	 -->
+	 	<WEBEXCONFIG ID="GRIDVIEW"
+	 	
+	 	/>
+	 	
+	 	<!--
+	 		3.0 配置
+	 		DGRESPONSE 表格数据反馈格式  
+	 	 -->
+	 	<WEBEXCONFIG ID="DACONFIG"
+	 		 DGRESPONSE="JSONARRAY"
+	 	/>
+	 	
+	 	<!-- 数据库引擎使用双字节存储，UNICODECHAR -->
+	 	<WEBEXCONFIG ID="SQLSERVER"
+	 		 UNICODECHAR="TRUE"
+	 	/>
+	 	
+	 </WEBEXCONFIG>
+		 
+	
+	<!--
+		框架日历定义
+		CALSEQ: 日历周期(序列支持)
+	-->	
+	<WEBEXCONFIG
+		ID="SRFCAL"
+		CALSEQ="ENABLE"
+	
+	/>
+		 
+	<WEBEXCONFIG 	ID="SRFPS" 
+		CODEFOLDER="/app/application/taskfile/code"
+		TOOLFOLDER="/app/application/taskfile/tool"
+		SYSRUNLOGMQNAME="SYSRUNLOG"
+		TEMPLFOLDER="I:\JavaExt\SAIBIZ5ALLTEMPL"
+		TASKSESSIONCOUNT="2"
+		TASKTHREADCOUNT="10"
+		USERMGRAPI="SA.SRFDA.PS.Core.ResMgr.PSOpenLDAPAPIImpl" 
+		SYSMODELFOLDER="/app/application/apache-tomcat-task/webapps/SAPAAS/srf/javaext/PSSYSMODEL"
+		DEBUGMODE="true"
+		BACKUPFOLDER="/app/application/taskfile/nasfolder"
+		NDCACHEFOLDER="/app/application/taskfile/ndcache"
+		CONSOLESERVERURL="http://emqx-api:80/PSStudioApi/api/mqttapi/v1/mqtt/publishtotopic"
+		MODELINSTPROXYMODE="TRUE"
+		PFPREVIEWUSEMODEL="TRUE"
+		TEMPFILESERVERURL="http://callback-url:30090/"
+		TEMPFILESERVERHOST="127.0.0.1:22"
+		EXCEPTIONTEMPLERROR="TRUE"
+		SYSTEMTEMPL="TRUE"
+		GITLABPLUGIN="TRUE"
+		APIONLY="TRUE"
+		KAFKAPLUGIN="FALSE"
+        INITDATAFOLDER="/app/application/taskfile/pack.initdata"
+        SQLFOLDER="/app/application/taskfile/pack.sql"
+        TASKSERVERID="LITE_Default_Domain_Task01"	
+		DEVCALLBACKURL="http://ibiz-ebsx-allinone:30000/devcallback/{system}/{runmode}_V2/token"			
+	/> 
+		  
+</WEBEXCONFIGS>

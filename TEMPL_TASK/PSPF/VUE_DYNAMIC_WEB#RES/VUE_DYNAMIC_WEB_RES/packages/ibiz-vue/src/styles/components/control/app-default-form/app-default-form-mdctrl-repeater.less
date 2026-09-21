@@ -1,0 +1,47 @@
+.app-form-mdctrl-repeater__row {
+  position: relative;
+  padding: 6px 0;
+  border-top: 1px dashed #eee;
+  &:first-child {
+    border-top: none;
+  }
+}
+.repeater-remove-default,
+.repeater-remove-style2 {
+  display: none;
+}
+.el-table__row:hover {
+  .repeater-remove-style2 {
+    display: inline-block;
+  }
+}
+.repeater-remove-default {
+  position: absolute;
+  right: 0;
+  top: 2px;
+  z-index: 3;
+}
+.app-form-mdctrl-repeater__row:hover {
+  > .repeater-remove-default {
+    display: inline-block;
+  }
+}
+.app-form-mdctrl-repeater--style2 {
+  .repeater-add {
+    padding: 7px;
+  }
+  .app-form-mdctrl-repeater__header {
+    padding-bottom: 6px;
+  }
+}
+.repeater-caption {
+  padding-right: 20px;
+  font-weight: 600;
+}
+
+@index: 1, 2, 3, 4, 5;
+each(@index, {
+  .app-form-mdctrl-repeater__level-@{value} > .app-form-mdctrl-repeater__header {
+    padding-left: @value * 20px;
+  }
+})

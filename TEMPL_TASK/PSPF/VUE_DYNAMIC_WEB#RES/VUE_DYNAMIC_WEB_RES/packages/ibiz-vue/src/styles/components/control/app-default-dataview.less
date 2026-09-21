@@ -1,0 +1,130 @@
+.app-control-dataview {
+    padding: 0 10px;
+    .app-control-dataview__load--more {
+        text-align: center;
+        font-size: 16px;
+        margin: 20px 0;
+        width: 100%;
+        cursor: pointer;
+    }
+    .app-control-dataview__header {
+        flex: none;
+    }
+    .app-control-dataview__content {
+        height: 0;
+        margin: 0px;
+        position: relative;
+        align-content: start;
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex: auto;
+        .ivu-col {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    }
+    .el-collapse {
+        width: 100%;
+        .el-collapse-item__content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+    .app-control-dataview__content__item {
+        .el-card__body {
+            padding: 8px;
+        }
+        .top__title {
+            text-align: center;
+        }
+        .top__description {
+            max-width: 150px;
+            padding-left: 5px;
+            text-align: justify;
+            text-justify: newspaper;
+            word-break: break-all;
+        }
+        .bottom__action {
+            height: 26px;
+            margin: 6px 0 4px 4px;
+            cursor: pointer;
+            padding: 0 15px;
+            &:disabled, &:disabled:hover {
+                cursor: no-drop;
+            }
+            .bottom__action__icon {
+                padding-right: 6px;
+            }
+        }
+    }
+    .app-control-dataview__content__group {
+        .group__title {
+            margin: 0 0 0 12px;
+        }
+        .group__empty {
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+        }
+    }
+    .app-control-panel {
+        overflow: visible;
+        .control-content {
+            overflow: initial;
+        }
+    }
+    .el-collapse {
+        width: 100%;
+    }
+    // 分页栏样式
+    .app-control-dataview__pagination {
+        .ivu-icon {
+            font-size: 14px;
+            &.ivu-icon-md-refresh,
+            &.ivu-icon-ios-arrow-back,
+            &.ivu-icon-ios-arrow-forward {
+                position: relative;
+                transform: translate(0, -2px);
+            }
+        }
+        .pagination__refresh {
+            margin-right: 8px;
+        }
+        .pagination--pull-right {
+            float: right;
+            min-width: 470px;
+            display: flex;
+        }
+        .pagination__refresh,
+        .ivu-page-item-jump-next,
+        .ivu-page-item-jump-prev,
+        .ivu-page-next,
+        .ivu-page-prev {
+          height: 32px;
+          width: 32px;
+          min-width: 32px;
+          line-height: 32px;
+        }
+        .ivu-page-item {
+            height: 32px;
+            width: auto;
+            min-width: 32px;
+            line-height: 32px;
+        }
+        .ivu-select-selection {
+            height: 32px;
+            .ivu-select-selected-value {
+                font-size: 14px;
+                height: 30px;
+                line-height: 30px;
+            }
+        }
+        .ivu-page-options-elevator {
+            input {
+                font-size: 14px;
+                height: 30px;
+                line-height: 30px;
+            }
+        }
+    }
+}

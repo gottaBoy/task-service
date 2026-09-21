@@ -1,0 +1,13 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package SA.SRFDA.PS.Core.Control.Panel;
+
+import SA.SRFDA.PS.Core.Control.Panel.IPSPanelLogicLinkCond;
+import SA.SRFDA.PS.Core.PSModelIgnoreMeta;
+
+@PSModelIgnoreMeta
+public interface IPSPanelLogicLinkCustomCond
+extends IPSPanelLogicLinkCond {
+}
+

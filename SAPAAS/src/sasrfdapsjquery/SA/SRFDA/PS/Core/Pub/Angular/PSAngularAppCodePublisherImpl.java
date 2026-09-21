@@ -1,0 +1,29 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  SA.SRFDA.PS.Core.Pub.PSPFAppCodePublisherImpl
+ */
+package SA.SRFDA.PS.Core.Pub.Angular;
+
+import SA.SRFDA.PS.Core.Pub.Angular.PSAngularFileNameMethod;
+import SA.SRFDA.PS.Core.Pub.Angular.PSAngularTemplHelper;
+import SA.SRFDA.PS.Core.Pub.PSPFAppCodePublisherImpl;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class PSAngularAppCodePublisherImpl
+extends PSPFAppCodePublisherImpl {
+    private static PSAngularFileNameMethod psIonicFileNameMethod = new PSAngularFileNameMethod();
+
+    protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
+        super.onFillGenerateCodeParams(params);
+        PSAngularTemplHelper.fillParams(params);
+        HashMap requireClassMap = new HashMap();
+        ArrayList requireClasses = new ArrayList();
+        requireClasses.addAll(requireClassMap.keySet());
+        params.put("requires", requireClasses);
+        params.put("ngfilename", psIonicFileNameMethod);
+    }
+}
+

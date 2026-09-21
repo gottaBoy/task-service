@@ -1,0 +1,50 @@
+.app-control-treeview {
+    .app-control-treeview__header {
+        height: 30px;
+    }
+    .app-control-treeview__header__navigationbar {
+        padding-left: 14px;
+        font-size: 14px;
+        height: 100%;
+        .text {
+            padding: 0 3px;
+        }
+
+    }
+    .app-control-treeview__content__tree {
+        .tree__partition {
+            height: 8px;
+        }
+        .tree__list__item {
+            --inner-border-width: 0px 0px 0.55px 0px;
+        }
+        .tree__list__item__icon {
+            font-size: 20px;
+        }
+        .tree__list__item__label {
+            display: flex;
+            align-items: center;
+            .text {
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+                line-height: 30px;
+                text-align: center;
+                border-radius: 4px;
+            }
+            img {
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+                border-radius: 4px;
+            }
+        }
+    }
+    .tree__list {
+        div:nth-last-child(1) {
+            .tree__list__item {
+                --inner-border-width: 0px;
+            }
+        }
+    }
+}

@@ -1,0 +1,101 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.model.control.IPSControl
+ *  net.ibizsys.model.control.form.IPSDEForm
+ *  net.ibizsys.model.control.form.IPSDEFormDetail
+ *  net.ibizsys.model.control.form.IPSDEFormGroupPanel
+ *  net.ibizsys.model.control.form.IPSDEFormItem
+ *  net.ibizsys.model.control.form.IPSDEFormPage
+ *  net.ibizsys.model.pub.IPSGenerateCodeResult
+ *  net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher
+ *  net.ibizsys.model.pub.PSGenerateCodeResultImpl
+ */
+package net.ibizsys.model.pub;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import net.ibizsys.model.control.IPSControl;
+import net.ibizsys.model.control.form.IPSDEForm;
+import net.ibizsys.model.control.form.IPSDEFormDetail;
+import net.ibizsys.model.control.form.IPSDEFormGroupPanel;
+import net.ibizsys.model.control.form.IPSDEFormItem;
+import net.ibizsys.model.control.form.IPSDEFormPage;
+import net.ibizsys.model.pub.IPSGenerateCodeResult;
+import net.ibizsys.model.pub.IPSPFCtrlPartCodePublisher;
+import net.ibizsys.model.pub.PSExtJS5CtrlCodePublisherImpl;
+import net.ibizsys.model.pub.PSGenerateCodeResultImpl;
+
+public class PSExtJS5DEFormViewCodePublisherImpl
+extends PSExtJS5CtrlCodePublisherImpl {
+    protected IPSDEForm iPSDEForm = null;
+
+    protected PSGenerateCodeResultImpl onGenerateCode() throws Exception {
+        this.iPSDEForm = (IPSDEForm)this.iPSControl;
+        return super.onGenerateCode();
+    }
+
+    @Override
+    protected void onFillGenerateCodeParams(HashMap<String, Object> params) throws Exception {
+        IPSDEFormPage iPSDEFormPage;
+        IPSGenerateCodeResult iPSGenerateCodeResult;
+        this.iPSDEForm = (IPSDEForm)this.iPSControl;
+        super.onFillGenerateCodeParams(params);
+        ArrayList<IPSGenerateCodeResult> hiddenList = new ArrayList<IPSGenerateCodeResult>();
+        IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail("HIDDENFORMITEM").getPSPFCtrlPartCodePublisher();
+        Iterator psDEFormItems = this.iPSDEForm.getPSDEFormItems();
+        while (psDEFormItems.hasNext()) {
+            IPSDEFormItem iPSDEFormItem = (IPSDEFormItem)psDEFormItems.next();
+            if (!iPSDEFormItem.isHidden()) continue;
+            iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode((IPSControl)this.iPSDEForm, (Object)iPSDEFormItem);
+            hiddenList.add(iPSGenerateCodeResult);
+        }
+        params.put("hiddens", hiddenList);
+        ArrayList<IPSGenerateCodeResult> formPageList = new ArrayList<IPSGenerateCodeResult>();
+        iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail("FORMPAGE").getPSPFCtrlPartCodePublisher();
+        Iterator psDEFormPages = this.iPSDEForm.getPSDEFormPages();
+        while (psDEFormPages.hasNext()) {
+            iPSDEFormPage = (IPSDEFormPage)psDEFormPages.next();
+            iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode((IPSControl)this.iPSDEForm, (Object)iPSDEFormPage);
+            formPageList.add(iPSGenerateCodeResult);
+        }
+        params.put("formpages", formPageList);
+        ArrayList<IPSGenerateCodeResult> formDetailList = new ArrayList<IPSGenerateCodeResult>();
+        iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail("FORMPAGE").getPSPFCtrlPartCodePublisher();
+        psDEFormPages = this.iPSDEForm.getPSDEFormPages();
+        while (psDEFormPages.hasNext()) {
+            iPSDEFormPage = (IPSDEFormPage)psDEFormPages.next();
+            iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode((IPSControl)this.iPSDEForm, (Object)iPSDEFormPage);
+            formDetailList.add(iPSGenerateCodeResult);
+        }
+        psDEFormPages = this.iPSDEForm.getPSDEFormPages();
+        while (psDEFormPages.hasNext()) {
+            iPSDEFormPage = (IPSDEFormPage)psDEFormPages.next();
+            this.fillPSDEFormDetails((IPSDEFormDetail)iPSDEFormPage, formDetailList);
+        }
+        params.put("formdetails", formDetailList);
+    }
+
+    protected void fillPSDEFormDetails(IPSDEFormDetail iPSDEFormDetail, ArrayList<IPSGenerateCodeResult> formDetailList) throws Exception {
+        if (iPSDEFormDetail instanceof IPSDEFormGroupPanel) {
+            IPSDEFormDetail childPSDEFormDetail;
+            IPSDEFormGroupPanel iPSDEFormGroupPanel = (IPSDEFormGroupPanel)iPSDEFormDetail;
+            Iterator psDEFormDetails = iPSDEFormGroupPanel.getPSDEFormDetails();
+            while (psDEFormDetails.hasNext()) {
+                childPSDEFormDetail = (IPSDEFormDetail)psDEFormDetails.next();
+                IPSPFCtrlPartCodePublisher iPSPFCtrlPartCodePublisher = this.iPSPFCtrlTempl.getPSPFCtrlTemplDetail(childPSDEFormDetail.getDetailType()).getPSPFCtrlPartCodePublisher();
+                IPSGenerateCodeResult iPSGenerateCodeResult = iPSPFCtrlPartCodePublisher.generateCode((IPSControl)this.iPSDEForm, (Object)childPSDEFormDetail);
+                formDetailList.add(iPSGenerateCodeResult);
+            }
+            psDEFormDetails = iPSDEFormGroupPanel.getPSDEFormDetails();
+            while (psDEFormDetails.hasNext()) {
+                childPSDEFormDetail = (IPSDEFormDetail)psDEFormDetails.next();
+                this.fillPSDEFormDetails(childPSDEFormDetail, formDetailList);
+            }
+            return;
+        }
+    }
+}
+

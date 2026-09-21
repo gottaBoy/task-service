@@ -1,0 +1,56 @@
+.view-footer__popup {
+    padding-top   : 20px;
+    padding-bottom: 20px;
+
+    .container {
+        width        : 100%;
+        height       : 100%;
+        display      : flex;
+        align-content: flex-start;
+        flex-wrap    : wrap;
+
+        .btn-inner-text {
+            display: none;
+        }
+
+        .btn-out-text {
+            display: inline-block;
+            color  : black;
+        }
+    }
+
+    .disabled {
+        color: #a8a8a8;
+    }
+
+    .popup__item {
+        margin-top     : 10px;
+        box-sizing     : border-box;
+        flex           : 0 0 25%;
+        height         : 100px;
+        display        : flex;
+        color          : black;
+        flex-direction : column;
+        justify-content: center;
+        align-items    : center;
+        font-size      : 14px;
+
+        ion-button {
+            border: 0;
+        }
+    }
+}
+
+.view-footer__buttons {
+    width          : 100%;
+    display        : flex;
+    justify-content: space-around;
+
+    .button__item {
+        width: 45%;
+    }
+}
+
+.app-mob-button.text-button.app-mob-button__nav {
+    margin: 0;
+}

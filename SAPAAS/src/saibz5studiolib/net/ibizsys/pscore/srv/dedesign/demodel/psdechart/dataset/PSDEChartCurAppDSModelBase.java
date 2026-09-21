@@ -1,0 +1,22 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataSet
+ *  net.ibizsys.paas.core.DEDataSetQuery
+ *  net.ibizsys.paas.demodel.DEDataSetModelBase
+ */
+package net.ibizsys.pscore.srv.dedesign.demodel.psdechart.dataset;
+
+import net.ibizsys.paas.core.DEDataSet;
+import net.ibizsys.paas.core.DEDataSetQuery;
+import net.ibizsys.paas.demodel.DEDataSetModelBase;
+
+@DEDataSet(id="AF2F67DF-0A59-408C-BB19-376AEE57AACE", name="CurApp", queries={@DEDataSetQuery(queryid="AF2F67DF-0A59-408C-BB19-376AEE57AACE", queryname="CurApp")})
+public abstract class PSDEChartCurAppDSModelBase
+extends DEDataSetModelBase {
+    public PSDEChartCurAppDSModelBase() {
+        this.initAnnotation(PSDEChartCurAppDSModelBase.class);
+    }
+}
+

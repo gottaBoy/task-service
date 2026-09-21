@@ -1,0 +1,61 @@
+.app-form-item {
+    height: 100%;
+    padding: 0 6px;
+    .app-form-item__text {
+        >i,img{
+            margin-right: 4px;
+        }
+    }
+    .app-form-item__label {
+        padding: 6px 8px 6px 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 24px;
+    }
+    &.label--top, &.label--bottom {
+        >.app-form-item__label {
+            display: block;
+        }
+    }
+    &.label--left, &.label--right {
+        //todo 编辑器样式名待修改
+        >.app-form-item__label {      
+            height: 36px;
+        }
+    }
+    &.label--left {
+        >.app-form-item__label {
+            float: left;
+            text-align: right;
+        }
+    }
+    &.label--right {
+        >.app-form-item__label {
+            float: right;
+            text-align: left;
+        }
+    }
+    &.label--none {
+        >.app-form-item__label {
+            display: none;
+        }
+    }
+}
+.app-form-item__content {
+    display: block;
+    height: 100%;
+    .ivu-form-item-content {
+        height: 100%;
+        min-height: 36px;
+        .ivu-form-item-error-tip{
+            padding-top: 0;
+        }
+    }
+    > .ivu-form-item {
+        height: 100%;
+        margin-bottom: 16px;
+    }
+}

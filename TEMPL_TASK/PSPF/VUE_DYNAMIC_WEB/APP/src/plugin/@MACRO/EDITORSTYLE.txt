@@ -1,0 +1,25 @@
+<#if item.getPSSysPFPlugin?? && item.getPSSysPFPlugin()?? && (item.getPSSysPFPlugin().isRuntimeObject() == false)>
+import { Component } from 'vue-property-decorator';
+import { VueLifeCycleProcessing,EditorBase } from 'ibiz-vue';
+<#if item.render?? && item.render.code2??>${item.render.code2}</#if>
+<#if item.render?? && item.render.code3?? && (item.render.code3 != "")>import '../editor-style.less';</#if>
+/**
+ * ${item.getPSSysEditorStyle().getName()}插件类
+ *
+ * @export
+ * @class ${srfclassname(item.getPSSysEditorStyle().getCodeName())}
+ * @extends {EditorBase}
+ */
+@Component({})
+@VueLifeCycleProcessing()
+export class ${srfclassname(item.getPSSysEditorStyle().getCodeName())} extends <#if item.render?? && item.render.code4?? && (item.render.code4 != "")>${item.render.code4}<#else>EditorBase</#if> {
+    
+    <#if item.render?? && item.render.code??>
+    ${item.render.code}
+    <#else>
+    public render(){
+        return <div>${item.getPSSysEditorStyle().getName()}插件</div>
+    }
+    </#if>
+}
+</#if>

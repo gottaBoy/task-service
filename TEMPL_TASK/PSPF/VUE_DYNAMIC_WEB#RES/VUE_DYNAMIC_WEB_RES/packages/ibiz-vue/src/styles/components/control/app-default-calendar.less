@@ -1,0 +1,84 @@
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/timegrid/main.css';
+@import '~@fullcalendar/list/main.css';
+.app-control-calendar {
+    .app-control-calendar__header__legends {
+        width: 100%;
+        text-align: center;
+    }
+    .app-control-calendar__header__legend {
+        height: 20px;
+        margin-left: 10px;
+        display: inline-block;
+        .lengend__icon {
+            width: 30px;
+            height: 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .lengend__text {
+            margin-left: 5px;
+            line-height: 20px;
+            vertical-align: top;
+            display: inline-block;
+        }
+    }
+    .app-control-calendar__content__timeline {
+        padding-left: 2px;
+    }
+    .app-control-calendar__content__calendar {
+        height: 100%;
+        // fullcalendar 样式
+        .fc-button {
+            height: 28px;
+            width: 62px;
+            &:disabled, &:disabled:hover {
+                cursor: no-drop;
+            }
+            line-height: 0;
+            .fc-icon {
+                line-height: 0.7;
+            }
+        }
+        .selected-event.fc-end:before,
+        .select-first-event:before,
+        .selected-event.fc-end:before,
+        .select-first-event:before {
+            content: '';
+            display: block;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            border-top-color: transparent;
+            border-left-color: transparent;
+        }
+        .selected-event.fc-end:after,
+        .select-first-event:after,
+        .selected-event.fc-end:after,
+        .select-first-event:after {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 11px;
+            position: absolute;
+            right: 1px;
+            bottom: 0px;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            box-sizing: content-box;
+        }
+    }
+}
+// 选择跳转日期模态
+.app-control-calendar__model {
+    .flex(row, center, center);
+    .ivu-modal{
+        top: 0;
+    }
+    .ivu-modal-body {
+        text-align: center;
+    }
+}

@@ -1,0 +1,57 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  SA.SRFDA.PS.Core.DataEntity.IPSDataEntity
+ *  SA.SRFDA.PS.Core.DataEntity.Print.IPSDEPrint
+ *  SA.SRFDA.PS.Core.IPSObject
+ *  SA.SRFDA.PS.Data.PSSysSFCode
+ */
+package SA.SRFDA.PS.Core.Pub;
+
+import SA.SRFDA.PS.Core.DataEntity.IPSDataEntity;
+import SA.SRFDA.PS.Core.DataEntity.Print.IPSDEPrint;
+import SA.SRFDA.PS.Core.IPSObject;
+import SA.SRFDA.PS.Core.Pub.PSIBiz5SubSysDECodePublisherImpl;
+import SA.SRFDA.PS.Data.PSSysSFCode;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
+public class PSIBiz5SubSysDEPrintModelCodePublisherImpl
+extends PSIBiz5SubSysDECodePublisherImpl {
+    @Override
+    protected void onGenerateCode(IPSDataEntity iPSDataEntity, ArrayList<PSSysSFCode> list) throws Exception {
+        Iterator psDEPrints = iPSDataEntity.getAllPSDEPrints();
+        while (psDEPrints.hasNext()) {
+            IPSDEPrint iPSDEPrint = (IPSDEPrint)psDEPrints.next();
+            if (iPSDEPrint.getExtendMode() != 2) continue;
+            this.generateCode(iPSDEPrint, list);
+        }
+    }
+
+    @Override
+    protected ArrayList<PSSysSFCode> onGenerateCode(IPSObject iPSObject) throws Exception {
+        if (iPSObject instanceof IPSDEPrint) {
+            IPSDEPrint iPSDEPrint = (IPSDEPrint)iPSObject;
+            ArrayList<PSSysSFCode> list = new ArrayList<PSSysSFCode>();
+            if (iPSDEPrint.getExtendMode() != 2) {
+                return null;
+            }
+            this.generateCode(iPSDEPrint, list);
+            return list;
+        }
+        return super.onGenerateCode(iPSObject);
+    }
+
+    protected void generateCode(IPSDEPrint iPSDEPrint, ArrayList<PSSysSFCode> list) throws Exception {
+        HashMap<String, IPSDataEntity> params = new HashMap<String, IPSDataEntity>();
+        params.put("de", iPSDEPrint.getPSDataEntity());
+        PSSysSFCode psSysSFCode = this.createPSSysSFCode(false, list != null);
+        this.savePSSysSFCode(iPSDEPrint, psSysSFCode, params);
+        if (psSysSFCode != null && list != null) {
+            list.add(psSysSFCode);
+        }
+    }
+}
+

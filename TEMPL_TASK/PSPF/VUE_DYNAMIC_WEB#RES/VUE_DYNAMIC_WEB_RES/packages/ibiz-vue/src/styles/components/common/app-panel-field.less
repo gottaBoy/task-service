@@ -1,0 +1,56 @@
+.app-panel-field {
+  height: auto;
+  width: auto;
+  display: flex;
+  padding: 0 8px;
+  .app-panel-field__editor{
+    flex-grow: 1;
+    line-height: 34px;
+    width: 100%;
+    >div{
+        height: 100%;
+        width: inherit;
+    }
+  }
+  .app-panel-field__label {
+    height: 34px;
+    line-height: 22px;
+    flex-shrink: 0;
+    padding: 6px 10px 6px 0px;
+    >span{
+      color: red;
+    }
+  }
+  .editorstyle {
+    .errorstyle {
+        color:red;
+    }
+  }
+}
+
+.app-panel-field.label__top {
+  flex-flow: column;
+}
+
+.app-panel-field.label__bottom{
+  flex-flow: column-reverse;
+}
+
+.app-panel-field.label__left {
+  .app-panel-field__label {
+      text-align: right;
+  }
+}
+
+.app-panel-field.label__right {
+  flex-flow: row-reverse;
+  .app-panel-field__label {
+      padding: 6px 0px 6px 10px;
+  }
+}
+
+.app-panel-field.label__none {
+  .app-panel-field__label {
+      display: none;
+  }
+}

@@ -1,0 +1,63 @@
+.app-form-group {
+    .header__icon {
+        margin-right: 4px;
+        cursor: pointer;
+    }
+    .app-form-group__header {
+        font-size: 14px;
+    }
+    .ivu-card-head {
+        padding: 4px;
+    }
+    .ivu-card {
+        height: 100%;
+        .ivu-card-extra {
+            display: flex;
+            top: 0px;
+            height: 30px;
+            padding: 4px 0;
+            line-height: 24px;
+        }
+        .ivu-card-body {
+            padding: 8px;
+        }
+    }
+    .app-form-group__actions{
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        column-gap: 10px;
+        .app-form-group__actions__collapse-icon{
+            cursor: pointer;
+        }
+    }
+    .app-form-group__action__extract {
+        display: flex;
+    }
+    .app-form-group__action__item {
+        margin-left: 12px;
+        &.is-disable {
+            pointer-events: none;
+        }
+    }
+    .app-form-group__action__showmore {
+        margin-left: 12px;
+    }
+    &.is-flex {
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    
+        .ivu-card-body {
+            height: calc(100% - 51px);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    }
+}
+
+.app-group-collapse--collapse {
+    .ivu-card-body {
+        display: none;
+    }
+}

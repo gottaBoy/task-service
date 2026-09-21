@@ -1,0 +1,29 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeCond
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.sysdesign.demodel.pssysconsole.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeCond;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="FD1EB37D-6702-4BBD-9F37-A3B223636210", name="CurSys")
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`CONSOLETAG`, t1.`CONSOLETAG2`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`FIXDATAKEY`, t1.`FIXDEACTION`, t1.`FIXDENAME`, t1.`FIXSTATE`, t1.`LINKINFO`, t1.`LOGINFO`, t1.`LOGLEVEL`, t1.`LOGLEVEL2`, t1.`LOGTIME`, t1.`PSDYNAINSTID`, t1.`PSSYSAPPID`, t1.`PSSYSAPPNAME`, t1.`PSSYSCONSOLEID`, t1.`PSSYSCONSOLENAME`, t1.`PSSYSTEMID`, t1.`PSSYSTEMNAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN` FROM `T_SRFPSSYSCONSOLE` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CONSOLETAG", expression="t1.`CONSOLETAG`", showorder=0), @DEDataQueryCodeExp(name="CONSOLETAG2", expression="t1.`CONSOLETAG2`", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=3), @DEDataQueryCodeExp(name="FIXDATAKEY", expression="t1.`FIXDATAKEY`", showorder=4), @DEDataQueryCodeExp(name="FIXDEACTION", expression="t1.`FIXDEACTION`", showorder=5), @DEDataQueryCodeExp(name="FIXDENAME", expression="t1.`FIXDENAME`", showorder=6), @DEDataQueryCodeExp(name="FIXSTATE", expression="t1.`FIXSTATE`", showorder=7), @DEDataQueryCodeExp(name="LINKINFO", expression="t1.`LINKINFO`", showorder=8), @DEDataQueryCodeExp(name="LOGINFO", expression="t1.`LOGINFO`", showorder=9), @DEDataQueryCodeExp(name="LOGLEVEL", expression="t1.`LOGLEVEL`", showorder=10), @DEDataQueryCodeExp(name="LOGLEVEL2", expression="t1.`LOGLEVEL2`", showorder=11), @DEDataQueryCodeExp(name="LOGTIME", expression="t1.`LOGTIME`", showorder=12), @DEDataQueryCodeExp(name="PSDYNAINSTID", expression="t1.`PSDYNAINSTID`", showorder=13), @DEDataQueryCodeExp(name="PSSYSAPPID", expression="t1.`PSSYSAPPID`", showorder=14), @DEDataQueryCodeExp(name="PSSYSAPPNAME", expression="t1.`PSSYSAPPNAME`", showorder=15), @DEDataQueryCodeExp(name="PSSYSCONSOLEID", expression="t1.`PSSYSCONSOLEID`", showorder=16), @DEDataQueryCodeExp(name="PSSYSCONSOLENAME", expression="t1.`PSSYSCONSOLENAME`", showorder=17), @DEDataQueryCodeExp(name="PSSYSTEMID", expression="t1.`PSSYSTEMID`", showorder=18), @DEDataQueryCodeExp(name="PSSYSTEMNAME", expression="t1.`PSSYSTEMNAME`", showorder=19), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=20), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=21)}, conds={@DEDataQueryCodeCond(condition="( t1.`PSSYSTEMID` =  ${srfdatacontext('pssystemid','{\"defname\":\"PSSYSTEMID\",\"dename\":\"PSSYSCONSOLE\"}')} )")}), @DEDataQueryCode(querycode="SELECT t1.CONSOLETAG, t1.CONSOLETAG2, t1.CREATEDATE, t1.CREATEMAN, t1.FIXDATAKEY, t1.FIXDEACTION, t1.FIXDENAME, t1.FIXSTATE, t1.LINKINFO, t1.LOGINFO, t1.LOGLEVEL, t1.LOGLEVEL2, t1.LOGTIME, t1.PSDYNAINSTID, t1.PSSYSAPPID, t1.PSSYSAPPNAME, t1.PSSYSCONSOLEID, t1.PSSYSCONSOLENAME, t1.PSSYSTEMID, t1.PSSYSTEMNAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFPSSYSCONSOLE t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CONSOLETAG", expression="t1.CONSOLETAG", showorder=0), @DEDataQueryCodeExp(name="CONSOLETAG2", expression="t1.CONSOLETAG2", showorder=1), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=2), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=3), @DEDataQueryCodeExp(name="FIXDATAKEY", expression="t1.FIXDATAKEY", showorder=4), @DEDataQueryCodeExp(name="FIXDEACTION", expression="t1.FIXDEACTION", showorder=5), @DEDataQueryCodeExp(name="FIXDENAME", expression="t1.FIXDENAME", showorder=6), @DEDataQueryCodeExp(name="FIXSTATE", expression="t1.FIXSTATE", showorder=7), @DEDataQueryCodeExp(name="LINKINFO", expression="t1.LINKINFO", showorder=8), @DEDataQueryCodeExp(name="LOGINFO", expression="t1.LOGINFO", showorder=9), @DEDataQueryCodeExp(name="LOGLEVEL", expression="t1.LOGLEVEL", showorder=10), @DEDataQueryCodeExp(name="LOGLEVEL2", expression="t1.LOGLEVEL2", showorder=11), @DEDataQueryCodeExp(name="LOGTIME", expression="t1.LOGTIME", showorder=12), @DEDataQueryCodeExp(name="PSDYNAINSTID", expression="t1.PSDYNAINSTID", showorder=13), @DEDataQueryCodeExp(name="PSSYSAPPID", expression="t1.PSSYSAPPID", showorder=14), @DEDataQueryCodeExp(name="PSSYSAPPNAME", expression="t1.PSSYSAPPNAME", showorder=15), @DEDataQueryCodeExp(name="PSSYSCONSOLEID", expression="t1.PSSYSCONSOLEID", showorder=16), @DEDataQueryCodeExp(name="PSSYSCONSOLENAME", expression="t1.PSSYSCONSOLENAME", showorder=17), @DEDataQueryCodeExp(name="PSSYSTEMID", expression="t1.PSSYSTEMID", showorder=18), @DEDataQueryCodeExp(name="PSSYSTEMNAME", expression="t1.PSSYSTEMNAME", showorder=19), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=20), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=21)}, conds={@DEDataQueryCodeCond(condition="( t1.PSSYSTEMID =  ${srfdatacontext('pssystemid','{\"defname\":\"PSSYSTEMID\",\"dename\":\"PSSYSCONSOLE\"}')} )")})})
+public class PSSysConsoleCurSysDQModel
+extends DEDataQueryModelBase {
+    public PSSysConsoleCurSysDQModel() {
+        this.initAnnotation(PSSysConsoleCurSysDQModel.class);
+    }
+}
+

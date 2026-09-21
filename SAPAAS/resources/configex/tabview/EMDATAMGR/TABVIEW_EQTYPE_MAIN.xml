@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW BORDER="FALSE"  >
+	<SRFEXTABVIEWPAGE id="list" caption="设备类型列表" REMOTEURL="../emdatamgr/eqtype_listpage.jsp"/>
+	<SRFEXTABVIEWPAGE id="edit" caption="设备类型编辑" REMOTEURL="../emdatamgr/eqtype_editpage.jsp"/>
+	<SRFEXTABVIEWPAGE id="eqtypeequip_rlist" caption="相关设备明细" REMOTEURL="../emdatamgr/eqtypeequip_rlistpage.jsp"/>
+	<SRFEXTABVIEWPAGE id="eqtypeequiptree" caption="设备树[类型]" REMOTEURL="../eminfomgr/eqtypeequip_treepage.jsp"/>	
+	<SRFEXTABVIEWPAGE id="eqtypedrwg_exlist" caption="相关电子文档" REMOTEURL="../emdatamgr/eqtypeeqdrwg_exlistpage.jsp"/>
+	<SRFEXTABVIEWPAGE id="eqtypereqdrwg_exlist" caption="相关实物文档" REMOTEURL="../emdatamgr/eqtypereqdrwg_exlistpage.jsp"/>
+	<SRFEXTABVIEWPAGE id="eqtypeeqspare_rlist" caption="相关备件包" REMOTEURL="../emdatamgr/eqtypeeqsparemap_rlistpage.jsp"/>
+	<!-- SRFEXTABVIEWPAGE id="eqtyperfodefect_exlist" caption="相关故障现象" REMOTEURL="eqtyperfodefect_exlistpage.jsp"/> -->
+</SRFEXTABVIEW>

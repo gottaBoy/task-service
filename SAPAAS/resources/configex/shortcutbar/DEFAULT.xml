@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXSHORTCUTBAR> 
+	
+	
+	<SRFEXSHORTCUTBARITEM id="scequipserach" caption="设备快速搜索" REMOTEURL="../include/scequipsearch.jsp"  APPENDPARAMS="EQUIPID"/>
+	<SRFEXSHORTCUTBARITEM id="scitemserach" caption="物品快速搜索" REMOTEURL="../include/scitemsearch.jsp" APPENDPARAMS="ITEMID"/>
+	
+	<SRFEXSHORTCUTBARITEM id="aihist_equip" caption="最近访问的设备" REMOTEURL="../include/aihist.jsp?accessitemid=15"/>
+	<SRFEXSHORTCUTBARITEM id="aihist_item" caption="最近访问的物品" REMOTEURL="../include/aihist.jsp?accessitemid=16"/>
+	
+</SRFEXSHORTCUTBAR>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXUSERCONTROL>
+	<SRFEXUSERCONTROLITEM TAGNAME="MYCONTROL" ControlObject="SA.SRFramework.WebEx.SRFExTextBox"/>
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.SearchConditionDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDASearchConditionDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.QueryGroupDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDAQueryGroupDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.DataRangeDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDADataRangeDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.FormDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDAFormDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.QueryDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDAQueryDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.MainMenuDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDAMainMenuDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.CodeListDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDACodeListDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.WFDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDAWFDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFramework.WebEx.UI.FileDownloaderConfig" ControlObject="SA.SRFramework.WebEx.SRFExFileDownloader" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFramework.WebEx.UI.WordEditorConfig" ControlObject="SA.SRFramework.WebEx.SRFExWordEditor" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.SearchFormDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDASearchFormDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.EAI.Web.UI.EAIDesignerConfig" ControlObject="SA.SRFDA.EAI.Web.SRFDAEAIDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.DEDC.Web.UI.DEDCDesignerConfig" ControlObject="SA.SRFDA.DEDC.Web.SRFDADEDCDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.WF.Web.UI.WFInstUserDataLinkConfig" ControlObject="SA.SRFDA.WF.Web.SRFDAWFInstUserDataLink" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.DEDC.Web.UI.DEDCRuleProcessDesignerConfig" ControlObject="SA.SRFDA.DEDC.Web.SRFDADEDCRuleProcessDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.FormItemLogicDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDAFormItemLogicDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.DataNotifyDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDADataNotifyDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.DGExDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDADGExDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.ToolbarDesignerConfig" ControlObject="SA.SRFDA.Web.SRFDAToolbarDesigner" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.EAI.Web.UI.DBOPDesignerConfig" ControlObject="SA.SRFramework.WebEx.SRFExHidden" />
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.WF.Web.UI.WFCurStepActorPanelConfig" ControlObject="SA.SRFDA.WF.Web.SRFDAWFCurStepActorPanel" />
+	 
+	 <!-- 移动应用表单设计 -->
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Mobile.Web.DS.UI.MBFormDesignerConfig" ControlObject="SA.SRFDA.Mobile.Web.DS.SRFDAMBFormDesigner" />
+	 
+	 <SRFEXUSERCONTROLITEM TAGNAME="SA.SRFDA.Web.UI.TreeSelectorConfig" ControlObject="SA.SRFDA.Web.SRFDATreeSelector" />
+	  
+</SRFEXUSERCONTROL>
+	
+	

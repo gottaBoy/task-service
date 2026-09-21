@@ -1,0 +1,49 @@
+.app-control-searchform--right {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0 10px;
+    background: inherit;
+    .app-control-searchform__content {
+        margin-right: 10px;
+    }
+    .app-control-searchform__buttons {
+        margin: 0;
+        max-width: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 60px;
+    }
+    .button__item {
+        height: 25px;
+        font-size: 12px;
+        --padding-start: 1em;
+        --padding-end: 1em;
+        margin: 0;
+    }
+}
+.app-control-searchform--bottom {
+    .app-control-searchform__content {
+        padding: 0 10px;
+    }
+    .app-control-searchform__buttons {
+        text-align: right;
+        padding: 0 10px;
+    }
+    .button__item {
+        height: 30px;
+        font-size: 12px;
+        --padding-start: 1.3em;
+        margin: 0px;
+    }
+    .button__item:first-child {
+        --padding-end: 1.3em;
+        margin: 5px;
+    }
+    .app-control-searchform__footer {
+        height: auto;
+    }
+}

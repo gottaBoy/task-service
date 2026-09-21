@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW>
+	<SRFEXTABVIEWPAGE id="rfoactiontreesublist" caption="解决方案" REMOTEURL="../emdatamgr/eqrfoactiontree_sublistpage.jsp"/>
+</SRFEXTABVIEW>

@@ -1,0 +1,99 @@
+import Vue from 'vue';
+import { Subject } from 'rxjs';
+import AppDesignCompponent from "./app-design.vue";
+import { LogUtil } from 'ibiz-core';
+
+export class AppDesign {
+
+    /**
+     * 实例对象
+     *
+     * @private
+     * @static
+     * @memberof AppDesign
+     */
+    private static readonly $design = new AppDesign();
+
+    /**
+     * 构造方法
+     * 
+     * @memberof AppDesign
+     */
+    constructor() {
+        if (AppDesign.$design) {
+            return AppDesign.$design;
+        }
+    }
+
+    /**
+     * vue 实例
+     *
+     * @private
+     * @type {Vue | null}
+     * @memberof AppDesign
+     */
+    private vueExample: Vue | null = null;
+
+    /**
+     * 获取实例对象
+     *
+     * @static
+     * @returns
+     * @memberof AppDesign
+     */
+    public static getInstance() {
+        return AppDesign.$design;
+    }
+
+    /**
+     * 创建 Vue 实例对象
+     *
+     * @memberof AppDesign
+     */
+    private createVueExample(params:any): Subject<any> {
+        if(this.vueExample){
+            this.vueExample.$destroy(); 
+            this.vueExample = null;
+        }
+        try {
+            this.vueExample = new Vue({
+                render(h) {
+                    return h(AppDesignCompponent, {props:params} );
+                }
+            }).$mount();
+            document.body.appendChild(this.vueExample.$el);
+            const comp: any = this.vueExample.$children[0];
+            return comp.getSubject();
+        } catch (error) {
+            console.error(error);
+            return new Subject<any>();
+        }
+    }
+
+    /**
+     * 打开抽屉
+     *
+     * @memberof AppDesign
+     */
+    public openDrawer(params:any): Subject<any> {
+        try {
+            const subject = this.createVueExample(params);
+            return subject;
+        } catch (error) {
+            LogUtil.log(error);
+            return new Subject<any>();
+        }
+    }
+
+    /**
+     * @description 销毁临时vue对象
+     * @memberof AppDrawer
+     */
+    destroyVueExample() {
+        if (this.vueExample) {
+            this.vueExample.$destroy();
+            this.vueExample = null;
+        }
+    }
+
+}

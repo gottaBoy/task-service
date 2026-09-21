@@ -1,0 +1,9 @@
+Summary for saibz5uaclib.jar
+Decompiled with CFR 0.152
+
+
+net.ibizsys.psuac.web.RemoteLoginServlet
+----------------------------
+
+onFillFetchConditions(net.ibizsys.paas.demodel.IDataEntityModel java.util.ArrayList<net.ibizsys.paas.core.IDEDataSetCond> )
+  Unable to fully structure code

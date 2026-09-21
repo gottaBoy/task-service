@@ -1,0 +1,71 @@
+.app-array-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .app-array-box__icon  {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 32px;
+        display: inline-block;
+        cursor: pointer;
+        margin-left: 5px;
+        color: white;
+        font-size: 18px;
+    }
+    .ivu-icon-md-add {
+        background-color: #409EFF;
+        border-color: #409EFF;
+        &:hover {
+            background-color: #66b1ff;
+            border-color: #66b1ff;
+            color: #FFF;
+        }
+    }
+    .ivu-icon-md-remove {
+        background-color: #F56C6C;
+        border-color: #F56C6C;
+        &:hover {
+            background-color: #f78989;
+            border-color: #f78989;
+            color: #FFF;
+        }
+    }
+    .app-array-box__item {
+        display: flex;
+        >.input-unit{
+            flex: auto;
+        }
+        >.ivu-tooltip {
+            width: 100%;
+            flex: auto;
+        }
+        
+        .app-array-box__icons {
+            flex: none;
+        }
+    }
+    .ivu-tooltip-popper   {
+        .el-image, img {
+            width: 170px;
+        }
+    }
+    &.is-disabled {
+        .app-array-box__icon {
+            cursor: not-allowed;
+        }
+    }
+}
+
+.ivu-form-item-error {
+    .app-inupt-box--correct {
+        .ivu-input-number,
+        .ivu-input {
+            border-color: #3880ff !important;
+            &:focus {
+                box-shadow: 0 0 0 2px #e1ecff !important;
+            }
+        }
+    }
+}

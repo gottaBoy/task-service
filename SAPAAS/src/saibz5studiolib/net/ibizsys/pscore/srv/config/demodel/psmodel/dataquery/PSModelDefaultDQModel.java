@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.config.demodel.psmodel.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="80FFD35A-D235-493F-B1D7-D6C5E52885D6", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`ARTICLEURL`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`ENABLEIBIZBAK`, t1.`ENABLEIMPORT`, t1.`MEMO`, t1.`MODELCAT`, t1.`MODELDEID`, t1.`MODELINSTMODE`, t1.`MODELSTATEFLAG`, t1.`PPSMODELID`, t1.`PPSMODELNAME`, t1.`PSMODELID`, t1.`PSMODELNAME`, t1.`STARTERRORCODE`, t1.`TYPEFIELD`, t1.`TYPEOBJ`, t1.`TYPEVALUE`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`VALIDFLAG` FROM `T_SRFPSMODEL` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="MODELDESC", expression="t1.`MODELDESC`", showorder=-1), @DEDataQueryCodeExp(name="ARTICLEURL", expression="t1.`ARTICLEURL`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=2), @DEDataQueryCodeExp(name="ENABLEIBIZBAK", expression="t1.`ENABLEIBIZBAK`", showorder=3), @DEDataQueryCodeExp(name="ENABLEIMPORT", expression="t1.`ENABLEIMPORT`", showorder=4), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=5), @DEDataQueryCodeExp(name="MODELCAT", expression="t1.`MODELCAT`", showorder=6), @DEDataQueryCodeExp(name="MODELDEID", expression="t1.`MODELDEID`", showorder=7), @DEDataQueryCodeExp(name="MODELINSTMODE", expression="t1.`MODELINSTMODE`", showorder=8), @DEDataQueryCodeExp(name="MODELSTATEFLAG", expression="t1.`MODELSTATEFLAG`", showorder=9), @DEDataQueryCodeExp(name="PPSMODELID", expression="t1.`PPSMODELID`", showorder=10), @DEDataQueryCodeExp(name="PPSMODELNAME", expression="t1.`PPSMODELNAME`", showorder=11), @DEDataQueryCodeExp(name="PSMODELID", expression="t1.`PSMODELID`", showorder=12), @DEDataQueryCodeExp(name="PSMODELNAME", expression="t1.`PSMODELNAME`", showorder=13), @DEDataQueryCodeExp(name="STARTERRORCODE", expression="t1.`STARTERRORCODE`", showorder=14), @DEDataQueryCodeExp(name="TYPEFIELD", expression="t1.`TYPEFIELD`", showorder=15), @DEDataQueryCodeExp(name="TYPEOBJ", expression="t1.`TYPEOBJ`", showorder=16), @DEDataQueryCodeExp(name="TYPEVALUE", expression="t1.`TYPEVALUE`", showorder=17), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=18), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=19), @DEDataQueryCodeExp(name="VALIDFLAG", expression="t1.`VALIDFLAG`", showorder=20)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.ARTICLEURL, t1.CREATEDATE, t1.CREATEMAN, t1.ENABLEIBIZBAK, t1.ENABLEIMPORT, t1.MEMO, t1.MODELCAT, t1.MODELDEID, t1.MODELINSTMODE, t1.MODELSTATEFLAG, t1.PPSMODELID, t1.PPSMODELNAME, t1.PSMODELID, t1.PSMODELNAME, t1.STARTERRORCODE, t1.TYPEFIELD, t1.TYPEOBJ, t1.TYPEVALUE, t1.UPDATEDATE, t1.UPDATEMAN, t1.VALIDFLAG FROM T_SRFPSMODEL t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="MODELDESC", expression="t1.MODELDESC", showorder=-1), @DEDataQueryCodeExp(name="ARTICLEURL", expression="t1.ARTICLEURL", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="ENABLEIBIZBAK", expression="t1.ENABLEIBIZBAK", showorder=3), @DEDataQueryCodeExp(name="ENABLEIMPORT", expression="t1.ENABLEIMPORT", showorder=4), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=5), @DEDataQueryCodeExp(name="MODELCAT", expression="t1.MODELCAT", showorder=6), @DEDataQueryCodeExp(name="MODELDEID", expression="t1.MODELDEID", showorder=7), @DEDataQueryCodeExp(name="MODELINSTMODE", expression="t1.MODELINSTMODE", showorder=8), @DEDataQueryCodeExp(name="MODELSTATEFLAG", expression="t1.MODELSTATEFLAG", showorder=9), @DEDataQueryCodeExp(name="PPSMODELID", expression="t1.PPSMODELID", showorder=10), @DEDataQueryCodeExp(name="PPSMODELNAME", expression="t1.PPSMODELNAME", showorder=11), @DEDataQueryCodeExp(name="PSMODELID", expression="t1.PSMODELID", showorder=12), @DEDataQueryCodeExp(name="PSMODELNAME", expression="t1.PSMODELNAME", showorder=13), @DEDataQueryCodeExp(name="STARTERRORCODE", expression="t1.STARTERRORCODE", showorder=14), @DEDataQueryCodeExp(name="TYPEFIELD", expression="t1.TYPEFIELD", showorder=15), @DEDataQueryCodeExp(name="TYPEOBJ", expression="t1.TYPEOBJ", showorder=16), @DEDataQueryCodeExp(name="TYPEVALUE", expression="t1.TYPEVALUE", showorder=17), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=18), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=19), @DEDataQueryCodeExp(name="VALIDFLAG", expression="t1.VALIDFLAG", showorder=20)}, conds={})})
+public class PSModelDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSModelDefaultDQModel() {
+        this.initAnnotation(PSModelDefaultDQModel.class);
+    }
+}
+

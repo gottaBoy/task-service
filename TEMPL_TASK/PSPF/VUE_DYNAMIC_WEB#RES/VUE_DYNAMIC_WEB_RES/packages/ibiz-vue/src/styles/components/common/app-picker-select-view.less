@@ -1,0 +1,58 @@
+.app-picker-select-view {
+	.ivu-dropdown{
+	  left: 0px;
+	  width: 100%;
+	}
+}
+.app-picker-select-view__input{
+.ivu-input-suffix{
+	width: auto;
+	text-align: right;
+	.icon-arrow{
+	margin-right: 4px;
+	}
+}
+.el-icon-circle-close{
+	display: none;
+}
+&:hover{
+	.el-icon-circle-close{
+		display: inline-block;
+	}
+}
+}
+.app-picker-select-view__select{
+	width: 100%;
+	&.el-select-dropdown{
+		display: none;
+	}
+}
+.app-picker-select-view__transfer{
+	  max-height: 250px;
+	  height: 250px;
+	  overflow: scroll;
+	  margin: 0;
+	  padding: 0;
+	  .ivu-dropdown-menu{
+		  height: 100%;
+		  .view-container{
+		  margin: 0;
+		  padding: 0;
+		  }
+	  }
+	  .tree-contant{
+		  overflow:inherit;
+	  }
+	  .view-default.view-container {
+		  padding: 0;
+		  min-width: 530px;
+		  .ivu-card {
+		  > .ivu-card-body {
+			  padding: 0;
+			  > .content-container {
+				  padding: 0;
+			  }
+		  }
+		  }
+	  }
+  }

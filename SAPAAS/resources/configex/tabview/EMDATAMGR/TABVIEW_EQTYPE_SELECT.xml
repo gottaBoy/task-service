@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW >
+	<SRFEXTABVIEWPAGE id="tree" caption="设备类型" REMOTEURL="../emdatamgr/eqtype_tselectpage.jsp?" APPENDPARAMS="PICKUPVALUE|CurTreeNodeId|ExTreeNodeId" />
+</SRFEXTABVIEW>

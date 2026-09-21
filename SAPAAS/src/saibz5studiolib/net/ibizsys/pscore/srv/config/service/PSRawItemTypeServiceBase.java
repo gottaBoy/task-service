@@ -1,0 +1,523 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  javax.annotation.PostConstruct
+ *  net.ibizsys.paas.core.IDEDataSetFetchContext
+ *  net.ibizsys.paas.dao.DAOGlobal
+ *  net.ibizsys.paas.dao.IDAO
+ *  net.ibizsys.paas.db.DBFetchResult
+ *  net.ibizsys.paas.demodel.DEModelGlobal
+ *  net.ibizsys.paas.entity.EntityError
+ *  net.ibizsys.paas.entity.EntityFieldError
+ *  net.ibizsys.paas.entity.IEntity
+ *  net.ibizsys.paas.service.IDataContextParam
+ *  net.ibizsys.paas.service.IService
+ *  net.ibizsys.paas.service.ServiceGlobal
+ *  net.ibizsys.paas.util.StringHelper
+ *  net.ibizsys.paas.xml.XmlNode
+ *  net.sf.json.JSONObject
+ *  org.apache.commons.logging.Log
+ *  org.apache.commons.logging.LogFactory
+ *  org.hibernate.SessionFactory
+ */
+package net.ibizsys.pscore.srv.config.service;
+
+import java.util.ArrayList;
+import javax.annotation.PostConstruct;
+import net.ibizsys.paas.core.IDEDataSetFetchContext;
+import net.ibizsys.paas.dao.DAOGlobal;
+import net.ibizsys.paas.dao.IDAO;
+import net.ibizsys.paas.db.DBFetchResult;
+import net.ibizsys.paas.demodel.DEModelGlobal;
+import net.ibizsys.paas.entity.EntityError;
+import net.ibizsys.paas.entity.EntityFieldError;
+import net.ibizsys.paas.entity.IEntity;
+import net.ibizsys.paas.service.IDataContextParam;
+import net.ibizsys.paas.service.IService;
+import net.ibizsys.paas.service.ServiceGlobal;
+import net.ibizsys.paas.util.StringHelper;
+import net.ibizsys.paas.xml.XmlNode;
+import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
+import net.ibizsys.pscore.srv.config.dao.PSRawItemTypeDAO;
+import net.ibizsys.pscore.srv.config.demodel.PSRawItemTypeDEModel;
+import net.ibizsys.pscore.srv.config.entity.PSRawItemType;
+import net.ibizsys.pscore.srv.core.IPSDataEntityModel;
+import net.sf.json.JSONObject;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.SessionFactory;
+
+public abstract class PSRawItemTypeServiceBase
+extends PSCoreSysServiceBase<PSRawItemType> {
+    private static final Log log = LogFactory.getLog(PSRawItemTypeServiceBase.class);
+    public static final String DATASET_DEFAULT = "DEFAULT";
+    private PSRawItemTypeDEModel pSRawItemTypeDEModel;
+    private PSRawItemTypeDAO pSRawItemTypeDAO;
+
+    @PostConstruct
+    public void postConstruct() throws Exception {
+        ServiceGlobal.registerService((String)this.getServiceId(), (IService)this);
+    }
+
+    protected String getServiceId() {
+        return "net.ibizsys.pscore.srv.config.service.PSRawItemTypeService";
+    }
+
+    public PSRawItemTypeDEModel getPSRawItemTypeDEModel() {
+        if (this.pSRawItemTypeDEModel == null) {
+            try {
+                this.pSRawItemTypeDEModel = (PSRawItemTypeDEModel)DEModelGlobal.getDEModel((String)"net.ibizsys.pscore.srv.config.demodel.PSRawItemTypeDEModel");
+            }
+            catch (Exception exception) {
+                // empty catch block
+            }
+        }
+        return this.pSRawItemTypeDEModel;
+    }
+
+    @Override
+    public IPSDataEntityModel getDEModel() {
+        return this.getPSRawItemTypeDEModel();
+    }
+
+    public PSRawItemTypeDAO getPSRawItemTypeDAO() {
+        if (this.pSRawItemTypeDAO == null) {
+            try {
+                this.pSRawItemTypeDAO = (PSRawItemTypeDAO)DAOGlobal.getDAO((String)"net.ibizsys.pscore.srv.config.dao.PSRawItemTypeDAO", (SessionFactory)this.getSessionFactory());
+            }
+            catch (Exception exception) {
+                // empty catch block
+            }
+        }
+        return this.pSRawItemTypeDAO;
+    }
+
+    @Override
+    public IDAO getDAO() {
+        return this.getPSRawItemTypeDAO();
+    }
+
+    protected DBFetchResult onfetchDataSet(String string, IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
+        if (StringHelper.compare((String)string, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.fetchDefault(iDEDataSetFetchContext);
+        }
+        return super.onfetchDataSet(string, iDEDataSetFetchContext);
+    }
+
+    @Override
+    protected void onExecuteAction(String string, IEntity iEntity) throws Exception {
+        super.onExecuteAction(string, iEntity);
+    }
+
+    public DBFetchResult fetchDefault(IDEDataSetFetchContext iDEDataSetFetchContext) throws Exception {
+        DBFetchResult dBFetchResult = this.doServiceFetchWork(iDEDataSetFetchContext, DATASET_DEFAULT, false);
+        return dBFetchResult;
+    }
+
+    protected void onFillParentInfo(PSRawItemType pSRawItemType, String string, String string2, String string3) throws Exception {
+        super.onFillParentInfo((IEntity)pSRawItemType, string, string2, string3);
+    }
+
+    protected String onSyncDER1NData(String string, String string2, String string3) throws Exception {
+        return super.onSyncDER1NData(string, string2, string3);
+    }
+
+    protected void onFillEntityFullInfo(PSRawItemType pSRawItemType, boolean bl) throws Exception {
+        if (bl && pSRawItemType.getValidFlag() == null) {
+            pSRawItemType.setValidFlag((Integer)this.getDefaultValue(this.getWebContext(), "", "1", 9));
+        }
+        super.onFillEntityFullInfo((IEntity)pSRawItemType, bl);
+    }
+
+    protected void onWriteBackParent(PSRawItemType pSRawItemType, boolean bl) throws Exception {
+        super.onWriteBackParent((IEntity)pSRawItemType, bl);
+    }
+
+    @Override
+    protected void onBeforeRemove(PSRawItemType pSRawItemType) throws Exception {
+        super.onBeforeRemove(pSRawItemType);
+    }
+
+    protected void onRemoveEntityUncopyValues(PSRawItemType pSRawItemType, boolean bl) throws Exception {
+        super.onRemoveEntityUncopyValues((IEntity)pSRawItemType, bl);
+    }
+
+    protected void onCheckEntity(boolean bl, PSRawItemType pSRawItemType, boolean bl2, boolean bl3, EntityError entityError) throws Exception {
+        EntityFieldError entityFieldError = null;
+        entityFieldError = this.onCheckField_CtrlObj(bl, pSRawItemType, bl2, bl3);
+        if (entityFieldError != null) {
+            entityError.register(entityFieldError);
+        }
+        if ((entityFieldError = this.onCheckField_Memo(bl, pSRawItemType, bl2, bl3)) != null) {
+            entityError.register(entityFieldError);
+        }
+        if ((entityFieldError = this.onCheckField_OrderValue(bl, pSRawItemType, bl2, bl3)) != null) {
+            entityError.register(entityFieldError);
+        }
+        if ((entityFieldError = this.onCheckField_PSRawItemTypeId(bl, pSRawItemType, bl2, bl3)) != null) {
+            entityError.register(entityFieldError);
+        }
+        if ((entityFieldError = this.onCheckField_PSRawItemTypeName(bl, pSRawItemType, bl2, bl3)) != null) {
+            entityError.register(entityFieldError);
+        }
+        if ((entityFieldError = this.onCheckField_ItemParams(bl, pSRawItemType, bl2, bl3)) != null) {
+            entityError.register(entityFieldError);
+        }
+        if ((entityFieldError = this.onCheckField_ValidFlag(bl, pSRawItemType, bl2, bl3)) != null) {
+            entityError.register(entityFieldError);
+        }
+        super.onCheckEntity(bl, (IEntity)pSRawItemType, bl2, bl3, entityError);
+    }
+
+    protected EntityFieldError onCheckField_CtrlObj(boolean bl, PSRawItemType pSRawItemType, boolean bl2, boolean bl3) throws Exception {
+        if (bl ? !pSRawItemType.isCtrlObjDirty() && !bl2 : !pSRawItemType.isCtrlObjDirty()) {
+            return null;
+        }
+        String string = pSRawItemType.getCtrlObj();
+        if (bl) {
+            if (bl2 && StringHelper.isNullOrEmpty((String)string)) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("CTRLOBJ");
+                entityFieldError.setErrorType(1);
+                return entityFieldError;
+            }
+            String string2 = null;
+            string2 = this.onTestValueRule_CtrlObj_Default((IEntity)pSRawItemType, bl2, bl3);
+            if (!StringHelper.isNullOrEmpty((String)string2)) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("CTRLOBJ");
+                entityFieldError.setErrorType(3);
+                entityFieldError.setErrorInfo(string2);
+                return entityFieldError;
+            }
+        }
+        return null;
+    }
+
+    protected EntityFieldError onCheckField_Memo(boolean bl, PSRawItemType pSRawItemType, boolean bl2, boolean bl3) throws Exception {
+        if (bl ? !pSRawItemType.isMemoDirty() : !pSRawItemType.isMemoDirty()) {
+            return null;
+        }
+        String string = pSRawItemType.getMemo();
+        if (bl) {
+            if (bl2) {
+                // empty if block
+            }
+            String string2 = null;
+            string2 = this.onTestValueRule_Memo_Default((IEntity)pSRawItemType, bl2, bl3);
+            if (!StringHelper.isNullOrEmpty((String)string2)) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("MEMO");
+                entityFieldError.setErrorType(3);
+                entityFieldError.setErrorInfo(string2);
+                return entityFieldError;
+            }
+        }
+        return null;
+    }
+
+    protected EntityFieldError onCheckField_OrderValue(boolean bl, PSRawItemType pSRawItemType, boolean bl2, boolean bl3) throws Exception {
+        if (bl ? !pSRawItemType.isOrderValueDirty() : !pSRawItemType.isOrderValueDirty()) {
+            return null;
+        }
+        Integer n = pSRawItemType.getOrderValue();
+        if (bl) {
+            if (bl2) {
+                // empty if block
+            }
+            String string = null;
+            string = this.onTestValueRule_OrderValue_Default((IEntity)pSRawItemType, bl2, bl3);
+            if (!StringHelper.isNullOrEmpty((String)string)) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("ORDERVALUE");
+                entityFieldError.setErrorType(3);
+                entityFieldError.setErrorInfo(string);
+                return entityFieldError;
+            }
+        }
+        return null;
+    }
+
+    protected EntityFieldError onCheckField_PSRawItemTypeId(boolean bl, PSRawItemType pSRawItemType, boolean bl2, boolean bl3) throws Exception {
+        if (bl ? !pSRawItemType.isPSRawItemTypeIdDirty() && !bl2 : !pSRawItemType.isPSRawItemTypeIdDirty()) {
+            return null;
+        }
+        String string = pSRawItemType.getPSRawItemTypeId();
+        if (bl) {
+            if (bl2 && StringHelper.isNullOrEmpty((String)string)) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("PSRAWITEMTYPEID");
+                entityFieldError.setErrorType(1);
+                return entityFieldError;
+            }
+            String string2 = null;
+            string2 = this.onTestValueRule_PSRawItemTypeId_Default((IEntity)pSRawItemType, bl2, bl3);
+            if (!StringHelper.isNullOrEmpty((String)string2)) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("PSRAWITEMTYPEID");
+                entityFieldError.setErrorType(3);
+                entityFieldError.setErrorInfo(string2);
+                return entityFieldError;
+            }
+        }
+        return null;
+    }
+
+    protected EntityFieldError onCheckField_PSRawItemTypeName(boolean bl, PSRawItemType pSRawItemType, boolean bl2, boolean bl3) throws Exception {
+        if (bl ? !pSRawItemType.isPSRawItemTypeNameDirty() && !bl2 : !pSRawItemType.isPSRawItemTypeNameDirty()) {
+            return null;
+        }
+        String string = pSRawItemType.getPSRawItemTypeName();
+        if (bl) {
+            if (bl2 && StringHelper.isNullOrEmpty((String)string)) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("PSRAWITEMTYPENAME");
+                entityFieldError.setErrorType(1);
+                return entityFieldError;
+            }
+            String string2 = null;
+            string2 = this.onTestValueRule_PSRawItemTypeName_Default((IEntity)pSRawItemType, bl2, bl3);
+            if (!StringHelper.isNullOrEmpty((String)string2)) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("PSRAWITEMTYPENAME");
+                entityFieldError.setErrorType(3);
+                entityFieldError.setErrorInfo(string2);
+                return entityFieldError;
+            }
+        }
+        return null;
+    }
+
+    protected EntityFieldError onCheckField_ItemParams(boolean bl, PSRawItemType pSRawItemType, boolean bl2, boolean bl3) throws Exception {
+        if (bl ? !pSRawItemType.isItemParamsDirty() : !pSRawItemType.isItemParamsDirty()) {
+            return null;
+        }
+        String string = pSRawItemType.getItemParams();
+        if (bl) {
+            if (bl2) {
+                // empty if block
+            }
+            String string2 = null;
+            string2 = this.onTestValueRule_ItemParams_Default((IEntity)pSRawItemType, bl2, bl3);
+            if (!StringHelper.isNullOrEmpty((String)string2)) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("RAWITEMPARAMS");
+                entityFieldError.setErrorType(3);
+                entityFieldError.setErrorInfo(string2);
+                return entityFieldError;
+            }
+        }
+        return null;
+    }
+
+    protected EntityFieldError onCheckField_ValidFlag(boolean bl, PSRawItemType pSRawItemType, boolean bl2, boolean bl3) throws Exception {
+        if (bl ? !pSRawItemType.isValidFlagDirty() && !bl2 : !pSRawItemType.isValidFlagDirty()) {
+            return null;
+        }
+        Integer n = pSRawItemType.getValidFlag();
+        if (bl) {
+            if (bl2 && n == null) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("VALIDFLAG");
+                entityFieldError.setErrorType(1);
+                return entityFieldError;
+            }
+            String string = null;
+            string = this.onTestValueRule_ValidFlag_Default((IEntity)pSRawItemType, bl2, bl3);
+            if (!StringHelper.isNullOrEmpty((String)string)) {
+                EntityFieldError entityFieldError = new EntityFieldError();
+                entityFieldError.setFieldName("VALIDFLAG");
+                entityFieldError.setErrorType(3);
+                entityFieldError.setErrorInfo(string);
+                return entityFieldError;
+            }
+        }
+        return null;
+    }
+
+    protected void onSyncEntity(PSRawItemType pSRawItemType, boolean bl) throws Exception {
+        super.onSyncEntity((IEntity)pSRawItemType, bl);
+    }
+
+    protected void onSyncIndexEntities(PSRawItemType pSRawItemType, boolean bl) throws Exception {
+        super.onSyncIndexEntities((IEntity)pSRawItemType, bl);
+    }
+
+    public Object getDataContextValue(PSRawItemType pSRawItemType, String string, IDataContextParam iDataContextParam) throws Exception {
+        Object object = null;
+        if (iDataContextParam != null) {
+            // empty if block
+        }
+        if ((object = super.getDataContextValue((IEntity)pSRawItemType, string, iDataContextParam)) != null) {
+            return object;
+        }
+        return null;
+    }
+
+    protected void onExportMajorModel(PSRawItemType pSRawItemType, ArrayList<JSONObject> arrayList, int n) throws Exception {
+        super.onExportMajorModel((IEntity)pSRawItemType, arrayList, n);
+    }
+
+    protected String onTestValueRule(String string, String string2, IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        if (StringHelper.compare((String)string, (String)"CREATEDATE", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_CreateDate_Default(iEntity, bl, bl2);
+        }
+        if (StringHelper.compare((String)string, (String)"CREATEMAN", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_CreateMan_Default(iEntity, bl, bl2);
+        }
+        if (StringHelper.compare((String)string, (String)"CTRLOBJ", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_CtrlObj_Default(iEntity, bl, bl2);
+        }
+        if (StringHelper.compare((String)string, (String)"MEMO", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_Memo_Default(iEntity, bl, bl2);
+        }
+        if (StringHelper.compare((String)string, (String)"ORDERVALUE", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_OrderValue_Default(iEntity, bl, bl2);
+        }
+        if (StringHelper.compare((String)string, (String)"PSRAWITEMTYPEID", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_PSRawItemTypeId_Default(iEntity, bl, bl2);
+        }
+        if (StringHelper.compare((String)string, (String)"PSRAWITEMTYPENAME", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_PSRawItemTypeName_Default(iEntity, bl, bl2);
+        }
+        if (StringHelper.compare((String)string, (String)"RAWITEMPARAMS", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_ItemParams_Default(iEntity, bl, bl2);
+        }
+        if (StringHelper.compare((String)string, (String)"UPDATEDATE", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_UpdateDate_Default(iEntity, bl, bl2);
+        }
+        if (StringHelper.compare((String)string, (String)"UPDATEMAN", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_UpdateMan_Default(iEntity, bl, bl2);
+        }
+        if (StringHelper.compare((String)string, (String)"VALIDFLAG", (boolean)true) == 0 && StringHelper.compare((String)string2, (String)DATASET_DEFAULT, (boolean)true) == 0) {
+            return this.onTestValueRule_ValidFlag_Default(iEntity, bl, bl2);
+        }
+        return super.onTestValueRule(string, string2, iEntity, bl, bl2);
+    }
+
+    protected String onTestValueRule_CreateDate_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        return null;
+    }
+
+    protected String onTestValueRule_CreateMan_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        try {
+            if (this.checkFieldStringLengthRule("CREATEMAN", iEntity, bl2, null, false, 60, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]", false)) {
+                return null;
+            }
+            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]";
+        }
+        catch (Exception exception) {
+            return exception.getMessage();
+        }
+    }
+
+    protected String onTestValueRule_CtrlObj_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        try {
+            if (this.checkFieldStringLengthRule("CTRLOBJ", iEntity, bl2, null, false, 250, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[250]", false)) {
+                return null;
+            }
+            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[250]";
+        }
+        catch (Exception exception) {
+            return exception.getMessage();
+        }
+    }
+
+    protected String onTestValueRule_Memo_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        try {
+            if (this.checkFieldStringLengthRule("MEMO", iEntity, bl2, null, false, 2000, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[2000]", false)) {
+                return null;
+            }
+            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[2000]";
+        }
+        catch (Exception exception) {
+            return exception.getMessage();
+        }
+    }
+
+    protected String onTestValueRule_OrderValue_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        return null;
+    }
+
+    protected String onTestValueRule_PSRawItemTypeId_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        try {
+            if (this.checkFieldStringLengthRule("PSRAWITEMTYPEID", iEntity, bl2, null, false, 100, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]", false)) {
+                return null;
+            }
+            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[100]";
+        }
+        catch (Exception exception) {
+            return exception.getMessage();
+        }
+    }
+
+    protected String onTestValueRule_PSRawItemTypeName_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        try {
+            if (this.checkFieldStringLengthRule("PSRAWITEMTYPENAME", iEntity, bl2, null, false, 200, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]", false)) {
+                return null;
+            }
+            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[200]";
+        }
+        catch (Exception exception) {
+            return exception.getMessage();
+        }
+    }
+
+    protected String onTestValueRule_ItemParams_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        try {
+            if (this.checkFieldStringLengthRule("RAWITEMPARAMS", iEntity, bl2, null, false, 0x100000, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[1048576]", false)) {
+                return null;
+            }
+            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[1048576]";
+        }
+        catch (Exception exception) {
+            return exception.getMessage();
+        }
+    }
+
+    protected String onTestValueRule_UpdateDate_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        return null;
+    }
+
+    protected String onTestValueRule_UpdateMan_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        try {
+            if (this.checkFieldStringLengthRule("UPDATEMAN", iEntity, bl2, null, false, 60, true, "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]", false)) {
+                return null;
+            }
+            return "\u5185\u5bb9\u957f\u5ea6\u5fc5\u987b\u5c0f\u4e8e\u7b49\u4e8e[60]";
+        }
+        catch (Exception exception) {
+            return exception.getMessage();
+        }
+    }
+
+    protected String onTestValueRule_ValidFlag_Default(IEntity iEntity, boolean bl, boolean bl2) throws Exception {
+        return null;
+    }
+
+    protected boolean onMergeChild(String string, String string2, PSRawItemType pSRawItemType) throws Exception {
+        boolean bl = false;
+        if (super.onMergeChild(string, string2, (IEntity)pSRawItemType)) {
+            bl = true;
+        }
+        return bl;
+    }
+
+    protected void onUpdateParent(PSRawItemType pSRawItemType) throws Exception {
+        super.onUpdateParent((IEntity)pSRawItemType);
+    }
+
+    @Override
+    protected void exportCurXmlModel(PSRawItemType pSRawItemType, XmlNode xmlNode, boolean bl) throws Exception {
+        xmlNode.setNodeName("PSRAWITEMTYPE");
+        if (!bl) {
+            pSRawItemType.setCreateDate(null);
+            pSRawItemType.setCreateMan(null);
+            pSRawItemType.setUpdateDate(null);
+            pSRawItemType.setUpdateMan(null);
+            super.exportCurXmlModel(pSRawItemType, xmlNode, bl);
+        }
+    }
+}
+

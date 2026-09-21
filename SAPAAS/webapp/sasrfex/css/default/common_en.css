@@ -1,0 +1,19 @@
+TD .sx-dp-lb-td
+{
+	padding-left:15px;
+	border-spacing:  2px; 
+	width:140px;
+	text-align:left;
+}
+
+.sx-cp-lb
+{
+	float:left;
+	text-align: left;
+}
+
+.sx-cp-lb2 
+{
+	float:left;
+	text-align: left;
+}

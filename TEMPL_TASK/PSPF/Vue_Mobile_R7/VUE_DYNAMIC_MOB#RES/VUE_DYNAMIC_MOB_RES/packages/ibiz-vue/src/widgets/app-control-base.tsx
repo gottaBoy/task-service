@@ -1,0 +1,905 @@
+import Vue from 'vue';
+import { Subject, Subscription } from 'rxjs';
+import { AppModelService, MobControlInterface, GetModelService, Util, AppCustomEngine, AppCtrlEventEngine, AppTimerEngine, LogUtil, AppPanelEventEngine } from 'ibiz-core';
+import { CounterService } from 'ibiz-core';
+import { PluginService } from '../app-service/common-service';
+import { AppServiceBase } from 'ibiz-core';
+import { IPSControl } from '@ibiz/dynamic-model-api';
+
+/**
+ * 部件基类
+ *
+ * @export
+ * @class AppControlBase
+ * @extends {Vue}
+ */
+export class AppControlBase extends Vue implements MobControlInterface {
+    /**
+     * 环境文件
+     * 
+     * @type {any}
+     * @protected
+     * @memberof ControlBase
+     */
+    protected Environment: any = AppServiceBase.getInstance().getAppEnvironment();
+
+    /**
+     * 视图标识
+     *
+     * @type {*}
+     * @memberof AppControlBase
+     */
+    public viewtag: any;
+
+    /**
+     * 原生引用控件名称
+     *
+     * @memberof ControlBase
+     */
+    public realCtrlRefName: string = '';
+
+    /**
+     * 插件工厂
+     *
+     * @type {*}
+     * @memberof ControlBase
+     */
+    public PluginFactory: PluginService = PluginService.getInstance();
+
+    /**
+     * 显示处理提示
+     *
+     * @type {boolean}
+     * @memberof AppControlBase
+     */
+    public showBusyIndicator: boolean = true;
+
+    /**
+     * 是否启用动态模式
+     *
+     * @type {boolean}
+     * @memberof AppControlBase
+     */
+    public enableDynamicMode!: boolean;
+
+    /**
+     * 部件模型实例对象
+     *
+     * @type {*}
+     * @memberof AppControlBase
+     */
+    public controlInstance!: any;
+
+    /**
+     * 名称
+     *
+     * @type {string}
+     * @memberof AppControlBase
+     */
+    public name!: string;
+
+    /**
+     * 本地资源标识
+     *
+     * @type {string}
+     * @memberof ControlBase
+     */
+    public localSourceTag: string = '';
+
+    /**
+     * 部件UI是否存在权限
+     *
+     * @type {boolean}
+     * @memberof ControlBase
+     */
+    public enableControlUIAuth: boolean = true;
+
+    /**
+     * 视图通讯对象
+     *
+     * @type {*}
+     * @memberof AppControlBase
+     */
+    public viewState!: Subject<any>;
+
+    /**
+     * 应用上下文
+     *
+     * @type {*}
+     * @memberof AppControlBase
+     */
+    public context: any = {};
+
+    /**
+     * 视图参数
+     *
+     * @type {*}
+     * @memberof AppControlBase
+     */
+    public viewparams: any = {};
+
+    /**
+     * 拷贝应用上下文
+     *
+     * @type {*}
+     * @memberof ControlBase
+     */
+    public copyContext: any = {};
+
+    /**
+     * 拷贝视图参数
+     *
+     * @type {*}
+     * @memberof ControlBase
+     */
+    public copyViewparams: any = {};
+
+    /**
+     * 模型数据是否加载完成
+     * 
+     * @memberof AppControlBase
+     */
+    public controlIsLoaded: boolean = false;
+
+    /**
+     * 绘制参数
+     *
+     * @type {*}
+     * @memberof AppDefaultSearchForm
+     */
+    public renderOptions: any = {
+        controlClassNames: {}
+    };
+
+    /**
+     * 部件服务对象
+     *
+     * @type {*}
+     * @memberof AppControlBase
+     */
+    public service: any;
+
+    /**
+     * 实体服务对象
+     *
+     * @type {*}
+     * @memberof AppControlBase
+     */
+    public appEntityService: any;
+
+    /**
+     * 订阅视图状态事件
+     *
+     * @public
+     * @type {(Subscription | undefined)}
+     * @memberof AppControlBase
+     */
+    public viewStateEvent: Subscription | undefined;
+
+    /**
+     * 计数器服务对象集合
+     *
+     * @type {Array<*>}
+     * @memberof AppControlBase
+     */
+    public counterServiceArray: Array<any> = [];
+
+    /**
+     * 挂载状态集合
+     *
+     * @type {Map<string,boolean>}
+     * @memberof AppControlBase
+     */
+    public mountedMap: Map<string, boolean> = new Map();
+
+    /**
+     * 是否部件已经完成ctrlMounted
+     *
+     * @type {boolean}
+     * @memberof ControlBase
+     */
+    public hasCtrlMounted: boolean = false;
+
+    /**
+     * 外部传入数据对象
+     *
+     * @type {*}
+     * @memberof ControlBase
+     */
+    public navdatas?: any;
+
+    /**
+     * 视图操作参数集合
+     *
+     * @type {*}
+     * @memberof ControlBase
+     */
+    public viewCtx?: any;
+
+    /**
+     * 界面触发逻辑Map
+     * 
+     * @memberof ControlBase
+     */
+    public ctrlTriggerLogicMap: Map<string, any> = new Map();
+
+    /**
+     * 原生界面触发逻辑集合
+     * 
+     * @memberof ControlBase
+     */
+    public realCtrlTriggerLogicArray: Array<any> = [];
+
+    /**
+     * 原生界面触发逻辑分隔符
+     * 
+     * @memberof ControlBase
+     */
+    public realCtrlSeparator: string = 'ibiz_';
+
+    /**
+     * 注册事件逻辑分隔符
+     * 
+     * @memberof ControlBase
+     */
+    public registerEventSeparator: string = 'ibiz__';
+
+    /**
+     * 模型服务
+     *
+     * @type {AppModelService}
+     * @memberof ControlBase
+     */
+    public modelService !: AppModelService;
+
+    /**
+     * 初始化挂载状态集合
+     *
+     * @memberof ControlBase
+     */
+    public initMountedMap() {
+        let controls = this.controlInstance?.getPSControls?.();
+        controls?.forEach((item: any) => {
+            if (item.controlType == "CONTEXTMENU" || item.controlType == "TOOLBAR") {
+                this.mountedMap.set(item.name, true);
+            } else {
+                this.mountedMap.set(item.name, false);
+            }
+        })
+        this.mountedMap.set('self', false);
+    }
+
+    /**
+     * 部件事件抛出方法
+     *
+     * @param {{ controlname: string; action: string; data: any }} { controlname, action, data }
+     * @memberof AppControlBase
+     */
+    public ctrlEvent({ controlname, action, data }: { controlname: string; action: string; data: any }): void { }
+
+
+    /**
+     * 部件事件
+     * @param ctrl 部件 
+     * @param action  行为
+     * @param data 数据
+     * 
+     * @memberof ViewBase
+     */
+    public onCtrlEvent(controlname: string, action: string, data: any) {
+        if (action == 'controlIsMounted') {
+            this.setIsMounted(controlname);
+        } else {
+            this.ctrlEvent({ controlname, action, data });
+        }
+    }
+
+    /**
+     * 处理部件事件
+     * 
+     * @param {string} actionName 事件名称
+     * @param {*} [args={}] 事件参数
+     * @return {*}  {Promise<boolean>}
+     * @memberof ControlBase
+     */
+    public async handleCtrlEvents(actionName: string, args: any = {}): Promise<boolean> {
+        //  行为数据
+        const actionData: any = {
+            sender: this,
+            navContext: Util.deepCopy(this.context),
+            navParam: Util.deepCopy(this.viewparams),
+            navData: this.navdatas,
+            data: this.getData()
+        };
+        Object.assign(actionData, args);
+
+        //  执行部件界面逻辑
+        const result = await this.executeCtrlEventLogic(actionName, actionData);
+        if (result && result?.hasOwnProperty('srfret') && !result.srfret) {
+            return false;
+        }
+        //  抛出事件
+        this.ctrlEvent({ controlname: this.controlInstance.name, action: actionName, data: args });
+        return true;
+    }
+
+    /**
+     * 初始化部件的绘制参数
+     *
+     * @type {Array<*>}
+     * @memberof ViewBase
+     */
+     public initRenderOptions(opts?: any) {
+        this.renderOptions = {};
+        const { controlType, codeName } = this.controlInstance;
+        // 部件类名
+        const controlClassNames: any = {
+            'control-container': true,
+            [`app-control-${controlType.toLowerCase()}`]: true,
+            [Util.srfFilePath2(codeName)]: true,
+        };
+        Object.assign(controlClassNames, opts);
+        if (this.controlInstance?.getPSSysCss?.()?.cssName) {
+            Object.assign(controlClassNames, { [this.controlInstance.getPSSysCss()?.cssName]: true });
+        }
+        this.$set(this.renderOptions, 'controlClassNames', controlClassNames);
+    }
+
+    /**
+     * 计算目标部件所需参数
+     *
+     * @param {*} controlInstance 要绘制的部件实例
+     * @param {*} [otherParam] 其他参数
+     * @returns
+     * @memberof AppControlBase
+     */
+    public computeTargetCtrlData(controlInstance: any) {
+        let targetCtrlName: string = `app-control-shell`;
+        let targetCtrlParam: any = {
+            dynamicProps: {
+                viewparams: this.viewparams,
+                context: this.context,
+                viewCtx: this.viewCtx
+            },
+            staticProps: {
+                viewState: this.viewState,
+                viewtag: this.viewtag,
+                modelData: controlInstance,
+            }
+        };
+        Object.defineProperty(targetCtrlParam.staticProps, 'modelData', { enumerable: false, writable: true });
+        let targetCtrlEvent: any = {
+            'ctrl-event': ({ controlname, action, data }: { controlname: string, action: string, data: any }) => {
+                this.onCtrlEvent(controlname, action, data);
+            },
+            closeView: ($event: any) => {
+                this.closeView($event);
+            }
+        }
+        return { targetCtrlName: targetCtrlName, targetCtrlParam: targetCtrlParam, targetCtrlEvent: targetCtrlEvent };
+    }
+
+    /**
+     * 获取部件类型
+     *
+     * @returns {string}
+     * @memberof AppControlBase
+     */
+    public getControlType(): string {
+        return this.controlInstance.controlType;
+    }
+
+    /**
+     * 获取多项数据
+     *
+     * @returns {any[]}
+     * @memberof AppControlBase
+     */
+    public getDatas(): any[] {
+        return [];
+    }
+
+    /**
+     * 静态输入属性
+     *
+     * @returns {any}
+     * @memberof AppControlBase
+     */
+    public staticProps!: any;
+
+    /**
+     * 动态输入属性
+     *
+     * @returns {any}
+     * @memberof AppControlBase
+     */
+    public dynamicProps!: any;
+
+    /**
+     * 获取单项数据
+     *
+     * @returns {*}
+     * @memberof AppControlBase
+     */
+    public getData(): any {
+        return null;
+    }
+
+    /**
+     * 监听动态参数变化
+     *
+     * @param {*} newVal
+     * @param {*} oldVal
+     * @memberof AppControlBase
+     */
+    public onDynamicPropsChange(newVal: any, oldVal: any) {
+        if (newVal?.context && newVal.context !== oldVal?.context) {
+            this.context = newVal.context;
+            this.copyContext = Util.deepCopy(newVal.context);
+        }
+        if (newVal?.viewparams && newVal.viewparams !== oldVal?.viewparams) {
+            this.viewparams = newVal.viewparams;
+            this.copyViewparams = Util.deepCopy(newVal.viewparams);
+        }
+        if (newVal?.navdatas && newVal.navdatas !== oldVal?.navdatas) {
+            this.navdatas = newVal.navdatas;
+        }
+        if (newVal?.viewCtx && newVal.viewCtx !== oldVal?.viewCtx) {
+            this.viewCtx = newVal.viewCtx;
+        }
+    }
+
+    /**
+     * 监听导航数据参数变化
+     *
+     * @param {*} newVal
+     * @param {*} oldVal
+     * @memberof ControlBase
+     */
+    public setNavdatas(args: any) {
+        this.navdatas = args;
+        if (Util.isExistData(this.navdatas)) {
+            this.handleCustomCtrlData();
+        } else {
+            this.context = Util.deepCopy(this.copyContext);
+            this.viewparams = Util.deepCopy(this.copyViewparams);
+        }
+    }
+
+    /**
+    * 初始化模型服务
+    *
+    * @memberof ControlBase
+    */
+    public async initModelService() {
+        this.modelService = await GetModelService(this.context);
+    }
+    /**
+     * 设置已经绘制完成状态
+     *
+     * @memberof ControlBase
+     */
+    public setIsMounted(name: string = 'self') {
+        this.mountedMap.set(name, true);
+        if ([...this.mountedMap.values()].indexOf(false) == -1) {
+            // 执行ctrlMounted
+            if (!this.hasCtrlMounted) {
+                this.$nextTick(() => {
+                    this.ctrlMounted();
+                })
+            }
+        }
+    }
+
+    /**
+     * 监听静态参数变化
+     *
+     * @param {*} newVal
+     * @param {*} oldVal
+     * @memberof AppControlBase
+     */
+    public onStaticPropsChange(newVal: any, oldVal: any) {
+        this.controlInstance = this.staticProps.modelData;
+        this.viewState = this.staticProps.viewState;
+        this.localSourceTag = this.staticProps.localSourceTag;
+        this.ctrlModelInit().then((res: any) => {
+            this.ctrlInit();
+            this.controlIsLoaded = true;
+            setTimeout(() => {
+                this.ctrlMounted();
+                this.setIsMounted();
+            }, 0);
+        })
+    }
+
+    /**
+     * 部件模型数据加载
+     *
+     * @memberof AppControlBase
+     */
+    public async ctrlModelLoad() {
+        // 部件子部件数据加载
+        if (this.controlInstance?.getPSControls?.()) {
+            for (const control of this.controlInstance.getPSControls() as IPSControl[]) {
+                await control.fill();
+            }
+        }
+    }
+
+    /**
+     * 部件模型数据初始化实例
+     *
+     * @memberof AppControlBase
+     */
+    public async ctrlModelInit(args?: any) {
+        await this.initModelService();
+        await this.ctrlModelLoad();
+        this.initMountedMap();
+        this.name = this.controlInstance?.name ? this.controlInstance.name : this.controlInstance?.codeName;
+        this.showBusyIndicator = this.controlInstance?.showBusyIndicator;
+        this.initRenderOptions();
+        await this.initCounterService(this.controlInstance);
+        await this.initControlLogic(this.controlInstance);
+    }
+
+    /**
+     * 部件初始化
+     *
+     * @memberof AppControlBase
+     */
+    public ctrlInit(args?: any) {
+        // 增加本地模式默认加载数据逻辑
+        if (this.localSourceTag) {
+            const _this: any = this;
+            if (_this.load && _this.load instanceof Function) {
+                _this.load();
+            }
+        }
+    }
+
+    /**
+     * 部件挂载
+     *
+     * @memberof AppControlBase
+     */
+    public ctrlMounted(args?: any) {
+        this.hasCtrlMounted = true;
+        this.ctrlEvent({
+            controlname: this.controlInstance?.name,
+            action: 'controlIsMounted',
+            data: true
+        })
+        if (this.realCtrlRefName && this.realCtrlTriggerLogicArray.length > 0) {
+            let timer: any = setInterval(() => {
+                if (this.$refs && this.$refs[this.realCtrlRefName]) {
+                    clearInterval(timer);
+                    for (const item of this.realCtrlTriggerLogicArray) {
+                        (this.$refs[this.realCtrlRefName] as Vue).$on(item, (...args: any) => {
+                            this.handleRealCtrlEvent(item, this.getData(), args);
+                        });
+                    }
+                }
+            }, 100);
+        }
+    }
+
+    /**
+     * 部件销毁
+     *
+     * @memberof AppControlBase
+     */
+    public ctrlDestroyed(args?: any) {
+        if (this.viewStateEvent) {
+            this.viewStateEvent.unsubscribe();
+        }
+    }
+
+    /**
+     *  计数器刷新
+     *
+     * @memberof AppControlBase
+     */
+    public counterRefresh() {
+        if (this.counterServiceArray && this.counterServiceArray.length > 0) {
+            this.counterServiceArray.forEach((item: any) => {
+                if (item.refreshData && item.refreshData instanceof Function) {
+                    item.refreshData();
+                }
+            })
+        }
+    }
+
+    /**
+     * 关闭视图
+     *
+     * @param {any} args
+     * @memberof AppControlBase
+     */
+    public closeView(args: any): void {
+        this.$emit('closeView', [args]);
+    }
+
+    /**
+     * 初始化计数器服务
+     * 
+     * @memberof AppControlBase
+     */
+    public async initCounterService(param: any) {
+        if (!param) {
+            return;
+        }
+        const appCounterRef = param.getPSAppCounterRefs?.();
+        if (appCounterRef && appCounterRef.length > 0) {
+            for (const counterRef of appCounterRef) {
+              const counter = counterRef.getPSAppCounter?.();
+                if (counter) {
+                    await counter.fill(true);
+                    const counterService: any = new CounterService();
+                    await counterService.loaded(counter, { context: this.context, viewparams: this.viewparams });
+                    const tempData: any = { id: counterRef.id, path: counter.modelPath, service: counterService };
+                    this.counterServiceArray.push(tempData);
+                }
+            }
+        }
+    }
+
+    /**
+     * 初始化部件逻辑
+     * 
+     * @memberof ControlBase
+     */
+    public async initControlLogic(opts: any) {
+        if (opts.getPSControlLogics() && opts.getPSControlLogics().length > 0) {
+            this.realCtrlTriggerLogicArray = [];
+            opts.getPSControlLogics().forEach((element: any) => {
+                // 目标逻辑类型类型为实体界面逻辑、系统预置界面逻辑、前端扩展插件、脚本代码
+                if (element && element.triggerType && (Object.is(element.logicType, 'DEUILOGIC') ||
+                    Object.is(element.logicType, 'SYSVIEWLOGIC') ||
+                    Object.is(element.logicType, 'PFPLUGIN') ||
+                    Object.is(element.logicType, 'SCRIPT'))) {
+                    switch (element.triggerType) {
+                        case 'CUSTOM':
+                            this.ctrlTriggerLogicMap.set(element.name.toLowerCase(), new AppCustomEngine(element));
+                            break;
+                        case 'CTRLEVENT':
+                            if (element.eventNames.startsWith(this.registerEventSeparator)) {
+                                this.ctrlTriggerLogicMap.set(element.eventNames.toLowerCase(), new AppCtrlEventEngine(element));
+                            } else {
+                                if (element.eventNames.startsWith(this.realCtrlSeparator)) {
+                                    let eventNames = element.eventNames.slice(this.realCtrlSeparator.length);
+                                    eventNames = eventNames.replace(/_/g, "-");
+                                    eventNames = `${this.realCtrlSeparator}${eventNames}`;
+                                    this.ctrlTriggerLogicMap.set(eventNames.toLowerCase(), new AppCtrlEventEngine(element));
+                                } else {
+                                    this.ctrlTriggerLogicMap.set(element.eventNames.toLowerCase(), new AppCtrlEventEngine(element));
+                                }
+                            }
+                            break;
+                        case 'TIMER':
+                            this.ctrlTriggerLogicMap.set(element.name.toLowerCase(), new AppTimerEngine(element));
+                            break;
+                        default:
+                            console.log(`${element.triggerType}类型暂未支持`);
+                            break;
+                    }
+                }
+                // 目标逻辑类型类型为视图逻辑
+                if (element && Object.is(element.logicType, 'APPVIEWLOGIC') && opts.getPSAppViewLogics()) {
+                    const targetViewLogic = opts.getPSAppViewLogics().find((viewLogic: any) => {
+                        return viewLogic.name === element.name;
+                    })
+                    if (targetViewLogic && targetViewLogic.logicTrigger && (Object.is(targetViewLogic.logicType, 'DEUILOGIC') ||
+                    Object.is(targetViewLogic.logicType, 'SYSVIEWLOGIC') ||
+                    Object.is(targetViewLogic.logicType, 'PFPLUGIN') ||
+                    Object.is(targetViewLogic.logicType, 'SCRIPT') ||
+                    Object.is(targetViewLogic.logicType, 'APPVIEWUIACTION')
+                    )){
+                        if(Object.is(targetViewLogic.logicTrigger,'PANELEVENT')){
+                            if (targetViewLogic?.getPSViewCtrlName() && targetViewLogic?.eventNames) {
+                                this.ctrlTriggerLogicMap.set(`${targetViewLogic.getPSViewCtrlName()?.toLowerCase()}-${targetViewLogic.eventNames?.toLowerCase()}`, new AppPanelEventEngine(targetViewLogic));
+                            }
+                        }
+                    }
+                }
+                // 初始化原生界面触发逻辑
+                if (element.eventNames && element.eventNames.startsWith(this.realCtrlSeparator)) {
+                    let eventNames = element.eventNames.slice(this.realCtrlSeparator.length);
+                    eventNames = eventNames.replace(/_/g, "-");
+                    this.realCtrlTriggerLogicArray.push(eventNames);
+                }
+                // 绑定用户自定义事件
+                if (element.eventNames && element.eventNames.startsWith(this.registerEventSeparator)) {
+                    this.$on(element.eventNames, (...args: any) => {
+                        this.handleCtrlCustomEvent(element.eventNames.toLowerCase(), this.getData(), args);
+                    });
+                }
+            });
+        }
+    }
+
+    /**
+     * 处理自定义部件导航数据
+     *
+     * @memberof ControlBase
+     */
+    public handleCustomCtrlData() {
+        const customCtrlNavContexts = this.controlInstance.getPSControlNavContexts();
+        const customCtrlParams = this.controlInstance.getPSControlNavParams();
+        if (customCtrlNavContexts && (customCtrlNavContexts.length > 0)) {
+            customCtrlNavContexts.forEach((item: any) => {
+                let tempContext: any = {};
+                let curNavContext: any = item;
+                this.handleCustomDataLogic(curNavContext, tempContext, item.key);
+                Object.assign(this.context, tempContext);
+            })
+        }
+        if (customCtrlParams && (customCtrlParams.length > 0)) {
+            customCtrlParams.forEach((item: any) => {
+                let tempParam: any = {};
+                let curNavParam: any = item;
+                this.handleCustomDataLogic(curNavParam, tempParam, item.key);
+                Object.assign(this.viewparams, tempParam);
+            })
+        }
+    }
+
+    /**
+     * 处理部件自定义导航参数逻辑
+     *
+     * @memberof ControlBase
+     */
+    public handleCustomDataLogic(curNavData: any, tempData: any, item: string) {
+        const navDatas: any = Array.isArray(this.navdatas) ? this.navdatas[0] : this.navdatas;
+        // 直接值直接赋值
+        if (curNavData.rawValue) {
+            if (Object.is(curNavData.value, "null") || Object.is(curNavData.value, "")) {
+                Object.defineProperty(tempData, item.toLowerCase(), {
+                    value: null,
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                });
+            } else {
+                Object.defineProperty(tempData, item.toLowerCase(), {
+                    value: curNavData.value,
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                });
+            }
+        } else {
+            // 先从导航上下文取数，没有再从导航参数（URL）取数，如果导航上下文和导航参数都没有则为null
+            if (this.context[(curNavData.value).toLowerCase()] != null) {
+                Object.defineProperty(tempData, item.toLowerCase(), {
+                    value: this.context[(curNavData.value).toLowerCase()],
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                });
+                return;
+            } else if (this.viewparams[(curNavData.value).toLowerCase()] != null) {
+                Object.defineProperty(tempData, item.toLowerCase(), {
+                    value: this.viewparams[(curNavData.value).toLowerCase()],
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                });
+                return;
+            } else if (navDatas[(curNavData.value).toLowerCase()] != null) {
+                Object.defineProperty(tempData, item.toLowerCase(), {
+                    value: navDatas[(curNavData.value).toLowerCase()],
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                });
+                return;
+            } else {
+                Object.defineProperty(tempData, item.toLowerCase(), {
+                    value: null,
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                });
+            }
+        }
+    }
+
+    /**
+     * 执行部件事件逻辑
+     *
+     * @memberof ControlBase
+     */
+    public async executeCtrlEventLogic(name: string, args: any) {
+        if (this.ctrlTriggerLogicMap.get(name)) {
+            await this.ctrlTriggerLogicMap.get(name).executeAsyncUILogic({ arg: args, utils: this.viewCtx, app: this.viewCtx.app, view: this.viewCtx.view, ctrl: this });
+            return args;
+        }
+    }
+
+    /**
+     * 调用控件逻辑
+     *
+     * @memberof ControlBase
+     */
+    public invoke(methodName: string, args: any) {
+        if (!methodName) {
+            LogUtil.warn('方法名不能为空');
+            return;
+        }
+        if (methodName.startsWith(this.realCtrlSeparator)) {
+            // 原生控件方法
+            if (this.realCtrlRefName && this.$refs && this.$refs[this.realCtrlRefName]) {
+                let realCtrl: any = this.$refs[this.realCtrlRefName];
+                let realMethodName: string = methodName.slice(this.realCtrlSeparator.length);
+                if (realCtrl[realMethodName] && realCtrl[realMethodName] instanceof Function) {
+                    realCtrl[realMethodName](args);
+                } else {
+                    LogUtil.warn(`当前控件未找到指定方法${methodName}`);
+                }
+            } else {
+                LogUtil.warn('原生控件未找到');
+            }
+        } else {
+            // 代理层控件方法
+            let proxyCtrl: any = this;
+            if (proxyCtrl[methodName] && proxyCtrl[methodName] instanceof Function) {
+                proxyCtrl[methodName](args);
+            } else {
+                LogUtil.warn(`当前控件未找到指定方法${methodName}`);
+            }
+        }
+    }
+
+    /**
+     * 处理原生控件事件
+     *
+     * @memberof ControlBase
+     */
+    public handleRealCtrlEvent(name: string, data: any, args: any) {
+        if (this.ctrlTriggerLogicMap.get(`${this.realCtrlSeparator}${name}`)) {
+            this.ctrlTriggerLogicMap.get(`${this.realCtrlSeparator}${name}`).executeAsyncUILogic({ arg: { sender: this.$refs[this.realCtrlRefName], navContext: this.context, navParam: this.viewparams, navData: this.navdatas, data: data, args: args }, utils: this.viewCtx, app: this.viewCtx.app, view: this.viewCtx.view, ctrl: this });
+        }
+    }
+
+    /**
+     * 处理控件自定义事件
+     *
+     * @memberof ControlBase
+     */
+    public handleCtrlCustomEvent(name: string, data: any, args: any) {
+        if (this.ctrlTriggerLogicMap.get(`${name}`)) {
+            this.ctrlTriggerLogicMap.get(`${name}`).executeAsyncUILogic({ arg: { sender: this, navContext: this.context, navParam: this.viewparams, navData: this.navdatas, data: data, args: args }, utils: this.viewCtx, app: this.viewCtx.app, view: this.viewCtx.view, ctrl: this });
+        }
+    }
+
+    /**
+     * 处理部件定时器逻辑
+     *
+     * @memberof ControlBase
+     */
+    public handleTimerLogic() {
+        if (this.ctrlTriggerLogicMap && this.ctrlTriggerLogicMap.size > 0) {
+            for (let item of this.ctrlTriggerLogicMap.values()) {
+                if (item && (item instanceof AppTimerEngine)) {
+                    item.executeAsyncUILogic({ arg: { sender: this, navContext: this.context, navParam: this.viewparams, navData: this.navdatas, data: this.getData() }, utils: this.viewCtx, app: this.viewCtx.app, view: this.viewCtx.view, ctrl: this });
+                }
+            }
+        }
+    }
+
+    /**
+     * 销毁部件定时器逻辑
+     *
+     * @memberof ControlBase
+     */
+    public destroyLogicTimer() {
+        if (this.ctrlTriggerLogicMap && this.ctrlTriggerLogicMap.size > 0) {
+            for (let item of this.ctrlTriggerLogicMap.values()) {
+                if (item && (item instanceof AppTimerEngine)) {
+                    item.destroyTimer();
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.helpdesign.demodel.pshelpmodart.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="87403776-A509-4DBA-8F69-9EDBB922D568", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`CODENAME`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`MEMO`, t1.`MODARTPARAM`, t1.`MODARTPARAM2`, t1.`ORDERVALUE`, t1.`PSHELPARTICLEID`, t1.`PSHELPARTICLENAME`, t1.`PSHELPMODARTID`, t1.`PSHELPMODARTNAME`, t1.`PSHELPMODULEID`, t1.`PSHELPMODULENAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN`, t1.`USERCAT`, t1.`USERTAG`, t1.`USERTAG2`, t1.`USERTAG3`, t1.`USERTAG4`, t1.`VALIDFLAG` FROM `T_SRFPSHELPMODART` t1  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="CODENAME", expression="t1.`CODENAME`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=3), @DEDataQueryCodeExp(name="MODARTPARAM", expression="t1.`MODARTPARAM`", showorder=4), @DEDataQueryCodeExp(name="MODARTPARAM2", expression="t1.`MODARTPARAM2`", showorder=5), @DEDataQueryCodeExp(name="ORDERVALUE", expression="t1.`ORDERVALUE`", showorder=6), @DEDataQueryCodeExp(name="PSHELPARTICLEID", expression="t1.`PSHELPARTICLEID`", showorder=7), @DEDataQueryCodeExp(name="PSHELPARTICLENAME", expression="t1.`PSHELPARTICLENAME`", showorder=8), @DEDataQueryCodeExp(name="PSHELPMODARTID", expression="t1.`PSHELPMODARTID`", showorder=9), @DEDataQueryCodeExp(name="PSHELPMODARTNAME", expression="t1.`PSHELPMODARTNAME`", showorder=10), @DEDataQueryCodeExp(name="PSHELPMODULEID", expression="t1.`PSHELPMODULEID`", showorder=11), @DEDataQueryCodeExp(name="PSHELPMODULENAME", expression="t1.`PSHELPMODULENAME`", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=14), @DEDataQueryCodeExp(name="USERCAT", expression="t1.`USERCAT`", showorder=15), @DEDataQueryCodeExp(name="USERTAG", expression="t1.`USERTAG`", showorder=16), @DEDataQueryCodeExp(name="USERTAG2", expression="t1.`USERTAG2`", showorder=17), @DEDataQueryCodeExp(name="USERTAG3", expression="t1.`USERTAG3`", showorder=18), @DEDataQueryCodeExp(name="USERTAG4", expression="t1.`USERTAG4`", showorder=19), @DEDataQueryCodeExp(name="VALIDFLAG", expression="t1.`VALIDFLAG`", showorder=20)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CODENAME, t1.CREATEDATE, t1.CREATEMAN, t1.MEMO, t1.MODARTPARAM, t1.MODARTPARAM2, t1.ORDERVALUE, t1.PSHELPARTICLEID, t1.PSHELPARTICLENAME, t1.PSHELPMODARTID, t1.PSHELPMODARTNAME, t1.PSHELPMODULEID, t1.PSHELPMODULENAME, t1.UPDATEDATE, t1.UPDATEMAN, t1.USERCAT, t1.USERTAG, t1.USERTAG2, t1.USERTAG3, t1.USERTAG4, t1.VALIDFLAG FROM T_SRFPSHELPMODART t1  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="CODENAME", expression="t1.CODENAME", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=3), @DEDataQueryCodeExp(name="MODARTPARAM", expression="t1.MODARTPARAM", showorder=4), @DEDataQueryCodeExp(name="MODARTPARAM2", expression="t1.MODARTPARAM2", showorder=5), @DEDataQueryCodeExp(name="ORDERVALUE", expression="t1.ORDERVALUE", showorder=6), @DEDataQueryCodeExp(name="PSHELPARTICLEID", expression="t1.PSHELPARTICLEID", showorder=7), @DEDataQueryCodeExp(name="PSHELPARTICLENAME", expression="t1.PSHELPARTICLENAME", showorder=8), @DEDataQueryCodeExp(name="PSHELPMODARTID", expression="t1.PSHELPMODARTID", showorder=9), @DEDataQueryCodeExp(name="PSHELPMODARTNAME", expression="t1.PSHELPMODARTNAME", showorder=10), @DEDataQueryCodeExp(name="PSHELPMODULEID", expression="t1.PSHELPMODULEID", showorder=11), @DEDataQueryCodeExp(name="PSHELPMODULENAME", expression="t1.PSHELPMODULENAME", showorder=12), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=13), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=14), @DEDataQueryCodeExp(name="USERCAT", expression="t1.USERCAT", showorder=15), @DEDataQueryCodeExp(name="USERTAG", expression="t1.USERTAG", showorder=16), @DEDataQueryCodeExp(name="USERTAG2", expression="t1.USERTAG2", showorder=17), @DEDataQueryCodeExp(name="USERTAG3", expression="t1.USERTAG3", showorder=18), @DEDataQueryCodeExp(name="USERTAG4", expression="t1.USERTAG4", showorder=19), @DEDataQueryCodeExp(name="VALIDFLAG", expression="t1.VALIDFLAG", showorder=20)}, conds={})})
+public class PSHelpModArtDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSHelpModArtDefaultDQModel() {
+        this.initAnnotation(PSHelpModArtDefaultDQModel.class);
+    }
+}
+

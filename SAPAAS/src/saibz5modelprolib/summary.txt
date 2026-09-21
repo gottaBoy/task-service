@@ -1,0 +1,45 @@
+Summary for saibz5modelprolib.jar
+Decompiled with CFR 0.152
+
+
+net.ibizsys.model.control.grid.PSDEGridImpl
+----------------------------
+
+onPreparePSDEGridDataItems()
+  Unable to fully structure code
+
+
+net.ibizsys.model.control.toolbar.PSDETBUIActionItemImpl
+----------------------------
+
+onPreparePSDEToolbarItems()
+  Unable to fully structure code
+
+
+net.ibizsys.model.dataentity.logic.PSDELogicLinkImpl
+----------------------------
+
+addToPSDELogicLinkCondList(net.ibizsys.model.dataentity.logic.IPSDELogicLinkCond )
+  Unable to fully structure code
+
+
+net.ibizsys.model.dataentity.PSDataEntityImpl
+----------------------------
+
+getPSDER1Ns(boolean boolean )
+  Unable to fully structure code
+getPSDER1Ns(boolean )
+  Unable to fully structure code
+getRemovePSDER1Ns()
+  Unable to fully structure code
+getClonePSDER1Ns()
+  Unable to fully structure code
+getPSDERIndexs(boolean )
+  Unable to fully structure code
+
+
+net.ibizsys.model.wf.PSWorkflowImpl
+----------------------------
+
+getLastPSWFVersion()
+  Unable to fully structure code

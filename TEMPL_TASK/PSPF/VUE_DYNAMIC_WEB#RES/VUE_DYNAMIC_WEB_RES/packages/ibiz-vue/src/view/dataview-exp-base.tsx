@@ -1,0 +1,69 @@
+import { IPSAppDEDataViewExplorerView, IPSDataViewExpBar } from '@ibiz/dynamic-model-api';
+import { DataExpViewInterface, DataViewExpViewEngine, ModelTool} from 'ibiz-core';
+import { ExpViewBase } from './expview-base';
+
+/**
+ * 卡片导航视图基类
+ *
+ * @export
+ * @class DataViewExpBase
+ * @extends {ExpViewBase}
+ * @implements {DataExpViewInterface}
+ */
+export class DataViewExpBase extends ExpViewBase implements DataExpViewInterface {
+    /**
+     * 视图实例
+     * 
+     * @memberof GridExpViewBase
+     */
+    public declare viewInstance: IPSAppDEDataViewExplorerView;
+    
+    /**
+     * 导航栏实例
+     * 
+     * @memberof GridExpViewBase
+     */
+    public declare expBarInstance: IPSDataViewExpBar;
+
+    /**
+     * 视图引擎
+     *
+     * @public
+     * @type {ChartViewEngine}
+     * @memberof ChartViewBase
+     */
+    public declare engine: DataViewExpViewEngine;
+
+    /**
+     * 引擎初始化
+     *
+     * @public
+     * @memberof DataViewExpBase
+     */
+    public engineInit(): void {
+        if (this.Environment && this.Environment.isPreviewMode) {
+          return;
+        }
+        let engineOpts = ({
+            view: this,
+            p2k: '0',
+            keyPSDEField: this.appDeCodeName.toLowerCase(),
+            majorPSDEField: this.appDeMajorFieldName.toLowerCase(),
+            isLoadDefault: this.viewInstance.loadDefault,
+            dataviewexpbar: (this.$refs[this.expBarInstance.name] as any).ctrl,
+        });
+        this.engine.init(engineOpts);
+    }
+
+    /**
+     * 初始化分页导航视图实例
+     * 
+     * @memberof DataViewExpBase
+     */
+    public async viewModelInit() {
+        this.viewInstance = (this.staticProps?.modeldata) as IPSAppDEDataViewExplorerView;
+        await super.viewModelInit();
+        this.expBarInstance = ModelTool.findPSControlByType('DATAVIEWEXPBAR', this.viewInstance.getPSControls() || []);
+    }
+
+}

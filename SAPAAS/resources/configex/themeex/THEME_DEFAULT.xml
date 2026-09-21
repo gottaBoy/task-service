@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXBUILDERS>
+	<SRFEXBUILDER NAME="FORMPANEL" TYPE="SA.SRFramework.WebEx.Builder.DefaultFormPanelBuilder"/>
+	<SRFEXBUILDER NAME="PANEL" TYPE="SA.SRFramework.WebEx.Builder.DefaultPanelBuilder"/>
+	<SRFEXBUILDER NAME="GROUPPANEL" TYPE="SA.SRFramework.WebEx.Builder.DefaultGroupPanelBuilder"/>
+	<SRFEXBUILDER NAME="CONTROLPANEL" TYPE="SA.SRFramework.WebEx.Builder.DefaultControlPanelBuilder"/>
+	<SRFEXBUILDER NAME="CONTROLPANEL" MODE="TABLE" TYPE="SA.SRFramework.WebEx.Builder.TableControlPanelBuilder"/>
+	<SRFEXBUILDER NAME="TABPANEL" TYPE="SA.SRFramework.WebEx.Builder.DefaultTabPanelBuilder"/>
+	<SRFEXBUILDER NAME="TABPAGE" TYPE="SA.SRFramework.WebEx.Builder.DefaultTabPageBuilder"/>
+	<SRFEXBUILDER NAME="DATAGRID" TYPE="SA.SRFramework.WebEx.Builder.DefaultDataGridBuilder"/>	
+	<SRFEXBUILDER NAME="REMOTEPANEL" TYPE="SA.SRFramework.WebEx.Builder.DefaultRemotePanelBuilder"/>	
+	<SRFEXBUILDER NAME="REMOTETABPAGE" TYPE="SA.SRFramework.WebEx.Builder.DefaultRemoteTabPageBuilder"/>	
+	<SRFEXBUILDER NAME="SEARCHPANEL" TYPE="SA.SRFramework.WebEx.Builder.DefaultSPBuilder"/>
+	<SRFEXBUILDER NAME="SEARCHPANELEX" TYPE="SA.SRFramework.WebEx.Builder.DefaultSPExBuilder"/>	
+	<SRFEXBUILDER NAME="TREEPANEL" TYPE="SA.SRFramework.WebEx.Builder.DefaultTreePanelBuilder"/>	
+	<SRFEXBUILDER NAME="TABVIEW" TYPE="SA.SRFramework.WebEx.Builder.DefaultTabViewBuilder"/>	
+	<SRFEXBUILDER NAME="MAINMENUEX" TYPE="SA.SRFramework.WebEx.Builder.DefaultMainMenuExBuilder"/>	
+	<SRFEXBUILDER NAME="LEFTMENUEX" TYPE="SA.SRFramework.WebEx.Builder.DefaultLeftMenuExBuilder"/>	
+	<SRFEXBUILDER NAME="SHORTCUTBAR" TYPE="SA.SRFramework.WebEx.Builder.DefaultShortcutBarBuilder"/>
+	<SRFEXBUILDER NAME="DATAGRID" MODE="SL2" TYPE="SA.SRFramework.WebEx.Builder.SL2DataGridBuilder"/>
+	<SRFEXBUILDER NAME="MAINMENUEX" MODE="WINDOW"  TYPE="SA.SRFramework.WebEx.Builder.WindowMainMenuExBuilder"/>
+	<SRFEXBUILDER NAME="MAINMENUEX" MODE="OUTLOOKBAR"  TYPE="SA.SRFramework.WebEx.Builder.WindowMainMenuExBuilder"/>
+	<SRFEXBUILDER NAME="TOOLBAR" TYPE="SA.SRFramework.WebEx.Builder.DefaultToolbarBuilder"/>
+<!--	<SRFEXBUILDER NAME="DPEX" TYPE="SA.SRFramework.WebEx.DP.DefaultDPExBuilder"/> -->	
+ 	<SRFEXBUILDER NAME="SPEX" TYPE="SA.SRFramework.WebEx.SP.DefaultSPExBuilder"/>	
+	<SRFEXBUILDER NAME="DPEX" TYPE="SA.SRFDA.Web.Render.DPExBuilder4"/>
+	<SRFEXBUILDER NAME="DGEX" TYPE="SA.SRFramework.WebEx.DGEx.DefaultDGExBuilder"/>
+	<SRFEXBUILDER NAME="DATAGRID" MODE="GROUPCOLUMN"  TYPE="SA.SRFramework.WebEx.Builder.DefaultDataGridBuilder"/>	
+	
+		
+</SRFEXBUILDERS> 

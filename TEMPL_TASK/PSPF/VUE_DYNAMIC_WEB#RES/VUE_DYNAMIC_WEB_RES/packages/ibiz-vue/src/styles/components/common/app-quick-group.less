@@ -1,0 +1,37 @@
+.app-quick-group {
+    padding: 4px;
+
+    .app-quick-item {
+        margin-right: 8px;
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .app-selected-item {
+        display: inline-block;
+        font-weight: 700;
+        padding: 4px;
+        position: relative;
+
+        &::after {
+            content: "";
+            height: 2px;
+            position: absolute;
+            bottom: -10px;
+            width: 100%;
+            left: 0px;
+        }
+    }
+
+    .app-quick-item-label {
+        font-size: 1rem;
+    }
+
+    .app-selected-item:focus {
+        outline: none;
+    }
+}
+
+.app-quick-item-counter {
+    margin-left: 4px;
+}

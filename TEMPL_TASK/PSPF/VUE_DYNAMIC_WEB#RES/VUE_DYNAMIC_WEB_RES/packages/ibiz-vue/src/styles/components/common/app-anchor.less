@@ -1,0 +1,32 @@
+.app-anchor {
+    position: absolute;
+    top: 20px;
+    right: -13px;
+    z-index: 99;
+    border-radius: 4px;
+    padding: 10px 10px 10px 20px;
+    background: rgb(227,237,250);
+    .app-anchor__line {
+        width: 2px;
+        position: absolute;
+        height: calc(100% - 20px);
+        left: 10px;
+        background: #fff;
+    }
+    .app-anchor__points {
+        padding: 2px 0px;
+        cursor: pointer;
+        color: #b4bcca;
+    }
+    .app-anchor--active {
+        position: relative;
+        .points__dot{
+            position: absolute;
+            display: inline-block;
+            top: 0px;
+            left: -10px;
+            width: 2px;
+            height: 25px;
+        }
+    }
+}

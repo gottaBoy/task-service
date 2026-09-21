@@ -1,0 +1,104 @@
+.action-timeline-table {
+    width: calc(100% - 60px);
+    margin: 0 30px;
+    border-collapse: separate;
+    border-spacing: 0px 40px;
+
+    .action-timeline-thead {
+        th:nth-child(1) {
+            min-width: 200px;
+        }
+
+        th:nth-child(2) {
+            width: 100%
+        }
+    }
+}
+
+.action-timeline-tbody {
+    td {
+        position: relative;
+
+        .action-timeline-tbody__date {
+            display: flex;
+            width: 200px;
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .tbody__date__arrow {
+            margin-left: 10px;
+        }
+
+        .action-timeline-tbody__date::before {
+            content: ' ';
+            display: block;
+            position: absolute;
+            right: -20px;
+            top: 30px;
+            height: 2px;
+            width: 20px;
+            background-color: black;
+        }
+        >.action-timeline-tbody__timeline {
+            padding: 16px;
+            min-height: 68px;
+            margin-left: 18px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+        }
+    }
+    .action-timeline-tbody__timeline__wrapper {
+        padding-left: 165px;
+        color: #57A3FD;
+    
+        >.action-timeline-item {
+            position: relative;
+            height: 30px;
+            display: list-item;
+            list-style: none;
+            top: -6px;
+        }
+        .action-timeline-item__time {
+            position: absolute;
+            left: -115px;
+            top: 7px;
+            font-size: 12px;
+        }
+        .action-timeline-item__content {
+            padding: 5px;
+            padding-left: 65px;
+        }
+    
+        .action-timeline-item::before {
+            position: absolute;
+            top: 13px;
+            left: 45px;
+            z-index: 3;
+            width: 7px;
+            height: 7px;
+            background-color: black;
+            border: 1px solid black;
+            content: ' ';
+            border-radius: 50%;
+        }
+    
+        .action-timeline-item:nth-child(n+2)::after {
+            position: absolute;
+            top: -7px;
+            bottom: 12px;
+            left: 48px;
+            z-index: 1;
+            display: block;
+            content: ' ';
+            border-left: 1px solid black;
+        }
+    }
+}
+
+
+

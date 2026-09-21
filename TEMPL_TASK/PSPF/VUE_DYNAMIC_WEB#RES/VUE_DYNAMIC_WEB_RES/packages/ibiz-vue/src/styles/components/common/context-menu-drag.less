@@ -1,0 +1,89 @@
+.sider-drawer {
+  .ivu-drawer-body {
+    padding: 0px;
+  }
+
+  .context-menu-drag {
+    display: flex;
+
+    .flip-list-move {
+      transition: transform 0.3s;
+    }
+
+    .context-menu__list {
+      width: 100%;
+      height: 100%;
+
+      .context-menu__list__header {
+        cursor: pointer;
+        border-bottom: 1px solid ;
+        height: 48px;
+        line-height: 48px;
+        display: flex;
+        align-items: center;
+
+        .header__menuicon {
+          display: inline-block;
+          width: 50px;
+          font-size: 16px;
+          text-align: center;
+          font-size: 22px;
+        }
+
+        .header__content {
+          display: inline-block;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          flex: 1 1 0%;
+          overflow: hidden;
+          font-size: 13px;
+        }
+
+        .header__forward {
+          margin: 0px 8px 0px 4px;
+          font-size: 15px;
+        }
+      }
+
+      .context-menu__list__content {
+        padding: 8px 0px;
+
+        .content__item {
+          display: flex;
+          align-items: center;
+          height: 36px;
+          padding: 6px 12px;
+          cursor: pointer;
+
+          .icon {
+            display: inline-block;
+            line-height: 36px;
+          }
+
+          .caption {
+            font-size: 16px;
+            display: inline-block;
+            margin-left: 8px;
+            line-height: 36px;
+          }
+        }
+
+        .content__item:hover {
+          color: #2d8df3;
+        }
+      }
+    }
+  }
+}
+
+.style-top {
+  .ivu-drawer {
+    top: 41px ;
+  }
+}
+
+.default-top {
+  .ivu-drawer {
+    top: 50px;
+  }
+}

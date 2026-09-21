@@ -1,0 +1,49 @@
+.app-mpicker{
+    .app-mpicker-select-container{
+        position: relative;
+        width: 100%;
+        .el-select{
+            width: 100%;
+        }
+        .app-mpicker-open-icon{
+            position: absolute;
+            right: 5px;
+            color: #c0c4cc;
+            top: 0;
+            font-size: 13px;
+        }
+    }
+    .el-select__tags {
+        .el-tag {
+            display: flex;
+            max-width: 100%;
+            cursor: pointer;
+        }
+        .el-select__tags-text {
+            display: block;
+            max-width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .el-tag__close.el-icon-close {
+            top: 3px;
+            right: -4px;
+            display: block;
+            font-size: 14px;
+        }
+    }
+}
+// 下拉列表的远程加载样式
+.el-select-dropdown {
+    .is-empty {
+        text-align: center;
+        height: 100px;
+        width: 100%;
+        line-height: 100px;
+        font-size: 20px;
+        color: #999;
+        padding: 0 20px;
+        margin: 0;
+        list-style: none;
+    }
+}

@@ -1,0 +1,21 @@
+// 视图上的布局面板
+.app-view-layout__container {
+    padding: 0px;
+    position: relative;
+    >.app-view-layout__container__content {
+        height: 100%;
+        padding: 4px;
+    }
+}
+
+.app-view-layout__container.show-caption {
+    >.app-view-layout__container__header {
+        height: 38px;
+        font-weight: 600;
+        padding: 8px;
+    }
+
+    >.app-view-layout__container__content {
+        height: calc(100% - 38px);
+    }
+}

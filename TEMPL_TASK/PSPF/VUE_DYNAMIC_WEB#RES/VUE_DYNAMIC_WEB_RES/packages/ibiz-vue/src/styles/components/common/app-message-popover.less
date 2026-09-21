@@ -1,0 +1,90 @@
+.app-message-popover {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 5px 0 0;
+  .el-badge__content.is-fixed.is-dot {
+      width: 10px;
+      height: 10px;
+      right: 13px;
+      top: 4px;
+  }
+  .icon {
+    font-size: 28px;
+    cursor: pointer;
+  }
+}
+
+.message-popover-container {
+  z-index: 200 !important;
+  .control__empty {
+    height: calc(100% - 30px);
+  }
+  .popover__message {
+    min-height: 270px;
+  }
+}
+
+.popover__show-more {
+  text-align: center;
+  margin-top: 10px;
+  height: 20px;
+
+  label {
+      cursor: pointer;
+  }
+}
+
+#bell-btn {
+  height: 24px;
+  font-size: 19px;
+  padding-top: 2px;
+  padding-right: 2px;
+  cursor: pointer;
+}
+
+.popover__content {
+  min-height: 70px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+  cursor: pointer;
+  .popover__content__avatar {
+      text-align: center;
+  }
+
+  .popover__content__caption {
+      .process-definition-name {
+          font-size: 14px;
+          padding-top: 5px;
+      }
+      .process-definition-name:hover {
+          cursor: pointer;
+      }
+      .description {
+          margin-top: 6px;
+          margin-bottom: 6px;
+          max-width: 95%;
+      }
+      .createtime {
+          padding-bottom: 5px;
+      }
+
+      .el-row {
+          display: flex;
+      }
+      .el-col {
+          flex-grow: 1;
+      }
+      .process-definition-name:first-child {
+          font-weight: 500;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
+
+      .process-definition-name:nth-child(n + 2) {
+          font-size: 12px;
+      }
+  }
+}

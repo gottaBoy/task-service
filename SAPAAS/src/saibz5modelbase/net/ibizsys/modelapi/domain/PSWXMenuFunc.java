@@ -1,0 +1,460 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.fasterxml.jackson.annotation.JsonFormat
+ *  com.fasterxml.jackson.annotation.JsonIgnore
+ *  com.fasterxml.jackson.annotation.JsonProperty
+ */
+package net.ibizsys.modelapi.domain;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.File;
+import java.sql.Timestamp;
+import net.ibizsys.modelapi.util.IPSModel;
+import net.ibizsys.modelapi.util.PSModelBase;
+
+public class PSWXMenuFunc
+extends PSModelBase {
+    public static final String FIELD_CLICKTAG = "clicktag";
+    public static final String FIELD_CODENAME = "codename";
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", locale="zh", timezone="GMT+8")
+    public static final String FIELD_CREATEDATE = "createdate";
+    public static final String FIELD_CREATEMAN = "createman";
+    public static final String FIELD_FUNCTYPE = "functype";
+    public static final String FIELD_MEMO = "memo";
+    public static final String FIELD_PSWXACCOUNTID = "pswxaccountid";
+    public static final String FIELD_PSWXACCOUNTNAME = "pswxaccountname";
+    public static final String FIELD_PSWXENTAPPID = "pswxentappid";
+    public static final String FIELD_PSWXENTAPPNAME = "pswxentappname";
+    public static final String FIELD_PSWXMENUFUNCID = "pswxmenufuncid";
+    public static final String FIELD_PSWXMENUFUNCNAME = "pswxmenufuncname";
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", locale="zh", timezone="GMT+8")
+    public static final String FIELD_UPDATEDATE = "updatedate";
+    public static final String FIELD_UPDATEMAN = "updateman";
+    public static final String FIELD_USERCAT = "usercat";
+    public static final String FIELD_USERTAG = "usertag";
+    public static final String FIELD_USERTAG2 = "usertag2";
+    public static final String FIELD_USERTAG3 = "usertag3";
+    public static final String FIELD_USERTAG4 = "usertag4";
+    public static final String FIELD_VIEWURL = "viewurl";
+
+    @JsonIgnore
+    public String getClickTag() {
+        Object objValue = this.get(FIELD_CLICKTAG);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="clicktag")
+    public void setClickTag(String clickTag) {
+        this.set(FIELD_CLICKTAG, clickTag);
+    }
+
+    @JsonIgnore
+    public boolean isClickTagDirty() {
+        return this.contains(FIELD_CLICKTAG);
+    }
+
+    @JsonIgnore
+    public String getCodeName() {
+        Object objValue = this.get(FIELD_CODENAME);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="codename")
+    public void setCodeName(String codeName) {
+        this.set(FIELD_CODENAME, codeName);
+    }
+
+    @JsonIgnore
+    public boolean isCodeNameDirty() {
+        return this.contains(FIELD_CODENAME);
+    }
+
+    @JsonIgnore
+    public Timestamp getCreateDate() {
+        Object objValue = this.get(FIELD_CREATEDATE);
+        if (objValue == null) {
+            return null;
+        }
+        return (Timestamp)objValue;
+    }
+
+    @JsonProperty(value="createdate")
+    public void setCreateDate(Timestamp createDate) {
+        this.set(FIELD_CREATEDATE, createDate);
+    }
+
+    @JsonIgnore
+    public boolean isCreateDateDirty() {
+        return this.contains(FIELD_CREATEDATE);
+    }
+
+    @JsonIgnore
+    public String getCreateMan() {
+        Object objValue = this.get(FIELD_CREATEMAN);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="createman")
+    public void setCreateMan(String createMan) {
+        this.set(FIELD_CREATEMAN, createMan);
+    }
+
+    @JsonIgnore
+    public boolean isCreateManDirty() {
+        return this.contains(FIELD_CREATEMAN);
+    }
+
+    @JsonIgnore
+    public String getFuncType() {
+        Object objValue = this.get(FIELD_FUNCTYPE);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="functype")
+    public void setFuncType(String funcType) {
+        this.set(FIELD_FUNCTYPE, funcType);
+    }
+
+    @JsonIgnore
+    public boolean isFuncTypeDirty() {
+        return this.contains(FIELD_FUNCTYPE);
+    }
+
+    @JsonIgnore
+    public String getMemo() {
+        Object objValue = this.get(FIELD_MEMO);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="memo")
+    public void setMemo(String memo) {
+        this.set(FIELD_MEMO, memo);
+    }
+
+    @JsonIgnore
+    public boolean isMemoDirty() {
+        return this.contains(FIELD_MEMO);
+    }
+
+    @JsonIgnore
+    public String getPSWXAccountId() {
+        Object objValue = this.get(FIELD_PSWXACCOUNTID);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="pswxaccountid")
+    public void setPSWXAccountId(String pSWXAccountId) {
+        this.set(FIELD_PSWXACCOUNTID, pSWXAccountId);
+    }
+
+    @JsonIgnore
+    public boolean isPSWXAccountIdDirty() {
+        return this.contains(FIELD_PSWXACCOUNTID);
+    }
+
+    @JsonIgnore
+    public String getPSWXAccountName() {
+        Object objValue = this.get(FIELD_PSWXACCOUNTNAME);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="pswxaccountname")
+    public void setPSWXAccountName(String pSWXAccountName) {
+        this.set(FIELD_PSWXACCOUNTNAME, pSWXAccountName);
+    }
+
+    @JsonIgnore
+    public boolean isPSWXAccountNameDirty() {
+        return this.contains(FIELD_PSWXACCOUNTNAME);
+    }
+
+    @JsonIgnore
+    public String getPSWXEntAppId() {
+        Object objValue = this.get(FIELD_PSWXENTAPPID);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="pswxentappid")
+    public void setPSWXEntAppId(String pSWXEntAppId) {
+        this.set(FIELD_PSWXENTAPPID, pSWXEntAppId);
+    }
+
+    @JsonIgnore
+    public boolean isPSWXEntAppIdDirty() {
+        return this.contains(FIELD_PSWXENTAPPID);
+    }
+
+    @JsonIgnore
+    public String getPSWXEntAppName() {
+        Object objValue = this.get(FIELD_PSWXENTAPPNAME);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="pswxentappname")
+    public void setPSWXEntAppName(String pSWXEntAppName) {
+        this.set(FIELD_PSWXENTAPPNAME, pSWXEntAppName);
+    }
+
+    @JsonIgnore
+    public boolean isPSWXEntAppNameDirty() {
+        return this.contains(FIELD_PSWXENTAPPNAME);
+    }
+
+    @JsonIgnore
+    public String getPSWXMenuFuncId() {
+        Object objValue = this.get(FIELD_PSWXMENUFUNCID);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="pswxmenufuncid")
+    public void setPSWXMenuFuncId(String pSWXMenuFuncId) {
+        this.set(FIELD_PSWXMENUFUNCID, pSWXMenuFuncId);
+    }
+
+    @JsonIgnore
+    public boolean isPSWXMenuFuncIdDirty() {
+        return this.contains(FIELD_PSWXMENUFUNCID);
+    }
+
+    @JsonIgnore
+    public String getPSWXMenuFuncName() {
+        Object objValue = this.get(FIELD_PSWXMENUFUNCNAME);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="pswxmenufuncname")
+    public void setPSWXMenuFuncName(String pSWXMenuFuncName) {
+        this.set(FIELD_PSWXMENUFUNCNAME, pSWXMenuFuncName);
+    }
+
+    @JsonIgnore
+    public boolean isPSWXMenuFuncNameDirty() {
+        return this.contains(FIELD_PSWXMENUFUNCNAME);
+    }
+
+    @JsonIgnore
+    public Timestamp getUpdateDate() {
+        Object objValue = this.get(FIELD_UPDATEDATE);
+        if (objValue == null) {
+            return null;
+        }
+        return (Timestamp)objValue;
+    }
+
+    @JsonProperty(value="updatedate")
+    public void setUpdateDate(Timestamp updateDate) {
+        this.set(FIELD_UPDATEDATE, updateDate);
+    }
+
+    @JsonIgnore
+    public boolean isUpdateDateDirty() {
+        return this.contains(FIELD_UPDATEDATE);
+    }
+
+    @JsonIgnore
+    public String getUpdateMan() {
+        Object objValue = this.get(FIELD_UPDATEMAN);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="updateman")
+    public void setUpdateMan(String updateMan) {
+        this.set(FIELD_UPDATEMAN, updateMan);
+    }
+
+    @JsonIgnore
+    public boolean isUpdateManDirty() {
+        return this.contains(FIELD_UPDATEMAN);
+    }
+
+    @JsonIgnore
+    public String getUserCat() {
+        Object objValue = this.get(FIELD_USERCAT);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="usercat")
+    public void setUserCat(String userCat) {
+        this.set(FIELD_USERCAT, userCat);
+    }
+
+    @JsonIgnore
+    public boolean isUserCatDirty() {
+        return this.contains(FIELD_USERCAT);
+    }
+
+    @JsonIgnore
+    public String getUserTag() {
+        Object objValue = this.get(FIELD_USERTAG);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="usertag")
+    public void setUserTag(String userTag) {
+        this.set(FIELD_USERTAG, userTag);
+    }
+
+    @JsonIgnore
+    public boolean isUserTagDirty() {
+        return this.contains(FIELD_USERTAG);
+    }
+
+    @JsonIgnore
+    public String getUserTag2() {
+        Object objValue = this.get(FIELD_USERTAG2);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="usertag2")
+    public void setUserTag2(String userTag2) {
+        this.set(FIELD_USERTAG2, userTag2);
+    }
+
+    @JsonIgnore
+    public boolean isUserTag2Dirty() {
+        return this.contains(FIELD_USERTAG2);
+    }
+
+    @JsonIgnore
+    public String getUserTag3() {
+        Object objValue = this.get(FIELD_USERTAG3);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="usertag3")
+    public void setUserTag3(String userTag3) {
+        this.set(FIELD_USERTAG3, userTag3);
+    }
+
+    @JsonIgnore
+    public boolean isUserTag3Dirty() {
+        return this.contains(FIELD_USERTAG3);
+    }
+
+    @JsonIgnore
+    public String getUserTag4() {
+        Object objValue = this.get(FIELD_USERTAG4);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="usertag4")
+    public void setUserTag4(String userTag4) {
+        this.set(FIELD_USERTAG4, userTag4);
+    }
+
+    @JsonIgnore
+    public boolean isUserTag4Dirty() {
+        return this.contains(FIELD_USERTAG4);
+    }
+
+    @JsonIgnore
+    public String getViewURL() {
+        Object objValue = this.get(FIELD_VIEWURL);
+        if (objValue == null) {
+            return null;
+        }
+        return (String)objValue;
+    }
+
+    @JsonProperty(value="viewurl")
+    public void setViewURL(String viewURL) {
+        this.set(FIELD_VIEWURL, viewURL);
+    }
+
+    @JsonIgnore
+    public boolean isViewURLDirty() {
+        return this.contains(FIELD_VIEWURL);
+    }
+
+    @JsonIgnore
+    public String getSrfkey() {
+        return this.getPSWXMenuFuncId();
+    }
+
+    public void setSrfkey(String strValue) {
+        this.setPSWXMenuFuncId(strValue);
+    }
+
+    @Override
+    public String getSrfType() {
+        return "PSWXMENUFUNC";
+    }
+
+    @Override
+    protected void onLoad(String strJsonFilePath) throws Exception {
+        PSWXMenuFunc item = (PSWXMenuFunc)MAPPER.readValue(new File(strJsonFilePath), PSWXMenuFunc.class);
+        item.to(this, false, false);
+    }
+
+    @Override
+    public void to(IPSModel target, boolean bSimple, boolean bDeepMode) throws Exception {
+        if (target instanceof PSWXMenuFunc) {
+            PSWXMenuFunc pSWXMenuFunc = (PSWXMenuFunc)target;
+        }
+        super.to(target, bSimple, bDeepMode);
+    }
+
+    @Override
+    public void from(IPSModel source, boolean bSimple, boolean bDeepMode) throws Exception {
+        if (source instanceof PSWXMenuFunc) {
+            PSWXMenuFunc pSWXMenuFunc = (PSWXMenuFunc)source;
+        }
+        super.from(source, bSimple, bDeepMode);
+    }
+}
+

@@ -1,0 +1,22 @@
+.app-picker-microservice {
+    width: 100%;
+    .el-input__suffix-inner {
+        color: #808695;
+        cursor: pointer;
+        .el-icon-circle-close,.el-icon-arrow-down {
+            width: 25px;
+            transition: transform .3s;
+        }
+    }
+    &[aria-expanded="true"] {
+        .el-icon-arrow-down {
+            transform: rotate(-180deg);
+        }
+    }
+}
+.app-picker-microservice__popper {
+    .el-tree {
+        left: -20px;
+        width: calc(100% + 40px);
+    }
+}

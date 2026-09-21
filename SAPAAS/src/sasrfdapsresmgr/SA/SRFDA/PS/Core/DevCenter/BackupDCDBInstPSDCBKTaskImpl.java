@@ -1,0 +1,107 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  SA.SRFDA.PS.Core.Database.IPSDBType
+ *  SA.SRFDA.PS.Core.Database.IPSDBType4
+ *  SA.SRFDA.PS.Core.DevCenter.PSDevCenterBKTaskImplBase
+ *  SA.SRFDA.PS.Core.IPSTaskServerEnv
+ *  SA.SRFDA.PS.Ctrl.DEDataCtrl.PSDEDataCtrl
+ *  SA.SRFramework.DataEx.BaseDataEntity
+ *  net.ibizsys.paas.entity.IEntity
+ *  net.ibizsys.paas.service.ServiceGlobal
+ *  net.ibizsys.paas.util.DateHelper
+ *  net.ibizsys.paas.util.StringHelper
+ *  net.ibizsys.pscore.srv.PSCoreSysServiceBase
+ *  net.ibizsys.pscore.srv.devcenter.entity.PSDCDBInstBK
+ *  net.ibizsys.pscore.srv.devcenter.entity.PSDevCenterDBInst
+ *  net.ibizsys.pscore.srv.devcenter.service.PSDCDBInstBKService
+ *  net.ibizsys.pscore.srv.devcenter.service.PSDevCenterDBInstService
+ *  org.hibernate.SessionFactory
+ */
+package SA.SRFDA.PS.Core.DevCenter;
+
+import SA.SRFDA.PS.Core.Database.IPSDBType;
+import SA.SRFDA.PS.Core.Database.IPSDBType4;
+import SA.SRFDA.PS.Core.DevCenter.PSDevCenterBKTaskImplBase;
+import SA.SRFDA.PS.Core.IPSTaskServerEnv;
+import SA.SRFDA.PS.Ctrl.DEDataCtrl.PSDEDataCtrl;
+import SA.SRFramework.DataEx.BaseDataEntity;
+import java.sql.Timestamp;
+import java.util.Date;
+import net.ibizsys.paas.entity.IEntity;
+import net.ibizsys.paas.service.ServiceGlobal;
+import net.ibizsys.paas.util.DateHelper;
+import net.ibizsys.paas.util.StringHelper;
+import net.ibizsys.pscore.srv.PSCoreSysServiceBase;
+import net.ibizsys.pscore.srv.devcenter.entity.PSDCDBInstBK;
+import net.ibizsys.pscore.srv.devcenter.entity.PSDevCenterDBInst;
+import net.ibizsys.pscore.srv.devcenter.service.PSDCDBInstBKService;
+import net.ibizsys.pscore.srv.devcenter.service.PSDevCenterDBInstService;
+import org.hibernate.SessionFactory;
+
+public class BackupDCDBInstPSDCBKTaskImpl
+extends PSDevCenterBKTaskImplBase {
+    protected String onRun() throws Exception {
+        String strPSDCDBInstId = this.getTaskParam();
+        PSDevCenterDBInstService psDevCenterDBInstService = (PSDevCenterDBInstService)ServiceGlobal.getService(PSDevCenterDBInstService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+        PSDevCenterDBInst psDevCenterDBInst = new PSDevCenterDBInst();
+        psDevCenterDBInst.setPSDevCenterDBInstId(strPSDCDBInstId);
+        psDevCenterDBInstService.get((IEntity)psDevCenterDBInst);
+        IPSTaskServerEnv iPSTaskServerEnv = this.getPSModelStorage().getPSTaskServerEnv();
+        IPSDBType iPSDBType = this.getPSModelStorage().getPSDBType(psDevCenterDBInst.getDBType());
+        if (!(iPSDBType instanceof IPSDBType4)) {
+            throw new Exception(StringHelper.format((String)"\u6570\u636e\u5e93[%1$s]\u4e0d\u652f\u6301\u6570\u636e\u5e93\u5907\u4efd\u64cd\u4f5c", (Object)iPSDBType.getName()));
+        }
+        IPSDBType4 iPSDBType4 = (IPSDBType4)iPSDBType;
+        BaseDataEntity psDevCenterDBInstData = new BaseDataEntity();
+        PSDEDataCtrl.convertEntity((IEntity)psDevCenterDBInst, (BaseDataEntity)psDevCenterDBInstData);
+        PSDCDBInstBKService psDCDBInstBKService = (PSDCDBInstBKService)ServiceGlobal.getService(PSDCDBInstBKService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+        PSDCDBInstBK psDCDBInstBK = new PSDCDBInstBK();
+        String strPSDCDBInstBKId = this.getTaskParam2();
+        if (StringHelper.isNullOrEmpty((String)strPSDCDBInstBKId)) {
+            psDCDBInstBK.setPSDCDBInstBKName(StringHelper.format((String)"%1$s[%2$s]", (Object)psDevCenterDBInst.getPSDevCenterDBInstName(), (Object)DateHelper.toDateTimeString((Date)new Date())));
+            psDCDBInstBK.setDBType(psDevCenterDBInst.getDBType());
+            psDCDBInstBK.setBKState(Integer.valueOf(20));
+            psDCDBInstBK.setBackupMode(Integer.valueOf(10));
+            psDCDBInstBK.setPSDevCenterDBInstId(psDevCenterDBInst.getPSDevCenterDBInstId());
+            psDCDBInstBK.setPSDevCenterDBInstName(psDevCenterDBInst.getPSDevCenterDBInstName());
+            psDCDBInstBK.setPSDevCenterId(psDevCenterDBInst.getPSDevCenterId());
+            psDCDBInstBK.setPSDevCenterName(psDevCenterDBInst.getPSDevCenterName());
+            psDCDBInstBK.setBKTime(new Timestamp(System.currentTimeMillis()));
+            psDCDBInstBK.setPSTaskServerId(this.getPSTaskServerEnv().getId());
+            psDCDBInstBK.setPSTaskServerName(this.getPSTaskServerEnv().getName());
+            psDCDBInstBKService.create((IEntity)psDCDBInstBK);
+        } else {
+            psDCDBInstBK.setPSDCDBInstBKId(strPSDCDBInstBKId);
+            psDCDBInstBKService.get((IEntity)psDCDBInstBK);
+            psDCDBInstBK.reset();
+            psDCDBInstBK.setPSDCDBInstBKId(strPSDCDBInstBKId);
+            psDCDBInstBK.setBKState(Integer.valueOf(20));
+            psDCDBInstBK.setBKTime(new Timestamp(System.currentTimeMillis()));
+            psDCDBInstBK.setPSTaskServerId(this.getPSTaskServerEnv().getId());
+            psDCDBInstBK.setPSTaskServerName(this.getPSTaskServerEnv().getName());
+            psDCDBInstBKService.update((IEntity)psDCDBInstBK);
+        }
+        BaseDataEntity psDCDBInstBKData = new BaseDataEntity();
+        PSDEDataCtrl.convertEntity((IEntity)psDCDBInstBK, (BaseDataEntity)psDCDBInstBKData);
+        try {
+            this.updatePSDCBKTaskStep("\u6b63\u5728\u5907\u4efd", 300, 300);
+            iPSDBType4.backupDBInst("PSDEVCENTERDBINST", psDevCenterDBInstData, psDCDBInstBKData, false);
+            this.updatePSDCBKTaskStep("", 0);
+            PSDEDataCtrl.convertEntity2((BaseDataEntity)psDCDBInstBKData, (IEntity)psDCDBInstBK);
+            psDCDBInstBK.setBKState(Integer.valueOf(30));
+            psDCDBInstBK.setPSTaskServerId(iPSTaskServerEnv.getId());
+            psDCDBInstBK.setPSTaskServerName(iPSTaskServerEnv.getName());
+            psDCDBInstBKService.update((IEntity)psDCDBInstBK);
+        }
+        catch (Exception ex) {
+            psDCDBInstBK.setBKState(Integer.valueOf(40));
+            psDCDBInstBK.setBKInfo(ex.getMessage());
+            psDCDBInstBKService.update((IEntity)psDCDBInstBK);
+            throw ex;
+        }
+        return super.onRun();
+    }
+}
+

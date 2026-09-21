@@ -1,0 +1,325 @@
+//  解决横向滚动条错位问题
+.el-scrollbar__wrap {
+    // 滚动条样式
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        border: none;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 6px;
+    }
+}
+.app-control-grid {
+    .el-table {
+        font-size: 12px;
+        height: 100%;
+        border-left: none;
+        // 去除表格右侧边框
+        &::after {
+            width: 0;
+        }
+        //  表格头最小高度为45px
+        .el-table__header-wrapper,
+        .el-table__fixed-header-wrapper {
+            min-height: 45px;
+            height: auto;
+            th {
+                padding: 5px 0;
+                .cell {
+                    .textellipsis;
+                }
+            }
+            .el-table__header {
+                height: 100%;
+            }
+        }
+        //  表格内容最大高度为100% - 45px
+        .el-table__body-wrapper,
+        .el-table__fixed-body-wrapper {
+            max-height: calc(100% - 45px);
+            .el-table__body {
+                height: 100%;
+            }
+        }
+        .el-table__body-wrapper {
+            // 滚动条样式
+            &::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
+                border: none;
+            }
+            &::-webkit-scrollbar-thumb {
+                border-radius: 6px;
+            }
+            &::-webkit-scrollbar-track {
+                border-radius: 6px;
+            }
+        }
+        // 行编辑单元格
+        .edit-cell {
+            padding: 0 8px;
+            display: table-cell;
+            .cell {
+                padding: 0;
+                .ivu-form-item {
+                    margin-bottom: unset;
+                }
+            }
+        }
+        .sort-caret {
+            border-color: transparent;
+        }
+        // 操作列样式
+        .grid-column--ua__header {
+            margin-right: 4px;
+        }
+        .grid-column--ua__content {
+            text-align: center;
+            .flex(row, center, flex-start);
+            flex-wrap: nowrap;
+        }
+        .column__divider {
+            padding: 0 10px 0 10px;
+        }
+        .column--first {
+            padding: 0 10px 0 10px;
+        }
+        .column-content--disabled {
+            pointer-events: none;
+        }
+        .column-content--normal {
+            pointer-events: auto;
+        }
+        // 分组列样式（选中所有）
+        .grid-column--group--all-select {
+            .el-checkbox__inner:after {
+                box-sizing: content-box;
+                content: '';
+                border-left: 0;
+                border-top: 0;
+                height: 7px;
+                left: 4px;
+                position: absolute;
+                top: 1px;
+                transform: rotate(45deg) scaleY(1);
+                width: 3px;
+                transition: transform 0.15s ease-in 0.05s;
+                transform-origin: center;
+            }
+        }
+        // 分组列样式（选择列）
+        .grid-column--group--select {
+            .el-checkbox__inner:before {
+                content: '';
+                position: absolute;
+                display: block;
+                height: 2px;
+                transform: scale(0.5);
+                left: 0;
+                right: 0;
+                top: 5px;
+            }
+            .el-checkbox__inner:after {
+                border: 0px;
+            }
+        }
+        // 文件下载列样式
+        .grid-column--download {
+            text-decoration: underline;
+        }
+    }
+    
+    // 分页栏样式
+    .app-control-grid__pagination {
+        .ivu-icon {
+            font-size: 14px;
+            &.ivu-icon-md-refresh,
+            &.ivu-icon-ios-arrow-back,
+            &.ivu-icon-ios-arrow-forward {
+                position: relative;
+                transform: translate(0, -2px);
+            }
+        }
+        .pagination__refresh {
+            margin-right: 4px;
+        }
+        .pagination--pull-right {
+            float: right;
+        }
+        .pagination__refresh,
+        .ivu-page-item-jump-next,
+        .ivu-page-item-jump-prev,
+        .ivu-page-next,
+        .ivu-page-prev {
+          height: 28px;
+          width: 28px;
+          min-width: 28px;
+          line-height: 28px;
+        }
+        .ivu-page-item {
+            height: 28px;
+            width: auto;
+            min-width: 28px;
+            line-height: 28px;
+        }
+        .ivu-select-selection {
+            height: 28px;
+            .ivu-select-selected-value {
+                font-size: 12px;
+                height: 26px;
+                line-height: 26px;
+            }
+        }
+        .ivu-page-options-elevator {
+            input {
+                font-size: 12px;
+                height: 26px;
+                line-height: 26px;
+            }
+        }
+    }
+    // 操作列样式（过滤）
+    .app-control-grid__filter {
+        position: absolute;
+        top: 4px;
+        right: 6px;
+        z-index: 3;
+        height: 46px;
+        width: 48px;
+        box-shadow: -2px 0px 3px 0px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 48px;
+            height: 46px;
+            border-radius: 0 50% 0 0;
+            top: 0px;
+            right: 6px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 40px;
+            border-radius: 33% 50% 0 0;
+            top: 8px;
+            right: -4px;
+            pointer-events: none;
+        }
+
+        .ivu-poptip-rel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        &.filter__tip--show {
+            /* 动画代码 */
+            @keyframes openbook1 {
+                0% {
+                    transform: translate(0, 0);
+                }
+
+                100% {
+                    transform: translate(-60px, 0px);
+                }
+            }
+
+            /* 动画代码 */
+            @keyframes openbook2 {
+                0% {
+                    transform: translate(0, 0);
+                }
+
+                100% {
+                    transform: translate(-60px, 60px);
+                }
+            }
+
+            &::before {
+                animation-name: openbook1;
+                animation-duration: 0.5s;
+                animation-timing-function: ease-in;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
+            }
+
+            &::after {
+                animation-name: openbook2;
+                animation-duration: 0.5s;
+                animation-timing-function: ease-in;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
+            }
+        }
+
+        &.filter__tip--hide {
+
+            /* 动画代码 */
+            @keyframes closebook1 {
+                0% {
+                    transform: translate(-60px, 0px);
+                }
+
+                100% {
+                    transform: translate(0, 0);
+                }
+            }
+
+            /* 动画代码 */
+            @keyframes closebook2 {
+                0% {
+                    transform: translate(-60px, 60px);
+                }
+
+                100% {
+                    transform: translate(0, 0);
+                }
+            }
+
+            &::before {
+                animation-name: closebook1;
+                animation-duration: 0.5s;
+                animation-timing-function: ease-in;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
+            }
+
+            &::after {
+                animation-name: closebook2;
+                animation-duration: 0.5s;
+                animation-timing-function: ease-in;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+}
+.grid-column__localaction__remove {
+    display: none;
+}
+//  解决表格样式hover变化
+.grid-column__localaction__content {
+    position: relative;
+    height: 28px;
+}
+.el-table__row:hover {
+    .grid-column__localaction__remove {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        +.grid-column__localaction__index {
+            display: none;
+        }
+    }
+}

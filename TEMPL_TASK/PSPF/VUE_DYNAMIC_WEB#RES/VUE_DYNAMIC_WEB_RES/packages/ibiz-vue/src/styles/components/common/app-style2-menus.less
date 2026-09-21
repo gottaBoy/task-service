@@ -1,0 +1,31 @@
+.app-style2-menus {
+    height: 100%;
+    width: 200px;
+    .el-menu-item,
+    .el-submenu__title {
+        cursor: pointer;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: break-all;
+        height: 48px;
+        line-height: 48px;
+    }
+    .el-menu {
+        border-right: 0;
+    }
+    .el-menu--collapse {
+        .el-menu-item>.el-tooltip {
+            transform: translateX(-12px);
+        }
+        .el-submenu__icon-arrow {
+            display: none;
+        }
+    }
+    .app-style2-menus__item i{
+        margin-right: 4px;
+    }
+    &.el-menu--collapse {
+        width: 64px;
+    }
+}

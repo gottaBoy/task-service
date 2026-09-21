@@ -1,0 +1,48 @@
+<#if item.getPSSysPFPlugin?? && item.getPSSysPFPlugin()??>
+<#if item.getRefMode() == "DEMETHOD">
+import { IPSAppDEMethod } from "@ibiz/dynamic-model-api";
+import { AppMethod, HttpResponse, IContext, IEntityEnvContext, IParams } from "ibiz-core";
+<#if item.render?? && item.render.code3??>${item.render.code3}</#if> 
+
+/**
+ * ${item.getPSSysPFPlugin().getName()}插件类
+ *
+ * @export
+ * @class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+ */
+export default class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())} extends AppMethod{
+
+    /**
+     * Creates an instance of ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}.
+     * @param {IEntityEnvContext} entityEnvContext
+     * @param {IPSAppDEMethod} appDEMethod
+     * @memberof MethodPlugin
+     */
+    public constructor(entityEnvContext: IEntityEnvContext, appDEMethod: IPSAppDEMethod) {
+        super(entityEnvContext, appDEMethod);
+    }
+
+    <#if item.render?? && item.render.code2??>${item.render.code2}</#if>
+
+    /**
+     * 执行应用实体方法
+     * 
+     * @param context 应用上下文
+     * @param data 数据
+     * 
+     * @memberof ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+     */
+    public async execute(context: IContext, data: IParams) {
+        <#if item.render?? && item.render.code??>
+        ${item.render.code}
+        <#else>
+        return new HttpResponse({ message: this.codeName + '方法暂未实现' }, {
+            ok: false,
+            status: 500
+        });
+        </#if>
+    }
+
+}
+</#if>
+</#if>

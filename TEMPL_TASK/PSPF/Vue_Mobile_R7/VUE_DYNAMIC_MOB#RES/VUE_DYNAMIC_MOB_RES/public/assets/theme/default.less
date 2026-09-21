@@ -1,0 +1,848 @@
+//  --------------------------------------------------------------------------------
+//  展示给外部可以更改的变量
+//  主题色
+@primary                      : #1989fa;
+//  应用背景色
+@app-background-color         : #f4f5f5;
+//  应用字体色
+@app-text-color               : #333;
+// 应用边框颜色
+@app-border-color             : #e4e4e4;
+// 应用激活字体颜色
+@app-active-text-color        : @primary;
+// 应用激活背景颜色
+@app-active-background-color  : @app-background-color;
+@app-disabled-background-color: @app-text-color-step--650;
+@app-disabled-text-color      : @app-background-color-step-50;
+
+//  头部背景色
+@header-background-color : @primary;
+//  头部字体色
+@header-text-color       : #fff;
+// 内容区背景色
+@content-background-color: #fff;
+// 底部背景色
+@footer-background-color : @app-background-color;
+
+//  ---------------------------------------- 主题变量 ----------------------------------------
+@color-primary-base    : @primary;
+@color-primary-contrast: #fff;
+@color-primary-shade   : mix(#000, @primary, 12%);
+@color-primary-tint    : mix(#fff, @primary, 10%);
+@color-primary-redness : mix(red, @primary, 90%);
+
+@background-color-primary-base       : @primary;
+@background-color-primary-contrast   : #fff;
+@background-color-primary-shade      : mix(#000, @primary, 12%);
+@background-color-primary-tint       : mix(#fff, @primary, 10%);
+@background-color-primary-redness    : mix(red, @primary, 90%);
+@background-color-primary-transparent: transparent;
+
+//  ----------------------------------------按钮----------------------------------------
+//  按钮（默认、行为级别 = 不常用 | 一般操作）背景色
+@button-background-color          : @primary;
+//  按钮文本色
+@button-text-color                : @color-primary-contrast;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）禁用背景色
+@button-background-color--disabled: @app-disabled-background-color;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）禁用文本色
+@button-text-color--disabled      : @app-disabled-text-color;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）激活背景色
+@button-background-color--active  : @app-background-color-step-950;
+//  按钮（默认、行为级别 = 不常用 | 一般操作）激活文本色
+@button-text-color--active        : @app-text-color-step--950;
+
+@app-background-color-step-50 : mix(@app-text-color, @app-background-color, 5%);
+@app-background-color-step-100: mix(@app-text-color, @app-background-color, 10%);
+@app-background-color-step-150: mix(@app-text-color, @app-background-color, 15%);
+@app-background-color-step-200: mix(@app-text-color, @app-background-color, 20%);
+@app-background-color-step-250: mix(@app-text-color, @app-background-color, 25%);
+@app-background-color-step-300: mix(@app-text-color, @app-background-color, 30%);
+@app-background-color-step-350: mix(@app-text-color, @app-background-color, 35%);
+@app-background-color-step-400: mix(@app-text-color, @app-background-color, 40%);
+@app-background-color-step-450: mix(@app-text-color, @app-background-color, 45%);
+@app-background-color-step-500: mix(@app-text-color, @app-background-color, 50%);
+@app-background-color-step-550: mix(@app-text-color, @app-background-color, 55%);
+@app-background-color-step-600: mix(@app-text-color, @app-background-color, 60%);
+@app-background-color-step-650: mix(@app-text-color, @app-background-color, 65%);
+@app-background-color-step-700: mix(@app-text-color, @app-background-color, 70%);
+@app-background-color-step-750: mix(@app-text-color, @app-background-color, 75%);
+@app-background-color-step-800: mix(@app-text-color, @app-background-color, 80%);
+@app-background-color-step-850: mix(@app-text-color, @app-background-color, 85%);
+@app-background-color-step-900: mix(@app-text-color, @app-background-color, 90%);
+@app-background-color-step-950: mix(@app-text-color, @app-background-color, 95%);
+
+@app-text-color-step--50 : mix(@app-background-color, @app-text-color, 5%);
+@app-text-color-step--100: mix(@app-background-color, @app-text-color, 10%);
+@app-text-color-step--150: mix(@app-background-color, @app-text-color, 15%);
+@app-text-color-step--200: mix(@app-background-color, @app-text-color, 20%);
+@app-text-color-step--250: mix(@app-background-color, @app-text-color, 25%);
+@app-text-color-step--300: mix(@app-background-color, @app-text-color, 30%);
+@app-text-color-step--350: mix(@app-background-color, @app-text-color, 35%);
+@app-text-color-step--400: mix(@app-background-color, @app-text-color, 40%);
+@app-text-color-step--450: mix(@app-background-color, @app-text-color, 45%);
+@app-text-color-step--500: mix(@app-background-color, @app-text-color, 50%);
+@app-text-color-step--550: mix(@app-background-color, @app-text-color, 55%);
+@app-text-color-step--600: mix(@app-background-color, @app-text-color, 60%);
+@app-text-color-step--650: mix(@app-background-color, @app-text-color, 65%);
+@app-text-color-step--700: mix(@app-background-color, @app-text-color, 70%);
+@app-text-color-step--750: mix(@app-background-color, @app-text-color, 75%);
+@app-text-color-step--800: mix(@app-background-color, @app-text-color, 80%);
+@app-text-color-step--850: mix(@app-background-color, @app-text-color, 85%);
+@app-text-color-step--900: mix(@app-background-color, @app-text-color, 90%);
+@app-text-color-step--950: mix(@app-background-color, @app-text-color, 95%);
+
+// ------------------------------------- 布局 ------------------------------
+.view-header {
+    .view-header__top {
+        --background: @header-background-color;
+        --color     : @header-text-color;
+    }
+}
+
+.view-content {
+    background-color: @content-background-color;
+}
+
+.view-footer {
+    background-color: @footer-background-color;
+}
+
+//  ----------------------------------------视图---------------------------------------
+
+.demobeditview3 {
+    .app-vc-tab .app-vc-tab__header {
+        background-color: @background-color-primary-contrast;
+        border-color    : @app-border-color;
+    }
+
+    .app-vc-tab__header__drtab {
+        background-color: @app-background-color;
+    }
+
+    .app-vc-tab__header .drtab__item--select {
+        color           : @color-primary-contrast;
+        background-color: @background-color-primary-base;
+    }
+
+    .drtab__item {
+        background-color: @background-color-primary-transparent;
+    }
+}
+
+//  ----------------------------------------部件---------------------------------------
+//  --------------------------------------- 菜单---------------------------------------
+
+.app-control-appmenu {
+    .menu__item--active {
+        color: @app-active-text-color;
+    }
+}
+
+//  --------------------------------------- 工具栏 按钮---------------------------------------
+.app-mob-button.ion-color-primary {
+    --ion-color-base : @color-primary-base  !important;
+    --ion-color-shade: @color-primary-base  !important;
+}
+
+.app-mob-button.text-button {
+    --background          : @background-color-primary-transparent;
+    --color               : @app-text-color;
+    --color-activated     : @app-text-color;
+    --background-activated: @background-color-primary-transparent;
+}
+
+.app-mob-button.button-default,
+.app-mob-button.text-button.app-mob-button__nav {
+    --background          : @button-background-color;
+    --color               : @button-text-color;
+    --color-activated     : @button-text-color;
+    --background-activated: @button-background-color;
+}
+
+.app-mob-button.text-button {
+    --background          : @background-color-primary-transparent;
+    --color               : @app-text-color;
+    --color-activated     : @app-text-color;
+    --background-activated: @background-color-primary-transparent;
+}
+
+//  --------------------------------------- 表单---------------------------------------
+.app-control-form.control-container {
+    .van-tabs__nav {
+        border-color: @color-primary-base;
+    }
+
+    .van-tab.van-tab--active {
+        color           : @color-primary-contrast;
+        background-color: @color-primary-base;
+    }
+
+    .van-tab {
+        color       : @color-primary-base;
+        border-color: @color-primary-base;
+    }
+}
+
+//  --------------------------------------- 门户---------------------------------------
+.app-control-portlet {
+    background-color: @background-color-primary-contrast;
+
+    .app-control-portlet__header {
+        border-bottom: 1px solid @app-border-color;
+    }
+
+    .app-control-portlet__header:before {
+        background-color: @background-color-primary-base;
+    }
+
+    .header__right__icon {
+        color: @app-text-color;
+    }
+
+    .header__right {
+        color: @app-active-text-color;
+    }
+}
+
+//  --------------------------------------- 分页面板---------------------------------------
+
+.app-control-tabexppanel {
+    .app-control-tabexppanel__header {
+        border-color: @app-border-color;
+    }
+
+    .toolbar__segment {
+        .toolbar__segment__item {
+            --indicator-box-shadow: @background-color-primary-base;
+            --color-checked       : @color-primary-contrast;
+        }
+
+        .segment-button-checked {
+            --indicator-box-shadow: @background-color-primary-base;
+            --color-checked       : @color-primary-contrast;
+            --indicator-color     : @background-color-primary-base;
+        }
+    }
+
+    .toolbar__segment__item__count {
+        background: @background-color-primary-redness;
+        color     : @color-primary-contrast;
+    }
+}
+
+//  --------------------------------------- 分页关系 --------------------------------------
+.app-control-drtab {
+    background-color: @background-color-primary-transparent;
+}
+
+//  --------------------------------------- 树视图---------------------------------------
+
+.app-control-treeview {
+    .app-control-treeview__header__navigationbar {
+        color: @app-text-color;
+
+        .navigationbar__item--active {
+            color: @app-active-text-color;
+        }
+    }
+
+    .app-control-treeview__content__tree {
+        .tree__partition {
+            background-color: @app-background-color;
+        }
+
+        .tree__list__item__icon {
+            color: @app-text-color;
+        }
+
+        .tree__list__item__label {
+            .text {
+                color: @app-text-color;
+            }
+        }
+    }
+}
+
+//  --------------------------------------- 日历 --------------------------------------
+.app-control-calendar {
+    .mpvue-calendar td.selected span {
+        background-color: @background-color-primary-base;
+        color           : @color-primary-contrast;
+    }
+
+    .mc-today {
+        color: @color-primary-base;
+    }
+
+    .mc-today-element .calendar-date {
+        background-color: @app-background-color;
+    }
+
+    .app-control-calendar__content__toolbar {
+        .toolbar__segment__item {
+            --indicator-box-shadow: @background-color-primary-base;
+            --color-checked       : @color-primary-contrast;
+        }
+
+        .segment-button-checked {
+            --indicator-box-shadow: @background-color-primary-base;
+            --color-checked       : @color-primary-contrast;
+            --indicator-color     : @background-color-primary-base;
+        }
+    }
+
+    .datalist__item {
+        --border-color: @app-border-color;
+    }
+
+    .app-control-calendar__header__daycalendar {
+        color       : @color-primary-base;
+        border-color: @app-border-color;
+    }
+
+    .app-control-calendar__content {
+        border-color: @app-border-color;
+    }
+
+    .app-control-calendar__content {
+        background-color: @app-background-color;
+    }
+}
+
+//  --------------------------------------- 向导 --------------------------------------
+.app-control-wizardpanel {
+
+    .van-step__title,
+    .van-step__icon {
+        color: @app-text-color;
+    }
+
+    .van-step__title--active,
+    .van-step__icon--active {
+        color: @app-active-text-color;
+    }
+
+    .van-step--finish {
+        .van-step__circle {
+            background-color: @background-color-primary-base;
+        }
+
+        .van-step__line {
+            background-color: @background-color-primary-base;
+        }
+    }
+}
+
+//  --------------------------------------- 列表导航栏 --------------------------------------
+
+.app-control-list__listexpbar {
+    .list__sidebar__item--active::before {
+        background-color: @background-color-primary-base;
+    }
+}
+
+//  --------------------------------------- 列表部件 --------------------------------------
+.app-control-list {
+    .list__sliding__item {
+        --border-color        : @app-border-color;
+        --background-activated: @background-color-primary-contrast;
+    }
+
+}
+
+.app-control-list__select {
+    .list__sliding__item {
+        --background-activated: @background-color-primary-contrast;
+        border-bottom         : 1px solid @app-border-color;
+        background            : @background-color-primary-contrast;
+    }
+}
+
+.app-control-mobmdctrl {
+    .checkbox-checked {
+        --ion-color-base: @color-primary-base  !important;
+    }
+}
+
+// 组件
+
+//  --------------------------------------- app-seach-history ---------------------------------------
+.app-seach-history__toolbar {
+    --border-color: @app-border-color;
+}
+
+//  --------------------------------------- app-calendar ---------------------------------------
+.mc-today {
+    color: @color-primary-base;
+}
+
+.mpvue-calendar td.selected span {
+    background-color: @background-color-primary-base;
+}
+
+.mpvue-calendar td.selected span.mc-date-red {
+    background-color: @background-color-primary-base;
+}
+
+.mpvue-calendar .mc-range-mode .mc-range-begin span.calendar-date {
+    background-color: @background-color-primary-base;
+}
+
+//  --------------------------------------- app-form-druipart ---------------------------------------
+.form-druipart-text {
+    color: @app-text-color;
+}
+
+//  --------------------------------------- app-form-group---------------------------------------
+.app-form-group {
+    .collapse__item__action {
+        .collapse__item__action__item {
+            ion-icon {
+                color: @color-primary-base;
+            }
+
+            .action__icon {
+                color: @app-text-color;
+            }
+
+            .action__item__button {
+                background-color: @background-color-primary-transparent;
+                color           : @color-primary-base;
+            }
+        }
+    }
+
+    .van-collapse-item__title--disabled,
+    .van-collapse-item__title--disabled .van-cell__right-icon {
+        color: @app-text-color;
+    }
+}
+
+//  --------------------------------------- app-form-item ---------------------------------------
+.app-form-item,
+.app-form-item2 {
+    ion-item {
+        --border-color: @app-border-color;
+        --background  : @background-color-primary-contrast;
+    }
+
+    .app-form-item-label-required {
+        color: @color-primary-redness;
+    }
+
+    .app-form-item-label-notRequired {
+        color: @app-text-color;
+    }
+
+    .app-form-item__prompt {
+        color: @color-primary-redness;
+    }
+
+    .app-form-item__prompt__right {
+        color: @color-primary-redness;
+    }
+
+    .item-editor-content {
+        color: @app-text-color;
+    }
+
+    .app-form-item__label.app-form-item,
+    .label-floating {
+        color: @app-text-color;
+    }
+
+    .app-form-item__label.app-form-item-label-required::before {
+        color: @color-primary-redness;
+    }
+
+    .app-form-item__label {
+        color: @app-text-color;
+    }
+}
+
+//  --------------------------------------- app-list-index-text ---------------------------------------
+.app-list-index-text {
+    background: @background-color-primary-contrast;
+
+    .app-list-index-text__box {
+        color: @color-primary-contrast;
+    }
+
+    .app-list-index-text_info {
+        color: @app-text-color;
+    }
+}
+
+//  --------------------------------------- app-mob-button ---------------------------------------
+.popup__item {
+    ion-button {
+        color                 : @app-text-color;
+        --background          : @background-color-primary-transparent;
+        --color-activated     : @app-text-color;
+        --background-activated: @background-color-primary-transparent;
+    }
+}
+
+.app-mob-department-select,
+.app-mob-department-personnel,
+.app-mob-org-select,
+.app-mob-group-select,
+.app-mob-org-select,
+.app-mob-select-vant {
+    .select-color {
+        color: @color-primary-base;
+    }
+}
+
+
+.app-mob-file-upload {
+    .app-mob-file-upload__item {
+        --background: @background-color-primary-transparent;
+    }
+
+    .app-mob-file-upload__icon {
+        color: @app-text-color;
+    }
+}
+
+//  --------------------------------------- app-mob-group-picker ---------------------------------------
+
+.app-mob-group-picker {
+    .item__icon {
+        color: @color-primary-base;
+    }
+
+    .app-mob-group-picker--nodata {
+        color: @app-text-color;
+    }
+
+    .header__left {
+        .van-sidebar-item--select::before {
+            background-color: @background-color-primary-base;
+        }
+
+        .van-sidebar-item--select {
+            border-color: @background-color-primary-base;
+        }
+    }
+}
+
+
+//  --------------------------------------- app-mob-input ---------------------------------------
+.app-mob-input {
+    color: @app-text-color;
+
+    .form-value-content {
+        --color: @app-text-color;
+    }
+}
+
+//  --------------------------------------- app-mob-check-list ---------------------------------------
+
+.app-mob-check-list {
+    .check-list__icon {
+
+        background-color: @background-color-primary-contrast;
+
+        ion-icon {
+            color: @app-text-color;
+        }
+    }
+
+    ion-select {
+
+        color: @app-text-color;
+    }
+
+    .check-list__select {
+        color: @app-text-color;
+    }
+}
+
+
+//  ---------------------------------------app-mob-datetime-picker ---------------------------------------
+.app-mob-datetime-picker {
+    ion-datetime {
+        color: @app-text-color;
+    }
+}
+
+//  --------------------------------------- app-mob-mpicker ---------------------------------------
+.app-mob-mpicker {
+    color: @app-text-color;
+}
+
+
+//  --------------------------------------- app-mob-picture ---------------------------------------
+.app-mobile-picture__upload {
+    background: @background-color-primary-contrast;
+}
+
+//  --------------------------------------- app-mob-file-upload ---------------------------------------
+.app-mob-file-upload__icon {
+    color: @app-text-color;
+}
+
+
+//  --------------------------------------- app-mob-select-vant ---------------------------------------
+.app-mob-select-vant {
+    .van-popup.van-popup--round {
+        .van-action-sheet__item {
+            border-bottom: solid @app-border-color 0.1px;
+        }
+    }
+}
+
+//  --------------------------------------- app-mob-span ---------------------------------------
+.app-mob-span {
+    ion-input {
+        input {
+            &::selection {
+                background: @background-color-primary-contrast;
+            }
+        }
+    }
+}
+
+//  --------------------------------------- app-panel-field ---------------------------------------
+.app-panel-field {
+    .app-panel-field__editor__style {
+        color: @app-text-color;
+    }
+
+    .app-panel-field__editor__error {
+        color: @color-primary-redness;
+    }
+}
+
+//  --------------------------------------- app-mob-select-drop-down ---------------------------------------
+.app-mob-select-drop-down {
+    .app-mob-select-drop-down__icon {
+        .app-mob-icon {
+            color: @app-text-color;
+        }
+    }
+
+    .app-mob-select-drop-down__select {
+        color: @app-text-color;
+    }
+
+    .app-mob-select-drop-down__selecticon {
+        color: @app-text-color;
+    }
+
+    .app-mob-select-drop-down__text {
+        color: @app-text-color;
+    }
+}
+
+//  --------------------------------------- app-quick-group-tab ---------------------------------------
+.app-quick-group {
+    color: @app-text-color;
+
+    .app-quick-group-container {
+        border          : 1px solid @app-text-color;
+        background-color: @background-color-primary-contrast;
+
+        .app-quick-group__tab__badge {
+            background-color: @background-color-primary-redness;
+        }
+    }
+
+    .app-quick-group__tab--selected {
+        background-color: @background-color-primary-shade;
+        color           : @color-primary-contrast;
+    }
+}
+
+.app-quick-group__list {
+    background-color: @background-color-primary-contrast;
+
+    .app-quick-group__list__item {
+        border-bottom: 1px solid @app-text-color;
+        color        : @app-text-color;
+
+        .app-quick-group__tab__badge {
+            background-color: @background-color-primary-redness;
+        }
+    }
+
+    .app-quick-group__list__item--selected {
+        color           : @app-text-color ;
+        background-color: @background-color-primary-shade ;
+    }
+}
+
+//  --------------------------------------- app-search-editor ---------------------------------------
+.app-search-editor {
+    .app-search-editor__item {
+        border: 0.3px solid @app-border-color;
+    }
+
+    .app-search-editor__item--active {
+        border-color: @app-text-color;
+    }
+}
+
+//  --------------------------------------- app-seach-history ---------------------------------------
+.app-seach-history {
+    .record {
+        ion-icon {
+            background: @background-color-primary-shade;
+            color     : @color-primary-base;
+        }
+
+        .speaking {
+            background: @background-color-primary-tint;
+        }
+    }
+
+    .history {
+        .hisText {
+            color: @app-text-color;
+        }
+    }
+}
+
+//  --------------------------------------- app-tree ---------------------------------------
+.app-tree {
+    .app-tree-content {
+        .app-tree__treenav {
+            color: @app-text-color;
+
+            .app-tree__treenav__text {
+                color: @app-text-color;
+            }
+        }
+
+        .app-tree__partition {
+            background-color: @app-background-color;
+        }
+
+        .app-tree__icon {
+            color: @color-primary-base;
+        }
+    }
+}
+
+
+//  --------------------------------------- app-van-select ---------------------------------------
+.van-dropdown-menu__bar {
+    box-shadow      : none;
+    background-color: @app-background-color;
+}
+
+//  --------------------------------------- app-mob-slider ---------------------------------------
+.range-bar-active {
+    background-color: @background-color-primary-base;
+}
+
+//  --------------------------------------- app-wf-step-trace ---------------------------------------
+.app-wf-step-trace {
+    .app-wf-step-trace__item {
+        .app-wf-step-trace__item__top {
+            color: @color-primary-redness;
+
+            .item__border {
+
+                border: solid 1px @color-primary-redness;
+
+            }
+
+            .item__action-line {
+
+                background: @background-color-primary-base;
+
+            }
+
+        }
+    }
+
+    .item__border::before {
+        background-color: @color-primary-redness;
+
+    }
+
+    .app-wf-step-trace__item.app-wf-step-trace__item--action {
+        color: @color-primary-base;
+
+        .app-wf-step-trace__item__top {
+            color: @color-primary-base;
+
+            .item__border {
+                border: solid 1px @color-primary-base;
+            }
+
+            .item__border::before {
+                background-color: @background-color-primary-base;
+            }
+        }
+    }
+}
+
+//  --------------------------------------- app-mob-rate ---------------------------------------
+.app-mob-rate {
+    .van-rate__icon--full {
+        color: @color-primary-base;
+    }
+}
+
+
+//  --------------------------------------- app-mob-slider ---------------------------------------
+.app-mob-slider {
+    .app-mob-slider__range {
+        --bar-background-active: @background-color-primary-base;
+    }
+}
+
+//  --------------------------------------- app-mob-radio-list ---------------------------------------
+
+.app-mob-radio-list {
+    .van-radio__icon--checked .van-icon {
+        color           : @color-primary-contrast;
+        background-color: @background-color-primary-base;
+        border-color    : @color-primary-base;
+    }
+}
+//  --------------------------------------- app-preset-switch ---------------------------------------
+.app-preset-switch {
+    .app-preset-switch__toggle {
+        --background-checked: @color-primary-base;
+    }
+}
+//  --------------------------------------- app-mob-switch ---------------------------------------
+.app-mob-switch{
+    --background-checked: @color-primary-base;
+}
+//  --------------------------------------- app-mob-select-vant ---------------------------------------
+.app-mob-select-vant__sheet{
+    .action-sheet-button.sc-ion-action-sheet-ios {
+        background: @background-color-primary-contrast;
+        color: @color-primary-base;
+    }
+}
+
+.app-viewlayoutpanel-container.mob-common-header {
+    background: @background-color-primary-base;
+}
+
+.van-tabs__nav.van-tabs__nav--card {
+    border: 1px solid @color-primary-base;
+
+    .van-tab.van-tab--active {
+        color           : @color-primary-contrast;
+        background-color: @background-color-primary-base ;
+    }
+
+    .van-tab {
+        color       : @color-primary-base;
+        border-right: 1px solid @color-primary-base;
+    }
+}
+
+.ion-page {
+    .van-sidebar-item--select::before {
+        background-color: @background-color-primary-base ;
+    }
+}

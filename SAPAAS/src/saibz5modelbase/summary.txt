@@ -1,0 +1,9 @@
+Summary for saibz5modelbase.jar
+Decompiled with CFR 0.152
+
+
+net.ibizsys.modelapi.util.PSModelServiceImplBase
+----------------------------
+
+internalListAll(net.ibizsys.modelapi.util.IPSModel boolean boolean )
+  Could not resolve type clashes

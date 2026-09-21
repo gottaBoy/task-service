@@ -1,0 +1,137 @@
+// 菜单默认样式 左侧
+.app-control-appmenu {
+    height: 100%;
+    .el-menu-item,
+    .el-submenu__title {
+        cursor: pointer;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: break-all;
+        height: 48px;
+        line-height: 48px;
+    }
+    .el-menu {
+        border-right: 0;
+    }
+    .el-menu--collapse {
+        .el-menu-item>.el-tooltip {
+            transform: translateX(-12px);
+        }
+        .el-submenu__icon-arrow {
+            display: none;
+        }
+    }
+    .app-control-menu__content {
+        overflow-x: hidden;
+    }
+    .app-control-menu__item--circle {
+        display: inline-block;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        text-align: center;
+        font: 12px Arial, sans-serif;
+        border-color: unset;
+    }
+    .app-control-menu__item__icon {
+        width: 14px;
+        font-size: 14px;
+        text-align: center;
+        margin: 4px 8px 4px 4px;
+        color: unset;
+    }
+}
+// 顶部菜单样式
+.app-control-menu--top {
+    padding: 0;
+    background-color: transparent;
+    .el-menu--horizontal {
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        align-items: center;
+        width: calc(100vw - 1100px);
+        height: 50px;
+        flex-wrap: nowrap;
+        border: 0;
+        background-color: transparent;
+        .el-menu-item,
+        .el-submenu__title {
+            height: 50px;
+            line-height: 50px;
+            overflow: visible;
+        }
+    }
+}
+
+// 中间菜单样式
+.app-control-menu--center {
+    .app-control-menu__group {
+        > .ivu-card-head {
+            padding: 8px 12px;
+        }
+    }
+    .app-control-menu__group__content {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    .app-control-menu__item {
+        width: 320px;
+        margin: 12px;
+        cursor: pointer;
+    }
+    .app-control-menu__group__caption {
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .ivu-card:hover {
+        box-shadow: none;
+    }
+}
+// 导航左侧菜单样式
+.app-control-menu--tabexp_left {
+    padding-top: 8px;
+    .app-control-menu__left {
+        padding: 0 10px;
+    }
+    .el-tree-node__content {
+        height: 32px;
+    }
+    .ivu-input-wrapper + .el-tree {
+        padding-top: 10px;
+    }
+}
+// 导航右侧菜单样式
+.app-control-menu--tabexp_right {
+    padding-top: 8px;
+    .right-pane {
+        padding: 0 10px;
+    }
+    .el-tree-node__content {
+        height: 32px;
+    }
+    .ivu-input-wrapper + .el-tree {
+        padding-top: 10px;
+    }
+}
+// 导航顶部、底部菜单样式
+.app-control-menu--tabexp_top,
+.app-control-menu--tabexp_bottom {
+    .el-menu--horizontal {
+        padding: 0 10px;
+    }
+}
+.app-control-menu--tabexp_bottom {
+    .app-control-menu__content {
+        height: calc(100% - 50px);
+    }
+}
+.app-control-menu__popper {
+    .ibiz-badge {
+        top: -14px;
+    }
+}

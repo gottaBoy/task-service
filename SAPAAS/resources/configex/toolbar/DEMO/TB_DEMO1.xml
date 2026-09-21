@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SRFEXTOOLBAR >
+    <SRFEXTOOLBARITEMS >
+        <SRFEXTOOLBARBUTTON   HANDLER="SA.SRFDA.Ctrl.Toolbar.GridNewHandler" TEXT="新建" TIPS="新建" ICONCSSCLASS="sx-tb-new"/>
+        <SRFEXTOOLBARBUTTON  HANDLER="SA.SRFDA.Ctrl.Toolbar.GridEditHandler" TEXT="编辑" TIPS="编辑" ICONCSSCLASS="sx-tb-edit"/>
+         <SRFEXTOOLBARSEPARATOR />
+        <SRFEXTOOLBARBUTTON  HANDLER="SA.SRFDA.Ctrl.Toolbar.GridRemoveHandler" TIPS="删除" ICONCSSCLASS="sx-tb-delete"/>
+        <SRFEXTOOLBARSEPARATOR />
+
+
+        <SRFEXTOOLBARBUTTON  HANDLER="SA.SRFDA.Ctrl.Toolbar.HelpHandler" PAGETYPE="GRIDVIEW" TIPS="帮助" ICONCSSCLASS="sx-tb-help"/>
+    </SRFEXTOOLBARITEMS>
+</SRFEXTOOLBAR>

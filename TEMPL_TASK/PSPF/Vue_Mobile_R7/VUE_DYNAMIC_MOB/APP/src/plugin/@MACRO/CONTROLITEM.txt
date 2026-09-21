@@ -1,0 +1,35 @@
+<#if item.getPSSysPFPlugin?? && item.getPSSysPFPlugin()??>
+<#if item.getRefMode() == "CONTROLITEM">
+<#-- 部件成员插件 start -->
+<#if item.render?? && item.render.code2??>${item.render.code2}</#if>
+
+/**
+ * ${item.getPSSysPFPlugin().getName()}插件类
+ *
+ * @export
+ * @class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+ * @extends {Vue}
+ */
+export default class ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())} {
+
+<#if item.render?? && item.render.code??>
+${item.render.code}
+<#else>
+    /**
+     * 绘制部件项内容
+     * @param h createElement函数
+     * @param ctrlItemModel 部件项模型数据
+     * @param parentContainer  父容器对象
+     * @param data  当前项数据
+     * 
+     * @memberof ${srfclassname(item.getPSSysPFPlugin().getPFPluginTag())}
+     */
+    public renderCtrlItem(h: any, ctrlItemModel: any, parentContainer: any, data: any) {
+        return h(<span>${item.getPSSysPFPlugin().getName()}</span>);
+    }
+</#if>
+
+}
+<#-- 部件成员插件 end -->
+</#if>
+</#if>

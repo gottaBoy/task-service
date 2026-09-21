@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.paasmgr.demodel.psbddevinst.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="6EE2B85B-9B0D-40C4-B4C9-40B50EDC1359", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`BDTYPE`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`INSTSTATE`, t1.`MEMO`, t1.`PARAM`, t1.`PARAM2`, t1.`PARAM3`, t1.`PARAM4`, t1.`PARAM5`, t1.`PARAM6`, t1.`PARAM7`, t1.`PARAM8`, t1.`PSBDDEVINSTID`, t1.`PSBDDEVINSTNAME`, t1.`PSBDSERVERID`, t11.`PSBDSERVERNAME`, t1.`PSSVRDOMAINID`, t21.`PSSVRDOMAINNAME`, t1.`UPDATEDATE`, t1.`UPDATEMAN` FROM `T_SRFPSBDDEVINST` t1  LEFT JOIN T_SRFPSBDSERVER t11 ON t1.PSBDSERVERID = t11.PSBDSERVERID  LEFT JOIN T_SRFPSSVRDOMAIN t21 ON t1.PSSVRDOMAINID = t21.PSSVRDOMAINID  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="BDTYPE", expression="t1.`BDTYPE`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=2), @DEDataQueryCodeExp(name="INSTSTATE", expression="t1.`INSTSTATE`", showorder=3), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=4), @DEDataQueryCodeExp(name="PARAM", expression="t1.`PARAM`", showorder=5), @DEDataQueryCodeExp(name="PARAM2", expression="t1.`PARAM2`", showorder=6), @DEDataQueryCodeExp(name="PARAM3", expression="t1.`PARAM3`", showorder=7), @DEDataQueryCodeExp(name="PARAM4", expression="t1.`PARAM4`", showorder=8), @DEDataQueryCodeExp(name="PARAM5", expression="t1.`PARAM5`", showorder=9), @DEDataQueryCodeExp(name="PARAM6", expression="t1.`PARAM6`", showorder=10), @DEDataQueryCodeExp(name="PARAM7", expression="t1.`PARAM7`", showorder=11), @DEDataQueryCodeExp(name="PARAM8", expression="t1.`PARAM8`", showorder=12), @DEDataQueryCodeExp(name="PSBDDEVINSTID", expression="t1.`PSBDDEVINSTID`", showorder=13), @DEDataQueryCodeExp(name="PSBDDEVINSTNAME", expression="t1.`PSBDDEVINSTNAME`", showorder=14), @DEDataQueryCodeExp(name="PSBDSERVERID", expression="t1.`PSBDSERVERID`", showorder=15), @DEDataQueryCodeExp(name="PSBDSERVERNAME", expression="t11.`PSBDSERVERNAME`", showorder=16), @DEDataQueryCodeExp(name="PSSVRDOMAINID", expression="t1.`PSSVRDOMAINID`", showorder=17), @DEDataQueryCodeExp(name="PSSVRDOMAINNAME", expression="t21.`PSSVRDOMAINNAME`", showorder=18), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=19), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=20)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.BDTYPE, t1.CREATEDATE, t1.CREATEMAN, t1.INSTSTATE, t1.MEMO, t1.PARAM, t1.PARAM2, t1.PARAM3, t1.PARAM4, t1.PARAM5, t1.PARAM6, t1.PARAM7, t1.PARAM8, t1.PSBDDEVINSTID, t1.PSBDDEVINSTNAME, t1.PSBDSERVERID, t11.PSBDSERVERNAME, t1.PSSVRDOMAINID, t21.PSSVRDOMAINNAME, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFPSBDDEVINST t1  LEFT JOIN T_SRFPSBDSERVER t11 ON t1.PSBDSERVERID = t11.PSBDSERVERID  LEFT JOIN T_SRFPSSVRDOMAIN t21 ON t1.PSSVRDOMAINID = t21.PSSVRDOMAINID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="BDTYPE", expression="t1.BDTYPE", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="INSTSTATE", expression="t1.INSTSTATE", showorder=3), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=4), @DEDataQueryCodeExp(name="PARAM", expression="t1.PARAM", showorder=5), @DEDataQueryCodeExp(name="PARAM2", expression="t1.PARAM2", showorder=6), @DEDataQueryCodeExp(name="PARAM3", expression="t1.PARAM3", showorder=7), @DEDataQueryCodeExp(name="PARAM4", expression="t1.PARAM4", showorder=8), @DEDataQueryCodeExp(name="PARAM5", expression="t1.PARAM5", showorder=9), @DEDataQueryCodeExp(name="PARAM6", expression="t1.PARAM6", showorder=10), @DEDataQueryCodeExp(name="PARAM7", expression="t1.PARAM7", showorder=11), @DEDataQueryCodeExp(name="PARAM8", expression="t1.PARAM8", showorder=12), @DEDataQueryCodeExp(name="PSBDDEVINSTID", expression="t1.PSBDDEVINSTID", showorder=13), @DEDataQueryCodeExp(name="PSBDDEVINSTNAME", expression="t1.PSBDDEVINSTNAME", showorder=14), @DEDataQueryCodeExp(name="PSBDSERVERID", expression="t1.PSBDSERVERID", showorder=15), @DEDataQueryCodeExp(name="PSBDSERVERNAME", expression="t11.PSBDSERVERNAME", showorder=16), @DEDataQueryCodeExp(name="PSSVRDOMAINID", expression="t1.PSSVRDOMAINID", showorder=17), @DEDataQueryCodeExp(name="PSSVRDOMAINNAME", expression="t21.PSSVRDOMAINNAME", showorder=18), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=19), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=20)}, conds={})})
+public class PSBDDevInstDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSBDDevInstDefaultDQModel() {
+        this.initAnnotation(PSBDDevInstDefaultDQModel.class);
+    }
+}
+

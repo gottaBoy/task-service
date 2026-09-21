@@ -1,0 +1,60 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  javax.annotation.PostConstruct
+ *  net.ibizsys.paas.dao.DAOGlobal
+ *  net.ibizsys.paas.dao.IDAO
+ *  net.ibizsys.paas.demodel.DEModelGlobal
+ *  net.ibizsys.paas.demodel.IDataEntityModel
+ *  org.springframework.stereotype.Repository
+ */
+package net.ibizsys.pscore.srv.config.dao;
+
+import javax.annotation.PostConstruct;
+import net.ibizsys.paas.dao.DAOGlobal;
+import net.ibizsys.paas.dao.IDAO;
+import net.ibizsys.paas.demodel.DEModelGlobal;
+import net.ibizsys.paas.demodel.IDataEntityModel;
+import net.ibizsys.pscore.srv.PSCoreSysDAOBase;
+import net.ibizsys.pscore.srv.config.demodel.PSPFPubCodeDEModel;
+import net.ibizsys.pscore.srv.config.entity.PSPFPubCode;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class PSPFPubCodeDAO
+extends PSCoreSysDAOBase<PSPFPubCode> {
+    private static final long serialVersionUID = -1L;
+    public static final String DATAQUERY_CURPF = "CurPF";
+    public static final String DATAQUERY_CURPFAPP = "CurPFApp";
+    public static final String DATAQUERY_CURPFVIEW = "CurPFView";
+    public static final String DATAQUERY_CURPFVIEW2 = "CurPFView2";
+    public static final String DATAQUERY_DEFAULT = "DEFAULT";
+    private PSPFPubCodeDEModel pSPFPubCodeDEModel;
+
+    @PostConstruct
+    public void postConstruct() throws Exception {
+        DAOGlobal.registerDAO((String)this.getDAOId(), (IDAO)this);
+    }
+
+    protected String getDAOId() {
+        return "net.ibizsys.pscore.srv.config.dao.PSPFPubCodeDAO";
+    }
+
+    public PSPFPubCodeDEModel getPSPFPubCodeDEModel() {
+        if (this.pSPFPubCodeDEModel == null) {
+            try {
+                this.pSPFPubCodeDEModel = (PSPFPubCodeDEModel)DEModelGlobal.getDEModel((String)"net.ibizsys.pscore.srv.config.demodel.PSPFPubCodeDEModel");
+            }
+            catch (Exception exception) {
+                // empty catch block
+            }
+        }
+        return this.pSPFPubCodeDEModel;
+    }
+
+    public IDataEntityModel getDEModel() {
+        return this.getPSPFPubCodeDEModel();
+    }
+}
+

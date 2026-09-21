@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.ibizsys.paas.core.DEDataQuery
+ *  net.ibizsys.paas.core.DEDataQueryCode
+ *  net.ibizsys.paas.core.DEDataQueryCodeExp
+ *  net.ibizsys.paas.core.DEDataQueryCodes
+ *  net.ibizsys.paas.demodel.DEDataQueryModelBase
+ */
+package net.ibizsys.pscore.srv.config.demodel.pspfapptempl.dataquery;
+
+import net.ibizsys.paas.core.DEDataQuery;
+import net.ibizsys.paas.core.DEDataQueryCode;
+import net.ibizsys.paas.core.DEDataQueryCodeExp;
+import net.ibizsys.paas.core.DEDataQueryCodes;
+import net.ibizsys.paas.demodel.DEDataQueryModelBase;
+
+@DEDataQuery(id="7560D6DD-6229-4DBC-87B0-509E07647446", name="DEFAULT", defaultmode=true)
+@DEDataQueryCodes(value={@DEDataQueryCode(querycode="SELECT t1.`CODEPATH`, t1.`CREATEDATE`, t1.`CREATEMAN`, t1.`FILENAME`, t1.`MEMO`, t1.`PSPFAPPTEMPLID`, t1.`PSPFAPPTEMPLNAME`, t1.`PSPFID`, t11.`PSPFNAME`, t1.`PSPFPUBCODEID`, t21.`PSPFPUBCODENAME`, t1.`PSPFSTYLEID`, t31.`PSPFSTYLENAME`, t1.`PUBOBJ`, t1.`TYPECODE`, t1.`UPDATEDATE`, t1.`UPDATEMAN` FROM `T_SRFPSPFAPPTEMPL` t1  LEFT JOIN T_SRFPSPF t11 ON t1.PSPFID = t11.PSPFID  LEFT JOIN T_SRFPSPFPUBCODE t21 ON t1.PSPFPUBCODEID = t21.PSPFPUBCODEID  LEFT JOIN T_SRFPSPFSTYLE t31 ON t1.PSPFSTYLEID = t31.PSPFSTYLEID  ", querycodetemp="", declarecode="", dbtype="MYSQL5", fieldexps={@DEDataQueryCodeExp(name="TEMPLCODE", expression="t1.`TEMPLCODE`", showorder=-1), @DEDataQueryCodeExp(name="TEMPLCODE2", expression="t1.`TEMPLCODE2`", showorder=-1), @DEDataQueryCodeExp(name="TEMPLDESC", expression="t1.`TEMPLDESC`", showorder=-1), @DEDataQueryCodeExp(name="CODEPATH", expression="t1.`CODEPATH`", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.`CREATEDATE`", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.`CREATEMAN`", showorder=2), @DEDataQueryCodeExp(name="FILENAME", expression="t1.`FILENAME`", showorder=3), @DEDataQueryCodeExp(name="MEMO", expression="t1.`MEMO`", showorder=4), @DEDataQueryCodeExp(name="PSPFAPPTEMPLID", expression="t1.`PSPFAPPTEMPLID`", showorder=5), @DEDataQueryCodeExp(name="PSPFAPPTEMPLNAME", expression="t1.`PSPFAPPTEMPLNAME`", showorder=6), @DEDataQueryCodeExp(name="PSPFID", expression="t1.`PSPFID`", showorder=7), @DEDataQueryCodeExp(name="PSPFNAME", expression="t11.`PSPFNAME`", showorder=8), @DEDataQueryCodeExp(name="PSPFPUBCODEID", expression="t1.`PSPFPUBCODEID`", showorder=9), @DEDataQueryCodeExp(name="PSPFPUBCODENAME", expression="t21.`PSPFPUBCODENAME`", showorder=10), @DEDataQueryCodeExp(name="PSPFSTYLEID", expression="t1.`PSPFSTYLEID`", showorder=11), @DEDataQueryCodeExp(name="PSPFSTYLENAME", expression="t31.`PSPFSTYLENAME`", showorder=12), @DEDataQueryCodeExp(name="PUBOBJ", expression="t1.`PUBOBJ`", showorder=13), @DEDataQueryCodeExp(name="TYPECODE", expression="t1.`TYPECODE`", showorder=14), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.`UPDATEDATE`", showorder=15), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.`UPDATEMAN`", showorder=16)}, conds={}), @DEDataQueryCode(querycode="SELECT t1.CODEPATH, t1.CREATEDATE, t1.CREATEMAN, t1.FILENAME, t1.MEMO, t1.PSPFAPPTEMPLID, t1.PSPFAPPTEMPLNAME, t1.PSPFID, t11.PSPFNAME, t1.PSPFPUBCODEID, t21.PSPFPUBCODENAME, t1.PSPFSTYLEID, t31.PSPFSTYLENAME, t1.PUBOBJ, t1.TYPECODE, t1.UPDATEDATE, t1.UPDATEMAN FROM T_SRFPSPFAPPTEMPL t1  LEFT JOIN T_SRFPSPF t11 ON t1.PSPFID = t11.PSPFID  LEFT JOIN T_SRFPSPFPUBCODE t21 ON t1.PSPFPUBCODEID = t21.PSPFPUBCODEID  LEFT JOIN T_SRFPSPFSTYLE t31 ON t1.PSPFSTYLEID = t31.PSPFSTYLEID  ", querycodetemp="", declarecode="", dbtype="ORACLE", fieldexps={@DEDataQueryCodeExp(name="TEMPLCODE", expression="t1.TEMPLCODE", showorder=-1), @DEDataQueryCodeExp(name="TEMPLCODE2", expression="t1.TEMPLCODE2", showorder=-1), @DEDataQueryCodeExp(name="TEMPLDESC", expression="t1.TEMPLDESC", showorder=-1), @DEDataQueryCodeExp(name="CODEPATH", expression="t1.CODEPATH", showorder=0), @DEDataQueryCodeExp(name="CREATEDATE", expression="t1.CREATEDATE", showorder=1), @DEDataQueryCodeExp(name="CREATEMAN", expression="t1.CREATEMAN", showorder=2), @DEDataQueryCodeExp(name="FILENAME", expression="t1.FILENAME", showorder=3), @DEDataQueryCodeExp(name="MEMO", expression="t1.MEMO", showorder=4), @DEDataQueryCodeExp(name="PSPFAPPTEMPLID", expression="t1.PSPFAPPTEMPLID", showorder=5), @DEDataQueryCodeExp(name="PSPFAPPTEMPLNAME", expression="t1.PSPFAPPTEMPLNAME", showorder=6), @DEDataQueryCodeExp(name="PSPFID", expression="t1.PSPFID", showorder=7), @DEDataQueryCodeExp(name="PSPFNAME", expression="t11.PSPFNAME", showorder=8), @DEDataQueryCodeExp(name="PSPFPUBCODEID", expression="t1.PSPFPUBCODEID", showorder=9), @DEDataQueryCodeExp(name="PSPFPUBCODENAME", expression="t21.PSPFPUBCODENAME", showorder=10), @DEDataQueryCodeExp(name="PSPFSTYLEID", expression="t1.PSPFSTYLEID", showorder=11), @DEDataQueryCodeExp(name="PSPFSTYLENAME", expression="t31.PSPFSTYLENAME", showorder=12), @DEDataQueryCodeExp(name="PUBOBJ", expression="t1.PUBOBJ", showorder=13), @DEDataQueryCodeExp(name="TYPECODE", expression="t1.TYPECODE", showorder=14), @DEDataQueryCodeExp(name="UPDATEDATE", expression="t1.UPDATEDATE", showorder=15), @DEDataQueryCodeExp(name="UPDATEMAN", expression="t1.UPDATEMAN", showorder=16)}, conds={})})
+public class PSPFAppTemplDefaultDQModel
+extends DEDataQueryModelBase {
+    public PSPFAppTemplDefaultDQModel() {
+        this.initAnnotation(PSPFAppTemplDefaultDQModel.class);
+    }
+}
+

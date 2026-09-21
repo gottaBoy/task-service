@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW >
+	<SRFEXTABVIEWPAGE id="rfotree" caption="故障体系选择" REMOTEURL="../emdatamgr/eqrfo_tselectpage.jsp" APPENDPARAMS="PICKUPVALUE|CurTreeNodeId|ExTreeNodeId"/>
+</SRFEXTABVIEW>

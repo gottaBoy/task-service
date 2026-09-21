@@ -1,0 +1,109 @@
+<template>
+    <div class="appAddressSelection">
+        <el-cascader
+            style="width:100%"
+            :disabled="disabled || readonly"
+            size ="medium"
+            v-model="CurrentVal"
+            @blur='onBlur'
+            :options="city">
+        </el-cascader>
+    </div>
+</template>
+
+<script lang='ts'>
+import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
+import { cityCode } from './city_code'
+@Component({})
+export default class AppAddressSelection extends Vue {
+
+ /**
+   * 传入值
+   * @type {any}
+   * @memberof AppAddressSelection
+   */
+  @Prop() public value?:any;
+
+  /**
+   * 是否禁用
+   * @type {boolean}
+   * @memberof AppAddressSelection
+   */
+  @Prop() public disabled?: boolean;
+
+  /**
+   * 只读模式
+   * 
+   * @type {boolean}
+   */
+  @Prop({default: false}) public readonly?: boolean;
+
+  /**
+   * 当前值
+   *
+   * @memberof AppAddressSelection
+   */
+  get CurrentVal() {
+        return this.value;
+  }
+
+ /**
+   * 值变化
+   *
+   * @memberof AppAddressSelection
+   */
+  set CurrentVal(val: any) {
+      this.$emit("change", val); 
+  }
+
+ /**
+   * 城市数据
+   *
+   * @memberof AppAddressSelection
+   */
+    public city :any = [];
+
+ /**
+   * 获取城市数据
+   *
+   * @memberof AppAddressSelection
+   */
+    public  getcity() {
+        this.format(cityCode);
+
+    }
+    /**
+   * 生命周期
+   *
+   * @memberof AppAddressSelection
+   */
+    public created() {
+        this.getcity();
+    }
+
+
+    /**
+     * 失去焦点时抛值
+     * 
+     * @memberof AppAddressSelection
+     */
+    @Emit()
+    onBlur(event: any){
+        return event;
+    }
+
+ /**
+   * 数据格式化
+   *
+   * @memberof AppAddressSelection
+   */
+    public format(data :any) {
+        let town  = JSON.parse(JSON.stringify(data).replace(/city/g, 'children')) 
+        let county = JSON.parse(JSON.stringify(town).replace(/name/g, 'label')) 
+        let city = JSON.parse(JSON.stringify(county).replace(/area/g, 'children')) 
+        let province = JSON.parse(JSON.stringify(city).replace(/code/g, 'value')) 
+        this.city = province;
+    }
+    
+}
+</script>

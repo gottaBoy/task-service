@@ -1,0 +1,56 @@
+import { getPSAppDEUILogicByModelObject, IPSAppDEUIAction } from '@ibiz/dynamic-model-api';
+import { LogUtil } from 'ibiz-core';
+import { AppUILogicService } from './appuilogic/uilogic-service';
+
+export class AppDEUIAction {
+
+    /**
+     * 模型数据
+     *
+     * @memberof AppDEUIAction
+     */
+    protected actionModel!: IPSAppDEUIAction;
+
+    /**
+     * 初始化AppDEUIAction
+     *
+     * @memberof AppDEUIAction
+     */
+    constructor(opts: any, context?: any) {
+        this.actionModel = opts;
+    }
+
+    /**
+     * 执行界面逻辑
+     *
+     * @param {any[]} args 数据对象
+     * @param {*} context 应用上下文
+     * @param {*} params 视图参数
+     * @param {*} $event 事件源对象
+     * @param {*} xData 部件对象
+     * @param {*} actioncontext 界面容器对象
+     * @param {*} srfParentDeName 关联父应用实体代码名称
+     * @memberof AppDEUIAction
+     */
+    public async executeDEUILogic(args: any[], context: any = {}, params: any = {},
+        $event?: any, xData?: any, actionContext?: any, srfParentDeName?: string) {
+        // 识别面板项按钮执行界面逻辑
+        try {
+            const appDEUILogic = await getPSAppDEUILogicByModelObject(this.actionModel);
+            if (appDEUILogic) {
+                let data = null;
+                if (args && Array.isArray(args) && args.length > 0) {
+                    data = args[0];
+                } else {
+                    data = (Object.keys(args).length > 0) ? args : {};
+                }
+                return await AppUILogicService.getInstance().onExecute(appDEUILogic, data, context, params, $event, xData, actionContext, srfParentDeName);
+            } else {
+                LogUtil.warn('未找到实体界面处理逻辑对象');
+            }
+        } catch (error: any) {
+            actionContext.$throw(`${error?.message ? error.message : '发生未知错误！'}`)
+        }
+    }
+
+}

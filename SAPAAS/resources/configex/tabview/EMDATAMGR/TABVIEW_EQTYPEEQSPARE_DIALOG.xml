@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW>
+		<SRFEXTABVIEWPAGE id="edit" caption="设备类型故障现象" REMOTEURL="eqtypeqspare_editpage.jsp?DIALOGMODE=true" APPENDPARAMS="RFODEFECTID"/>
+</SRFEXTABVIEW>

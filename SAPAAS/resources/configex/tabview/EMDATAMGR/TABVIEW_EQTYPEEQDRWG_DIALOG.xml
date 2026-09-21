@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<SRFEXTABVIEW>
+		<SRFEXTABVIEWPAGE id="edit" caption="设备电子文档" REMOTEURL="../emdatamgr/eqtypeeqdrwg_editpage.jsp?DIALOGMODE=true" APPENDPARAMS="EQTYPEID"/>
+</SRFEXTABVIEW>

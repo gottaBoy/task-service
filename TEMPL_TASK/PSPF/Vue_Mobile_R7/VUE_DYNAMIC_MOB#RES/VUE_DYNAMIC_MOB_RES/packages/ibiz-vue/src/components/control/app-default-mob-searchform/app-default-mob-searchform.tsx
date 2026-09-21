@@ -1,0 +1,31 @@
+import { Component } from 'vue-property-decorator';
+import { VueLifeCycleProcessing } from '../../../decorators';
+import { AppDefaultMobFormPage } from './app-default-mob-form-page/app-default-mob-form-page';
+import { AppDefaultMobGroupPanel } from './app-default-mob-group-panel/app-default-mob-group-panel';
+import { AppDefaultMobFormItem } from './app-default-mob-form-item/app-default-mob-form-item';
+import { AppMobSearchFormBase } from '../app-common-control/app-mob-searchform-base';
+import { AppDefaultMobFormButton } from '../app-default-mob-form/app-default-mob-form-button/app-default-mob-form-button';
+import { AppDefaultMobFormRawItem } from '../app-default-mob-form/app-default-mob-form-rawitem/app-default-mob-form-rawitem';
+import { AppDefaultMobFormTabPage } from '../app-default-mob-form/app-default-mob-form-tab-page/app-default-mob-form-tab-page';
+import { AppDefaultMobFormTabPanel } from '../app-default-mob-form/app-default-mob-form-tab-panel/app-default-mob-form-tab-panel';
+
+/**
+ * 搜索表单
+ *
+ * @export
+ * @class ViewToolbar
+ * @extends {Vue}
+ */
+@Component({
+    components: {
+        AppDefaultMobFormPage,
+        AppDefaultMobGroupPanel,
+        AppDefaultMobFormItem,
+        AppDefaultMobFormButton,
+        AppDefaultMobFormRawItem,
+        AppDefaultMobFormTabPage,
+        AppDefaultMobFormTabPanel
+    },
+})
+@VueLifeCycleProcessing()
+export default class AppDefaultMobSearchForm extends AppMobSearchFormBase { }

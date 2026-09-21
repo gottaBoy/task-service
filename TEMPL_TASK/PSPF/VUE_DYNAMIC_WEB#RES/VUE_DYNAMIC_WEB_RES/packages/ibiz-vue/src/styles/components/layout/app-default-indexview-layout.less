@@ -1,0 +1,65 @@
+.appindexview {
+    >.ivu-layout {
+        height: 100%;
+    }
+    
+    .app-control-menu--left {
+        margin: 0;
+        padding: 8px 0;
+        overflow-y: auto;
+    }
+
+    &.app-vc-menu--top {
+        .app-content {
+            display: flex;
+            flex-direction: column;
+            .app-nav-pos {
+                padding: 0 16px;
+            }
+        }
+    }
+
+    &.app-vc-menu--center {
+        .ivu-card {
+            height: 100%;
+            overflow: auto;
+        }
+    }
+
+    &.app-vc-menu--none {
+        .app-content__left {
+            display: none;
+        }
+
+        .app-content__content {
+            width: 100%;
+            padding: 20px;
+        }
+    }
+
+    &.app-vc-menu--tabexp_left,
+    &.app-vc-menu--tabexp_top,
+    &.app-vc-menu--tabexp_right,
+    &.app-vc-menu--tabexp_bottom {
+        .app-content {
+            height: 100%;
+            display: block;
+        }
+    }
+    .app-header+.app-content {
+        height: calc(100% - 50px);
+    }
+}
+
+// 首页分页导航
+.appindexview {
+    .app-page-tag+.app-nav-pos {
+        height: calc(100% - 56px);
+        padding: 0 16px;
+    }
+    .app-content__right {
+        >.app-nav-pos {
+            padding: 0 16px 16px 16px;
+        }
+    }
+}
