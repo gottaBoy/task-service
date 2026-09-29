@@ -282,7 +282,7 @@ extends PSSystemServiceBase {
             }
             pSSystem.setPSSystemId(string);
         }
-        return super.get((IEntity)pSSystem, bl);
+        return super.get(pSSystem, bl);
     }
 
     @Override
@@ -333,7 +333,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSVarType> hashMap = new HashMap<String, PSVarType>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSVarTypeBase)serializable).getPSVarTypeId(), (PSVarType)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -345,9 +345,9 @@ extends PSSystemServiceBase {
             while (iterator.hasNext()) {
                 PSVarType pSVarType = (PSVarType)iterator.next();
                 if (hashMap.containsKey(pSVarType.getPSVarTypeId())) continue;
-                EntityBase.setIgnoreCheck((IEntity)pSVarType, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSVarType, (boolean)true);
-                iService.create((IEntity)pSVarType);
+                EntityBase.setIgnoreCheck(pSVarType, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSVarType, (boolean)true);
+                iService.create(pSVarType);
                 hashMap.put(pSVarType.getPSVarTypeId(), pSVarType);
                 arrayList.add(pSVarType);
             }
@@ -365,8 +365,9 @@ extends PSSystemServiceBase {
             IService iService2 = ServiceGlobal.getService(PSBackServiceService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
             ArrayList arrayList2 = iService2.select((ISelectCond)selectCond);
-            for (PSBackService pSBackService : arrayList2) {
-                iService.save((IEntity)pSBackService);
+            for (Object item : arrayList2) {
+                PSBackService pSBackService = (PSBackService)item;
+                iService.save(pSBackService);
             }
         }
     }
@@ -381,10 +382,11 @@ extends PSSystemServiceBase {
             IService iService2 = ServiceGlobal.getService(PSDEJoinTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
             ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-            for (PSDEJoinType pSDEJoinType : arrayList) {
-                EntityBase.setIgnoreCheck((IEntity)pSDEJoinType, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSDEJoinType, (boolean)true);
-                iService.save((IEntity)pSDEJoinType);
+            for (Object item : arrayList) {
+                PSDEJoinType pSDEJoinType = (PSDEJoinType)item;
+                EntityBase.setIgnoreCheck(pSDEJoinType, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSDEJoinType, (boolean)true);
+                iService.save(pSDEJoinType);
             }
         }
     }
@@ -397,7 +399,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSDEDQPDCond> hashMap = new HashMap<String, PSDEDQPDCond>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSDEDQPDCondBase)serializable).getPSDEDQPDCondId(), (PSDEDQPDCond)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -409,9 +411,9 @@ extends PSSystemServiceBase {
             while (iterator.hasNext()) {
                 PSDEDQPDCond pSDEDQPDCond = (PSDEDQPDCond)iterator.next();
                 if (hashMap.containsKey(pSDEDQPDCond.getPSDEDQPDCondId())) continue;
-                EntityBase.setIgnoreCheck((IEntity)pSDEDQPDCond, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSDEDQPDCond, (boolean)true);
-                iService.create((IEntity)pSDEDQPDCond);
+                EntityBase.setIgnoreCheck(pSDEDQPDCond, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSDEDQPDCond, (boolean)true);
+                iService.create(pSDEDQPDCond);
                 hashMap.put(pSDEDQPDCond.getPSDEDQPDCondId(), pSDEDQPDCond);
                 arrayList.add(pSDEDQPDCond);
             }
@@ -426,7 +428,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSDBValueOP> hashMap = new HashMap<String, PSDBValueOP>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSDBValueOPBase)serializable).getPSDBValueOPId(), (PSDBValueOP)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -437,12 +439,12 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSDBValueOP pSDBValueOP = (PSDBValueOP)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSDBValueOP, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSDBValueOP, (boolean)true);
+                EntityBase.setIgnoreCheck(pSDBValueOP, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSDBValueOP, (boolean)true);
                 if (!hashMap.containsKey(pSDBValueOP.getPSDBValueOPId())) {
-                    iService.create((IEntity)pSDBValueOP, false);
+                    iService.create(pSDBValueOP, false);
                 } else {
-                    iService.update((IEntity)pSDBValueOP, false);
+                    iService.update(pSDBValueOP, false);
                 }
                 hashMap.put(pSDBValueOP.getPSDBValueOPId(), pSDBValueOP);
                 arrayList.add(pSDBValueOP);
@@ -458,7 +460,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSDEFDataType> hashMap = new HashMap<String, PSDEFDataType>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSDEFDataTypeBase)serializable).getPSDEFDataTypeId(), (PSDEFDataType)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -469,12 +471,12 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSDEFDataType pSDEFDataType = (PSDEFDataType)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSDEFDataType, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSDEFDataType, (boolean)true);
+                EntityBase.setIgnoreCheck(pSDEFDataType, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSDEFDataType, (boolean)true);
                 if (!hashMap.containsKey(pSDEFDataType.getPSDEFDataTypeId())) {
-                    iService.create((IEntity)pSDEFDataType, false);
+                    iService.create(pSDEFDataType, false);
                 } else {
-                    iService.update((IEntity)pSDEFDataType, false);
+                    iService.update(pSDEFDataType, false);
                 }
                 hashMap.put(pSDEFDataType.getPSDEFDataTypeId(), pSDEFDataType);
                 arrayList.add(pSDEFDataType);
@@ -490,7 +492,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSEditorType> hashMap = new HashMap<String, PSEditorType>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSEditorTypeBase)serializable).getPSEditorTypeId(), (PSEditorType)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -501,12 +503,12 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSEditorType pSEditorType = (PSEditorType)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSEditorType, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSEditorType, (boolean)true);
+                EntityBase.setIgnoreCheck(pSEditorType, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSEditorType, (boolean)true);
                 if (!hashMap.containsKey(pSEditorType.getPSEditorTypeId())) {
-                    iService.create((IEntity)pSEditorType, false);
+                    iService.create(pSEditorType, false);
                 } else {
-                    iService.update((IEntity)pSEditorType, false);
+                    iService.update(pSEditorType, false);
                 }
                 hashMap.put(pSEditorType.getPSEditorTypeId(), pSEditorType);
                 arrayList.add(pSEditorType);
@@ -522,7 +524,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSPFPluginType> hashMap = new HashMap<String, PSPFPluginType>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSPFPluginTypeBase)serializable).getPSPFPluginTypeId(), (PSPFPluginType)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -533,12 +535,12 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSPFPluginType pSPFPluginType = (PSPFPluginType)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSPFPluginType, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSPFPluginType, (boolean)true);
+                EntityBase.setIgnoreCheck(pSPFPluginType, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSPFPluginType, (boolean)true);
                 if (!hashMap.containsKey(pSPFPluginType.getPSPFPluginTypeId())) {
-                    iService.create((IEntity)pSPFPluginType, false);
+                    iService.create(pSPFPluginType, false);
                 } else {
-                    iService.update((IEntity)pSPFPluginType, false);
+                    iService.update(pSPFPluginType, false);
                 }
                 hashMap.put(pSPFPluginType.getPSPFPluginTypeId(), pSPFPluginType);
                 arrayList.add(pSPFPluginType);
@@ -554,7 +556,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSPortletType> hashMap = new HashMap<String, PSPortletType>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSPortletTypeBase)serializable).getPSPortletTypeId(), (PSPortletType)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -565,12 +567,12 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSPortletType pSPortletType = (PSPortletType)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSPortletType, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSPortletType, (boolean)true);
+                EntityBase.setIgnoreCheck(pSPortletType, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSPortletType, (boolean)true);
                 if (!hashMap.containsKey(pSPortletType.getPSPortletTypeId())) {
-                    iService.create((IEntity)pSPortletType, false);
+                    iService.create(pSPortletType, false);
                 } else {
-                    iService.update((IEntity)pSPortletType, false);
+                    iService.update(pSPortletType, false);
                 }
                 hashMap.put(pSPortletType.getPSPortletTypeId(), pSPortletType);
                 arrayList.add(pSPortletType);
@@ -586,7 +588,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSSF> hashMap = new HashMap<String, PSSF>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSSFBase)serializable).getPSSFId(), (PSSF)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -597,12 +599,12 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSSF pSSF = (PSSF)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSSF, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSSF, (boolean)true);
+                EntityBase.setIgnoreCheck(pSSF, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSSF, (boolean)true);
                 if (!hashMap.containsKey(pSSF.getPSSFId())) {
-                    iService.create((IEntity)pSSF, false);
+                    iService.create(pSSF, false);
                 } else {
-                    iService.update((IEntity)pSSF, false);
+                    iService.update(pSSF, false);
                 }
                 hashMap.put(pSSF.getPSSFId(), pSSF);
                 arrayList.add(pSSF);
@@ -618,7 +620,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSSFStyle> hashMap = new HashMap<String, PSSFStyle>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSSFStyleBase)serializable).getPSSFStyleId(), (PSSFStyle)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -630,12 +632,12 @@ extends PSSystemServiceBase {
             while (iterator.hasNext()) {
                 PSSFStyle pSSFStyle = (PSSFStyle)iterator.next();
                 if (!StringHelper.isNullOrEmpty((String)pSSFStyle.getPSDevCenterId()) && StringHelper.compare((String)pSSFStyle.getPSDevCenterId(), (String)pSSystem.getPSDevCenterId(), (boolean)true) != 0) continue;
-                EntityBase.setIgnoreCheck((IEntity)pSSFStyle, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSSFStyle, (boolean)true);
+                EntityBase.setIgnoreCheck(pSSFStyle, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSSFStyle, (boolean)true);
                 if (!hashMap.containsKey(pSSFStyle.getPSSFStyleId())) {
-                    iService.create((IEntity)pSSFStyle, false);
+                    iService.create(pSSFStyle, false);
                 } else {
-                    iService.update((IEntity)pSSFStyle, false);
+                    iService.update(pSSFStyle, false);
                 }
                 hashMap.put(pSSFStyle.getPSSFStyleId(), pSSFStyle);
                 arrayList.add(pSSFStyle);
@@ -652,7 +654,7 @@ extends PSSystemServiceBase {
         selectCond.set("PSDEVCENTERID", (Object)pSSystem.getPSDevCenterId());
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSSFStyleVer> hashMap = new HashMap<String, PSSFStyleVer>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSSFStyleVerBase)serializable).getPSSFStyleVerId(), (PSSFStyleVer)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -665,12 +667,12 @@ extends PSSystemServiceBase {
             while (iterator.hasNext()) {
                 PSSFStyleVer pSSFStyleVer = (PSSFStyleVer)iterator.next();
                 if (!StringHelper.isNullOrEmpty((String)pSSFStyleVer.getPSDevCenterId()) && StringHelper.compare((String)pSSFStyleVer.getPSDevCenterId(), (String)pSSystem.getPSDevCenterId(), (boolean)true) != 0) continue;
-                EntityBase.setIgnoreCheck((IEntity)pSSFStyleVer, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSSFStyleVer, (boolean)true);
+                EntityBase.setIgnoreCheck(pSSFStyleVer, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSSFStyleVer, (boolean)true);
                 if (!hashMap.containsKey(pSSFStyleVer.getPSSFStyleVerId())) {
-                    iService.create((IEntity)pSSFStyleVer, false);
+                    iService.create(pSSFStyleVer, false);
                 } else {
-                    iService.update((IEntity)pSSFStyleVer, false);
+                    iService.update(pSSFStyleVer, false);
                 }
                 hashMap.put(pSSFStyleVer.getPSSFStyleVerId(), pSSFStyleVer);
                 arrayList.add(pSSFStyleVer);
@@ -686,7 +688,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSPF> hashMap = new HashMap<String, PSPF>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSPFBase)serializable).getPSPFId(), (PSPF)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -697,12 +699,12 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSPF pSPF = (PSPF)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSPF, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSPF, (boolean)true);
+                EntityBase.setIgnoreCheck(pSPF, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSPF, (boolean)true);
                 if (!hashMap.containsKey(pSPF.getPSPFId())) {
-                    iService.create((IEntity)pSPF, false);
+                    iService.create(pSPF, false);
                 } else {
-                    iService.update((IEntity)pSPF, false);
+                    iService.update(pSPF, false);
                 }
                 hashMap.put(pSPF.getPSPFId(), pSPF);
                 arrayList.add(pSPF);
@@ -718,7 +720,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSPFStyle> hashMap = new HashMap<String, PSPFStyle>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSPFStyleBase)serializable).getPSPFStyleId(), (PSPFStyle)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -732,12 +734,12 @@ extends PSSystemServiceBase {
                 if (!StringHelper.isNullOrEmpty((String)pSPFStyle.getPSDevCenterId()) && StringHelper.compare((String)pSPFStyle.getPSDevCenterId(), (String)pSSystem.getPSDevCenterId(), (boolean)true) != 0) continue;
                 pSPFStyle.setTemplPSPFStyleId(null);
                 pSPFStyle.setTemplPSPFStyleName(null);
-                EntityBase.setIgnoreCheck((IEntity)pSPFStyle, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSPFStyle, (boolean)true);
+                EntityBase.setIgnoreCheck(pSPFStyle, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSPFStyle, (boolean)true);
                 if (!hashMap.containsKey(pSPFStyle.getPSPFStyleId())) {
-                    iService.create((IEntity)pSPFStyle, false);
+                    iService.create(pSPFStyle, false);
                 } else {
-                    iService.update((IEntity)pSPFStyle, false);
+                    iService.update(pSPFStyle, false);
                 }
                 hashMap.put(pSPFStyle.getPSPFStyleId(), pSPFStyle);
                 arrayList.add(pSPFStyle);
@@ -754,7 +756,7 @@ extends PSSystemServiceBase {
         selectCond.set("PSDEVCENTERID", (Object)pSSystem.getPSDevCenterId());
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSDevCenterPF> hashMap = new HashMap<String, PSDevCenterPF>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSDevCenterPFBase)serializable).getPSDevCenterPFId(), (PSDevCenterPF)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -766,12 +768,12 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSDevCenterPF pSDevCenterPF = (PSDevCenterPF)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSDevCenterPF, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSDevCenterPF, (boolean)true);
+                EntityBase.setIgnoreCheck(pSDevCenterPF, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSDevCenterPF, (boolean)true);
                 if (!hashMap.containsKey(pSDevCenterPF.getPSDevCenterPFId())) {
-                    iService.create((IEntity)pSDevCenterPF, false);
+                    iService.create(pSDevCenterPF, false);
                 } else {
-                    iService.update((IEntity)pSDevCenterPF, false);
+                    iService.update(pSDevCenterPF, false);
                 }
                 hashMap.put(pSDevCenterPF.getPSDevCenterPFId(), pSDevCenterPF);
                 arrayList.add(pSDevCenterPF);
@@ -787,7 +789,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSAppType> hashMap = new HashMap<String, PSAppType>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSAppTypeBase)serializable).getPSAppTypeId(), (PSAppType)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -798,10 +800,10 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSAppType pSAppType = (PSAppType)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSAppType, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSAppType, (boolean)true);
+                EntityBase.setIgnoreCheck(pSAppType, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSAppType, (boolean)true);
                 if (hashMap.containsKey(pSAppType.getPSAppTypeId())) continue;
-                iService.create((IEntity)pSAppType);
+                iService.create(pSAppType);
                 hashMap.put(pSAppType.getPSAppTypeId(), pSAppType);
                 arrayList.add(pSAppType);
             }
@@ -816,7 +818,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSSAHandler> hashMap = new HashMap<String, PSSAHandler>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSSAHandlerBase)serializable).getPSSAHandlerId(), (PSSAHandler)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -827,10 +829,10 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSSAHandler pSSAHandler = (PSSAHandler)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSSAHandler, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSSAHandler, (boolean)true);
+                EntityBase.setIgnoreCheck(pSSAHandler, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSSAHandler, (boolean)true);
                 if (hashMap.containsKey(pSSAHandler.getPSSAHandlerId())) continue;
-                iService.create((IEntity)pSSAHandler);
+                iService.create(pSSAHandler);
                 hashMap.put(pSSAHandler.getPSSAHandlerId(), pSSAHandler);
                 arrayList.add(pSSAHandler);
             }
@@ -845,7 +847,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSSysACHandler> hashMap = new HashMap<String, PSSysACHandler>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSSysACHandlerBase)serializable).getPSSysACHandlerId(), (PSSysACHandler)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -856,10 +858,10 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSSysACHandler pSSysACHandler = (PSSysACHandler)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSSysACHandler, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSSysACHandler, (boolean)true);
+                EntityBase.setIgnoreCheck(pSSysACHandler, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSSysACHandler, (boolean)true);
                 if (hashMap.containsKey(pSSysACHandler.getPSSysACHandlerId())) continue;
-                iService.create((IEntity)pSSysACHandler);
+                iService.create(pSSysACHandler);
                 hashMap.put(pSSysACHandler.getPSSysACHandlerId(), pSSysACHandler);
                 arrayList.add(pSSysACHandler);
             }
@@ -867,45 +869,37 @@ extends PSSystemServiceBase {
     }
 
     protected void initPSSysSAHandlers(PSSystem pSSystem) throws Exception {
-        Iterator iterator;
-        Object object;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSSFSAHandlerService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSSFSAHandlerBase)serializable2).getPSSFSAHandlerId(), serializable2);
+        ArrayList<PSSFSAHandler> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSSFSAHandler> hashMap = new HashMap<String, PSSFSAHandler>();
+        for (PSSFSAHandler handler : arrayList) {
+            hashMap.put(handler.getPSSFSAHandlerId(), handler);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSSFSAHandlerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable2).iterator();
-            while (object.hasNext()) {
-                iterator = (PSSFSAHandler)object.next();
-                iService2.save((IEntity)iterator);
-                hashMap.put(((PSSFSAHandlerBase)((Object)iterator)).getPSSFSAHandlerId(), iterator);
+            ArrayList<PSSFSAHandler> handlers = iService.select((ISelectCond)selectCond);
+            for (PSSFSAHandler handler : handlers) {
+                iService2.save(handler);
+                hashMap.put(handler.getPSSFSAHandlerId(), handler);
             }
         }
         iService = (PSSysSAHandlerService)ServiceGlobal.getService(PSSysSAHandlerService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSSFSAHANDLERID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
-            EntityBase entityBase = (PSSysSAHandler)iterator.next();
-            ((HashMap)object).put(entityBase.getPSSysSAHandlerId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSSFSAHandlerId())) continue;
-            ((HashMap)object).put(entityBase.getPSSFSAHandlerId(), entityBase);
+        HashMap<String, PSSysSAHandler> existing = new HashMap<String, PSSysSAHandler>();
+        for (PSSysSAHandler handler : (ArrayList<PSSysSAHandler>)iService.select((ISelectCond)selectCond)) {
+            existing.put(handler.getPSSysSAHandlerId(), handler);
+            if (StringHelper.isNullOrEmpty((String)handler.getPSSFSAHandlerId())) continue;
+            existing.put(handler.getPSSFSAHandlerId(), handler);
         }
-        for (EntityBase entityBase : hashMap.values()) {
+        for (PSSFSAHandler handler : hashMap.values()) {
             String string2;
-            if (StringHelper.compare((String)entityBase.getPSSFId(), (String)pSSystem.getPSSFId(), (boolean)false) != 0 || ((HashMap)object).containsKey(entityBase.getPSSFSAHandlerId()) || ((HashMap)object).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSSFSAHandlerId()))) continue;
-            this.initPSSysSAHandler(pSSystem, (PSSFSAHandler)entityBase);
+            if (StringHelper.compare((String)handler.getPSSFId(), (String)pSSystem.getPSSFId(), (boolean)false) != 0 || existing.containsKey(handler.getPSSFSAHandlerId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)handler.getPSSFSAHandlerId()))) continue;
+            this.initPSSysSAHandler(pSSystem, handler);
         }
     }
 
@@ -918,55 +912,47 @@ extends PSSystemServiceBase {
         pSSysSAHandler.setPSSysSAHandlerName(pSSFSAHandler.getPSSFSAHandlerName());
         pSSysSAHandler.setPSSystemId(pSSystem.getPSSystemId());
         pSSysSAHandler.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysSAHandler, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysSAHandler, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysSAHandler, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysSAHandler, (boolean)true);
         pSSysSAHandlerService.create(pSSysSAHandler);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysSAHandlerService.getDEModel().getLogicName(), (Object)pSSysSAHandlerService.getDEModel().getDataInfo((IEntity)pSSysSAHandler)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysSAHandlerService.getDEModel().getLogicName(), (Object)pSSysSAHandlerService.getDEModel().getDataInfo(pSSysSAHandler)));
     }
 
     protected void initPSACHandlers(PSSystem pSSystem) throws Exception {
-        Iterator iterator;
-        Object object;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSSFACHandlerService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSSFACHandlerBase)serializable2).getPSSFACHandlerId(), serializable2);
+        ArrayList<PSSFACHandler> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSSFACHandler> hashMap = new HashMap<String, PSSFACHandler>();
+        for (PSSFACHandler handler : arrayList) {
+            hashMap.put(handler.getPSSFACHandlerId(), handler);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSSFACHandlerService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable2).iterator();
-            while (object.hasNext()) {
-                iterator = (PSSFACHandler)object.next();
-                EntityBase.setIgnoreCheck((IEntity)iterator, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)iterator, (boolean)true);
-                iService2.save(iterator);
-                hashMap.put(((PSSFACHandlerBase)((Object)iterator)).getPSSFACHandlerId(), iterator);
-                arrayList.add(iterator);
+            ArrayList<PSSFACHandler> handlers = iService.select((ISelectCond)selectCond);
+            for (PSSFACHandler handler : handlers) {
+                EntityBase.setIgnoreCheck(handler, (boolean)true);
+                EntityBase.setIgnoreCheckKey(handler, (boolean)true);
+                iService2.save(handler);
+                hashMap.put(handler.getPSSFACHandlerId(), handler);
+                arrayList.add(handler);
             }
         }
         iService = (PSACHandlerService)ServiceGlobal.getService(PSACHandlerService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSSFACHANDLERID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
-            EntityBase entityBase = (PSACHandler)iterator.next();
-            ((HashMap)object).put(entityBase.getPSACHandlerId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSSFACHandlerId())) continue;
-            ((HashMap)object).put(entityBase.getPSSFACHandlerId(), entityBase);
+        HashMap<String, PSACHandler> existing = new HashMap<String, PSACHandler>();
+        for (PSACHandler handler : (ArrayList<PSACHandler>)iService.select((ISelectCond)selectCond)) {
+            existing.put(handler.getPSACHandlerId(), handler);
+            if (StringHelper.isNullOrEmpty((String)handler.getPSSFACHandlerId())) continue;
+            existing.put(handler.getPSSFACHandlerId(), handler);
         }
-        for (EntityBase entityBase : arrayList) {
+        for (PSSFACHandler handler : arrayList) {
             String string2;
-            if (StringHelper.compare((String)entityBase.getPSSFId(), (String)pSSystem.getPSSFId(), (boolean)false) != 0 || ((HashMap)object).containsKey(entityBase.getPSSFACHandlerId()) || ((HashMap)object).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSSFACHandlerId()))) continue;
-            this.initPSACHandler(pSSystem, (PSSFACHandler)entityBase);
+            if (StringHelper.compare((String)handler.getPSSFId(), (String)pSSystem.getPSSFId(), (boolean)false) != 0 || existing.containsKey(handler.getPSSFACHandlerId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)handler.getPSSFACHandlerId()))) continue;
+            this.initPSACHandler(pSSystem, handler);
         }
     }
 
@@ -979,11 +965,11 @@ extends PSSystemServiceBase {
         pSACHandler.setPSACHandlerName(pSSFACHandler.getPSSFACHandlerName());
         pSACHandler.setPSSystemId(pSSystem.getPSSystemId());
         pSACHandler.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSACHandler, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSACHandler, (boolean)true);
+        EntityBase.setIgnoreCheck(pSACHandler, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSACHandler, (boolean)true);
         if (pSACHandlerService.checkKey(pSACHandler) == 0) {
             pSACHandlerService.create(pSACHandler);
-            ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSACHandlerService.getDEModel().getLogicName(), (Object)pSACHandlerService.getDEModel().getDataInfo((IEntity)pSACHandler)));
+            ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSACHandlerService.getDEModel().getLogicName(), (Object)pSACHandlerService.getDEModel().getDataInfo(pSACHandler)));
         }
     }
 
@@ -995,7 +981,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSViewType> hashMap = new HashMap<String, PSViewType>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSViewTypeBase)serializable).getPSViewTypeId(), (PSViewType)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -1006,15 +992,15 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSViewType pSViewType = (PSViewType)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSViewType, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSViewType, (boolean)true);
+                EntityBase.setIgnoreCheck(pSViewType, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSViewType, (boolean)true);
                 if (!hashMap.containsKey(pSViewType.getPSViewTypeId())) {
-                    iService.create((IEntity)pSViewType);
+                    iService.create(pSViewType);
                     hashMap.put(pSViewType.getPSViewTypeId(), pSViewType);
                     arrayList.add(pSViewType);
                     continue;
                 }
-                iService.update((IEntity)pSViewType);
+                iService.update(pSViewType);
                 hashMap.put(pSViewType.getPSViewTypeId(), pSViewType);
                 arrayList.add(pSViewType);
             }
@@ -1029,7 +1015,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSViewTypeCat> hashMap = new HashMap<String, PSViewTypeCat>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSViewTypeCatBase)serializable).getPSViewTypeCatId(), (PSViewTypeCat)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -1040,15 +1026,15 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSViewTypeCat pSViewTypeCat = (PSViewTypeCat)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSViewTypeCat, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSViewTypeCat, (boolean)true);
+                EntityBase.setIgnoreCheck(pSViewTypeCat, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSViewTypeCat, (boolean)true);
                 if (!hashMap.containsKey(pSViewTypeCat.getPSViewTypeCatId())) {
-                    iService.create((IEntity)pSViewTypeCat);
+                    iService.create(pSViewTypeCat);
                     hashMap.put(pSViewTypeCat.getPSViewTypeCatId(), pSViewTypeCat);
                     arrayList.add(pSViewTypeCat);
                     continue;
                 }
-                iService.update((IEntity)pSViewTypeCat);
+                iService.update(pSViewTypeCat);
                 hashMap.put(pSViewTypeCat.getPSViewTypeCatId(), pSViewTypeCat);
                 arrayList.add(pSViewTypeCat);
             }
@@ -1063,7 +1049,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSVTCatDetail> hashMap = new HashMap<String, PSVTCatDetail>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSVTCatDetailBase)serializable).getPSVTCatDetailId(), (PSVTCatDetail)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -1074,15 +1060,15 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSVTCatDetail pSVTCatDetail = (PSVTCatDetail)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSVTCatDetail, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSVTCatDetail, (boolean)true);
+                EntityBase.setIgnoreCheck(pSVTCatDetail, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSVTCatDetail, (boolean)true);
                 if (!hashMap.containsKey(pSVTCatDetail.getPSVTCatDetailId())) {
-                    iService.create((IEntity)pSVTCatDetail);
+                    iService.create(pSVTCatDetail);
                     hashMap.put(pSVTCatDetail.getPSVTCatDetailId(), pSVTCatDetail);
                     arrayList.add(pSVTCatDetail);
                     continue;
                 }
-                iService.update((IEntity)pSVTCatDetail);
+                iService.update(pSVTCatDetail);
                 hashMap.put(pSVTCatDetail.getPSVTCatDetailId(), pSVTCatDetail);
                 arrayList.add(pSVTCatDetail);
             }
@@ -1090,76 +1076,66 @@ extends PSSystemServiceBase {
     }
 
     protected void initPSDEUIActions(PSSystem pSSystem, Map<String, String> map) throws Exception {
-        EntityBase entityBase2;
-        Iterator iterator;
-        Object object;
         IService iService;
-        Serializable serializable2;
         if (this.getSessionFactory() == PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             return;
         }
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSSysUIActionService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSSysUIActionBase)serializable2).getPSSysUIActionId(), serializable2);
+        ArrayList<PSSysUIAction> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSSysUIAction> hashMap = new HashMap<String, PSSysUIAction>();
+        for (PSSysUIAction action : arrayList) {
+            hashMap.put(action.getPSSysUIActionId(), action);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSSysUIActionService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable2).iterator();
-            while (object.hasNext()) {
-                iterator = (PSSysUIAction)object.next();
-                EntityBase.setIgnoreCheck((IEntity)iterator, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)iterator, (boolean)true);
-                if (!hashMap.containsKey(((PSSysUIActionBase)((Object)iterator)).getPSSysUIActionId())) {
-                    iService2.create(iterator);
-                    hashMap.put(((PSSysUIActionBase)((Object)iterator)).getPSSysUIActionId(), iterator);
-                    arrayList.add(iterator);
+            for (PSSysUIAction action : (ArrayList<PSSysUIAction>)iService.select((ISelectCond)selectCond)) {
+                EntityBase.setIgnoreCheck(action, (boolean)true);
+                EntityBase.setIgnoreCheckKey(action, (boolean)true);
+                if (!hashMap.containsKey(action.getPSSysUIActionId())) {
+                    iService2.create(action);
+                    hashMap.put(action.getPSSysUIActionId(), action);
+                    arrayList.add(action);
                     continue;
                 }
-                entityBase2 = (PSSysUIAction)hashMap.get(((PSSysUIActionBase)((Object)iterator)).getPSSysUIActionId());
+                PSSysUIAction entityBase2 = hashMap.get(action.getPSSysUIActionId());
                 boolean bl = false;
-                if (StringHelper.isNullOrEmpty((String)entityBase2.getCapPSSysLanResId()) && !StringHelper.isNullOrEmpty((String)((PSSysUIActionBase)((Object)iterator)).getCapPSSysLanResId())) {
+                if (StringHelper.isNullOrEmpty((String)entityBase2.getCapPSSysLanResId()) && !StringHelper.isNullOrEmpty((String)action.getCapPSSysLanResId())) {
                     bl = true;
-                    entityBase2.setCapPSSysLanResId(((PSSysUIActionBase)((Object)iterator)).getCapPSSysLanResId());
+                    entityBase2.setCapPSSysLanResId(action.getCapPSSysLanResId());
                 }
-                if (StringHelper.isNullOrEmpty((String)entityBase2.getTipPSSysLanResId()) && !StringHelper.isNullOrEmpty((String)((PSSysUIActionBase)((Object)iterator)).getTipPSSysLanResId())) {
+                if (StringHelper.isNullOrEmpty((String)entityBase2.getTipPSSysLanResId()) && !StringHelper.isNullOrEmpty((String)action.getTipPSSysLanResId())) {
                     bl = true;
-                    entityBase2.setTipPSSysLanResId(((PSSysUIActionBase)((Object)iterator)).getTipPSSysLanResId());
+                    entityBase2.setTipPSSysLanResId(action.getTipPSSysLanResId());
                 }
                 if (!bl) continue;
-                iService2.update((IEntity)entityBase2);
-                hashMap.put(((PSSysUIActionBase)((Object)iterator)).getPSSysUIActionId(), entityBase2);
+                iService2.update(entityBase2);
+                hashMap.put(action.getPSSysUIActionId(), entityBase2);
                 arrayList.add(entityBase2);
             }
         }
         iService = (PSDEUIActionService)ServiceGlobal.getService(PSDEUIActionService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSSYSUIACTIONID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
-            entityBase2 = (PSDEUIAction)iterator.next();
-            ((HashMap)object).put(entityBase2.getPSDEUIActionId(), entityBase2);
+        HashMap<String, PSDEUIAction> existing = new HashMap<String, PSDEUIAction>();
+        for (PSDEUIAction entityBase2 : (ArrayList<PSDEUIAction>)iService.select((ISelectCond)selectCond)) {
+            existing.put(entityBase2.getPSDEUIActionId(), entityBase2);
             if (StringHelper.isNullOrEmpty((String)entityBase2.getPSSysUIActionId())) continue;
-            ((HashMap)object).put(entityBase2.getPSSysUIActionId(), entityBase2);
+            existing.put(entityBase2.getPSSysUIActionId(), entityBase2);
             map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSSYSUIACTION", (Object)entityBase2.getPSSysUIActionId()), entityBase2.getPSDEUIActionId());
         }
-        for (EntityBase entityBase2 : arrayList) {
+        for (PSSysUIAction entityBase2 : arrayList) {
             String string2;
-            if (((HashMap)object).containsKey(entityBase2.getPSSysUIActionId())) continue;
+            if (existing.containsKey(entityBase2.getPSSysUIActionId())) continue;
             String string3 = KeyValueHelper.genUniqueId((String)string, (String)entityBase2.getPSSysUIActionId());
-            if (!((HashMap)object).containsKey(string3)) {
-                this.initPSDEUIAction(pSSystem, (PSSysUIAction)entityBase2, map);
+            if (!existing.containsKey(string3)) {
+                this.initPSDEUIAction(pSSystem, entityBase2, map);
                 map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSSYSUIACTION", (Object)entityBase2.getPSSysUIActionId()), string3);
                 continue;
             }
-            PSDEUIAction pSDEUIAction = (PSDEUIAction)((HashMap)object).get(string3);
+            PSDEUIAction pSDEUIAction = existing.get(string3);
             boolean bl = false;
             if (StringHelper.isNullOrEmpty((String)pSDEUIAction.getCapPSLanResId()) && !StringHelper.isNullOrEmpty((String)entityBase2.getCapPSSysLanResId())) {
                 bl = true;
@@ -1204,61 +1180,52 @@ extends PSSystemServiceBase {
             PSDEOPPrivService pSDEOPPrivService = (PSDEOPPrivService)ServiceGlobal.getService(PSDEOPPrivService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDEOPPriv pSDEOPPriv = new PSDEOPPriv();
             pSDEOPPriv.setPSDEOPPrivId(string);
-            if (pSDEOPPrivService.get((IEntity)pSDEOPPriv, true)) {
+            if (pSDEOPPrivService.get(pSDEOPPriv, true)) {
                 pSDEUIAction.setPSDEOPPrivId(pSDEOPPriv.getPSDEOPPrivId());
                 pSDEUIAction.setPSDEOPPrivName(pSDEOPPriv.getPSDEOPPrivName());
             }
         }
-        EntityBase.setIgnoreCheck((IEntity)pSDEUIAction, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSDEUIAction, (boolean)true);
+        EntityBase.setIgnoreCheck(pSDEUIAction, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSDEUIAction, (boolean)true);
         pSDEUIActionService.create(pSDEUIAction);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSDEUIActionService.getDEModel().getLogicName(), (Object)pSDEUIActionService.getDEModel().getDataInfo((IEntity)pSDEUIAction)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSDEUIActionService.getDEModel().getLogicName(), (Object)pSDEUIActionService.getDEModel().getDataInfo(pSDEUIAction)));
     }
 
     protected void initPSSysValueRules(PSSystem pSSystem) throws Exception {
-        Iterator iterator;
-        Object object;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSValueRuleService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSValueRuleBase)serializable2).getPSValueRuleId(), serializable2);
+        ArrayList<PSValueRule> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSValueRule> hashMap = new HashMap<String, PSValueRule>();
+        for (PSValueRule rule : arrayList) {
+            hashMap.put(rule.getPSValueRuleId(), rule);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSValueRuleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable2).iterator();
-            while (object.hasNext()) {
-                iterator = (PSValueRule)object.next();
-                EntityBase.setIgnoreCheck((IEntity)iterator, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)iterator, (boolean)true);
-                if (hashMap.containsKey(((PSValueRuleBase)((Object)iterator)).getPSValueRuleId())) continue;
-                iService2.create(iterator);
-                hashMap.put(((PSValueRuleBase)((Object)iterator)).getPSValueRuleId(), iterator);
-                arrayList.add(iterator);
+            for (PSValueRule rule : (ArrayList<PSValueRule>)iService.select((ISelectCond)selectCond)) {
+                EntityBase.setIgnoreCheck(rule, (boolean)true);
+                EntityBase.setIgnoreCheckKey(rule, (boolean)true);
+                if (hashMap.containsKey(rule.getPSValueRuleId())) continue;
+                iService2.create(rule);
+                hashMap.put(rule.getPSValueRuleId(), rule);
+                arrayList.add(rule);
             }
         }
         iService = (PSSysValueRuleService)ServiceGlobal.getService(PSSysValueRuleService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSVALUERULEID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
-            EntityBase entityBase = (PSSysValueRule)iterator.next();
-            ((HashMap)object).put(entityBase.getPSSysValueRuleId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSValueRuleId())) continue;
-            ((HashMap)object).put(entityBase.getPSValueRuleId(), entityBase);
+        HashMap<String, PSSysValueRule> existing = new HashMap<String, PSSysValueRule>();
+        for (PSSysValueRule rule : (ArrayList<PSSysValueRule>)iService.select((ISelectCond)selectCond)) {
+            existing.put(rule.getPSSysValueRuleId(), rule);
+            if (StringHelper.isNullOrEmpty((String)rule.getPSValueRuleId())) continue;
+            existing.put(rule.getPSValueRuleId(), rule);
         }
-        for (EntityBase entityBase : arrayList) {
+        for (PSValueRule rule : arrayList) {
             String string2;
-            if (((HashMap)object).containsKey(entityBase.getPSValueRuleId()) || ((HashMap)object).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSValueRuleId()))) continue;
-            this.initPSSysValueRule(pSSystem, (PSValueRule)entityBase);
+            if (existing.containsKey(rule.getPSValueRuleId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)rule.getPSValueRuleId()))) continue;
+            this.initPSSysValueRule(pSSystem, rule);
         }
     }
 
@@ -1271,58 +1238,49 @@ extends PSSystemServiceBase {
         pSSysValueRule.setPSSysValueRuleName(pSValueRule.getPSValueRuleName());
         pSSysValueRule.setPSSystemId(pSSystem.getPSSystemId());
         pSSysValueRule.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysValueRule, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysValueRule, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysValueRule, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysValueRule, (boolean)true);
         pSSysValueRuleService.create(pSSysValueRule);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysValueRuleService.getDEModel().getLogicName(), (Object)pSSysValueRuleService.getDEModel().getDataInfo((IEntity)pSSysValueRule)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysValueRuleService.getDEModel().getLogicName(), (Object)pSSysValueRuleService.getDEModel().getDataInfo(pSSysValueRule)));
     }
 
     protected void initPSSysImages(PSSystem pSSystem, Map<String, String> map) throws Exception {
-        Iterator iterator;
-        Object object;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSImageTemplService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSImageTemplBase)serializable2).getPSImageTemplId(), serializable2);
+        ArrayList<PSImageTempl> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSImageTempl> hashMap = new HashMap<String, PSImageTempl>();
+        for (PSImageTempl image : arrayList) {
+            hashMap.put(image.getPSImageTemplId(), image);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSImageTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable2).iterator();
-            while (object.hasNext()) {
-                iterator = (PSImageTempl)object.next();
-                EntityBase.setIgnoreCheck((IEntity)iterator, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)iterator, (boolean)true);
-                if (hashMap.containsKey(((PSImageTemplBase)((Object)iterator)).getPSImageTemplId())) continue;
-                iService2.create(iterator);
-                hashMap.put(((PSImageTemplBase)((Object)iterator)).getPSImageTemplId(), iterator);
-                arrayList.add(iterator);
+            for (PSImageTempl image : (ArrayList<PSImageTempl>)iService.select((ISelectCond)selectCond)) {
+                EntityBase.setIgnoreCheck(image, (boolean)true);
+                EntityBase.setIgnoreCheckKey(image, (boolean)true);
+                if (hashMap.containsKey(image.getPSImageTemplId())) continue;
+                iService2.create(image);
+                hashMap.put(image.getPSImageTemplId(), image);
+                arrayList.add(image);
             }
         }
         iService = (PSSysImageService)ServiceGlobal.getService(PSSysImageService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSIMAGETEMPLID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
-            EntityBase entityBase = (PSSysImage)iterator.next();
-            ((HashMap)object).put(entityBase.getPSSysImageId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSImageTemplId())) continue;
-            ((HashMap)object).put(entityBase.getPSImageTemplId(), entityBase);
-            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSIMAGETEMPL", (Object)entityBase.getPSImageTemplId()), entityBase.getPSSysImageId());
+        HashMap<String, PSSysImage> existing = new HashMap<String, PSSysImage>();
+        for (PSSysImage image : (ArrayList<PSSysImage>)iService.select((ISelectCond)selectCond)) {
+            existing.put(image.getPSSysImageId(), image);
+            if (StringHelper.isNullOrEmpty((String)image.getPSImageTemplId())) continue;
+            existing.put(image.getPSImageTemplId(), image);
+            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSIMAGETEMPL", (Object)image.getPSImageTemplId()), image.getPSSysImageId());
         }
-        for (EntityBase entityBase : arrayList) {
+        for (PSImageTempl image : arrayList) {
             String string2;
-            if (((HashMap)object).containsKey(entityBase.getPSImageTemplId()) || ((HashMap)object).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSImageTemplId()))) continue;
-            this.initPSSysImage(pSSystem, (PSImageTempl)entityBase);
-            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSIMAGETEMPL", (Object)entityBase.getPSImageTemplId()), string2);
+            if (existing.containsKey(image.getPSImageTemplId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)image.getPSImageTemplId()))) continue;
+            this.initPSSysImage(pSSystem, image);
+            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSIMAGETEMPL", (Object)image.getPSImageTemplId()), string2);
         }
     }
 
@@ -1335,56 +1293,47 @@ extends PSSystemServiceBase {
         pSSysImage.setPSSysImageName(pSImageTempl.getPSImageTemplName());
         pSSysImage.setPSSystemId(pSSystem.getPSSystemId());
         pSSysImage.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysImage, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysImage, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysImage, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysImage, (boolean)true);
         pSSysImageService.create(pSSysImage, false);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysImageService.getDEModel().getLogicName(), (Object)pSSysImageService.getDEModel().getDataInfo((IEntity)pSSysImage)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysImageService.getDEModel().getLogicName(), (Object)pSSysImageService.getDEModel().getDataInfo(pSSysImage)));
     }
 
     protected void initPSSysCssCats(PSSystem pSSystem) throws Exception {
-        Iterator iterator;
-        Object object;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSCssCatTemplService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSCssCatTemplBase)serializable2).getPSCssCatTemplId(), serializable2);
+        ArrayList<PSCssCatTempl> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSCssCatTempl> hashMap = new HashMap<String, PSCssCatTempl>();
+        for (PSCssCatTempl category : arrayList) {
+            hashMap.put(category.getPSCssCatTemplId(), category);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSCssCatTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable2).iterator();
-            while (object.hasNext()) {
-                iterator = (PSCssCatTempl)object.next();
-                EntityBase.setIgnoreCheck((IEntity)iterator, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)iterator, (boolean)true);
-                if (hashMap.containsKey(((PSCssCatTemplBase)((Object)iterator)).getPSCssCatTemplId())) continue;
-                iService2.create(iterator);
-                hashMap.put(((PSCssCatTemplBase)((Object)iterator)).getPSCssCatTemplId(), iterator);
-                arrayList.add(iterator);
+            for (PSCssCatTempl category : (ArrayList<PSCssCatTempl>)iService.select((ISelectCond)selectCond)) {
+                EntityBase.setIgnoreCheck(category, (boolean)true);
+                EntityBase.setIgnoreCheckKey(category, (boolean)true);
+                if (hashMap.containsKey(category.getPSCssCatTemplId())) continue;
+                iService2.create(category);
+                hashMap.put(category.getPSCssCatTemplId(), category);
+                arrayList.add(category);
             }
         }
         iService = (PSSysCssCatService)ServiceGlobal.getService(PSSysCssCatService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSCSSCATTEMPLID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
-            EntityBase entityBase = (PSSysCssCat)iterator.next();
-            ((HashMap)object).put(entityBase.getPSSysCssCatId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSCssCatTemplId())) continue;
-            ((HashMap)object).put(entityBase.getPSCssCatTemplId(), entityBase);
+        HashMap<String, PSSysCssCat> existing = new HashMap<String, PSSysCssCat>();
+        for (PSSysCssCat category : (ArrayList<PSSysCssCat>)iService.select((ISelectCond)selectCond)) {
+            existing.put(category.getPSSysCssCatId(), category);
+            if (StringHelper.isNullOrEmpty((String)category.getPSCssCatTemplId())) continue;
+            existing.put(category.getPSCssCatTemplId(), category);
         }
-        for (EntityBase entityBase : arrayList) {
+        for (PSCssCatTempl category : arrayList) {
             String string2;
-            if (((HashMap)object).containsKey(entityBase.getPSCssCatTemplId()) || ((HashMap)object).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSCssCatTemplId()))) continue;
-            this.initPSSysCssCat(pSSystem, (PSCssCatTempl)entityBase);
+            if (existing.containsKey(category.getPSCssCatTemplId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)category.getPSCssCatTemplId()))) continue;
+            this.initPSSysCssCat(pSSystem, category);
         }
     }
 
@@ -1397,56 +1346,47 @@ extends PSSystemServiceBase {
         pSSysCssCat.setPSSysCssCatName(pSCssCatTempl.getPSCssCatTemplName());
         pSSysCssCat.setPSSystemId(pSSystem.getPSSystemId());
         pSSysCssCat.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysCssCat, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysCssCat, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysCssCat, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysCssCat, (boolean)true);
         pSSysCssCatService.create(pSSysCssCat, false);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysCssCatService.getDEModel().getLogicName(), (Object)pSSysCssCatService.getDEModel().getDataInfo((IEntity)pSSysCssCat)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysCssCatService.getDEModel().getLogicName(), (Object)pSSysCssCatService.getDEModel().getDataInfo(pSSysCssCat)));
     }
 
     protected void initPSSysCsses(PSSystem pSSystem) throws Exception {
-        Iterator iterator;
-        Object object;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSCssTemplService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSCssTemplBase)serializable2).getPSCssTemplId(), serializable2);
+        ArrayList<PSCssTempl> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSCssTempl> hashMap = new HashMap<String, PSCssTempl>();
+        for (PSCssTempl css : arrayList) {
+            hashMap.put(css.getPSCssTemplId(), css);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSCssTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable2).iterator();
-            while (object.hasNext()) {
-                iterator = (PSCssTempl)object.next();
-                EntityBase.setIgnoreCheck((IEntity)iterator, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)iterator, (boolean)true);
-                if (hashMap.containsKey(((PSCssTemplBase)((Object)iterator)).getPSCssTemplId())) continue;
-                iService2.create(iterator);
-                hashMap.put(((PSCssTemplBase)((Object)iterator)).getPSCssTemplId(), iterator);
-                arrayList.add(iterator);
+            for (PSCssTempl css : (ArrayList<PSCssTempl>)iService.select((ISelectCond)selectCond)) {
+                EntityBase.setIgnoreCheck(css, (boolean)true);
+                EntityBase.setIgnoreCheckKey(css, (boolean)true);
+                if (hashMap.containsKey(css.getPSCssTemplId())) continue;
+                iService2.create(css);
+                hashMap.put(css.getPSCssTemplId(), css);
+                arrayList.add(css);
             }
         }
         iService = (PSSysCssService)ServiceGlobal.getService(PSSysCssService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSCSSTEMPLID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
-            EntityBase entityBase = (PSSysCss)iterator.next();
-            ((HashMap)object).put(entityBase.getPSSysCssId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSCssTemplId())) continue;
-            ((HashMap)object).put(entityBase.getPSCssTemplId(), entityBase);
+        HashMap<String, PSSysCss> existing = new HashMap<String, PSSysCss>();
+        for (PSSysCss css : (ArrayList<PSSysCss>)iService.select((ISelectCond)selectCond)) {
+            existing.put(css.getPSSysCssId(), css);
+            if (StringHelper.isNullOrEmpty((String)css.getPSCssTemplId())) continue;
+            existing.put(css.getPSCssTemplId(), css);
         }
-        for (EntityBase entityBase : arrayList) {
+        for (PSCssTempl css : arrayList) {
             String string2;
-            if (((HashMap)object).containsKey(entityBase.getPSCssTemplId()) || ((HashMap)object).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSCssTemplId()))) continue;
-            this.initPSSysCss(pSSystem, (PSCssTempl)entityBase);
+            if (existing.containsKey(css.getPSCssTemplId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)css.getPSCssTemplId()))) continue;
+            this.initPSSysCss(pSSystem, css);
         }
     }
 
@@ -1463,76 +1403,63 @@ extends PSSystemServiceBase {
             pSSysCss.setPSSysCssCatId(KeyValueHelper.genUniqueId((String)pSSystem.getPSSystemId(), (String)pSCssTempl.getPSCssCatTemplId()));
             pSSysCss.setPSSysCssCatName(pSCssTempl.getPSCssCatTemplName());
         }
-        EntityBase.setIgnoreCheck((IEntity)pSSysCss, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysCss, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysCss, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysCss, (boolean)true);
         pSSysCssService.create(pSSysCss, false);
     }
 
     protected void initPSSysCounters(PSSystem pSSystem) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        Serializable serializable;
         String string = pSSystem.getPSSystemId();
         IService iService = ServiceGlobal.getService(PSCounterService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        Serializable serializable2 = iService.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        IService iService2 = ((ArrayList)serializable2).iterator();
-        while (iService2.hasNext()) {
-            serializable = (PSCounter)iService2.next();
-            hashMap.put(((PSCounterBase)serializable).getPSCounterId(), serializable);
+        ArrayList<PSCounter> counters = iService.select((ISelectCond)selectCond);
+        HashMap<String, PSCounter> hashMap = new HashMap<String, PSCounter>();
+        for (PSCounter counter : counters) {
+            hashMap.put(counter.getPSCounterId(), counter);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            iService2 = ServiceGlobal.getService(PSCounterService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+            IService iService2 = ServiceGlobal.getService(PSCounterService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable = iService2.select((ISelectCond)selectCond);
-            object2 = ((ArrayList)serializable).iterator();
-            while (object2.hasNext()) {
-                object = (PSCounter)object2.next();
-                if (!hashMap.containsKey(((PSCounterBase)object).getPSCounterId())) {
-                    EntityBase.setIgnoreCheck((IEntity)object, (boolean)true);
-                    EntityBase.setIgnoreCheckKey(object, (boolean)true);
-                    iService.create(object);
-                    hashMap.put(((PSCounterBase)object).getPSCounterId(), object);
-                    ((ArrayList)serializable2).add(object);
+            ArrayList<PSCounter> majorCounters = iService2.select((ISelectCond)selectCond);
+            for (PSCounter counter : majorCounters) {
+                if (!hashMap.containsKey(counter.getPSCounterId())) {
+                    EntityBase.setIgnoreCheck(counter, (boolean)true);
+                    EntityBase.setIgnoreCheckKey(counter, (boolean)true);
+                    iService.create(counter);
+                    hashMap.put(counter.getPSCounterId(), counter);
+                    counters.add(counter);
                     continue;
                 }
-                entityBase = (PSCounter)hashMap.get(((PSCounterBase)object).getPSCounterId());
-                if (StringHelper.compare((String)entityBase.getBaseClsParams(), (String)((PSCounterBase)object).getBaseClsParams(), (boolean)false) != 0) {
-                    object.copyTo((IDataObject)entityBase, true);
-                    EntityBase.setIgnoreCheck((IEntity)entityBase, (boolean)true);
-                    EntityBase.setIgnoreCheckKey((IEntity)entityBase, (boolean)true);
-                    iService.update((IEntity)entityBase, false);
+                PSCounter localCounter = hashMap.get(counter.getPSCounterId());
+                if (StringHelper.compare((String)localCounter.getBaseClsParams(), (String)counter.getBaseClsParams(), (boolean)false) != 0) {
+                    counter.copyTo((IDataObject)localCounter, true);
+                    EntityBase.setIgnoreCheck(localCounter, (boolean)true);
+                    EntityBase.setIgnoreCheckKey(localCounter, (boolean)true);
+                    iService.update(localCounter, false);
                 }
-                hashMap.put(((PSCounterBase)object).getPSCounterId(), entityBase);
+                hashMap.put(counter.getPSCounterId(), localCounter);
             }
-            serializable2 = serializable;
+            counters = majorCounters;
         }
-        iService2 = (PSSysCounterService)ServiceGlobal.getService(PSSysCounterService.class, (SessionFactory)this.getSessionFactory());
+        IService iService2 = ServiceGlobal.getService(PSSysCounterService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSCOUNTERID");
-        serializable = iService2.select((ISelectCond)selectCond);
-        object2 = new HashMap();
-        object = ((ArrayList)serializable).iterator();
-        while (object.hasNext()) {
-            entityBase = (PSSysCounter)object.next();
-            ((HashMap)object2).put(entityBase.getPSSysCounterId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSCounterId())) continue;
-            ((HashMap)object2).put(entityBase.getPSCounterId(), entityBase);
+        HashMap<String, PSSysCounter> existing = new HashMap<String, PSSysCounter>();
+        for (PSSysCounter sysCounter : (ArrayList<PSSysCounter>)iService2.select((ISelectCond)selectCond)) {
+            existing.put(sysCounter.getPSSysCounterId(), sysCounter);
+            if (StringHelper.isNullOrEmpty((String)sysCounter.getPSCounterId())) continue;
+            existing.put(sysCounter.getPSCounterId(), sysCounter);
         }
-        object = ((ArrayList)serializable2).iterator();
-        while (object.hasNext()) {
-            entityBase = (PSCounter)object.next();
-            if (((HashMap)object2).containsKey(entityBase.getPSCounterId())) continue;
-            String string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSCounterId());
-            if (!((HashMap)object2).containsKey(string2)) {
-                this.initPSSysCounter(pSSystem, (PSCounter)entityBase, true);
+        for (PSCounter counter : counters) {
+            if (existing.containsKey(counter.getPSCounterId())) continue;
+            String string2 = KeyValueHelper.genUniqueId((String)string, (String)counter.getPSCounterId());
+            if (!existing.containsKey(string2)) {
+                this.initPSSysCounter(pSSystem, counter, true);
                 continue;
             }
-            PSSysCounter pSSysCounter = (PSSysCounter)((HashMap)object2).get(string2);
-            if (StringHelper.compare((String)pSSysCounter.getBaseClsParams(), (String)entityBase.getBaseClsParams(), (boolean)false) == 0) continue;
-            this.initPSSysCounter(pSSystem, (PSCounter)entityBase, false);
+            PSSysCounter pSSysCounter = existing.get(string2);
+            if (StringHelper.compare((String)pSSysCounter.getBaseClsParams(), (String)counter.getBaseClsParams(), (boolean)false) == 0) continue;
+            this.initPSSysCounter(pSSystem, counter, false);
         }
     }
 
@@ -1545,60 +1472,51 @@ extends PSSystemServiceBase {
         pSSysCounter.setPSSysCounterName(pSCounter.getPSCounterName());
         pSSysCounter.setPSSystemId(pSSystem.getPSSystemId());
         pSSysCounter.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysCounter, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysCounter, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysCounter, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysCounter, (boolean)true);
         if (bl) {
             pSSysCounterService.create(pSSysCounter, false);
         } else {
             pSSysCounterService.update(pSSysCounter, false);
         }
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysCounterService.getDEModel().getLogicName(), (Object)pSSysCounterService.getDEModel().getDataInfo((IEntity)pSSysCounter)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysCounterService.getDEModel().getLogicName(), (Object)pSSysCounterService.getDEModel().getDataInfo(pSSysCounter)));
     }
 
     protected void initPSSysPortlets(PSSystem pSSystem, Map<String, String> map) throws Exception {
-        Iterator iterator;
-        Object object;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSPortletService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSPortletBase)serializable2).getPSPortletId(), serializable2);
+        ArrayList<PSPortlet> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSPortlet> hashMap = new HashMap<String, PSPortlet>();
+        for (PSPortlet portlet : arrayList) {
+            hashMap.put(portlet.getPSPortletId(), portlet);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSPortletService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable2).iterator();
-            while (object.hasNext()) {
-                iterator = (PSPortlet)object.next();
-                EntityBase.setIgnoreCheck((IEntity)iterator, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)iterator, (boolean)true);
-                if (hashMap.containsKey(((PSPortletBase)((Object)iterator)).getPSPortletId())) continue;
-                iService2.create(iterator);
-                hashMap.put(((PSPortletBase)((Object)iterator)).getPSPortletId(), iterator);
-                arrayList.add(iterator);
+            for (PSPortlet portlet : (ArrayList<PSPortlet>)iService.select((ISelectCond)selectCond)) {
+                EntityBase.setIgnoreCheck(portlet, (boolean)true);
+                EntityBase.setIgnoreCheckKey(portlet, (boolean)true);
+                if (hashMap.containsKey(portlet.getPSPortletId())) continue;
+                iService2.create(portlet);
+                hashMap.put(portlet.getPSPortletId(), portlet);
+                arrayList.add(portlet);
             }
         }
         iService = (PSSysPortletService)ServiceGlobal.getService(PSSysPortletService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSPORTLETID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
-            EntityBase entityBase = (PSSysPortlet)iterator.next();
-            ((HashMap)object).put(entityBase.getPSSysPortletId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSPortletId())) continue;
-            ((HashMap)object).put(entityBase.getPSPortletId(), entityBase);
+        HashMap<String, PSSysPortlet> existing = new HashMap<String, PSSysPortlet>();
+        for (PSSysPortlet portlet : (ArrayList<PSSysPortlet>)iService.select((ISelectCond)selectCond)) {
+            existing.put(portlet.getPSSysPortletId(), portlet);
+            if (StringHelper.isNullOrEmpty((String)portlet.getPSPortletId())) continue;
+            existing.put(portlet.getPSPortletId(), portlet);
         }
-        for (EntityBase entityBase : arrayList) {
+        for (PSPortlet portlet : arrayList) {
             String string2;
-            if (((HashMap)object).containsKey(entityBase.getPSPortletId()) || ((HashMap)object).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSPortletId()))) continue;
-            this.initPSSysPortlet(pSSystem, (PSPortlet)entityBase, map);
+            if (existing.containsKey(portlet.getPSPortletId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)portlet.getPSPortletId()))) continue;
+            this.initPSSysPortlet(pSSystem, portlet, map);
         }
     }
 
@@ -1616,70 +1534,57 @@ extends PSSystemServiceBase {
         }
         pSSysPortlet.setPSSystemId(pSSystem.getPSSystemId());
         pSSysPortlet.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysPortlet, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysPortlet, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysPortlet, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysPortlet, (boolean)true);
         pSSysPortletService.create(pSSysPortlet);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysPortletService.getDEModel().getLogicName(), (Object)pSSysPortletService.getDEModel().getDataInfo((IEntity)pSSysPortlet)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysPortletService.getDEModel().getLogicName(), (Object)pSSysPortletService.getDEModel().getDataInfo(pSSysPortlet)));
     }
 
     protected void initPSDEToolbars(PSSystem pSSystem, Map<String, String> map) throws Exception {
-        Object object;
-        EntityBase entityBase2;
-        Iterator iterator;
-        Cloneable cloneable;
-        IService iService;
-        Object object22;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSSysToolbarService.class, (SessionFactory)this.getSessionFactory());
         IService iService3 = ServiceGlobal.getService(PSSysTBItemService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, EntityBase> hashMap = new HashMap<String, EntityBase>();
-        for (Object object22 : arrayList) {
-            hashMap.put(((PSSysToolbarBase)object22).getPSSysToolbarId(), (EntityBase)object22);
+        ArrayList<PSSysToolbar> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSSysToolbar> hashMap = new HashMap<String, PSSysToolbar>();
+        for (PSSysToolbar toolbar : arrayList) {
+            hashMap.put(toolbar.getPSSysToolbarId(), toolbar);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            iService = ServiceGlobal.getService(PSSysToolbarService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-            object22 = (PSSysTBItemService)ServiceGlobal.getService(PSSysTBItemService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+            IService iService = ServiceGlobal.getService(PSSysToolbarService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+            PSSysTBItemService majorItemService = (PSSysTBItemService)ServiceGlobal.getService(PSSysTBItemService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            cloneable = iService.select((ISelectCond)selectCond);
-            iterator = ((ArrayList)cloneable).iterator();
-            while (iterator.hasNext()) {
-                entityBase2 = (PSSysToolbar)iterator.next();
-                if (hashMap.containsKey(entityBase2.getPSSysToolbarId())) continue;
-                object = ((PSSysTBItemServiceBase)object22).selectByPSSysToolbar((PSSysToolbarBase)entityBase2);
-                PSSysTBItemService.sortHierarchyEntities(object, (String)"PSSYSTBITEMID", (String)"PPSSYSTBITEMID");
-                EntityBase.setIgnoreCheck((IEntity)entityBase2, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)entityBase2, (boolean)true);
-                iService2.create((IEntity)entityBase2);
-                hashMap.put(entityBase2.getPSSysToolbarId(), entityBase2);
-                arrayList.add(entityBase2);
-                Iterator iterator2 = ((ArrayList)object).iterator();
-                while (iterator2.hasNext()) {
-                    PSSysTBItem pSSysTBItem = (PSSysTBItem)iterator2.next();
-                    EntityBase.setIgnoreCheck((IEntity)pSSysTBItem, (boolean)true);
-                    EntityBase.setIgnoreCheckKey((IEntity)pSSysTBItem, (boolean)true);
-                    iService3.create((IEntity)pSSysTBItem);
+            for (PSSysToolbar toolbar : (ArrayList<PSSysToolbar>)iService.select((ISelectCond)selectCond)) {
+                if (hashMap.containsKey(toolbar.getPSSysToolbarId())) continue;
+                ArrayList<PSSysTBItem> items = majorItemService.selectByPSSysToolbar(toolbar);
+                PSSysTBItemService.sortHierarchyEntities(items, (String)"PSSYSTBITEMID", (String)"PPSSYSTBITEMID");
+                EntityBase.setIgnoreCheck(toolbar, (boolean)true);
+                EntityBase.setIgnoreCheckKey(toolbar, (boolean)true);
+                iService2.create(toolbar);
+                hashMap.put(toolbar.getPSSysToolbarId(), toolbar);
+                arrayList.add(toolbar);
+                for (PSSysTBItem pSSysTBItem : items) {
+                    EntityBase.setIgnoreCheck(pSSysTBItem, (boolean)true);
+                    EntityBase.setIgnoreCheckKey(pSSysTBItem, (boolean)true);
+                    iService3.create(pSSysTBItem);
                 }
             }
         }
-        iService = (PSDEToolbarService)ServiceGlobal.getService(PSDEToolbarService.class, (SessionFactory)this.getSessionFactory());
+        IService iService = ServiceGlobal.getService(PSDEToolbarService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSSYSTOOLBARID");
-        object22 = iService.select((ISelectCond)selectCond);
-        cloneable = new HashMap();
-        iterator = ((ArrayList)object22).iterator();
-        while (iterator.hasNext()) {
-            entityBase2 = (PSDEToolbar)iterator.next();
-            ((HashMap)cloneable).put(entityBase2.getPSDEToolbarId(), entityBase2);
-            if (StringHelper.isNullOrEmpty((String)entityBase2.getPSSysToolbarId())) continue;
-            ((HashMap)cloneable).put(entityBase2.getPSSysToolbarId(), entityBase2);
-            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSSYSTOOLBAR", (Object)entityBase2.getPSSysToolbarId()), entityBase2.getPSDEToolbarId());
+        HashMap<String, PSDEToolbar> existing = new HashMap<String, PSDEToolbar>();
+        for (PSDEToolbar toolbar : (ArrayList<PSDEToolbar>)iService.select((ISelectCond)selectCond)) {
+            existing.put(toolbar.getPSDEToolbarId(), toolbar);
+            if (StringHelper.isNullOrEmpty((String)toolbar.getPSSysToolbarId())) continue;
+            existing.put(toolbar.getPSSysToolbarId(), toolbar);
+            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSSYSTOOLBAR", (Object)toolbar.getPSSysToolbarId()), toolbar.getPSDEToolbarId());
         }
-        for (EntityBase entityBase2 : arrayList) {
-            if (((HashMap)cloneable).containsKey(entityBase2.getPSSysToolbarId()) || ((HashMap)cloneable).containsKey(object = KeyValueHelper.genUniqueId((String)string, (String)entityBase2.getPSSysToolbarId()))) continue;
-            this.initPSDEToolbar(pSSystem, (PSSysToolbar)entityBase2, map);
-            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSSYSTOOLBAR", (Object)entityBase2.getPSSysToolbarId()), (String)object);
+        for (PSSysToolbar toolbar : arrayList) {
+            String toolbarId = KeyValueHelper.genUniqueId((String)string, (String)toolbar.getPSSysToolbarId());
+            if (existing.containsKey(toolbar.getPSSysToolbarId()) || existing.containsKey(toolbarId)) continue;
+            this.initPSDEToolbar(pSSystem, toolbar, map);
+            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSSYSTOOLBAR", (Object)toolbar.getPSSysToolbarId()), toolbarId);
         }
     }
 
@@ -1693,10 +1598,10 @@ extends PSSystemServiceBase {
         pSDEToolbar.setPSSystemId(pSSystem.getPSSystemId());
         pSDEToolbar.setPSSystemName(pSSystem.getPSSystemName());
         pSDEToolbar.setTemplToolbar(1);
-        EntityBase.setIgnoreCheck((IEntity)pSDEToolbar, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSDEToolbar, (boolean)true);
+        EntityBase.setIgnoreCheck(pSDEToolbar, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSDEToolbar, (boolean)true);
         pSDEToolbarService.create(pSDEToolbar);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSDEToolbarService.getDEModel().getLogicName(), (Object)pSDEToolbarService.getDEModel().getDataInfo((IEntity)pSDEToolbar)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSDEToolbarService.getDEModel().getLogicName(), (Object)pSDEToolbarService.getDEModel().getDataInfo(pSDEToolbar)));
         PSSysTBItemService pSSysTBItemService = (PSSysTBItemService)ServiceGlobal.getService(PSSysTBItemService.class, (SessionFactory)this.getSessionFactory());
         PSDETBItemService pSDETBItemService = (PSDETBItemService)ServiceGlobal.getService(PSDETBItemService.class, (SessionFactory)this.getSessionFactory());
         ArrayList<PSSysTBItem> arrayList = pSSysTBItemService.selectByPSSysToolbar(pSSysToolbar);
@@ -1723,26 +1628,23 @@ extends PSSystemServiceBase {
                 String string4 = map.get(StringHelper.format((String)"%1$s#%2$s", (Object)"PSSYSUIACTION", (Object)string2));
                 pSDETBItem.setPSDEUIActionId(string4);
             }
-            EntityBase.setIgnoreCheck((IEntity)pSDETBItem, (boolean)true);
-            EntityBase.setIgnoreCheckKey((IEntity)pSDETBItem, (boolean)true);
+            EntityBase.setIgnoreCheck(pSDETBItem, (boolean)true);
+            EntityBase.setIgnoreCheckKey(pSDETBItem, (boolean)true);
             pSDETBItemService.create(pSDETBItem);
             hashMap.put(pSSysTBItem.getPSSysTBItemId(), pSDETBItem.getPSDETBItemId());
         }
     }
 
     protected void initPSSysPFPlugins(PSSystem pSSystem, Map<String, String> map) throws Exception {
-        Object object;
-        Object object2;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSPFPluginService.class, (SessionFactory)this.getSessionFactory());
         IService iService3 = ServiceGlobal.getService(PSPFPluginTemplService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
+        ArrayList<PSPFPlugin> arrayList = iService2.select((ISelectCond)selectCond);
         HashMap<String, PSPFPlugin> hashMap = new HashMap<String, PSPFPlugin>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSPFPluginBase)serializable2).getPSPFPluginId(), (PSPFPlugin)serializable2);
+        for (PSPFPlugin plugin : arrayList) {
+            hashMap.put(plugin.getPSPFPluginId(), plugin);
         }
         arrayList.clear();
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -1750,48 +1652,42 @@ extends PSSystemServiceBase {
             selectCond.reset();
             selectCond.set("ALLDCFLAG", (Object)1);
             selectCond.set("VALIDFLAG", (Object)1);
-            serializable2 = iService.select((ISelectCond)selectCond);
+            ArrayList<PSPFPlugin> plugins = iService.select((ISelectCond)selectCond);
             if (!StringHelper.isNullOrEmpty((String)pSSystem.getPSDevCenterId())) {
                 selectCond.reset();
                 selectCond.set("ALLDCFLAG", (Object)0);
                 selectCond.set("VALIDFLAG", (Object)1);
                 selectCond.set("PSDCID", (Object)pSSystem.getPSDevCenterId());
-                object2 = iService.select((ISelectCond)selectCond);
-                ((ArrayList)serializable2).addAll(object2);
+                plugins.addAll((ArrayList<PSPFPlugin>)iService.select((ISelectCond)selectCond));
             }
-            object2 = ((ArrayList)serializable2).iterator();
-            while (object2.hasNext()) {
-                object = (PSPFPlugin)object2.next();
-                EntityBase.setIgnoreCheck((IEntity)object, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)object, (boolean)true);
-                if (!hashMap.containsKey(((PSPFPluginBase)object).getPSPFPluginId())) {
-                    iService2.create((IEntity)object);
+            for (PSPFPlugin plugin : plugins) {
+                EntityBase.setIgnoreCheck(plugin, (boolean)true);
+                EntityBase.setIgnoreCheckKey(plugin, (boolean)true);
+                if (!hashMap.containsKey(plugin.getPSPFPluginId())) {
+                    iService2.create(plugin);
                 }
-                arrayList.add(object);
+                arrayList.add(plugin);
             }
         }
         iService = (PSSysPFPluginService)ServiceGlobal.getService(PSSysPFPluginService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSPFPLUGINID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object2 = new HashMap();
-        object = ((ArrayList)serializable2).iterator();
-        while (object.hasNext()) {
-            EntityBase entityBase = (PSSysPFPlugin)object.next();
-            ((HashMap)object2).put(entityBase.getPSSysPFPluginId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSPFPluginId())) continue;
-            ((HashMap)object2).put(entityBase.getPSPFPluginId(), entityBase);
-            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSPFPLUGIN", (Object)entityBase.getPSPFPluginId()), entityBase.getPSSysPFPluginId());
+        HashMap<String, PSSysPFPlugin> existing = new HashMap<String, PSSysPFPlugin>();
+        for (PSSysPFPlugin plugin : (ArrayList<PSSysPFPlugin>)iService.select((ISelectCond)selectCond)) {
+            existing.put(plugin.getPSSysPFPluginId(), plugin);
+            if (StringHelper.isNullOrEmpty((String)plugin.getPSPFPluginId())) continue;
+            existing.put(plugin.getPSPFPluginId(), plugin);
+            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSPFPLUGIN", (Object)plugin.getPSPFPluginId()), plugin.getPSSysPFPluginId());
         }
-        for (EntityBase entityBase : arrayList) {
-            if (((HashMap)object2).containsKey(entityBase.getPSPFPluginId())) continue;
-            String string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSPFPluginId());
-            if (!((HashMap)object2).containsKey(string2)) {
-                this.initPSSysPFPlugin(pSSystem, (PSPFPlugin)entityBase, true);
+        for (PSPFPlugin plugin : arrayList) {
+            if (existing.containsKey(plugin.getPSPFPluginId())) continue;
+            String string2 = KeyValueHelper.genUniqueId((String)string, (String)plugin.getPSPFPluginId());
+            if (!existing.containsKey(string2)) {
+                this.initPSSysPFPlugin(pSSystem, plugin, true);
             } else {
-                this.initPSSysPFPlugin(pSSystem, (PSPFPlugin)entityBase, false);
+                this.initPSSysPFPlugin(pSSystem, plugin, false);
             }
-            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSPFPLUGIN", (Object)entityBase.getPSPFPluginId()), string2);
+            map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSPFPLUGIN", (Object)plugin.getPSPFPluginId()), string2);
         }
     }
 
@@ -1804,11 +1700,11 @@ extends PSSystemServiceBase {
         pSSysPFPlugin.setPSSysPFPluginName(pSPFPlugin.getPSPFPluginName());
         pSSysPFPlugin.setPSSystemId(pSSystem.getPSSystemId());
         pSSysPFPlugin.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysPFPlugin, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysPFPlugin, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysPFPlugin, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysPFPlugin, (boolean)true);
         if (bl) {
             pSSysPFPluginService.create(pSSysPFPlugin);
-            ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysPFPluginService.getDEModel().getLogicName(), (Object)pSSysPFPluginService.getDEModel().getDataInfo((IEntity)pSSysPFPlugin)));
+            ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysPFPluginService.getDEModel().getLogicName(), (Object)pSSysPFPluginService.getDEModel().getDataInfo(pSSysPFPlugin)));
         }
         PSPFPluginTemplService pSPFPluginTemplService = (PSPFPluginTemplService)ServiceGlobal.getService(PSPFPluginTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         PSSysPFPITemplService pSSysPFPITemplService = (PSSysPFPITemplService)ServiceGlobal.getService(PSSysPFPITemplService.class, (SessionFactory)this.getSessionFactory());
@@ -1820,11 +1716,11 @@ extends PSSystemServiceBase {
             pSPFPluginTempl.copyTo((IDataObject)pSSysPFPITempl, true);
             pSSysPFPITempl.setPSSysPFPluginName(pSSysPFPlugin.getPSSysPFPluginName());
             pSSysPFPITempl.setPSSysPFPluginId(pSSysPFPlugin.getPSSysPFPluginId());
-            EntityBase.setIgnoreCheck((IEntity)pSSysPFPITempl, (boolean)true);
-            EntityBase.setIgnoreCheckKey((IEntity)pSSysPFPITempl, (boolean)true);
+            EntityBase.setIgnoreCheck(pSSysPFPITempl, (boolean)true);
+            EntityBase.setIgnoreCheckKey(pSSysPFPITempl, (boolean)true);
             if (pSSysPFPITemplService.checkKey(pSSysPFPITempl) != 0) continue;
             pSSysPFPITemplService.create(pSSysPFPITempl);
-            ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysPFPITemplService.getDEModel().getLogicName(), (Object)pSSysPFPITemplService.getDEModel().getDataInfo((IEntity)pSSysPFPITempl)));
+            ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysPFPITemplService.getDEModel().getLogicName(), (Object)pSSysPFPITemplService.getDEModel().getDataInfo(pSSysPFPITempl)));
         }
     }
 
@@ -1844,10 +1740,10 @@ extends PSSystemServiceBase {
                     pSDEOPPriv.setPSDEName(null);
                     pSDEOPPriv.setPSDEOPPrivName(string);
                     pSDEOPPriv.setLogicName(string2);
-                    EntityBase.setIgnoreCheck((IEntity)pSDEOPPriv, (boolean)true);
-                    EntityBase.setIgnoreCheckKey((IEntity)pSDEOPPriv, (boolean)true);
+                    EntityBase.setIgnoreCheck(pSDEOPPriv, (boolean)true);
+                    EntityBase.setIgnoreCheckKey(pSDEOPPriv, (boolean)true);
                     pSDEOPPrivService.create(pSDEOPPriv);
-                    ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSDEOPPrivService.getDEModel().getLogicName(), (Object)pSDEOPPrivService.getDEModel().getDataInfo((IEntity)pSDEOPPriv)));
+                    ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSDEOPPrivService.getDEModel().getLogicName(), (Object)pSDEOPPrivService.getDEModel().getDataInfo(pSDEOPPriv)));
                     continue;
                 }
                 map.put(StringHelper.format((String)"%1$s#%2$s", (Object)"PSDEOPPRIV", (Object)string), pSDEOPPriv2.getPSDEOPPrivId());
@@ -1858,49 +1754,40 @@ extends PSSystemServiceBase {
     }
 
     protected void initPSCodeListTempl(PSSystem pSSystem) throws Exception {
-        Object object;
-        Object object2;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSCodeListTemplService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSCodeListTemplBase)serializable2).getPSCodeListTemplId(), serializable2);
+        ArrayList<PSCodeListTempl> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSCodeListTempl> hashMap = new HashMap<String, PSCodeListTempl>();
+        for (PSCodeListTempl template : arrayList) {
+            hashMap.put(template.getPSCodeListTemplId(), template);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSCodeListTemplService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object2 = ((ArrayList)serializable2).iterator();
-            while (object2.hasNext()) {
-                object = (PSCodeListTempl)object2.next();
-                if (hashMap.containsKey(((PSCodeListTemplBase)object).getPSCodeListTemplId())) continue;
-                EntityBase.setIgnoreCheck((IEntity)object, (boolean)true);
-                EntityBase.setIgnoreCheckKey(object, (boolean)true);
-                iService2.create(object);
-                hashMap.put(((PSCodeListTemplBase)object).getPSCodeListTemplId(), object);
-                arrayList.add(object);
+            for (PSCodeListTempl template : (ArrayList<PSCodeListTempl>)iService.select((ISelectCond)selectCond)) {
+                if (hashMap.containsKey(template.getPSCodeListTemplId())) continue;
+                EntityBase.setIgnoreCheck(template, (boolean)true);
+                EntityBase.setIgnoreCheckKey(template, (boolean)true);
+                iService2.create(template);
+                hashMap.put(template.getPSCodeListTemplId(), template);
+                arrayList.add(template);
             }
         }
         iService = (PSCodeListService)ServiceGlobal.getService(PSCodeListService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSCODELISTTEMPLID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object2 = new HashMap();
-        object = ((ArrayList)serializable2).iterator();
-        while (object.hasNext()) {
-            EntityBase entityBase = (PSCodeList)object.next();
-            ((HashMap)object2).put(entityBase.getPSCodeListId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSCodeListTemplId())) continue;
-            ((HashMap)object2).put(entityBase.getPSCodeListTemplId(), entityBase);
+        HashMap<String, PSCodeList> existing = new HashMap<String, PSCodeList>();
+        for (PSCodeList codeList : (ArrayList<PSCodeList>)iService.select((ISelectCond)selectCond)) {
+            existing.put(codeList.getPSCodeListId(), codeList);
+            if (StringHelper.isNullOrEmpty((String)codeList.getPSCodeListTemplId())) continue;
+            existing.put(codeList.getPSCodeListTemplId(), codeList);
         }
-        for (EntityBase entityBase : arrayList) {
+        for (PSCodeListTempl template : arrayList) {
             String string2;
-            if (((HashMap)object2).containsKey(entityBase.getPSCodeListTemplId()) || ((HashMap)object2).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSCodeListTemplId()))) continue;
-            this.initPSCodeList(pSSystem, (PSCodeListTempl)entityBase);
+            if (existing.containsKey(template.getPSCodeListTemplId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)template.getPSCodeListTemplId()))) continue;
+            this.initPSCodeList(pSSystem, template);
         }
     }
 
@@ -1917,10 +1804,10 @@ extends PSSystemServiceBase {
         pSCodeList.setPSCodeListTemplId(pSCodeListTempl.getPSCodeListTemplId());
         pSCodeList.setUserScope(0);
         pSCodeList.setCodeName(pSCodeListTempl.getCodeName());
-        EntityBase.setIgnoreCheck((IEntity)pSCodeList, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSCodeList, (boolean)true);
+        EntityBase.setIgnoreCheck(pSCodeList, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSCodeList, (boolean)true);
         pSCodeListService.create(pSCodeList);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSCodeListService.getDEModel().getLogicName(), (Object)pSCodeListService.getDEModel().getDataInfo((IEntity)pSCodeList)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSCodeListService.getDEModel().getLogicName(), (Object)pSCodeListService.getDEModel().getDataInfo(pSCodeList)));
         if (StringHelper.isNullOrEmpty((String)pSCodeListTempl.getCLModel())) {
             return;
         }
@@ -1942,9 +1829,9 @@ extends PSSystemServiceBase {
         if (pSCodeItem != null) {
             pSCodeItem2.setPPSCodeItemId(pSCodeItem.getPSCodeItemId());
         }
-        EntityBase.setIgnoreCheck((IEntity)pSCodeItem2, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSCodeItem2, (boolean)true);
-        iService.create((IEntity)pSCodeItem2);
+        EntityBase.setIgnoreCheck(pSCodeItem2, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSCodeItem2, (boolean)true);
+        iService.create(pSCodeItem2);
         if (codeItemConfig.getCodeItems() == null || codeItemConfig.getCodeItems().size() == 0) {
             return;
         }
@@ -1955,49 +1842,40 @@ extends PSSystemServiceBase {
     }
 
     protected void initPSSysPDTViews(PSSystem pSSystem) throws Exception {
-        Iterator iterator;
-        Object object;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSPDTViewService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSPDTViewBase)serializable2).getPSPDTViewId(), serializable2);
+        ArrayList<PSPDTView> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSPDTView> hashMap = new HashMap<String, PSPDTView>();
+        for (PSPDTView view : arrayList) {
+            hashMap.put(view.getPSPDTViewId(), view);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSPDTViewService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable2).iterator();
-            while (object.hasNext()) {
-                iterator = (PSPDTView)object.next();
-                EntityBase.setIgnoreCheck((IEntity)iterator, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)iterator, (boolean)true);
-                if (hashMap.containsKey(((PSPDTViewBase)((Object)iterator)).getPSPDTViewId())) continue;
-                iService2.create(iterator);
-                hashMap.put(((PSPDTViewBase)((Object)iterator)).getPSPDTViewId(), iterator);
-                arrayList.add(iterator);
+            for (PSPDTView view : (ArrayList<PSPDTView>)iService.select((ISelectCond)selectCond)) {
+                EntityBase.setIgnoreCheck(view, (boolean)true);
+                EntityBase.setIgnoreCheckKey(view, (boolean)true);
+                if (hashMap.containsKey(view.getPSPDTViewId())) continue;
+                iService2.create(view);
+                hashMap.put(view.getPSPDTViewId(), view);
+                arrayList.add(view);
             }
         }
         iService = (PSSysPDTViewService)ServiceGlobal.getService(PSSysPDTViewService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSPDTVIEWID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
-            EntityBase entityBase = (PSSysPDTView)iterator.next();
-            ((HashMap)object).put(entityBase.getPSSysPDTViewId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSPDTViewId())) continue;
-            ((HashMap)object).put(entityBase.getPSPDTViewId(), entityBase);
+        HashMap<String, PSSysPDTView> existing = new HashMap<String, PSSysPDTView>();
+        for (PSSysPDTView view : (ArrayList<PSSysPDTView>)iService.select((ISelectCond)selectCond)) {
+            existing.put(view.getPSSysPDTViewId(), view);
+            if (StringHelper.isNullOrEmpty((String)view.getPSPDTViewId())) continue;
+            existing.put(view.getPSPDTViewId(), view);
         }
-        for (EntityBase entityBase : arrayList) {
+        for (PSPDTView view : arrayList) {
             String string2;
-            if (((HashMap)object).containsKey(entityBase.getPSPDTViewId()) || ((HashMap)object).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSPDTViewId()))) continue;
-            this.initPSSysPDTView(pSSystem, (PSPDTView)entityBase);
+            if (existing.containsKey(view.getPSPDTViewId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)view.getPSPDTViewId()))) continue;
+            this.initPSSysPDTView(pSSystem, view);
         }
     }
 
@@ -2010,54 +1888,45 @@ extends PSSystemServiceBase {
         pSSysPDTView.setPSSysPDTViewName(pSPDTView.getPSPDTViewName());
         pSSysPDTView.setPSSystemId(pSSystem.getPSSystemId());
         pSSysPDTView.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysPDTView, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysPDTView, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysPDTView, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysPDTView, (boolean)true);
         pSSysPDTViewService.create(pSSysPDTView);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysPDTViewService.getDEModel().getLogicName(), (Object)pSSysPDTViewService.getDEModel().getDataInfo((IEntity)pSSysPDTView)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysPDTViewService.getDEModel().getLogicName(), (Object)pSSysPDTViewService.getDEModel().getDataInfo(pSSysPDTView)));
     }
 
     protected void initPSSysViewLogics(PSSystem pSSystem) throws Exception {
-        Object object;
-        Object object2;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSViewLogicTypeService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSViewLogicTypeBase)serializable2).getPSViewLogicTypeId(), serializable2);
+        ArrayList<PSViewLogicType> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSViewLogicType> hashMap = new HashMap<String, PSViewLogicType>();
+        for (PSViewLogicType viewLogic : arrayList) {
+            hashMap.put(viewLogic.getPSViewLogicTypeId(), viewLogic);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSViewLogicTypeService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object2 = ((ArrayList)serializable2).iterator();
-            while (object2.hasNext()) {
-                object = (PSViewLogicType)object2.next();
-                if (StringHelper.compare((String)((PSViewLogicTypeBase)object).getPSViewLogicTypeId(), (String)"VIEW_DELOGIC", (boolean)true) == 0) continue;
-                EntityBase.setIgnoreCheck(object, (boolean)true);
-                EntityBase.setIgnoreCheckKey(object, (boolean)true);
-                if (hashMap.containsKey(((PSViewLogicTypeBase)object).getPSViewLogicTypeId())) continue;
-                iService2.create(object);
-                hashMap.put(((PSViewLogicTypeBase)object).getPSViewLogicTypeId(), object);
-                arrayList.add(object);
+            for (PSViewLogicType viewLogic : (ArrayList<PSViewLogicType>)iService.select((ISelectCond)selectCond)) {
+                if (StringHelper.compare((String)viewLogic.getPSViewLogicTypeId(), (String)"VIEW_DELOGIC", (boolean)true) == 0) continue;
+                EntityBase.setIgnoreCheck(viewLogic, (boolean)true);
+                EntityBase.setIgnoreCheckKey(viewLogic, (boolean)true);
+                if (hashMap.containsKey(viewLogic.getPSViewLogicTypeId())) continue;
+                iService2.create(viewLogic);
+                hashMap.put(viewLogic.getPSViewLogicTypeId(), viewLogic);
+                arrayList.add(viewLogic);
             }
         }
         iService = (PSSysViewLogicService)ServiceGlobal.getService(PSSysViewLogicService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object2 = new HashMap();
-        object = ((ArrayList)serializable2).iterator();
-        while (object.hasNext()) {
-            EntityBase entityBase = (PSSysViewLogic)object.next();
-            ((HashMap)object2).put(entityBase.getPSSysViewLogicId(), entityBase);
+        HashMap<String, PSSysViewLogic> existing = new HashMap<String, PSSysViewLogic>();
+        for (PSSysViewLogic viewLogic : (ArrayList<PSSysViewLogic>)iService.select((ISelectCond)selectCond)) {
+            existing.put(viewLogic.getPSSysViewLogicId(), viewLogic);
         }
-        for (EntityBase entityBase : arrayList) {
-            String string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSViewLogicTypeId());
-            if (((HashMap)object2).containsKey(string2)) continue;
-            this.initPSSysViewLogic(pSSystem, (PSViewLogicType)entityBase);
+        for (PSViewLogicType viewLogic : arrayList) {
+            String string2 = KeyValueHelper.genUniqueId((String)string, (String)viewLogic.getPSViewLogicTypeId());
+            if (existing.containsKey(string2)) continue;
+            this.initPSSysViewLogic(pSSystem, viewLogic);
         }
     }
 
@@ -2070,56 +1939,47 @@ extends PSSystemServiceBase {
         pSSysViewLogic.setPSSysViewLogicName(pSViewLogicType.getPSViewLogicTypeName());
         pSSysViewLogic.setPSSystemId(pSSystem.getPSSystemId());
         pSSysViewLogic.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysViewLogic, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysViewLogic, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysViewLogic, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysViewLogic, (boolean)true);
         pSSysViewLogicService.create(pSSysViewLogic);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysViewLogicService.getDEModel().getLogicName(), (Object)pSSysViewLogicService.getDEModel().getDataInfo((IEntity)pSSysViewLogic)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysViewLogicService.getDEModel().getLogicName(), (Object)pSSysViewLogicService.getDEModel().getDataInfo(pSSysViewLogic)));
     }
 
     protected void initPSSysEditorStyles(PSSystem pSSystem) throws Exception {
-        Iterator iterator;
-        Object object;
         IService iService;
-        Serializable serializable2;
         String string = pSSystem.getPSSystemId();
         IService iService2 = ServiceGlobal.getService(PSEditorStyleService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService2.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        for (Serializable serializable2 : arrayList) {
-            hashMap.put(((PSEditorStyleBase)serializable2).getPSEditorStyleId(), serializable2);
+        ArrayList<PSEditorStyle> arrayList = iService2.select((ISelectCond)selectCond);
+        HashMap<String, PSEditorStyle> hashMap = new HashMap<String, PSEditorStyle>();
+        for (PSEditorStyle style : arrayList) {
+            hashMap.put(style.getPSEditorStyleId(), style);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             iService = ServiceGlobal.getService(PSEditorStyleService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable2 = iService.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable2).iterator();
-            while (object.hasNext()) {
-                iterator = (PSEditorStyle)object.next();
-                EntityBase.setIgnoreCheck((IEntity)iterator, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)iterator, (boolean)true);
-                if (hashMap.containsKey(((PSEditorStyleBase)((Object)iterator)).getPSEditorStyleId())) continue;
-                iService2.create(iterator);
-                hashMap.put(((PSEditorStyleBase)((Object)iterator)).getPSEditorStyleId(), iterator);
-                arrayList.add(iterator);
+            for (PSEditorStyle style : (ArrayList<PSEditorStyle>)iService.select((ISelectCond)selectCond)) {
+                EntityBase.setIgnoreCheck(style, (boolean)true);
+                EntityBase.setIgnoreCheckKey(style, (boolean)true);
+                if (hashMap.containsKey(style.getPSEditorStyleId())) continue;
+                iService2.create(style);
+                hashMap.put(style.getPSEditorStyleId(), style);
+                arrayList.add(style);
             }
         }
         iService = (PSSysEditorStyleService)ServiceGlobal.getService(PSSysEditorStyleService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSEDITORSTYLEID");
-        serializable2 = iService.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
-            EntityBase entityBase = (PSSysEditorStyle)iterator.next();
-            ((HashMap)object).put(entityBase.getPSSysEditorStyleId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSEditorStyleId())) continue;
-            ((HashMap)object).put(entityBase.getPSEditorStyleId(), entityBase);
+        HashMap<String, PSSysEditorStyle> existing = new HashMap<String, PSSysEditorStyle>();
+        for (PSSysEditorStyle style : (ArrayList<PSSysEditorStyle>)iService.select((ISelectCond)selectCond)) {
+            existing.put(style.getPSSysEditorStyleId(), style);
+            if (StringHelper.isNullOrEmpty((String)style.getPSEditorStyleId())) continue;
+            existing.put(style.getPSEditorStyleId(), style);
         }
-        for (EntityBase entityBase : arrayList) {
+        for (PSEditorStyle style : arrayList) {
             String string2;
-            if (((HashMap)object).containsKey(entityBase.getPSEditorStyleId()) || ((HashMap)object).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSEditorStyleId()))) continue;
-            this.initPSSysEditorStyle(pSSystem, (PSEditorStyle)entityBase);
+            if (existing.containsKey(style.getPSEditorStyleId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)style.getPSEditorStyleId()))) continue;
+            this.initPSSysEditorStyle(pSSystem, style);
         }
     }
 
@@ -2132,10 +1992,10 @@ extends PSSystemServiceBase {
         pSSysEditorStyle.setPSSysEditorStyleName(pSEditorStyle.getPSEditorStyleName());
         pSSysEditorStyle.setPSSystemId(pSSystem.getPSSystemId());
         pSSysEditorStyle.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysEditorStyle, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysEditorStyle, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysEditorStyle, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysEditorStyle, (boolean)true);
         pSSysEditorStyleService.create(pSSysEditorStyle, false);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysEditorStyleService.getDEModel().getLogicName(), (Object)pSSysEditorStyleService.getDEModel().getDataInfo((IEntity)pSSysEditorStyle)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysEditorStyleService.getDEModel().getLogicName(), (Object)pSSysEditorStyleService.getDEModel().getDataInfo(pSSysEditorStyle)));
     }
 
     protected void initPSPDTAppFunc() throws Exception {
@@ -2144,28 +2004,27 @@ extends PSSystemServiceBase {
         }
         IService iService = ServiceGlobal.getService(PSPDTAppFuncService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService.select((ISelectCond)selectCond);
+        ArrayList<PSPDTAppFunc> arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSPDTAppFunc> hashMap = new HashMap<String, PSPDTAppFunc>();
-        for (Serializable serializable : arrayList) {
-            hashMap.put(((PSPDTAppFuncBase)serializable).getPSPDTAppFuncId(), (PSPDTAppFunc)serializable);
+        for (PSPDTAppFunc pSPDTAppFunc : arrayList) {
+            hashMap.put(pSPDTAppFunc.getPSPDTAppFuncId(), pSPDTAppFunc);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            Serializable serializable;
             IService iService2 = ServiceGlobal.getService(PSPDTAppFuncService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable = iService2.select((ISelectCond)selectCond);
-            Iterator iterator = ((ArrayList)serializable).iterator();
+            ArrayList<PSPDTAppFunc> majorFuncs = iService2.select((ISelectCond)selectCond);
+            Iterator<PSPDTAppFunc> iterator = majorFuncs.iterator();
             while (iterator.hasNext()) {
-                PSPDTAppFunc pSPDTAppFunc = (PSPDTAppFunc)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSPDTAppFunc, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSPDTAppFunc, (boolean)true);
+                PSPDTAppFunc pSPDTAppFunc = iterator.next();
+                EntityBase.setIgnoreCheck(pSPDTAppFunc, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSPDTAppFunc, (boolean)true);
                 if (!hashMap.containsKey(pSPDTAppFunc.getPSPDTAppFuncId())) {
-                    iService.create((IEntity)pSPDTAppFunc);
+                    iService.create(pSPDTAppFunc);
                     hashMap.put(pSPDTAppFunc.getPSPDTAppFuncId(), pSPDTAppFunc);
                     arrayList.add(pSPDTAppFunc);
                     continue;
                 }
-                iService.update((IEntity)pSPDTAppFunc);
+                iService.update(pSPDTAppFunc);
                 hashMap.put(pSPDTAppFunc.getPSPDTAppFuncId(), pSPDTAppFunc);
                 arrayList.add(pSPDTAppFunc);
             }
@@ -2173,57 +2032,44 @@ extends PSSystemServiceBase {
     }
 
     protected void initPSSysSampleValues(PSSystem pSSystem) throws Exception {
-        EntityBase entityBase;
-        Iterator iterator;
-        Object object;
-        Serializable serializable;
         String string = pSSystem.getPSSystemId();
         IService iService = ServiceGlobal.getService(PSSampleValueService.class, (SessionFactory)this.getSessionFactory());
         SelectCond selectCond = new SelectCond();
-        Serializable serializable2 = iService.select((ISelectCond)selectCond);
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        IService iService2 = ((ArrayList)serializable2).iterator();
-        while (iService2.hasNext()) {
-            serializable = (PSSampleValue)iService2.next();
-            hashMap.put(((PSSampleValueBase)serializable).getPSSampleValueId(), serializable);
+        ArrayList<PSSampleValue> values = iService.select((ISelectCond)selectCond);
+        HashMap<String, PSSampleValue> hashMap = new HashMap<String, PSSampleValue>();
+        for (PSSampleValue value : values) {
+            hashMap.put(value.getPSSampleValueId(), value);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
-            iService2 = ServiceGlobal.getService(PSSampleValueService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
+            IService iService2 = ServiceGlobal.getService(PSSampleValueService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             selectCond.reset();
-            serializable = iService2.select((ISelectCond)selectCond);
-            object = ((ArrayList)serializable).iterator();
-            while (object.hasNext()) {
-                iterator = (PSSampleValue)object.next();
-                EntityBase.setIgnoreCheck((IEntity)iterator, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)iterator, (boolean)true);
-                if (!hashMap.containsKey(((PSSampleValueBase)((Object)iterator)).getPSSampleValueId())) {
-                    iService.create(iterator);
-                    hashMap.put(((PSSampleValueBase)((Object)iterator)).getPSSampleValueId(), iterator);
-                    ((ArrayList)serializable2).add(iterator);
+            ArrayList<PSSampleValue> majorValues = iService2.select((ISelectCond)selectCond);
+            for (PSSampleValue value : majorValues) {
+                EntityBase.setIgnoreCheck(value, (boolean)true);
+                EntityBase.setIgnoreCheckKey(value, (boolean)true);
+                if (!hashMap.containsKey(value.getPSSampleValueId())) {
+                    iService.create(value);
+                    hashMap.put(value.getPSSampleValueId(), value);
+                    values.add(value);
                     continue;
                 }
-                hashMap.put(((PSSampleValueBase)((Object)iterator)).getPSSampleValueId(), iterator);
+                hashMap.put(value.getPSSampleValueId(), value);
             }
-            serializable2 = serializable;
+            values = majorValues;
         }
-        iService2 = (PSSysSampleValueService)ServiceGlobal.getService(PSSysSampleValueService.class, (SessionFactory)this.getSessionFactory());
+        IService iService2 = ServiceGlobal.getService(PSSysSampleValueService.class, (SessionFactory)this.getSessionFactory());
         selectCond.reset();
         selectCond.setIsNotNull("PSSAMPLEVALUEID");
-        serializable = iService2.select((ISelectCond)selectCond);
-        object = new HashMap();
-        iterator = ((ArrayList)serializable).iterator();
-        while (iterator.hasNext()) {
-            entityBase = (PSSysSampleValue)iterator.next();
-            ((HashMap)object).put(entityBase.getPSSysSampleValueId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSSampleValueId())) continue;
-            ((HashMap)object).put(entityBase.getPSSampleValueId(), entityBase);
+        HashMap<String, PSSysSampleValue> existing = new HashMap<String, PSSysSampleValue>();
+        for (PSSysSampleValue sysValue : (ArrayList<PSSysSampleValue>)iService2.select((ISelectCond)selectCond)) {
+            existing.put(sysValue.getPSSysSampleValueId(), sysValue);
+            if (StringHelper.isNullOrEmpty((String)sysValue.getPSSampleValueId())) continue;
+            existing.put(sysValue.getPSSampleValueId(), sysValue);
         }
-        iterator = ((ArrayList)serializable2).iterator();
-        while (iterator.hasNext()) {
+        for (PSSampleValue value : values) {
             String string2;
-            entityBase = (PSSampleValue)iterator.next();
-            if (((HashMap)object).containsKey(entityBase.getPSSampleValueId()) || ((HashMap)object).containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSSampleValueId()))) continue;
-            this.initPSSysSampleValue(pSSystem, (PSSampleValue)entityBase);
+            if (existing.containsKey(value.getPSSampleValueId()) || existing.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)value.getPSSampleValueId()))) continue;
+            this.initPSSysSampleValue(pSSystem, value);
         }
     }
 
@@ -2236,10 +2082,10 @@ extends PSSystemServiceBase {
         pSSysSampleValue.setPSSysSampleValueName(pSSampleValue.getPSSampleValueName());
         pSSysSampleValue.setPSSystemId(pSSystem.getPSSystemId());
         pSSysSampleValue.setPSSystemName(pSSystem.getPSSystemName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysSampleValue, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysSampleValue, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysSampleValue, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysSampleValue, (boolean)true);
         pSSysSampleValueService.create(pSSysSampleValue);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysSampleValueService.getDEModel().getLogicName(), (Object)pSSysSampleValueService.getDEModel().getDataInfo((IEntity)pSSysSampleValue)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysSampleValueService.getDEModel().getLogicName(), (Object)pSSysSampleValueService.getDEModel().getDataInfo(pSSysSampleValue)));
     }
 
     protected void initPSCounterType() throws Exception {
@@ -2250,7 +2096,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSCounterType> hashMap = new HashMap<String, PSCounterType>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSCounterTypeBase)serializable).getPSCounterTypeId(), (PSCounterType)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -2261,12 +2107,12 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSCounterType pSCounterType = (PSCounterType)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSCounterType, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSCounterType, (boolean)true);
+                EntityBase.setIgnoreCheck(pSCounterType, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSCounterType, (boolean)true);
                 if (!hashMap.containsKey(pSCounterType.getPSCounterTypeId())) {
-                    iService.create((IEntity)pSCounterType, false);
+                    iService.create(pSCounterType, false);
                 } else {
-                    iService.update((IEntity)pSCounterType, false);
+                    iService.update(pSCounterType, false);
                 }
                 hashMap.put(pSCounterType.getPSCounterTypeId(), pSCounterType);
                 arrayList.add(pSCounterType);
@@ -2282,7 +2128,7 @@ extends PSSystemServiceBase {
         SelectCond selectCond = new SelectCond();
         ArrayList arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, PSLanguage> hashMap = new HashMap<String, PSLanguage>();
-        for (Serializable serializable : arrayList) {
+        for (Object serializable : arrayList) {
             hashMap.put(((PSLanguageBase)serializable).getPSLanguageId(), (PSLanguage)serializable);
         }
         if (this.getSessionFactory() != PSCoreSysServiceBase.getCurMajorSessionFactory()) {
@@ -2293,12 +2139,12 @@ extends PSSystemServiceBase {
             Iterator iterator = ((ArrayList)serializable).iterator();
             while (iterator.hasNext()) {
                 PSLanguage pSLanguage = (PSLanguage)iterator.next();
-                EntityBase.setIgnoreCheck((IEntity)pSLanguage, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)pSLanguage, (boolean)true);
+                EntityBase.setIgnoreCheck(pSLanguage, (boolean)true);
+                EntityBase.setIgnoreCheckKey(pSLanguage, (boolean)true);
                 if (!hashMap.containsKey(pSLanguage.getPSLanguageId())) {
-                    iService.create((IEntity)pSLanguage, false);
+                    iService.create(pSLanguage, false);
                 } else {
-                    iService.update((IEntity)pSLanguage, false);
+                    iService.update(pSLanguage, false);
                 }
                 hashMap.put(pSLanguage.getPSLanguageId(), pSLanguage);
                 arrayList.add(pSLanguage);
@@ -2307,65 +2153,58 @@ extends PSSystemServiceBase {
     }
 
     protected void initPSLanguageRes(PSSystem pSSystem, Map<String, String> map) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        Serializable serializable2;
         if (this.getSessionFactory() == PSCoreSysServiceBase.getCurMajorSessionFactory()) {
             return;
         }
         IService iService = ServiceGlobal.getService(PSSysLanResService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
         SelectCond selectCond = new SelectCond();
-        ArrayList arrayList = iService.select((ISelectCond)selectCond);
+        ArrayList<PSSysLanResBase> arrayList = iService.select((ISelectCond)selectCond);
         HashMap<String, String> hashMap = new HashMap<String, String>();
         PSLanguageResService pSLanguageResService = (PSLanguageResService)ServiceGlobal.getService(PSLanguageResService.class, (SessionFactory)this.getSessionFactory());
-        for (Serializable serializable2 : arrayList) {
-            object2 = StringHelper.format((String)"PSSYSLANRES#%1$s", (Object)((PSSysLanResBase)serializable2).getPSSysLanResId());
-            object = KeyValueHelper.genUniqueId((String)pSSystem.getPSSystemId(), (String)((PSSysLanResBase)serializable2).getPSSysLanResId());
-            map.put((String)object2, (String)object);
-            entityBase = new PSLanguageRes();
+        for (PSSysLanResBase resource : arrayList) {
+            String resourceKey = StringHelper.format((String)"PSSYSLANRES#%1$s", (Object)resource.getPSSysLanResId());
+            String resourceId = KeyValueHelper.genUniqueId((String)pSSystem.getPSSystemId(), (String)resource.getPSSysLanResId());
+            map.put(resourceKey, resourceId);
+            PSLanguageRes entityBase = new PSLanguageRes();
             entityBase.setPSSystemId(pSSystem.getPSSystemId());
-            entityBase.setLanResType(((PSSysLanResBase)serializable2).getLanResType());
-            entityBase.setUserData(((PSSysLanResBase)serializable2).getUserData());
+            entityBase.setLanResType(resource.getLanResType());
+            entityBase.setUserData(resource.getUserData());
             if (!pSLanguageResService.select(entityBase, true)) {
-                entityBase.setPSLanguageResId((String)object);
-                EntityBase.setIgnoreCheck((IEntity)entityBase, (boolean)true);
-                EntityBase.setIgnoreCheckKey((IEntity)entityBase, (boolean)true);
+                entityBase.setPSLanguageResId(resourceId);
+                EntityBase.setIgnoreCheck(entityBase, (boolean)true);
+                EntityBase.setIgnoreCheckKey(entityBase, (boolean)true);
                 if (pSLanguageResService.checkKey(entityBase) != 0) continue;
-                entityBase.setPSLanguageResName(((PSSysLanResBase)serializable2).getPSSysLanResName());
+                entityBase.setPSLanguageResName(resource.getPSSysLanResName());
                 entityBase.setPSSystemId(pSSystem.getPSSystemId());
                 entityBase.setPSSystemName(pSSystem.getPSSystemName());
-                entityBase.setLanResType(((PSSysLanResBase)serializable2).getLanResType());
-                entityBase.setUserData(((PSSysLanResBase)serializable2).getUserData());
-                entityBase.setContent(((PSSysLanResBase)serializable2).getContent());
+                entityBase.setLanResType(resource.getLanResType());
+                entityBase.setUserData(resource.getUserData());
+                entityBase.setContent(resource.getContent());
                 pSLanguageResService.create(entityBase, false);
                 continue;
             }
-            if (StringHelper.compare((String)object, (String)entityBase.getPSLanguageResId(), (boolean)true) == 0) continue;
-            hashMap.put(((PSSysLanResBase)serializable2).getPSSysLanResId(), "");
-            map.put((String)object2, entityBase.getPSLanguageResId());
+            if (StringHelper.compare((String)resourceId, (String)entityBase.getPSLanguageResId(), (boolean)true) == 0) continue;
+            hashMap.put(resource.getPSSysLanResId(), "");
+            map.put(resourceKey, entityBase.getPSLanguageResId());
         }
         IService iService2 = ServiceGlobal.getService(PSSysLanItemService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
-        serializable2 = iService2.select((ISelectCond)selectCond);
-        object2 = (PSLanguageItemService)ServiceGlobal.getService(PSLanguageItemService.class, (SessionFactory)this.getSessionFactory());
-        object = ((ArrayList)serializable2).iterator();
-        while (object.hasNext()) {
-            entityBase = (PSSysLanItem)object.next();
-            if (hashMap.containsKey(entityBase.getPSSysLanResId())) continue;
+        PSLanguageItemService itemService = (PSLanguageItemService)ServiceGlobal.getService(PSLanguageItemService.class, (SessionFactory)this.getSessionFactory());
+        for (PSSysLanItem item : (ArrayList<PSSysLanItem>)iService2.select((ISelectCond)selectCond)) {
+            if (hashMap.containsKey(item.getPSSysLanResId())) continue;
             PSLanguageItem pSLanguageItem = new PSLanguageItem();
-            pSLanguageItem.setPSLanguageItemId(KeyValueHelper.genUniqueId((String)pSSystem.getPSSystemId(), (String)entityBase.getPSSysLanItemId()));
-            if (((PSCoreSysServiceBase)object2).checkKey(pSLanguageItem) != 0) continue;
-            pSLanguageItem.setPSLanguageItemName(entityBase.getPSSysLanItemId());
+            pSLanguageItem.setPSLanguageItemId(KeyValueHelper.genUniqueId((String)pSSystem.getPSSystemId(), (String)item.getPSSysLanItemId()));
+            if (itemService.checkKey(pSLanguageItem) != 0) continue;
+            pSLanguageItem.setPSLanguageItemName(item.getPSSysLanItemId());
             pSLanguageItem.setPSSystemId(pSSystem.getPSSystemId());
             pSLanguageItem.setPSSystemName(pSSystem.getPSSystemName());
-            pSLanguageItem.setPSLanguageId(entityBase.getPSLanguageId());
-            pSLanguageItem.setPSLanguageName(entityBase.getPSLanguageName());
-            pSLanguageItem.setPSLanguageResId(KeyValueHelper.genUniqueId((String)pSSystem.getPSSystemId(), (String)entityBase.getPSSysLanResId()));
-            pSLanguageItem.setPSLanguageResName(entityBase.getPSSysLanResName());
-            pSLanguageItem.setContent(entityBase.getContent());
-            EntityBase.setIgnoreCheck((IEntity)pSLanguageItem, (boolean)true);
-            EntityBase.setIgnoreCheckKey((IEntity)pSLanguageItem, (boolean)true);
-            ((PSCoreSysServiceBase)object2).create(pSLanguageItem, false);
+            pSLanguageItem.setPSLanguageId(item.getPSLanguageId());
+            pSLanguageItem.setPSLanguageName(item.getPSLanguageName());
+            pSLanguageItem.setPSLanguageResId(KeyValueHelper.genUniqueId((String)pSSystem.getPSSystemId(), (String)item.getPSSysLanResId()));
+            pSLanguageItem.setPSLanguageResName(item.getPSSysLanResName());
+            pSLanguageItem.setContent(item.getContent());
+            EntityBase.setIgnoreCheck(pSLanguageItem, (boolean)true);
+            EntityBase.setIgnoreCheckKey(pSLanguageItem, (boolean)true);
+            itemService.create(pSLanguageItem, false);
         }
     }
 
@@ -2415,8 +2254,8 @@ extends PSSystemServiceBase {
     }
 
     protected void getPSSystemDECnt(PSSystem pSSystem) throws Exception {
-        this.get((IEntity)pSSystem);
-        if (DataObject.getIntegerValue((Object)pSSystem.getEntityCnt(), (Integer)-1) < 0) {
+        this.get(pSSystem);
+        if (DataObject.getIntegerValue((Object)pSSystem.getEntityCnt(), -1) < 0) {
             PSDataEntityService pSDataEntityService = (PSDataEntityService)ServiceGlobal.getService(PSDataEntityService.class, (SessionFactory)this.getSessionFactory());
             ArrayList<PSDataEntity> arrayList = pSDataEntityService.selectByPSSystem(pSSystem);
             int n = 0;
@@ -2429,12 +2268,12 @@ extends PSSystemServiceBase {
     }
 
     public PSDCSysLic getPSSystemLic(PSSystem pSSystem) throws Exception {
-        this.get((IEntity)pSSystem);
+        this.get(pSSystem);
         if (!StringHelper.isNullOrEmpty((String)pSSystem.getPSDevSlnSysId())) {
             PSDevSlnSysService pSDevSlnSysService = (PSDevSlnSysService)ServiceGlobal.getService(PSDevSlnSysService.class, (SessionFactory)PSCoreSysServiceBase.getCurMajorSessionFactory());
             PSDevSlnSys pSDevSlnSys = new PSDevSlnSys();
             pSDevSlnSys.setPSDevSlnSysId(pSSystem.getPSDevSlnSysId());
-            pSDevSlnSysService.get((IEntity)pSDevSlnSys);
+            pSDevSlnSysService.get(pSDevSlnSys);
             return pSDevSlnSys.getPSDCSysLic();
         }
         return null;
@@ -2475,8 +2314,6 @@ extends PSSystemServiceBase {
     }
 
     protected void initPSDBValueFunc(PSSystem pSSystem) throws Exception {
-        EntityBase entityBase;
-        Serializable serializable;
         if (PSCoreSysServiceBase.isMajorSessionFactory(this.getSessionFactory())) {
             return;
         }
@@ -2486,48 +2323,41 @@ extends PSSystemServiceBase {
         SelectGroupFilter selectGroupFilter = new SelectGroupFilter();
         selectGroupFilter.setCondOp("AND");
         selectContext.setSelectFilter((ISelectFilter)selectGroupFilter);
-        Object object = new SelectFieldFilter();
-        object.setDEFName("VALIDFLAG");
-        object.setCondOp("EQ");
-        object.setCondObjectValue((Object)1);
-        selectGroupFilter.getSelectFilterList(true).add(object);
-        object = new SelectGroupFilter();
-        object.setCondOp("OR");
-        Object object2 = new SelectFieldFilter();
-        object2.setDEFName("ALLDCFLAG");
-        object2.setCondOp("EQ");
-        object2.setCondObjectValue((Object)1);
-        object.getSelectFilterList(true).add(object2);
-        object2 = new SelectFieldFilter();
-        object2.setDEFName("PSDEVCENTERID");
-        object2.setCondOp("EQ");
-        object2.setCondObjectValue((Object)pSSystem.getPSDevCenterId());
-        object.getSelectFilterList(true).add(object2);
-        selectGroupFilter.getSelectFilterList(true).add(object);
-        object = iService.select((ISelectCond)selectContext);
-        object2 = new HashMap();
-        Object object3 = ((ArrayList)object).iterator();
-        while (object3.hasNext()) {
-            serializable = (PSDBValueFunc)object3.next();
-            ((HashMap)object2).put(((PSDBValueFuncBase)serializable).getPSDBValueFuncId(), serializable);
+        SelectFieldFilter validFilter = new SelectFieldFilter();
+        validFilter.setDEFName("VALIDFLAG");
+        validFilter.setCondOp("EQ");
+        validFilter.setCondObjectValue((Object)1);
+        selectGroupFilter.getSelectFilterList(true).add(validFilter);
+        SelectGroupFilter scopeFilter = new SelectGroupFilter();
+        scopeFilter.setCondOp("OR");
+        SelectFieldFilter allDCFilter = new SelectFieldFilter();
+        allDCFilter.setDEFName("ALLDCFLAG");
+        allDCFilter.setCondOp("EQ");
+        allDCFilter.setCondObjectValue((Object)1);
+        scopeFilter.getSelectFilterList(true).add(allDCFilter);
+        SelectFieldFilter devCenterFilter = new SelectFieldFilter();
+        devCenterFilter.setDEFName("PSDEVCENTERID");
+        devCenterFilter.setCondOp("EQ");
+        devCenterFilter.setCondObjectValue((Object)pSSystem.getPSDevCenterId());
+        scopeFilter.getSelectFilterList(true).add(devCenterFilter);
+        selectGroupFilter.getSelectFilterList(true).add(scopeFilter);
+        ArrayList<PSDBValueFunc> functions = iService.select((ISelectCond)selectContext);
+        HashMap<String, PSDBValueFunc> functionsById = new HashMap<String, PSDBValueFunc>();
+        for (PSDBValueFunc function : functions) {
+            functionsById.put(function.getPSDBValueFuncId(), function);
         }
-        object3 = (PSSysDBVFService)ServiceGlobal.getService(PSSysDBVFService.class, (SessionFactory)this.getSessionFactory());
+        PSSysDBVFService sysDBVFService = (PSSysDBVFService)ServiceGlobal.getService(PSSysDBVFService.class, (SessionFactory)this.getSessionFactory());
         selectContext.reset();
-        serializable = object3.select((ISelectCond)selectContext);
-        HashMap<String, EntityBase> hashMap = new HashMap<String, EntityBase>();
-        Iterator iterator = ((ArrayList)serializable).iterator();
-        while (iterator.hasNext()) {
-            entityBase = (PSSysDBVF)iterator.next();
-            hashMap.put(entityBase.getPSSysDBVFId(), entityBase);
-            if (StringHelper.isNullOrEmpty((String)entityBase.getPSDBVFId())) continue;
-            hashMap.put(entityBase.getPSDBVFId(), entityBase);
+        HashMap<String, PSSysDBVF> hashMap = new HashMap<String, PSSysDBVF>();
+        for (PSSysDBVF sysFunction : (ArrayList<PSSysDBVF>)sysDBVFService.select((ISelectCond)selectContext)) {
+            hashMap.put(sysFunction.getPSSysDBVFId(), sysFunction);
+            if (StringHelper.isNullOrEmpty((String)sysFunction.getPSDBVFId())) continue;
+            hashMap.put(sysFunction.getPSDBVFId(), sysFunction);
         }
-        iterator = ((ArrayList)object).iterator();
-        while (iterator.hasNext()) {
+        for (PSDBValueFunc function : functions) {
             String string2;
-            entityBase = (PSDBValueFunc)iterator.next();
-            if (hashMap.containsKey(entityBase.getPSDBValueFuncId()) || hashMap.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)entityBase.getPSDBValueFuncId()))) continue;
-            this.initPSSysDBVF(pSSystem, (PSDBValueFunc)entityBase);
+            if (hashMap.containsKey(function.getPSDBValueFuncId()) || hashMap.containsKey(string2 = KeyValueHelper.genUniqueId((String)string, (String)function.getPSDBValueFuncId()))) continue;
+            this.initPSSysDBVF(pSSystem, function);
         }
     }
 
@@ -2550,10 +2380,10 @@ extends PSSystemServiceBase {
         pSSysDBVF.setOutputStdDataType(pSDBValueFunc.getOutputStdDataType());
         pSSysDBVF.setCodeName(pSDBValueFunc.getCodeName());
         pSSysDBVF.setUXCodeName(pSDBValueFunc.getUXCodeName());
-        EntityBase.setIgnoreCheck((IEntity)pSSysDBVF, (boolean)true);
-        EntityBase.setIgnoreCheckKey((IEntity)pSSysDBVF, (boolean)true);
+        EntityBase.setIgnoreCheck(pSSysDBVF, (boolean)true);
+        EntityBase.setIgnoreCheckKey(pSSysDBVF, (boolean)true);
         pSSysDBVFService.create(pSSysDBVF, false);
-        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysDBVFService.getDEModel().getLogicName(), (Object)pSSysDBVFService.getDEModel().getDataInfo((IEntity)pSSysDBVF)));
+        ActionSessionManager.appendActionInfo((String)StringHelper.format((String)"[%1$s]\u5bfc\u5165[%2$s]\r\n", (Object)pSSysDBVFService.getDEModel().getLogicName(), (Object)pSSysDBVFService.getDEModel().getDataInfo(pSSysDBVF)));
     }
 
     @Override
@@ -2564,40 +2394,29 @@ extends PSSystemServiceBase {
         }
         String string = jSONObject.optString("pssystemid");
         pSSystem.setPSSystemId(string);
-        this.get((IEntity)pSSystem);
+        this.get(pSSystem);
     }
 
     public DBCallResult executeBatchCreate(ArrayList<IEntity> arrayList, int n, IDataEntityModel iDataEntityModel) throws Exception {
-        SqlParamList sqlParamList;
         ISqlCommandModel iSqlCommandModel = PSSystemService.getCreateSqlCommandModel(this.getDAO().getRealDBDialect(), iDataEntityModel);
-        String[] stringArray = new String[]{iSqlCommandModel.getSql()};
+        final String[] stringArray = new String[]{iSqlCommandModel.getSql()};
         ArrayList<SqlParamList> arrayList2 = new ArrayList<SqlParamList>();
         for (IEntity iEntity : arrayList) {
-            sqlParamList = new SqlParamList();
+            SqlParamList sqlParamList = new SqlParamList();
             iSqlCommandModel.fillSqlParams(iEntity, null, sqlParamList);
             arrayList2.add(sqlParamList);
         }
-        SqlParamList[] sqlParamListArray = arrayList2.toArray(new SqlParamList[arrayList2.size()]);
-        int n2 = n;
-        sqlParamList = new CallResult();
-        this.doServiceWork(new IServiceWork((CallResult)sqlParamList, stringArray, sqlParamListArray, n2){
-            final /* synthetic */ CallResult val$callResult;
-            final /* synthetic */ String[] val$sqls2;
-            final /* synthetic */ SqlParamList[] val$sqlParamLists2;
-            final /* synthetic */ int val$nBatchSize2;
-            {
-                this.val$callResult = callResult;
-                this.val$sqls2 = stringArray;
-                this.val$sqlParamLists2 = sqlParamListArray;
-                this.val$nBatchSize2 = n;
-            }
-
+        final SqlParamList[] sqlParamListArray = arrayList2.toArray(new SqlParamList[arrayList2.size()]);
+        final int batchSize = n;
+        final CallResult callResult = new CallResult();
+        this.doServiceWork(new IServiceWork(){
+            @Override
             public void execute(ITransaction iTransaction) throws Exception {
                 PSSystemService.this.getDAO().executeRawSql(null, "SET FOREIGN_KEY_CHECKS=0;", null);
-                this.val$callResult.setUserObject((Object)PSSystemService.this.getDAO().executeRawSqlBatch(null, this.val$sqls2, this.val$sqlParamLists2, this.val$nBatchSize2));
+                callResult.setUserObject((Object)PSSystemService.this.getDAO().executeRawSqlBatch(null, stringArray, sqlParamListArray, batchSize));
             }
         });
-        return (DBCallResult)sqlParamList.getUserObject();
+        return (DBCallResult)callResult.getUserObject();
     }
 
     public void executeResetSysModel() throws Exception {
@@ -2627,7 +2446,6 @@ extends PSSystemServiceBase {
             }
         }
         hashMap.put("T_SRFFILE", "");
-        iDataEntityModel = new CallResult();
         this.doServiceWork(new IServiceWork(){
 
             public void execute(ITransaction iTransaction) throws Exception {
@@ -2703,77 +2521,68 @@ extends PSSystemServiceBase {
     }
 
     public PSMOSFile[] listBookmarkFiles(PSMOSFile pSMOSFile, String string, IPSMOSFileFilter iPSMOSFileFilter) throws Exception {
-        EntityBase entityBase;
-        Object object;
-        Object object2;
-        Object object3;
-        String string2;
         PSSysModelFolderService pSSysModelFolderService = (PSSysModelFolderService)ServiceGlobal.getService(PSSysModelFolderService.class, (SessionFactory)this.getSessionFactory());
         PSSysModelFolderItemService pSSysModelFolderItemService = (PSSysModelFolderItemService)ServiceGlobal.getService(PSSysModelFolderItemService.class, (SessionFactory)this.getSessionFactory());
         String[] stringArray = string.split("[/]");
         PSSysModelFolderBase pSSysModelFolderBase = null;
         String string3 = "{BOOKMARKS}";
         for (int i = 1; i < stringArray.length; ++i) {
-            string2 = stringArray[i];
+            String string2 = stringArray[i];
             if (!StringHelper.isNullOrEmpty((String)string2)) {
                 string2 = string2.trim();
             }
             if (StringHelper.isNullOrEmpty((String)string2)) break;
-            object3 = new SelectCond();
+            SelectCond pathCond = new SelectCond();
             if (pSSysModelFolderBase == null) {
-                object3.setIsNull("PPSSYSMODELFOLDERID");
+                pathCond.setIsNull("PPSSYSMODELFOLDERID");
             } else {
-                object3.set("PPSSYSMODELFOLDERID", (Object)pSSysModelFolderBase.getPSSysModelFolderId());
+                pathCond.set("PPSSYSMODELFOLDERID", (Object)pSSysModelFolderBase.getPSSysModelFolderId());
             }
-            object3.set("PSSYSMODELFOLDERNAME", (Object)string2);
-            object2 = pSSysModelFolderService.select((ISelectCond)object3);
-            if (((ArrayList)object2).size() == 0) {
+            pathCond.set("PSSYSMODELFOLDERNAME", (Object)string2);
+            ArrayList<PSSysModelFolder> matchedFolders = pSSysModelFolderService.select((ISelectCond)pathCond);
+            if (matchedFolders.size() == 0) {
                 throw new Exception(StringHelper.format((String)"\u65e0\u6cd5\u8bc6\u522b\u7684\u8def\u5f84\uff1a%1$s", (Object)string));
             }
-            pSSysModelFolderBase = (PSSysModelFolder)((ArrayList)object2).get(0);
+            pSSysModelFolderBase = matchedFolders.get(0);
             string3 = string3 + "/" + string2;
         }
-        ArrayList<EntityBase> arrayList = new ArrayList<EntityBase>();
-        string2 = new SelectCond();
-        string2.setOrderInfo("ORDER BY PSSYSMODELFOLDERNAME");
+        ArrayList<PSMOSFile> arrayList = new ArrayList<PSMOSFile>();
+        SelectCond selectCond = new SelectCond();
+        selectCond.setOrderInfo("ORDER BY PSSYSMODELFOLDERNAME");
         if (pSSysModelFolderBase == null) {
-            string2.setIsNull("PPSSYSMODELFOLDERID");
+            selectCond.setIsNull("PPSSYSMODELFOLDERID");
         } else {
-            string2.set("PPSSYSMODELFOLDERID", (Object)pSSysModelFolderBase.getPSSysModelFolderId());
+            selectCond.set("PPSSYSMODELFOLDERID", (Object)pSSysModelFolderBase.getPSSysModelFolderId());
         }
-        object3 = pSSysModelFolderService.select((ISelectCond)string2);
-        object2 = ((ArrayList)object3).iterator();
-        while (object2.hasNext()) {
-            object = (PSSysModelFolder)object2.next();
-            entityBase = new PSMOSFile();
-            entityBase.setPSMOSFileId(string3 + "/" + ((PSSysModelFolderBase)object).getPSSysModelFolderName());
-            entityBase.setPSMOSFileName(((PSSysModelFolderBase)object).getPSSysModelFolderName());
-            entityBase.setFolderFlag(1);
-            entityBase.setFileTag("MODEL");
-            entityBase.setPSModelType("PSSYSMODELFOLDER");
-            entityBase.setPSModelId(((PSSysModelFolderBase)object).getPSSysModelFolderId());
-            arrayList.add(entityBase);
+        ArrayList<PSSysModelFolder> folders = pSSysModelFolderService.select((ISelectCond)selectCond);
+        for (PSSysModelFolder folder : folders) {
+            PSMOSFile file = new PSMOSFile();
+            file.setPSMOSFileId(string3 + "/" + folder.getPSSysModelFolderName());
+            file.setPSMOSFileName(folder.getPSSysModelFolderName());
+            file.setFolderFlag(1);
+            file.setFileTag("MODEL");
+            file.setPSModelType("PSSYSMODELFOLDER");
+            file.setPSModelId(folder.getPSSysModelFolderId());
+            arrayList.add(file);
         }
-        string2.reset();
-        string2.setOrderInfo("ORDER BY PSSYSMODELFOLDERITEMNAME");
+        selectCond.reset();
+        selectCond.setOrderInfo("ORDER BY PSSYSMODELFOLDERITEMNAME");
         if (pSSysModelFolderBase == null) {
-            string2.setIsNull("PSSYSMODELFOLDERID");
+            selectCond.setIsNull("PSSYSMODELFOLDERID");
         } else {
-            string2.set("PSSYSMODELFOLDERID", (Object)pSSysModelFolderBase.getPSSysModelFolderId());
+            selectCond.set("PSSYSMODELFOLDERID", (Object)pSSysModelFolderBase.getPSSysModelFolderId());
         }
-        string2.setIsNotNull("PSOBJTYPE");
-        string2.setIsNotNull("PSOBJID");
-        object2 = pSSysModelFolderItemService.select((ISelectCond)string2);
-        object = ((ArrayList)object2).iterator();
-        while (object.hasNext()) {
-            entityBase = (PSSysModelFolderItem)object.next();
+        selectCond.setIsNotNull("PSOBJTYPE");
+        selectCond.setIsNotNull("PSOBJID");
+        ArrayList<PSSysModelFolderItem> items = pSSysModelFolderItemService.select((ISelectCond)selectCond);
+        for (PSSysModelFolderItem item : items) {
             PSMOSFile pSMOSFile2 = new PSMOSFile();
-            pSMOSFile2.setPSMOSFileId(string3 + "/" + entityBase.getPSSysModelFolderItemName());
-            pSMOSFile2.setPSMOSFileName(entityBase.getPSSysModelFolderItemName() + "@" + PSModelV2Helper.getModelV2LogicName(entityBase.getPSObjType()));
+            pSMOSFile2.setPSMOSFileId(string3 + "/" + item.getPSSysModelFolderItemName());
+            pSMOSFile2.setPSMOSFileName(item.getPSSysModelFolderItemName() + "@" + PSModelV2Helper.getModelV2LogicName(item.getPSObjType()));
             pSMOSFile2.setFolderFlag(0);
             pSMOSFile2.setFileTag("MODEL");
             pSMOSFile2.setPSModelType("PSSYSMODELFOLDERITEM");
-            pSMOSFile2.setPSModelId(entityBase.getPSSysModelFolderItemId());
+            pSMOSFile2.setPSModelId(item.getPSSysModelFolderItemId());
             arrayList.add(pSMOSFile2);
         }
         return arrayList.toArray(new PSMOSFile[arrayList.size()]);
@@ -2790,7 +2599,7 @@ extends PSSystemServiceBase {
         selectCond.set("OBJTYPE", (Object)"PSDATAENTITY");
         selectCond.set("PSDEVUSERID", (Object)this.getWebContext().getCurUserId());
         selectCond.setOrderInfo("ORDER BY UPDATEDATE DESC");
-        ArrayList arrayList2 = pSDevUserRecentService.select((ISelectCond)selectCond);
+        ArrayList<PSDevUserRecent> arrayList2 = pSDevUserRecentService.select((ISelectCond)selectCond);
         for (PSDevUserRecent pSDevUserRecent : arrayList2) {
             PSMOSFile pSMOSFile2 = new PSMOSFile();
             pSMOSFile2.setPSMOSFileId("{RECENTS}/" + pSDevUserRecent.getObjName());
@@ -2815,4 +2624,3 @@ extends PSSystemServiceBase {
         log = LogFactory.getLog(PSSystemService.class);
     }
 }
-
